@@ -1,0 +1,159 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px;
+  height: 100%;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.playerName {
+  font-size: 48px;
+  font-weight: 700;
+  color: #F9FAFB;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.itemCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid #374151;
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.truthCard {
+  border-color: #3B82F6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.dareCard {
+  border-color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.itemType {
+  display: flex;
+  align-items: center;
+}
+
+.itemContent {
+  margin-bottom: 24px;
+}
+
+.itemText {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #F9FAFB;
+  margin: 0;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.wildCardButton {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8B5CF6, #A855F7);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.wildCardButton:hover {
+  background: linear-gradient(135deg, #7C3AED, #9333EA);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+.skipButton,
+.completeButton {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.skipButton {
+  background: #6B7280;
+  color: white;
+}
+
+.skipButton:hover {
+  background: #4B5563;
+  transform: translateY(-2px);
+}
+
+.completeButton {
+  background: #10B981;
+  color: white;
+}
+
+.completeButton:hover {
+  background: #059669;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .playerName {
+    font-size: 36px;
+  }
+  
+  .itemCard {
+    padding: 32px 24px;
+    min-height: 200px;
+  }
+  
+  .itemText {
+    font-size: 18px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .wildCardButton,
+  .skipButton,
+  .completeButton {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}

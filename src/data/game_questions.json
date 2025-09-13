@@ -1,0 +1,3027 @@
+[
+
+    {
+        "id": "d6b60ab8-10e6-40d3-a9a7-30988b2269c9",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s something you’ve done in the past you never wanted me to find out about?"
+    },
+    {
+        "id": "f7ecabbe-90ad-44c2-9fe3-7c1c37d77759",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever told me a half-truth to avoid revealing a sexual preference?"
+    },
+    {
+        "id": "31cce34d-f080-4f1b-9278-9e379236195f",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s one thing you’ve desired from me but kept to yourself?"
+    },
+    {
+        "id": "f165ea6c-8b2b-46c3-8dd4-d5f5fd3da024",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me anywhere you want for at least 15 seconds."
+    },
+    {
+        "id": "3789a6af-9240-41d2-b79b-35f6f91f8707",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Give me a slow, dramatic hug and whisper something sweet in my ear."
+    },
+    {
+        "id": "af3f5e20-07f6-4685-b4fb-9c35ebf63bd9",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Dance playfully for me for 20 seconds, clothes on."
+    },
+    {
+        "id": "ed19062b-9ae3-4b7f-8c5d-cac60fbfb227",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Hide under a blanket with me and kiss me until we both laugh."
+    },
+    {
+        "id": "437e18ff-cc41-44a9-9a18-e056f21d2f0b",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Let me remove one accessory or piece of clothing (if applicable)."
+    },
+    {
+        "id": "6a95ee8c-8d19-4680-893d-22fd79f02e4f",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Draw a small heart somewhere on my body with your finger."
+    },
+    {
+        "id": "2e548bf0-f47c-40cf-95f6-c98ea95ec729",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Sit in my lap (or have me sit in yours) for one minute without breaking eye contact."
+    },
+    {
+        "id": "af9bb6f0-c529-48d6-8707-e7cb9d3143cb",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Place a trail of kisses from my hand to my shoulder."
+    },
+    {
+        "id": "201250ad-7700-4b3d-9ffb-b6d3df21c289",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Whisper one of your secrets in my ear."
+    },
+    {
+        "id": "f0d167c1-6d23-4081-9fe2-b0293e0e91ea",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Imitate a movie kiss scene with me."
+    },
+    {
+        "id": "11e5cde6-c49e-4fb3-96aa-c5b16237fcec",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Spin around three times, then kiss me like you mean it."
+    },
+    {
+        "id": "bfbc6fae-235a-4544-bb0d-e24c88001626",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Pretend you’re shy and make me “convince” you to give me a kiss."
+    },
+    {
+        "id": "3c9d7794-6a67-4708-8a8c-418f2364299d",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me in the silliest way you can think of."
+    },
+    {
+        "id": "de16bd4f-f07f-42c1-b13a-14da0d63bb7c",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Close your eyes and let me kiss you wherever I choose."
+    },
+    {
+        "id": "8c9dbf7c-7b69-4a15-9e2a-22e04cb0f6ec",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Hold my hand and tell me something you love about it."
+    },
+    {
+        "id": "53ccfc3c-7e23-4d92-a01a-7a215cf0e09b",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Lie down, and let me lean over you for a kiss."
+    },
+    {
+        "id": "d8612c12-3816-41f5-b9aa-179ec72af3b3",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Give me a forehead kiss, then a cheek kiss, then a lip kiss — all in a row."
+    },
+    {
+        "id": "87eaf4e9-9699-4f2b-bd1d-1245fd74e27c",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, you must call me by a sweet nickname."
+    },
+    {
+        "id": "ac51c0b2-9b12-41c1-b01f-4a8a0d0738c2",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Sing one line of a romantic song directly to me."
+    },
+    {
+        "id": "def9d6b7-3a04-4326-8463-fb481b4156fc",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Do your best impression of a cheesy pick-up line, then kiss me."
+    },
+    {
+        "id": "7a5ea5a0-49dc-40f6-8a84-49a89b982b20",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Nibble gently on my earlobe (if comfortable)."
+    },
+    {
+        "id": "df442327-b114-46e7-bd1d-3196f209ab57",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Let me pick a body part for you to kiss."
+    },
+    {
+        "id": "acbeea58-06d2-4a2e-946a-2fbe1c42f7eb",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Wrap me in the tightest cuddle you can manage for 30 seconds."
+    },
+    {
+        "id": "1f7a2d88-1c47-41c0-930f-c33873fefc58",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Pretend we’re on our first date and kiss me the way you would have then."
+    },
+    {
+        "id": "7e56d269-ea45-47b7-b3a6-b45fb79c3a35",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Give me three kisses: one playful, one soft, one passionate."
+    },
+    {
+        "id": "3d28fd0b-c47d-4a0d-ae06-0c9a693ff1b1",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Say something flirtatious in a funny accent."
+    },
+    {
+        "id": "114edffb-72b8-4f59-b64a-b2489eb6704b",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me without using your hands."
+    },
+    {
+        "id": "c7dcd403-ffcf-4600-84c4-d72fc0f9e05a",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Put your arms around me and don’t let go until I say stop."
+    },
+    {
+        "id": "7924c78d-c124-4c0e-8737-4458d3de3b8d",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, every time I say your name you must kiss me."
+    },
+    {
+        "id": "d60da0a6-9c3c-4e9a-8ad2-81e2239e2c02",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Draw a smiley face on my skin with your finger."
+    },
+    {
+        "id": "b67dd13c-8fbf-460d-bc85-bcb88ebce7a7",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Let me kiss you anywhere I choose, no complaints."
+    },
+    {
+        "id": "6b90a024-5283-44cc-822f-9f1601d008f1",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Sit knee-to-knee with me and stare into my eyes until someone laughs."
+    },
+    {
+        "id": "e1a37e72-5170-4e9a-a180-5f6632caa61d",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Act out a dramatic soap-opera style kiss scene with me."
+    },
+    {
+        "id": "91b46d0c-0b6c-4c9c-924f-f663a5071e03",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Give me a kiss but stop just before my lips for a teasing moment."
+    },
+    {
+        "id": "f9b10d5f-152c-48e9-a3e0-f91348298d5e",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Hold my face in your hands and kiss me like it’s the last time tonight."
+    },
+    {
+        "id": "e2f9b6d1-9c35-4d83-8e8f-86e5f4c33db4",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "For the next 3 full rounds, you must only whisper when you talk to me."
+    },
+    {
+        "id": "3b5fc16a-0129-47a3-92eb-78ee905dca4e",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me on both cheeks, then my lips."
+    },
+    {
+        "id": "0e4ed830-ec7a-4fc5-a2d4-ef8e9e52401d",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Let me whisper something playful in your ear and promise not to react."
+    },
+    {
+        "id": "e4787fa7-5428-49f1-8ef5-9d9ae8c63b44",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Try to make me blush with just one sentence."
+    },
+    {
+        "id": "d4de9d19-1560-4f74-9b65-c63b9d37d6a0",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Give me a “butterfly kiss” with your eyelashes."
+    },
+    {
+        "id": "b0c64465-dfaf-49f4-b0ed-ff5d98a6c79a",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "For the next 3 full rounds, you must sit pressed against me."
+    },
+    {
+        "id": "27f5fbb5-6329-4e15-aafd-7485a1cfbcf5",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me while making the silliest noise you can."
+    },
+    {
+        "id": "acaa59ef-d18c-4706-9672-1ab25a52a8d4",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Pretend we’re in a romantic movie scene and direct the moment."
+    },
+    {
+        "id": "1a87369a-c67e-4aa1-a21b-07120b9f1163",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss my hand like you’re a character in an old romance story."
+    },
+    {
+        "id": "fc91a59d-6d54-4a6b-a26f-b15685c13f6e",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Tell me one cheesy fantasy you’ve had about us."
+    },
+    {
+        "id": "e7acb3c6-5a5b-4dc3-a3cb-3abaf8f2b7ed",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Hold my waist and kiss me slowly."
+    },
+    {
+        "id": "f46bbf3e-f9d1-44b6-97ad-fb15d45f7a63",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, every time I smile at you, you must blow me a kiss."
+    },
+    {
+        "id": "009e1d06-4e20-4d9d-94aa-dc4ab2de3468",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Tickle me for 10 seconds, then end with a kiss."
+    },
+    {
+        "id": "5d31f14b-934e-4f0f-9982-f0d9e16c0f3c",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Kiss me and try to make me laugh at the same time."
+    },
+    {
+        "id": "c3b87af7-6647-4c3f-82b1-eac59d310f2a",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Close your eyes and guess which part of you I’ll kiss."
+    },
+    {
+        "id": "a6a74b87-7b20-460b-b20d-160cc50dcce3",
+        "level": "Soft",
+        "kind": "dare",
+        "text": "Whisper something you’d like me to do later (innocent or flirty)."
+    },
+    {
+        "id": "66dae848-2db4-45b7-b8c9-74d820f9aeb5",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What type of porn category do you think would secretly turn you on the most?"
+    },
+    {
+        "id": "a39fd282-91a2-4b35-8fcd-6b8c19d28291",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever watched a scene in a movie (not porn) that unexpectedly aroused you?"
+    },
+    {
+        "id": "ac30e096-b3d8-4cac-b7ff-98e65bb40b18",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s one thing on your romantic or sexual bucket list you haven’t told me?"
+    },
+    {
+        "id": "8e09414a-1098-40f8-9899-14ff1c4c3a2d",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "If you could choose one fantasy location for foreplay, what would it be?"
+    },
+    {
+        "id": "f23d1b26-b4cd-4b07-a68c-2d2c90ef5e8a",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you prefer soft lingerie, bold lingerie, or none at all?"
+    },
+    {
+        "id": "f3b02a21-0f62-4f64-8e67-894230d225ef",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What sexy clothing is attractive to you?"
+    },
+    {
+        "id": "8d8a2e47-2b5f-4b34-a699-b24b9b25f85b",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the most memorable time you were turned on outside of the bedroom?"
+    },
+    {
+        "id": "fb955d01-ad20-4f1e-8e54-5a0d5a7a8b84",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever imagined us teasing each other in public discreetly?"
+    },
+    {
+        "id": "34c3d1d4-1e9e-428b-b015-9a11b7e8e8b6",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What roleplay idea has ever crossed your mind, even playfully?"
+    },
+    {
+        "id": "2ced22fd-4cf1-4f8b-99ba-03f1d55763d4",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the first memory you have of feeling sexually aroused?"
+    },
+    {
+        "id": "2a162987-20e7-4781-8e6a-2ec67d828bb6",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of sexting would you actually enjoy from me?"
+    },
+    {
+        "id": "1d661f29-12f7-4b3f-8c18-d5aeaf2d72c4",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the most teasing way I’ve ever touched you?"
+    },
+    {
+        "id": "8869bdce-d0df-45d3-913a-32e2a83680a9",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you prefer me taking the lead during foreplay or you leading?"
+    },
+    {
+        "id": "6af6b427-57b0-49de-a3ab-5e606c06d2e4",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever fantasized about me undressing slowly for you?"
+    },
+    {
+        "id": "8e5aeac6-6f34-4c0c-935e-cfdbdd539ce0",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s your favorite area on your body to be kissed beyond lips?"
+    },
+    {
+        "id": "5f259f63-f786-48cf-90ee-45e57e4fdfe2",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "If you had to choose one part of foreplay to last longer, what would it be?"
+    },
+    {
+        "id": "dbc5ea10-1bcf-4ba3-8e2b-e5c6d0c7a238",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever secretly wanted me to dress in a certain way for you?"
+    },
+    {
+        "id": "bfb21f88-60d0-4ae0-9c40-2fb986e8354a",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of teasing makes you crave me more?"
+    },
+    {
+        "id": "db8b1a35-8dc8-4de2-b113-1ca4fb6208e6",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of teasing in bed would you like to try?"
+    },
+    {
+        "id": "c1645362-659a-4b3d-9a41-b20c5a1b7c98",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the funniest thought you’ve had during foreplay?"
+    },
+    {
+        "id": "93e1a97f-0642-4c0a-bf91-56e0117485c8",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you like the idea of playful spanking or does it turn you off?"
+    },
+    {
+        "id": "01c2d1a9-24a7-4728-9caf-e4cec0d55ad6",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the most unusual place you’ve thought about us being intimate?"
+    },
+    {
+        "id": "96b4b1ae-aa5c-4f61-82f7-2b33f7a008f4",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever wanted me to whisper something dirty in your ear in public?"
+    },
+    {
+        "id": "39b7fb68-fb10-4913-ae49-8b51b52c9918",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Which piece of clothing of mine would you most want me to strip off first?"
+    },
+    {
+        "id": "f6f75b7f-2cca-4f14-9779-f3f4223b6fdb",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever pictured us trying out lingerie or costumes together?"
+    },
+    {
+        "id": "79d21c01-07d5-40a6-89a4-4e247e510c5a",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the boldest flirting you’ve done with me?"
+    },
+    {
+        "id": "9b84a90a-ecc7-4ace-94d3-00e1389f7a34",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you like the idea of being blindfolded during intimacy?"
+    },
+    {
+        "id": "c74911b8-7b05-443a-9f0d-6eaa51a71fa2",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a physical gesture I do that makes you feel instantly aroused?"
+    },
+    {
+        "id": "3b2207ba-35a6-4a3f-9e8d-6e04f437f99f",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Which of my body parts do you secretly love staring at?"
+    },
+    {
+        "id": "f46b3b48-3cf7-4af2-b6df-1ed12c630b12",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever thought about us kissing in front of others just to tease?"
+    },
+    {
+        "id": "2e8c32b0-f99a-4c5d-a792-500dea33ea16",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a compliment about your body you wish I said more often?"
+    },
+    {
+        "id": "df0a80cf-7286-408b-8f3c-9b0082af2aa7",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a playful fantasy about us that always makes you smile when you think of it?"
+    },
+    {
+        "id": "6bb0c0f1-d08a-4bd4-b00d-4f0f1b8efda1",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the most turned on you’ve been by me outside of the bedroom?"
+    },
+    {
+        "id": "3f199e1f-27c3-4489-9e2d-9bfe6a57cb35",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever thought about us skinny dipping? Would it excite you?"
+    },
+    {
+        "id": "d0b3880d-0897-4b4b-9c4c-3f1db8537fd3",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Which foreplay activity would you keep if we had to drop all others?"
+    },
+    {
+        "id": "219bee87-fbef-499f-a1c4-23bf5cf09517",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you like the idea of me sending you a flirty picture (if private)?"
+    },
+    {
+        "id": "a5e06cfa-0413-4d17-8b67-a221e28d2bc1",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the silliest item of clothing that could turn you on if I wore it?"
+    },
+    {
+        "id": "800b38f4-e387-4fff-b22c-aef8eebfb615",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever wanted me to surprise you with a seductive gesture?"
+    },
+    {
+        "id": "16672171-147c-4f61-af77-5e23f1943a03",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of public teasing scenario excites you most (verbal only)?"
+    },
+    {
+        "id": "58a6c744-5a46-44dc-bf9b-7a7ca5e934a0",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you think laughter during foreplay makes it better or worse?"
+    },
+    {
+        "id": "84490e0a-728c-47a8-80a0-6200b2be2718",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever had a dream about me in lingerie?"
+    },
+    {
+        "id": "bc45cf1a-7515-4c86-8a72-0fba1fd7eaad",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What do you imagine would happen if I seduced you in a hotel hallway?"
+    },
+    {
+        "id": "e43e536e-7e9a-4b1b-a1ef-9d61efbdf313",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you like it when I kiss you lightly for a long time, or deeply right away?"
+    },
+    {
+        "id": "32dc7f0f-10f5-4054-91b7-7d2199bcd6c4",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What part of my body do you wish you could touch more often?"
+    },
+    {
+        "id": "f05b3f6d-9316-4598-80f4-c43ec2d48757",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever imagined us watching something sexy together?"
+    },
+    {
+        "id": "5baca1ec-0e13-45fa-bf78-2057f6add555",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the boldest piece of lingerie you’d like to see me in (or wear yourself if applicable)?"
+    },
+    {
+        "id": "5f8686dd-3c16-4eb6-a895-e1b24a3bc6c3",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Which kind of roleplay would you be most interested to try?"
+    },
+    {
+        "id": "4f020aca-aeea-4c8c-8da8-0f79f85cb2f7",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you like teasing games that last several minutes before intimacy?"
+    },
+    {
+        "id": "5567722f-a102-4b51-8b00-9e06ef7548a1",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s your favorite way to start foreplay?"
+    },
+    {
+        "id": "0a4a42a1-2d4a-4fdf-9420-17864f7e0d37",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever pictured me dancing for you?"
+    },
+    {
+        "id": "a8296a6c-40f8-4efe-8d01-67cd395c9233",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you think anticipation is sexier than the act itself sometimes?"
+    },
+    {
+        "id": "f90e2f8d-f8b3-476d-b405-fc968be8034a",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever thought about sexting with me during the day?"
+    },
+    {
+        "id": "24aaf1fd-264f-4eab-9eca-7f3fb2b4856e",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of sexting message would you be most excited to receive?"
+    },
+    {
+        "id": "d9785f36-29be-4ec7-9f7c-13119c0b35ee",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Do you prefer sexting with playful hints or bold details?"
+    },
+    {
+        "id": "c56a3012-888a-44d7-98e7-9eafc731af5f",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s the sexiest compliment you’ve ever received?"
+    },
+    {
+        "id": "f56b7c56-2d35-48df-8208-7acdae3a6000",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What type of porn do you think you’d secretly enjoy but haven’t tried watching?"
+    },
+    {
+        "id": "c4eb2887-1122-4a3d-92b5-9fae8010fd48",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What do you find most enjoyable when it comes to watching porn (if you ever tried)?"
+    },
+    {
+        "id": "2a249f26-90a2-4510-9196-23f4238f254e",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s one item on your sexual bucket list you hope we do together?"
+    },
+    {
+        "id": "7a82e918-e64d-4d87-a5e7-d0dc85761319",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a daring bucket list fantasy that excites you most?"
+    },
+    {
+        "id": "0e5e4c65-d323-4e7c-9619-496aa657f3ab",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What kind of lingerie or sexy clothing would you most want to see me wear (or wear yourself if applicable)?"
+    },
+    {
+        "id": "a8c25d32-b3a1-4dc2-a5b9-6b3be9db1108",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a secret desire you’ve had about us traveling somewhere erotic together?"
+    },
+    {
+        "id": "37f0c9bd-6c4a-43d6-9866-1baa3938e8a8",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever desired to watch something intimate with me that you never confessed?"
+    },
+    {
+        "id": "93bd171c-6cbd-4b6e-8a0e-19c568667c3d",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a hidden roleplay scenario you’ve secretly wanted but never dared to ask?"
+    },
+    {
+        "id": "7d74c78e-4e8a-4a45-8659-c2b7912d3484",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "Have you ever wanted me to surprise you with a specific kind of seduction?"
+    },
+    {
+        "id": "aeb3a5a9-c046-4a09-9c52-722e79d7c74c",
+        "level": "Mild",
+        "kind": "truth",
+        "text": "What’s a desire you have about intimacy in unusual places that you’ve kept private?"
+    },
+    {
+        "id": "3cf85f88-b0a3-42dd-9c0b-e223d6726e61",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Slowly remove one visible item of clothing (if applicable)."
+    },
+    {
+        "id": "c5f8f3c6-c8a6-484b-8244-7c3f9910a307",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me kiss and tease your neck for one minute without moving away."
+    },
+    {
+        "id": "3a83a84f-4228-4b6d-83f4-b37c3aebefd8",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Blindfold yourself with a scarf (or let me do it) for the next 3 full rounds. The partner will read your challenges. If already done, your partner does it instead. If either of you is already under this dare, wait until one is finished before starting."
+    },
+    {
+        "id": "60f26424-c5b7-401a-8b5e-f78e7c1b3e27",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Give me a 2-minute lap dance (clothed or semi)."
+    },
+    {
+        "id": "fcdfbbc8-6111-44c0-85ac-89220af7a9e9",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Place my hand somewhere on your body where you want to be touched."
+    },
+    {
+        "id": "b4a7d121-13b7-4d0a-8cd2-eada19d66d21",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Slowly trace a shape or word on my skin with your tongue."
+    },
+    {
+        "id": "68966f6b-c3f4-4a39-83b2-744f5184d909",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 6 full rounds, whenever I wink at you, blow me a kiss."
+    },
+    {
+        "id": "5f72b8bf-48e1-463f-8313-1ae4cfe0d6b5",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Whisper the naughtiest word you can think of in my ear."
+    },
+    {
+        "id": "cf3d0138-b1be-44a2-ba2e-440b43b2d177",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Remove your top layer (shirt/dress) while keeping eye contact (if applicable)."
+    },
+    {
+        "id": "21c235b9-c138-4ca5-9af4-e7b6f58b2828",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Pretend you’re undressing me with your eyes for 10 seconds."
+    },
+    {
+        "id": "1a627062-f82f-4b4c-baa8-f3e57a2aaa60",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Lick or kiss just below my ear slowly."
+    },
+    {
+        "id": "f6d57058-bd82-4b80-8b5a-97aad5f480d2",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, every time I say “please,” you must kiss me."
+    },
+    {
+        "id": "1d4faaba-5a3a-4025-98cd-faa67d9e8c7b",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Gently run your hands under my shirt for 30 seconds."
+    },
+    {
+        "id": "f4a3f96c-6dc3-4b8f-92c4-e854b4645f9e",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me kiss your chest (if comfortable)."
+    },
+    {
+        "id": "4f0e9d32-31a6-4b20-8a5d-f94a6321b5dc",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Dance to an imaginary sexy song for me."
+    },
+    {
+        "id": "bfb905c8-9986-4985-8ef1-4d7c8d237f63",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Playfully spank me several times (if comfortable)."
+    },
+    {
+        "id": "08a86ba7-2c3a-496b-bac7-dfa38d510a3d",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Use an ice cube or something cold to tease my skin (if available)."
+    },
+    {
+        "id": "9c91f68c-bc51-4a8c-b812-5a07e7643ec4",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, call me by a seductive nickname."
+    },
+    {
+        "id": "c0dc5485-3738-4b2d-9fa5-316bb53f68d1",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Kiss me passionately, then suddenly stop and smile."
+    },
+    {
+        "id": "d2fb8a77-4569-4fcc-96f9-e866ed79f4e1",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Sit on my lap facing me for one minute."
+    },
+    {
+        "id": "604e700d-a722-4463-affc-13a9403fb48d",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Trace a heart shape with your tongue on my body."
+    },
+    {
+        "id": "bdd03cba-7b1c-4f11-a097-0a022d228df4",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me remove your socks in a sexy way (if applicable)."
+    },
+    {
+        "id": "d59e0817-31f4-457c-9c48-d7f92f70d3d7",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Give me a lingering kiss without using your lips (only cheeks, neck, hands)."
+    },
+    {
+        "id": "9ed74f97-5f13-4e22-ae2e-5f96bd031739",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 3 full rounds, you must touch my hand or thigh when speaking."
+    },
+    {
+        "id": "dccb6c67-dd6d-4b7e-8eea-686c32653b81",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Kiss me and bite your lip right after."
+    },
+    {
+        "id": "b86a74ad-09fb-4eb7-9be5-8285d321bb2e",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Massage my shoulders or back for two minutes in any style you like."
+    },
+    {
+        "id": "a1b7b560-52e1-4b05-8f88-2dc14bb0b894",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me feed you something in a sexy way (if food nearby)."
+    },
+    {
+        "id": "4a598162-86c0-48f4-8f14-77b2f89f0f86",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Whisper a fantasy you’ve had into my ear."
+    },
+    {
+        "id": "0a07aa5c-5e88-4d8a-b81c-354131f1c445",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 7 full rounds, you must kiss me passionately each time it’s my turn."
+    },
+    {
+        "id": "fd4f07ff-8d64-4684-81e6-1dbf6fea5190",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Lick or kiss my collarbone."
+    },
+    {
+        "id": "11a5dff4-d0a0-4a82-8a0c-52868efa9afc",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Pretend to model lingerie for me using whatever clothes you’re wearing."
+    },
+    {
+        "id": "04f16e17-315a-4e7f-bb13-c67862808b6c",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Kiss me while keeping both of your hands behind your back."
+    },
+    {
+        "id": "ff6640ee-5112-4b78-af7f-4c7e2382a25d",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Slowly unzip/unbutton an item of clothing (if applicable)."
+    },
+    {
+        "id": "ec05a25a-ce53-4cfe-9b8b-e96947414262",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, every time I compliment you, you must kiss me."
+    },
+    {
+        "id": "95c0fb25-93b6-4f7b-8c89-6aaa0c656bd2",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Sit blindfolded while I kiss you for a minute wherever I want."
+    },
+    {
+        "id": "2100950a-4691-44b5-8362-68029b447cff",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Whisper three different flirty lines to me in a row."
+    },
+    {
+        "id": "b0e95cf7-7226-4bce-9109-50f22d3a7b6b",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me kiss any part of your torso (if comfortable)."
+    },
+    {
+        "id": "c669bd2f-9fec-4fd9-bf03-7b1ee17b3bbb",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Place your tongue briefly on my wrist or hand."
+    },
+    {
+        "id": "7b7d9e68-b0fa-4bea-828d-3d0840becc6e",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, whenever I touch you, you must kiss me back."
+    },
+    {
+        "id": "6b1df6ab-5f9f-4038-89ea-5b0bdd61cc0b",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Give me a pretend striptease for a full minute."
+    },
+    {
+        "id": "1fe515ca-0807-4a58-b9b8-610a1d32e698",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Kiss me while holding my wrists gently."
+    },
+    {
+        "id": "a2c77a61-7840-45f1-8eec-9950cf1d19a2",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Say something seductive while looking into my eyes."
+    },
+    {
+        "id": "5c6cdf51-f640-4f07-9b31-6341938b4130",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Kiss me through clothing (like my shoulder or chest)."
+    },
+    {
+        "id": "2511d82b-ac60-4d25-8c66-4933f789f722",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, each time I smile at you, you must kiss me, everytime more passionately."
+    },
+    {
+        "id": "a2ecbdbe-8fb2-4ea8-9c00-6ac7d5a715c6",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Use your tongue to spell a letter on my skin and let me guess it."
+    },
+    {
+        "id": "055e43af-3f78-473f-9186-28075f0dbd9a",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Pretend we are in a public space and whisper something dirty so only I hear."
+    },
+    {
+        "id": "d32af430-b62e-4b21-9fb5-7ce15533acb9",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Let me remove one accessory or underlayer (if applicable)."
+    },
+    {
+        "id": "bb07c5ff-107c-4b3c-91d9-b407d7a96dd9",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Give me three quick kisses in different places."
+    },
+    {
+        "id": "ce173f4e-8bc4-4f4a-8ec0-8c4b127f1d35",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "For the next 3 full rounds, sit so close our legs touch constantly."
+    },
+    {
+        "id": "c8e006bc-3b76-45ef-8b9f-7a6d1043e491",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Lick your lips slowly while staring at me."
+    },
+    {
+        "id": "76bd042e-81f5-4801-86ba-7ccb64973a93",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Tell me one bold fantasy you’ve had about us."
+    },
+    {
+        "id": "0b1a1a9a-62e3-40e3-8c04-8c7f07b59e93",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Tease my nipples gently with your fingers for 30 seconds."
+    },
+    {
+        "id": "3f0d6385-77b1-44ee-87ca-f1c4793b39ff",
+        "level": "Mild",
+        "kind": "dare",
+        "text": "Use your tongue to play with my nipples for 30 seconds."
+    },
+    {
+        "id": "d3dbd266-d9ea-454d-8e7b-65ae5953f73e",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the most exciting fantasy position you've imagined but never tried?"
+    },
+    {
+        "id": "2336ed3e-1c4a-471c-a741-6c95487400bd",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever been most turned on by watching me do something completely ordinary?"
+    },
+    {
+        "id": "a54144a3-4e58-45ca-a58a-800b4d96bea0",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Which sex position have you secretly wanted to try with me?"
+    },
+    {
+        "id": "d70c3a9f-416b-4d17-b272-67deffd6c902",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you prefer being on top, bottom, or something unusual?"
+    },
+    {
+        "id": "5c5617c9-ef97-48f8-a822-80f1dee41fe7",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's a cum-related fantasy that excites you in theory?"
+    },
+    {
+        "id": "1a4a4517-c529-4e8f-bfa1-978b75a0bcce",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever been curious about where you'd want me to finish - or where you'd most want to finish yourself?"
+    },
+    {
+        "id": "f3c06f88-18c2-43c5-8cc2-1d9b6e5acc50",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What or who do you think about when you touch yourself?"
+    },
+    {
+        "id": "88130409-c583-4b8d-9dea-834c6d7128d0",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's your favorite way to masturbate?"
+    },
+    {
+        "id": "76c7816e-6dcd-4484-a51c-48d069060a38",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever fantasized about me watching you touch yourself?"
+    },
+    {
+        "id": "a70a5da2-5b47-412c-9d36-de1b18559de0",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What toy would you like us to try together for the first time?"
+    },
+    {
+        "id": "96f1688f-9d07-4199-a1ff-32d4b1aeb8b1",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Which toy of mine would you most like to use on me (if applicable)?"
+    },
+    {
+        "id": "f2021053-4a2b-4dbd-aba4-afed374465ba",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "If we experimented with recording, would you prefer making a video together?"
+    },
+    {
+        "id": "a4fc0295-0550-42bd-afd9-078d24c21c7b",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever thought about us recording just the sounds of intimacy?"
+    },
+    {
+        "id": "664135e3-3f66-4069-b890-55e991ea55f9",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the boldest oral fantasy you've had about me?"
+    },
+    {
+        "id": "fe18d2ce-3324-4776-84d7-e460b2f41c20",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you like the idea of me sitting on your face or you sitting on mine?"
+    },
+    {
+        "id": "6c1eb2a4-77de-4c2d-b848-564be00ec935",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's your favorite part of giving oral?"
+    },
+    {
+        "id": "dc010f2e-0de1-4533-8698-97a8d29f7622",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's your favorite part of receiving oral?"
+    },
+    {
+        "id": "1e2bdce2-c914-477c-bfd4-ae1c4dacfcb2",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you prefer tongue teasing or full deep oral play?"
+    },
+    {
+        "id": "f9559334-d23d-4fd2-9c67-e7d089f26d0e",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the hottest dirty talk line you've imagined saying to me?"
+    },
+    {
+        "id": "1698532d-0339-4ed1-8f52-66f39fa9ec91",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you like it when I moan loudly or softly?"
+    },
+    {
+        "id": "c25f4596-c58f-45d1-b32d-8091ae5db057",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What body part of mine would you worship if you had to choose one?"
+    },
+    {
+        "id": "07b6b5a5-b8ff-4514-8036-588126163dc6",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What porn position have you always wanted to see us recreate?"
+    },
+    {
+        "id": "a764409c-7f35-40ed-8a3b-746f3aa10353",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you ever imagine me doing porn-star style moves?"
+    },
+    {
+        "id": "5a20d832-e688-4c25-abc0-c21020b85ce8",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever thought about recording us just for private replay?"
+    },
+    {
+        "id": "0fd343f7-4139-44cf-9ce4-fde6ea83dc7c",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's your biggest oral turn-on?"
+    },
+    {
+        "id": "0c8a5e65-3a97-43c4-87ab-42926e1b6a41",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What part of my body do you fantasize licking the most?"
+    },
+    {
+        "id": "d1d525de-77ed-4bff-b51c-dfcaa4451506",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Which angle of sex excites you most to imagine?"
+    },
+    {
+        "id": "4b1baebc-8e4b-4149-8366-1171456f90ef",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever had a wet dream about me?"
+    },
+    {
+        "id": "3926d02d-5a49-4cfb-90e1-cd2b4a6227bf",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the hottest way you've ever imagined me saying your name?"
+    },
+    {
+        "id": "78f58263-a122-457e-a658-b9fc012f952b",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you think edging is exciting or frustrating?"
+    },
+    {
+        "id": "375a3a2d-ead1-4780-ada8-020503a0345f",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Would you enjoy me begging you to finish?"
+    },
+    {
+        "id": "6316ac71-6a0e-43bd-9351-adf8b97dc06e",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you prefer fast, intense foreplay or slow, teasing foreplay?"
+    },
+    {
+        "id": "ae50ec00-4689-40eb-8c34-396ffc6694be",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the sexiest sound you've ever heard from me that you can't forget?"
+    },
+    {
+        "id": "d8a6ce78-b8a4-4e2d-90f9-bf9058611559",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you like the idea of trying something we saw in porn together?"
+    },
+    {
+        "id": "54f5f44a-feca-44d4-93d8-f9dfda754488",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever wished I'd talk dirtier?"
+    },
+    {
+        "id": "6a610130-39d4-4ed9-ba3e-45194d1d67e0",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you fantasize about me moaning in your ear?"
+    },
+    {
+        "id": "6e29891f-308d-4d4c-ade4-0ecdef32f9f6",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the boldest fantasy involving cum you'd admit?"
+    },
+    {
+        "id": "bc4aeea0-44ad-4174-b2ce-0baa0d2a4646",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's your secret go-to masturbation fantasy?"
+    },
+    {
+        "id": "b48fe477-0522-44e3-a8d2-b6364654c74f",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever wanted me to direct you like a porn scene?"
+    },
+    {
+        "id": "c4e14fe3-0aca-489b-911e-f3d5f406fd3b",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What kind of video would you most want us to make?"
+    },
+    {
+        "id": "e72e17ca-db1e-492a-a931-3bd0553d7f17",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you like the idea of mutual masturbation facing each other?"
+    },
+    {
+        "id": "04713842-06bc-4143-b6e8-c247855dfd28",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Which toy would you be most curious to see me use on myself?"
+    },
+    {
+        "id": "e5569f84-ff7e-4d6c-ae3e-50c74d68aedd",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What porn-related fantasy makes you laugh more than aroused?"
+    },
+    {
+        "id": "2adc788d-3c8f-4879-8ae2-903910221274",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Do you prefer me quiet during intimacy or vocal?"
+    },
+    {
+        "id": "20daac9e-1b65-48bd-81db-b1fcdfd669af",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What part of porn feels the least realistic to you?"
+    },
+    {
+        "id": "cef9b2bb-d973-4c7e-a53f-6eb2dfab25de",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Have you ever wanted me to roleplay as a porn star?"
+    },
+    {
+        "id": "80886c32-2a44-4004-b7a1-e755fdfc3e8e",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's the sexiest thing you've imagined hearing from me while touching yourself?"
+    },
+    {
+        "id": "b7253fa7-c13d-4341-a960-48148d589424",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "Which porn position would make you laugh if we tried it?"
+    },
+    {
+        "id": "ce82bc37-6e3a-45a0-accf-1dfc9b5be4ba",
+        "level": "Hot",
+        "kind": "truth",
+        "text": "What's a toy-related fantasy you'd be curious to try with me?"
+    },
+    {
+        "id": "f9278ba5-a490-4990-9c1b-f2fe9e43fcba",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Go down on me (or let me go down on you) for one minute, no stopping."
+    },
+    {
+        "id": "fa56a985-b77e-4ec6-9c6e-fc63d1585e32",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Do a handjob in a teasing way for one minute."
+    },
+    {
+        "id": "913e1bd1-2e9d-4ca0-9174-6bb262dd6548",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your mouth to tease me until I squirm, then stop."
+    },
+    {
+        "id": "ecbb67cd-c26f-41fd-9a72-146576768886",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Sit on my face (or let me sit on yours) for one minute."
+    },
+    {
+        "id": "b0fdbcec-8d0e-4a39-896d-c8dc8b628212",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Moan my name as if you're about to finish."
+    },
+    {
+        "id": "c67b3e57-4ce9-4743-a125-4ace451fc828",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Worship one part of my body with kisses for 60 seconds."
+    },
+    {
+        "id": "5fa18044-683d-45d7-a622-e05be0140451",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me tease you with a toy for one minute (if applicable)."
+    },
+    {
+        "id": "8fdcb6e8-36f8-4695-ba7d-75d017ca4838",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, every time you hear me moan, you must kiss me."
+    },
+    {
+        "id": "8fc0bf81-b631-4f72-ac6f-0036b0488f81",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your tongue to circle me for 30 seconds nonstop."
+    },
+    {
+        "id": "e6856bdc-e548-4e28-895e-4b6640a260ff",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me edge you until you beg me to stop."
+    },
+    {
+        "id": "79bf4c28-2dc9-488a-9158-30647a8be857",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Pretend you're a porn star and perform one explicit move on your partner or yourself, focused on the penis or vagina."
+    },
+    {
+        "id": "04e71e51-c2ab-4319-bbec-812bd739f850",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try an unusual sex angle with me without removing remaining clothing."
+    },
+    {
+        "id": "924854d1-a325-4d3d-be18-a5eef2b38fbc",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Give me a striptease while talking dirty."
+    },
+    {
+        "id": "d076c2bf-516b-4651-8b63-efb47f9ffbd6",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your hands to edge yourself while I watch."
+    },
+    {
+        "id": "d7566e32-6672-45d9-8276-080d7c6b3b2f",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 3 full rounds, you must moan whenever I touch you."
+    },
+    {
+        "id": "45633dd5-21ac-4d20-b882-4d63a9ee382a",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try to make me orgasm with just oral teasing (no penetration)."
+    },
+    {
+        "id": "6651b6fd-4cf5-42da-b377-1d8427add9cd",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Kiss me passionately while grinding against me for one minute."
+    },
+    {
+        "id": "85aee3ae-935b-4fdc-ae68-0b58bd784a52",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try to act out a porn scene line."
+    },
+    {
+        "id": "2d3a349a-2de7-4370-b002-e6a1df0e0738",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Record a 10-second sexy moan on my phone (kept private)."
+    },
+    {
+        "id": "106c0775-762c-4d44-b4e5-2abe221793cb",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Give me a dirty talk whisper session for 30 seconds."
+    },
+    {
+        "id": "db511eae-e4ef-4e0c-8046-1699aa802b32",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Act out filming a porn with me for one minute."
+    },
+    {
+        "id": "b12514d5-c2e0-4ed8-9820-4463842a02fc",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your fingers to tease me for 30 seconds."
+    },
+    {
+        "id": "d35cf32a-6d38-43b0-b9af-bc561fac793e",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Sit on my lap and grind for one minute."
+    },
+    {
+        "id": "a002e1d6-0be5-4b97-94d0-aa173264c329",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, whenever I lick my lips, you must kiss me anywhere below the chest."
+    },
+    {
+        "id": "c0dfd4b5-5d15-4bc4-b2c0-300c32afe8a0",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me kiss down your body slowly until you laugh or moan."
+    },
+    {
+        "id": "e6d2aa13-5363-4119-a1ae-898b6d2a9092",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Suck a finger, toy, or piece of fruit in a teasing way (if comfortable)."
+    },
+    {
+        "id": "3dd399f6-54a8-4031-88e7-f2f0f9b7dbcb",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Masturbate while I watch (if comfortable)."
+    },
+    {
+        "id": "71cf0e53-347b-429a-96ca-a41882e18520",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Blindfold yourself while I kiss you (if comfortable)."
+    },
+    {
+        "id": "fdf9ebde-969a-4ef1-a622-ca556c0b41b2",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Moan loudly as if you're finishing right now."
+    },
+    {
+        "id": "8cc10dd8-a35d-4b57-b18e-9398d455b211",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your mouth to write a word on my genitals (if comfortable)."
+    },
+    {
+        "id": "68481ac6-10a1-4a7b-bad8-d5e7e9d2d882",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Pretend we're making porn and direct me."
+    },
+    {
+        "id": "9a77ac9f-4a31-4ca7-94f3-7cb57b4109eb",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your tongue to tease my genitals for 30 seconds (if comfortable)."
+    },
+    {
+        "id": "10d829ed-7ff1-4a70-afeb-a9723badf193",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me spank you playfully during oral."
+    },
+    {
+        "id": "92f61e04-1ee8-46f5-877a-e33fe2a08929",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 5 full rounds, you must compliment my body every turn."
+    },
+    {
+        "id": "88c67eb0-7457-496b-97c5-9984dfd80278",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use both hands to massage me in a sexual way."
+    },
+    {
+        "id": "a344a0b4-8399-4372-88ad-4fe2741789b4",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try body worship by kissing every inch of my chest."
+    },
+    {
+        "id": "2a05b262-059e-4e53-ac54-9011506cc394",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Record the sound of us kissing for 10 seconds (kept private)."
+    },
+    {
+        "id": "dc38ae0c-d5e1-4ecd-803c-3f41cfabaf9a",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Act silly and imitate bad porn acting, then kiss me."
+    },
+    {
+        "id": "3a5e4950-5be4-4ce6-82de-34977ca28791",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Give me oral while holding eye contact for 30 seconds."
+    },
+    {
+        "id": "a500cec1-a0c2-43b1-ad2e-0f5978b39764",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try edging yourself and stop right before climax."
+    },
+    {
+        "id": "6d5304f4-9791-4362-90a6-836c9c296edb",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 6 full rounds, every time I whisper, you must moan."
+    },
+    {
+        "id": "3828e982-c314-4b43-8fe3-71c37a729e89",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Kiss me in an unusual place you haven't kissed before."
+    },
+    {
+        "id": "b28dc78d-bb03-469e-a780-908318617ae3",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me pretend to be the director while you act."
+    },
+    {
+        "id": "4326e179-bf5d-4cbf-9b30-4847562d524f",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use a toy on yourself while I watch (if applicable)."
+    },
+    {
+        "id": "d4f5616b-ef75-4cc5-8af5-f5a7cf693c54",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Perform as if you're in porn but then make it funny."
+    },
+    {
+        "id": "93db4b53-7ff6-4fdf-b1c2-b657597cc106",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "For the next 4 full rounds, every time I say your name, you must lick me somewhere."
+    },
+    {
+        "id": "58071bb7-7504-42ce-a67d-e44bc1f65c1b",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Kiss me like you're in a porn scene for 30 seconds."
+    },
+    {
+        "id": "e25d3d71-24a2-4689-96f5-7fc3bc261dee",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Let me tickle you until you moan instead of laugh."
+    },
+    {
+        "id": "3fdbf816-f791-47e0-a246-323a83ac19b4",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Pretend you're auditioning for porn and deliver a line."
+    },
+    {
+        "id": "edbf17bc-0f22-430d-9ef1-ed04ac901d23",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Use your fingers to edge me for one minute."
+    },
+    {
+        "id": "f09cefbe-1464-4552-b50e-097d57ceceea",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Try face sitting for one minute (if comfortable)."
+    },
+    {
+        "id": "2d84ca5c-2cde-4e59-a89b-1d8aaea9cea5",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Tell me one porn fantasy you'd love to try with me."
+    },
+    {
+        "id": "af66fcf0-bc5d-4ed9-9e37-014511ea0f04",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Kiss my ass cheeks slowly and sensually for 30 seconds (if comfortable)."
+    },
+    {
+        "id": "b45dce6d-db29-42ab-8a4f-51465e3a1213",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Playfully bite or nibble my ass cheeks for a few moments (if comfortable)."
+    },
+    {
+        "id": "9e92c427-4740-491e-b1eb-14cde9d182a3",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Spank my ass cheeks several times in a teasing way (if comfortable)."
+    },
+    {
+        "id": "18289356-d0a5-4ddb-94e6-96e318ec1557",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Massage my ass cheeks for one minute, focusing only there (if comfortable)."
+    },
+    {
+        "id": "b12bedd8-678d-4ca8-8bb4-3e8fc896fc74",
+        "level": "Hot",
+        "kind": "dare",
+        "text": "Adore my ass cheeks by kissing, praising, or worshipping them in your own style for one minute (if comfortable)."
+    },
+    {
+        "id": "c60ded46-756c-406b-9563-0bc34d353517",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's the roughest kind of sex you've fantasized about? (e.g., spanking, hair pulling, being pinned down, spitting, fast and hard)"
+    },
+    {
+        "id": "347fd43d-79fd-4fb7-a7b3-9f65cc73603e",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you enjoy dirty talk more when it's whispered or said boldly?"
+    },
+    {
+        "id": "d1aed15e-2582-49c0-ad34-c537bf004f5f",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever wanted to dominate me in bed, or be dominated by me?"
+    },
+    {
+        "id": "2bb07114-4cf2-4629-9afe-6dd5e3049f3d",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever fantasized about being dominated by me?"
+    },
+    {
+        "id": "f2548aa6-049b-4674-a1c5-f529e1223295",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's your least favorite sexual habit of mine?"
+    },
+    {
+        "id": "480c659d-0151-404e-9a3f-3752327870f1",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever imagined us having sex in a car, on a balcony, in a forest, or on a hike?"
+    },
+    {
+        "id": "ecb90b3d-6516-4f1d-8dc7-835097e43b21",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you prefer gentle passion or raw intensity more often?"
+    },
+    {
+        "id": "5b787179-0a5b-477b-8bbb-643465a99580",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's the most playful roleplay idea you'd try with me?"
+    },
+    {
+        "id": "056b6117-31d8-4d71-9fd1-4a7cf8a6db7d",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's one roleplay idea you'd be nervous but curious to try?"
+    },
+    {
+        "id": "44eb8eda-a297-42bb-9b50-830e33d8d696",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "How do you feel about spanking during sex?"
+    },
+    {
+        "id": "e1026b5d-ca31-4789-b7bf-1ad4b06d6116",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Would you ever want me to punish you if you finished too soon?"
+    },
+    {
+        "id": "cfd93a2e-0020-4e56-9f29-d829899ae3fb",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's your favorite sexual position when things get intense?"
+    },
+    {
+        "id": "15c46479-9d6d-4c44-9281-4aa50378751a",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you think you'd enjoy being ordered what to do in bed?"
+    },
+    {
+        "id": "82a4a65e-8c62-4aa7-9b06-fd4bc95c3bab",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's your favorite kind of dirty word to hear?"
+    },
+    {
+        "id": "4a853d1c-8b80-4abe-af37-f06dda706927",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you prefer rough kissing or soft kissing during sex?"
+    },
+    {
+        "id": "2ec2031d-3d21-4f98-b378-815423e869d0",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's the boldest place in the house you'd want to have sex?"
+    },
+    {
+        "id": "51e1a844-fb2e-46d8-a765-48c24d22a7b5",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "How do you feel about tying hands or light bondage?"
+    },
+    {
+        "id": "14b8464c-f41b-4089-be23-904c7069f406",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's one roleplay outfit you'd want me to wear?"
+    },
+    {
+        "id": "f4411220-3a76-4080-9202-46d95f25f4d8",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever wanted me to talk filthier during intimacy?"
+    },
+    {
+        "id": "f6495158-838a-47a8-9036-eebd71f30890",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's one scenario you've thought of where I take total control?"
+    },
+    {
+        "id": "a325a9a6-3210-4018-a650-128ca61bb07a",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's one scenario you've thought of where you take total control?"
+    },
+    {
+        "id": "2186555b-989b-4b84-9cd4-eaebe8fdf5c3",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever been curious about orgasm denial or control?"
+    },
+    {
+        "id": "21017ce3-447c-4e6b-889f-6202c6afee45",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like the idea of being teased for a long time before sex?"
+    },
+    {
+        "id": "dfcac588-c36c-4cea-9ac5-922c91f6f853",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's your least favorite type of dirty talk?"
+    },
+    {
+        "id": "2df0d957-80f3-4f8b-a7b4-4d18c5e88d7b",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Would you prefer a quick, hard session or a slow, drawn-out one?"
+    },
+    {
+        "id": "c3d6f283-26d8-4f70-afe3-be6af0242c1d",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What kind of punishment would turn you on instead of off?"
+    },
+    {
+        "id": "b3bb61ce-b73c-4a02-8760-4288e34d7095",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like the idea of sex that feels completely playful and adventurous?"
+    },
+    {
+        "id": "6360fddf-6985-40f8-a974-a8a70b4c8e78",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Which roleplay fantasy would make you laugh if we acted it out?"
+    },
+    {
+        "id": "a8cea6c5-91e8-4e5f-8700-c4a7acd65301",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you prefer me louder or quieter during intense sex?"
+    },
+    {
+        "id": "b7c33f3a-d84e-4d67-a6b4-dc7d53da2626",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever thought about us being watched (safely, in fantasy)?"
+    },
+    {
+        "id": "ef3623c2-5b4d-43c6-ba2a-0b2e0792aa65",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you think you'd enjoy a strip roleplay where one is in charge (e.g., one partner performing while the other commands or sets rules)?"
+    },
+    {
+        "id": "1863f71f-64de-42e2-87c6-42a2ea3a3908",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "How do you feel about rough grabbing or hair pulling?"
+    },
+    {
+        "id": "567b01ba-ed21-4d26-a4d4-8b905624e3c6",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Would you enjoy me making you beg during sex?"
+    },
+    {
+        "id": "215144ca-0d22-4e6e-bd32-47d8af6aceb0",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's a word or phrase you'd love to hear in bed?"
+    },
+    {
+        "id": "8c4c4c3c-464c-402d-ac3a-3029f20ce694",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like me taking control of the pace or do you?"
+    },
+    {
+        "id": "76302806-7ce8-46d6-9ecc-91a5e1544dfb",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever fantasized about being tied and teased?"
+    },
+    {
+        "id": "eec9938f-d504-4dab-bb45-138aee111eeb",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's the riskiest place you'd actually consider having sex?"
+    },
+    {
+        "id": "0bee11cc-b1c8-4a72-9458-e6d21eda69a6",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Would you be turned on by roleplaying strangers meeting for sex?"
+    },
+    {
+        "id": "bc47bd20-b7c4-4fc2-9b62-28f4cc2bcec3",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "How do you feel about playful slapping on the ass?"
+    },
+    {
+        "id": "81053cf5-be39-4ba8-8208-276b09a2b93f",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What kind of sexual intensity do you enjoy most?"
+    },
+    {
+        "id": "a356e1df-d803-4f09-9eb2-c8fee3bc0efe",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever imagined acting out a teacher/student or boss/employee role?"
+    },
+    {
+        "id": "9454f8bb-e072-4333-be04-c122080b1721",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like me telling you exactly how to touch me?"
+    },
+    {
+        "id": "6ce9fbec-d973-41e3-8990-151557ce12d9",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like the idea of punishing me for something playful?"
+    },
+    {
+        "id": "7f8ce38a-4f69-4da8-8560-cb0f9d45dea9",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What's one sexual roleplay you'd definitely say no to?"
+    },
+    {
+        "id": "ccd51f6e-18be-4c31-9f53-9a58ce63dc64",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like when sex feels aggressive or when it feels romantic?"
+    },
+    {
+        "id": "480a4239-7f05-4ffd-9171-719ec3c8c70a",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "How do you feel about me calling you names in bed?"
+    },
+    {
+        "id": "abb38c47-fa27-4998-a286-ad59ff9c4f6a",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Do you like me giving you detailed orders during intimacy?"
+    },
+    {
+        "id": "4b641784-69bc-497a-81ae-3d52a37c87ed",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "What kind of public fantasy excites you the most?"
+    },
+    {
+        "id": "a6ec72c1-9f5a-4419-8c7d-23ff420936e1",
+        "level": "Spicy",
+        "kind": "truth",
+        "text": "Have you ever wanted me to tie you to a chair?"
+    },
+    {
+        "id": "e0c41732-4b38-4314-bd2e-728f9b021be9",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Give your partner a blowjob or handjob for one minute while they must keep eye contact."
+    },
+    {
+        "id": "99dc8a2e-9715-4dd3-b012-f99147583076",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Blindfold your partner and keep fucking them while giving clear commands they must follow."
+    },
+    {
+        "id": "0eba7e59-b6d3-4c9d-9199-f89d9d97ba49",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Have sex in the backyard (if private) or hottub and keep going while talking dirty, in any position you both enjoy."
+    },
+    {
+        "id": "89880c2f-7dce-4a04-a8bb-4c74bad3593e",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Dominate your male partner by making him stay still while you control the pace completely."
+    },
+    {
+        "id": "eda20be0-ad15-4e47-bbc6-17cd2a44e476",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Be dominated by your female partner: let her use your body as she wishes for one minute."
+    },
+    {
+        "id": "35438786-3050-4886-861a-f7fce5738761",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Fuck while spanking your partner rhythmically and ordering them to moan louder."
+    },
+    {
+        "id": "e35a4208-7e7d-46dd-8c7b-23279cb1e802",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Pin your partner down and stay inside them while whispering filthy orders."
+    },
+    {
+        "id": "db5fa1ea-7b16-4419-9c29-316f687ece4a",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Switch into a standing position against a wall, keep thrusting, and let your partner command what you do with your hands."
+    },
+    {
+        "id": "0d58feaf-9f55-45ec-98fb-eefd5235a901",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep fucking while your partner plays with your nipples or orders you to play with theirs."
+    },
+    {
+        "id": "fbf36c56-f7c5-4fb7-94d6-3bff0adc72f0",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Have sex in spooning position while your partner tells you what to say with each thrust."
+    },
+    {
+        "id": "854c2fce-8ab8-44a1-86c1-3f1630c521da",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay inside while your partner teases your clit/cock with their hand, following their pace."
+    },
+    {
+        "id": "2b04d2ae-8d29-41f7-a5a9-aaf881b25099",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Grind into your partner hard while forcing them to call you 'Master' or 'Mistress.'"
+    },
+    {
+        "id": "595ff56f-c02f-47c5-b90c-8bec1bb45342",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Ride your partner in reverse cowgirl style while talking dirty about what you're doing."
+    },
+    {
+        "id": "f90769a2-6d23-4cb9-8592-56f8d6b00843",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Let your partner sit on your face while you use your fingers or cock inside them at the same time (if comfortable)."
+    },
+    {
+        "id": "6669d62b-0a9d-4b81-bdc6-c23c935b3037",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Switch positions three times in one minute while keeping penetration nonstop."
+    },
+    {
+        "id": "c08a9b6d-d746-4e3b-885f-e95cd14a9e4e",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Fuck in missionary while holding your partner's wrists down, making them beg for more."
+    },
+    {
+        "id": "1aa9b7e5-42c7-4313-addc-0fe4e6d81a25",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Dominate by making your partner tell you three fantasies while you thrust deep."
+    },
+    {
+        "id": "cdbc8f5f-2d88-446c-859f-b589ab979ecc",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Submit by following every order your partner gives while you keep fucking."
+    },
+    {
+        "id": "df63a151-b1cd-45ec-854a-c6d3df7fb515",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Take your partner outside (backyard/hottub if private) and fuck while they control your pace."
+    },
+    {
+        "id": "0722dbd0-c5f0-4f2c-895c-dac224714ed9",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Roleplay boss/employee while you stay inside and punish/reward with thrusts."
+    },
+    {
+        "id": "b0bd0de4-c21a-4476-837e-bec03996a363",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Make your partner ride you while you control their hands, not letting them touch you freely."
+    },
+    {
+        "id": "e6ecfec4-df15-4d3f-b7c8-829e8c7cda6f",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep fucking while your partner orders you to change your rhythm each 10 seconds."
+    },
+    {
+        "id": "ba82b048-5489-4b8a-aebe-c926f7df1c28",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Pound into your partner while praising them with every thrust instead of dirty talk."
+    },
+    {
+        "id": "690a944b-d6fb-4c53-96f3-7454ab899e52",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep sex going while one partner must moan like in porn until both laugh."
+    },
+    {
+        "id": "fc60e6a2-bc5a-4fba-8ea1-44997817bafa",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay connected while kissing down your partner's body and not losing rhythm."
+    },
+    {
+        "id": "e2130d08-b4f9-4a38-9b57-93a4f6171bb7",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Fuck fast while your partner bites your neck or shoulder firmly (if comfortable)."
+    },
+    {
+        "id": "f32f7045-92ea-4012-b987-22e97be1a10c",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner orders you to compliment their body each time you move."
+    },
+    {
+        "id": "c8cd5eba-2844-475c-bf24-b783186dc8f3",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Switch into spooning and let your partner order when you can thrust harder or slower."
+    },
+    {
+        "id": "be542621-a2a9-45c2-a2c4-437c3f577c73",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Dominate your partner by spanking and choking lightly (if comfortable) while staying inside."
+    },
+    {
+        "id": "2147c514-538c-4616-99b7-467c7dfdd71f",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Submit to your partner by lying on your back and letting them ride or control completely."
+    },
+    {
+        "id": "0705f211-4aaf-4399-a9ce-7458c0f59695",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep sex going while your partner demands eye contact the entire time."
+    },
+    {
+        "id": "b0620b56-83db-4baa-9984-221ce4a9296d",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Pretend we're being watched in secret and fuck as if performing a show."
+    },
+    {
+        "id": "60f63359-9e7b-4eb2-bb56-86460e5fbb00",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay inside while your partner makes you say a filthy word with each thrust."
+    },
+    {
+        "id": "48650e51-5547-4533-ada0-682ad613e4f5",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Ride your partner slowly while forcing them to tell you what they love about your body."
+    },
+    {
+        "id": "966cb0a3-3977-46c3-b679-b256e570ec84",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Have sex in any position while your partner orders you to keep still then move again."
+    },
+    {
+        "id": "0a72c43a-efa2-41b8-a6f9-3cb837136bdf",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay connected while your partner teases your ass with spanks and kisses."
+    },
+    {
+        "id": "080334e0-268f-47f3-9a7e-b3ff0c6a3ae0",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Grind deep while your partner orders you to talk filthy about what you're doing."
+    },
+    {
+        "id": "24fe379a-ef05-487d-b1a4-c118d47b016a",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Fuck while making your partner beg to cum, then keep teasing."
+    },
+    {
+        "id": "b6343679-cc56-4563-b9e9-991e21e72bc8",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Switch positions while one partner must playfully dominate the other verbally."
+    },
+    {
+        "id": "4fbbb794-0518-4e88-ab6e-0dc545c84a18",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay deep while your partner orders you to touch, rub, or tease them wherever they command."
+    },
+    {
+        "id": "f1389b65-59ee-4042-8154-799db360e623",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner makes you growl their name each time."
+    },
+    {
+        "id": "628dd091-b40a-4c19-87ef-e80ffb74c364",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Dominate your partner by ordering them to strip while you don't stop moving."
+    },
+    {
+        "id": "3f28c587-6b24-46b4-bb0e-c48074192d40",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Submit by stripping when ordered, all while staying inside your partner."
+    },
+    {
+        "id": "69e0ba43-d329-4100-9ce5-f9f1fa5a7926",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Ride fast while moaning their name loudly until they tell you to stop."
+    },
+    {
+        "id": "0b877ac9-27be-4d64-a50b-1da54fb38bbb",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Stay connected while kissing passionately and praising each other between thrusts."
+    },
+    {
+        "id": "c29effad-bb00-4b06-b01a-67f588c66c14",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Fuck while telling your partner one dirty secret you've never shared."
+    },
+    {
+        "id": "4aa1cfd5-ecc7-477e-aa71-4e818d4cdcce",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Dominate by forcing your partner to say filthy things while you control the pace."
+    },
+    {
+        "id": "15c1b27c-233b-4e7e-b846-8479c31c9daf",
+        "level": "Spicy",
+        "kind": "dare",
+        "text": "Submit by letting your partner dictate how you ride or thrust for one minute."
+    },
+    {
+        "id": "262c93b2-7432-4026-8d02-31239543902f",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What kind of restraints (rope, cuffs, belts, scarves) would you most want to try?"
+    },
+    {
+        "id": "e0aa3b0d-864b-4af1-9cf7-cee2b7184f98",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Which extreme toy or gear beyond vibrators excites or intimidates you?"
+    },
+    {
+        "id": "74678eb9-70bf-4a51-a4a6-7a1343574702",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How do you feel about pegging or fingering on yourself or your partner?"
+    },
+    {
+        "id": "08f811d1-cb42-4af8-9a98-67b9239d6a11",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the most taboo porn you've ever watched - and did it turn you on?"
+    },
+    {
+        "id": "457c5452-b3d6-4505-9892-c7ad86f5b357",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's a secret ass play fantasy you've never told me?"
+    },
+    {
+        "id": "84369740-ea9b-4a06-9aa3-3be5ac473e15",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you prefer giving or receiving anal stimulation?"
+    },
+    {
+        "id": "277f6131-0ab7-4048-86d7-2dc1664eb861",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you ever want to try anal sex with toys, fingers, or tongue?"
+    },
+    {
+        "id": "a37f5ece-acc4-4041-a130-9c814b1e0cf8",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How do you feel about rimming - giving and receiving?"
+    },
+    {
+        "id": "c28cb245-7954-494d-9fb3-1eee7c332d06",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever fantasized about double penetration?"
+    },
+    {
+        "id": "fe842af0-1fba-4229-bb1c-8ce5e8b5a1e6",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How do you feel about spit being used sexually - on genitals, kissing, or in the mouth?"
+    },
+    {
+        "id": "a852eef0-e91a-4850-ae64-1750b435f643",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What about sweat - does it feel primal and hot, or a turn-off?"
+    },
+    {
+        "id": "c1bd730c-ba51-4940-a80d-d082f7ba68bd",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you ever want to share or taste cum with me?"
+    },
+    {
+        "id": "d6486d78-abcd-4ea7-844c-b8bf5aad13d0",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you ever want to roleplay pet play (kitten, puppy, pony)?"
+    },
+    {
+        "id": "4f1ac50e-585e-4bf2-931e-9d59033ba908",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's a degrading phrase that would arouse you if I said it?"
+    },
+    {
+        "id": "ebb41384-685a-43d2-8ead-5c7ea67ff181",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever been turned on by the idea of being ignored during sex?"
+    },
+    {
+        "id": "4d9560da-5ed6-4bb2-9680-716d655f7a84",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you be interested in a long edging or orgasm control session?"
+    },
+    {
+        "id": "48e52129-d8d7-4bc7-a356-03d98ac9979b",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever fantasized about a cuck/cuckqueen scenario?"
+    },
+    {
+        "id": "1f959cf7-8723-484f-9596-29766525f1e3",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you want to go to a sex club with me, even just to watch?"
+    },
+    {
+        "id": "49f1cc20-9cf9-4b78-a152-205f4d1fa6a4",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the dirtiest fantasy you've had involving cum?"
+    },
+    {
+        "id": "92543e4d-fc9f-45bb-8dae-17e8a52a9eb7",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Which fetish intrigues you most even if it feels scary?"
+    },
+    {
+        "id": "a17ab591-4410-498c-9eb6-e62f21eb3916",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you try watersports if it was private and safe?"
+    },
+    {
+        "id": "d52870d3-9279-4c8f-b458-594caa7d768e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you enjoy humiliation play or is it off-limits?"
+    },
+    {
+        "id": "6834dfd1-f24b-467b-a5a0-0b65a50e999e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the most psychological kink you think would turn you on?"
+    },
+    {
+        "id": "16d6688c-1091-4566-b1bf-fd64375797a1",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you like me to write filthy or degrading words on your body?"
+    },
+    {
+        "id": "ddffb3ba-57cd-41f7-a34b-04b71af02daf",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you think you'd enjoy being punished in front of a mirror?"
+    },
+    {
+        "id": "5ecd8892-0fd6-41d3-a236-96a1b367ccd8",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you want to pretend we're being filmed while having sex?"
+    },
+    {
+        "id": "6287563b-13c7-4c68-bf3c-047dde25433e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the most unusual public place you've fantasized about?"
+    },
+    {
+        "id": "46520a99-b886-4e10-9e80-4d285832aaeb",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever imagined being ordered to masturbate while I watch?"
+    },
+    {
+        "id": "32a70d50-fa19-4e7f-92d0-9ace5765f2d1",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you let me deny you orgasm for a whole night?"
+    },
+    {
+        "id": "fe680231-ddc0-40ca-a7fd-74d4d8833f62",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the darkest porn search you've ever made?"
+    },
+    {
+        "id": "37c610a2-7c6b-4094-bbea-ae643434cd83",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you want to explore degrading-but-consensual sex (name-calling, begging, being ordered around)?"
+    },
+    {
+        "id": "f8fd7270-9741-4d3f-86f7-7f3a9e875f68",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Which endurance fantasy excites you most: hours of teasing, long bondage, or orgasm denial?"
+    },
+    {
+        "id": "0e7a6004-530a-4c52-90c3-d22b04092750",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever fantasized about extreme exhibitionism - like performing where someone might see us?"
+    },
+    {
+        "id": "300ad7bf-5707-4438-82e7-61020356200f",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you like the idea of spit during oral or sex?"
+    },
+    {
+        "id": "d778c2d9-2a3c-4a5e-afde-dc7148c405f9",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you want to try temperature play (ice, wax, heated lube)?"
+    },
+    {
+        "id": "67c705bd-ae62-46da-87ec-becded1562e3",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Which psychological kink excites you more: power, humiliation, or endurance?"
+    },
+    {
+        "id": "5d66fb7b-20bf-427f-bb8a-7851256ae658",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you ever wanted to wear or give a collar?"
+    },
+    {
+        "id": "286145be-7bfa-4f6b-adf8-80dbb028098c",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What porn have you watched but never admitted?"
+    },
+    {
+        "id": "6b07ba37-aaba-4c9f-bef6-5791eeec931e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you enjoy hearing me describe my darkest fantasy about you?"
+    },
+    {
+        "id": "398c7fe8-1746-482a-8aee-ea5de0143822",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you like the idea of long edging sessions that end in explosive release?"
+    },
+    {
+        "id": "41e27b60-7f4d-45a7-8051-0287e193bb6e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you roleplay something dangerous (knife play, kidnapping roleplay) in a safe way?"
+    },
+    {
+        "id": "8266ea8f-ab84-4aee-b55b-8dce129c9394",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's your opinion on cum eating - hot, neutral, or off-putting?"
+    },
+    {
+        "id": "20013d3a-62d6-437f-8e16-da646327f9c0",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you like to try full sensory deprivation (blindfold, earplugs, restraints)?"
+    },
+    {
+        "id": "90e5b080-86d5-4f65-adb0-b29773792d7d",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the most intimidating sex toy you'd want to try?"
+    },
+    {
+        "id": "b89ca41e-1d15-4acf-9705-861d4ea76c11",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you like me to mark you with lipstick, bites, or writing?"
+    },
+    {
+        "id": "3e242747-69ed-4772-b56e-991e1490733b",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Do you enjoy the idea of being watched or displayed?"
+    },
+    {
+        "id": "e6c36dbc-9f64-4325-96cb-24790655c980",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you fantasized about being treated like property?"
+    },
+    {
+        "id": "98603bc6-4245-41f0-964b-010bdcb2ab9d",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you let me punish you by tying you and making you wait?"
+    },
+    {
+        "id": "b29af7ed-fb03-4494-b959-d80f2df087f6",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's your dirtiest humiliation fantasy?"
+    },
+    {
+        "id": "eac1617f-c24a-46a6-81dd-c60612764e5e",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you want to test endurance with multiple orgasms in a row?"
+    },
+    {
+        "id": "306722ca-38b0-43db-b9c6-0371098910d8",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you like cum play on your body?"
+    },
+    {
+        "id": "6925d16e-434a-47de-803f-cdbf049e8fa7",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's your scariest but most arousing thought?"
+    },
+    {
+        "id": "d9d39d11-1ab6-4b02-8202-876c8122cbaa",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What turns you on most about anal finger play?"
+    },
+    {
+        "id": "08efbb79-8081-4abe-b3f3-fc614585eee2",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you be curious to use an anal toy lightly, just to see how it feels?"
+    },
+    {
+        "id": "571e5815-2378-40ac-9faf-51d9a70faa2a",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How do you feel about your partner watching you touch yourself?"
+    },
+    {
+        "id": "aab358bc-739f-4451-9bda-6955d571c526",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What excites you more: being dominated by me or dominating me?"
+    },
+    {
+        "id": "a4389572-4a96-4852-b6ff-a57b52b0282b",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you ever want to try incorporating pee in a safe, private way?"
+    },
+    {
+        "id": "b176f1a6-cfc7-4420-9fc8-691d7c6a261c",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's the dirtiest cum play fantasy you'd confess to me?"
+    },
+    {
+        "id": "0e3675cb-62ff-41fd-8042-ef87a079a72b",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you be aroused by me fingering your ass during sex?"
+    },
+    {
+        "id": "580e423f-b257-4a49-9d6c-17bae30d2e27",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How would you feel about using a small anal toy together during foreplay?"
+    },
+    {
+        "id": "be1d144c-d33f-414b-83ae-614e8e2b00df",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you get turned on knowing someone might be secretly watching us?"
+    },
+    {
+        "id": "8539c4a1-17b0-4a36-b9bf-bbaa04a23e93",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "How do you feel about a scenario where I completely dominate you for an entire session?"
+    },
+    {
+        "id": "62a87f7b-5950-402d-8e9f-75756ae8fb8c",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you ever want to taste pee during sex in a safe context?"
+    },
+    {
+        "id": "81595f40-7c31-48f2-8652-3ba647768166",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "What's your most intense fantasy involving feet?"
+    },
+    {
+        "id": "f1dc7440-d5f5-49b7-9b28-609df89464fb",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Would you enjoy watching me humiliate you while making you obey?"
+    },
+    {
+        "id": "93962831-e1e6-4454-bac1-aa4d20c7bc24",
+        "level": "Kinky",
+        "kind": "truth",
+        "text": "Have you fantasized about combining anal play with oral or handjobs?"
+    },
+    {
+        "id": "610915e4-bf3c-45d0-b9e2-f4c34a1bc936",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Be restrained (rope, cuffs, scarves) while fucked or fucking."
+    },
+    {
+        "id": "e57f5bb4-eaa2-4498-9dab-e5863da07ac7",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Spank your partner 10 times in rhythm while still inside them."
+    },
+    {
+        "id": "ee4f6655-0abb-4439-83af-0d0a332b48c8",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Write filthy words on each other's body with lipstick or marker."
+    },
+    {
+        "id": "ec62272c-f018-4344-a1b0-42dabd1011f5",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Give or receive a blowjob/handjob while tied up."
+    },
+    {
+        "id": "977cf1c1-d634-48bf-b389-9dd84d6241d2",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Act like you're filming porn - exaggerate every move and sound for one minute."
+    },
+    {
+        "id": "2e98e0c5-ee1b-414c-8107-af008890c8cb",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Let your partner spit on your body or in your mouth (if comfortable)."
+    },
+    {
+        "id": "85904a69-4857-4fe6-a81b-0d25460c3bf6",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep fucking while begging out loud for every thrust."
+    },
+    {
+        "id": "ff755534-03e1-43df-b891-122e6f831c21",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Lightly massage or squeeze your partner's ass cheeks while having sex."
+    },
+    {
+        "id": "ec1f2d4a-2462-49bd-a1f5-6343d5a2836e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Playfully spank your partner's ass during sex (if comfortable)."
+    },
+    {
+        "id": "6ea461c4-d897-44c4-8a4e-313f80d04388",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Lick or kiss your partner's ass cheeks for 30 seconds."
+    },
+    {
+        "id": "fb43bdbb-768a-4542-aa85-60c7e6ff87d6",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Perform ass play on your partner for one minute (if comfortable)."
+    },
+    {
+        "id": "a4a02128-e788-4682-bcc8-97d10ea7ca9a",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Dominate your male partner by pegging/fingering him (if comfortable)."
+    },
+    {
+        "id": "08bd5c6a-2dc3-4682-b51d-9aad93c82b95",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Be dominated by your female partner - she controls the pace and depth."
+    },
+    {
+        "id": "2ae0c120-dfe5-4959-8504-538b0604074e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Roleplay pet play (kitten, puppy, pony) for one minute during sex."
+    },
+    {
+        "id": "683c466d-8b2e-4c8f-9077-95e4f70e3377",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Edge your partner for up to two minutes, then deny."
+    },
+    {
+        "id": "9adf2c5e-256f-43d3-88ba-54136166950e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep having sex while your partner tells you exactly how fast or slow to go, and follow their pace."
+    },
+    {
+        "id": "85854bb8-232a-41ca-9496-1488341a6dcd",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Give oral while recording your moans for playback."
+    },
+    {
+        "id": "0fb8a9f4-b83f-45f3-a134-a6a4ca7cf698",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Roleplay cuck/cuckqueen fantasy verbally while having sex."
+    },
+    {
+        "id": "9f87593b-de0b-4106-84b2-7716b4832c5f",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Stay inside your partner while they spank or choke you lightly (if safe)."
+    },
+    {
+        "id": "9bfd44c3-89a0-42cf-a7c6-58e850b43128",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner writes words on your chest or ass."
+    },
+    {
+        "id": "cadcdddb-8a01-4f80-87d9-6d72fa31d63b",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Use a toy on your partner while they're blindfolded."
+    },
+    {
+        "id": "244ac0b3-1078-4180-bc62-4ff861e28d8e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Fuck while blindfolded or blindfolding your partner."
+    },
+    {
+        "id": "14c1da94-8087-45e8-aff3-be0a488c08aa",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Worship your partner's ass with kisses, bites, and licks for one minute."
+    },
+    {
+        "id": "29d11422-2b02-4697-8447-ab0a844bd9c2",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner spits on your genitals (if comfortable)."
+    },
+    {
+        "id": "605a065c-c1ed-4346-8490-1e1a72f975c9",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Roleplay humiliation: call your partner degrading names during sex."
+    },
+    {
+        "id": "5439fb5d-8ac4-4f54-940d-cd95a165a952",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Fuck in front of a mirror for one minute."
+    },
+    {
+        "id": "14d23ccb-8156-488d-bfad-ca628854fac9",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Tie your partner's hands and go down on them."
+    },
+    {
+        "id": "1ab0c3f6-aa41-4736-905e-f6a41bafaf6f",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while playing with each other's ass cheeks."
+    },
+    {
+        "id": "c9cbdee2-61dc-465d-906a-2e201d6d859d",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Masturbate facing each other while pretending to be watched."
+    },
+    {
+        "id": "418c7552-0936-414e-9e73-27068425d23a",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep having sex while teasing each other with ice."
+    },
+    {
+        "id": "c7b0b081-d12c-47c2-a0b6-a0f2d3e1c177",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Punish your partner by denying orgasm until the next round."
+    },
+    {
+        "id": "92e4916f-b10f-4323-a7e3-5f4f58157f32",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep fucking while moaning like a porn star."
+    },
+    {
+        "id": "c6e080fb-822a-46ff-9832-6af00f8efad3",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Rub sweat on your partner's body while thrusting hard."
+    },
+    {
+        "id": "4733f734-df3e-49e8-b201-c1baf0ea0fe0",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Edge yourself for one minute while your partner watches."
+    },
+    {
+        "id": "deacccb8-df75-4153-b8ce-22da151bd2d0",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while saying filthy words each time you move."
+    },
+    {
+        "id": "6437fb8a-9557-49e6-8749-7277cc39769e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Finger or rim your partner's ass while fucking them (if comfortable)."
+    },
+    {
+        "id": "8d0a5fec-502f-4c9b-a84d-adb114d94428",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Have sex in the backyard or hottub (if private)."
+    },
+    {
+        "id": "1dca1bf5-8aa0-40e4-96c4-3d0061c6ba26",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Roleplay being ignored: stay inside without moving until told."
+    },
+    {
+        "id": "03899f84-6eec-4a62-99d5-3ad45f9a85cf",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Kiss and lick your partner's entire body while staying connected."
+    },
+    {
+        "id": "b77510ad-a8f2-49e7-b39d-3731ebcbad1a",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Spit on your partner's cock/pussy and rub it in (if comfortable)."
+    },
+    {
+        "id": "13529e57-bc1b-460d-911c-b1c41e5419a9",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep fucking while your partner uses a toy on you."
+    },
+    {
+        "id": "def7e9dc-81ca-49ab-8101-0616a4e704b5",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Force your partner to say 'I'm yours' with every thrust."
+    },
+    {
+        "id": "98000d4e-6fac-4165-b647-1eccf249ba41",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Roleplay being at a sex club and perform for one minute."
+    },
+    {
+        "id": "83c4884e-8c41-411c-9939-2040e2396b2e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep fucking while your partner orders you not to cum."
+    },
+    {
+        "id": "acdab2a9-1921-484e-b457-a4f16990d7f4",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Tease your partner with temperature play using ice cubes during sex (if safe)."
+    },
+    {
+        "id": "1ecd4f84-7294-4e73-af97-212599d276bb",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner bites or marks your skin."
+    },
+    {
+        "id": "3e59b8fb-a36c-491a-b18b-002a6c1ce195",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Worship your partner's feet while staying inside."
+    },
+    {
+        "id": "7ca3408e-8f5f-471f-a05f-16816e85ec09",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Make your partner beg loudly before continuing to move."
+    },
+    {
+        "id": "fafe27b3-e2fd-4328-a82e-cf87344038b2",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while your partner humiliates you with words."
+    },
+    {
+        "id": "6c1e0fe5-24c3-4c90-98a1-ed2db0071530",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Challenge your partner to cum twice in a row."
+    },
+    {
+        "id": "44250bf3-cf33-473f-8ae7-156aefe8221f",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep fucking while licking sweat from your partner's body."
+    },
+    {
+        "id": "9486fcd8-46a5-4612-a81b-e989f89dcb7e",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Pretend to be property: obey every command while staying inside."
+    },
+    {
+        "id": "7a9250d9-2121-41ec-aa5b-8bb68574b8b6",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Give oral while your partner sits on a chair, wrists tied."
+    },
+    {
+        "id": "425c084f-9abf-478e-9c6a-2d5cc3fbefc9",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Keep thrusting while rubbing cum onto your partner's body (if comfortable)."
+    },
+    {
+        "id": "0c2e4b78-7832-4a7e-a615-d4923bf9755a",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Kiss, lick, or massage your partner's feet during sex."
+    },
+    {
+        "id": "d9cdb70b-36ee-4b0a-890d-fe74e9516b6c",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Stroke your partner with your feet for 30 seconds."
+    },
+    {
+        "id": "deb7dec4-9e42-4dda-980b-80a90992a9fe",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Let your partner cum on a body part of yours and rub it in (if comfortable)."
+    },
+    {
+        "id": "330220ca-b012-4d9e-8831-b7d3f18db4f4",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Pee in the shower or hottub together (if private and comfortable)."
+    },
+    {
+        "id": "c1e6ea2e-a73a-4373-a255-d1bc3deec41c",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Finger your partner's ass gently for one minute (if comfortable)."
+    },
+    {
+        "id": "d0a6317a-944f-4aac-be15-25f0e5538b2b",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Try using an anal toy on your partner or yourself for one minute (if comfortable)."
+    },
+    {
+        "id": "c352682a-28a3-414b-9eb0-27e21b7866af",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Act out a femdom scenario: the female partner commands and controls for two minutes."
+    },
+    {
+        "id": "ffc4ee94-f474-47f6-a808-12b2c3bf3a4c",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Submit to a femdom scenario: the male partner must obey every order for two minutes."
+    },
+    {
+        "id": "13a5e36f-8fcf-461f-acc2-3c0ff36e936c",
+        "level": "Kinky",
+        "kind": "dare",
+        "text": "Perform while imagining or pretending someone is watching you both."
+    }
+]

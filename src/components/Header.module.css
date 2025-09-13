@@ -1,0 +1,113 @@
+.header {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #374151;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #F9FAFB;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin: 0;
+  font-weight: 500;
+}
+
+.gameInfo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+}
+
+.playerName {
+  font-size: 20px;
+  color: #F9FAFB;
+  font-weight: 600;
+  margin: 0;
+}
+
+.exitButton {
+  padding: 12px 24px;
+  background: #EF4444;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.exitButton:hover {
+  background: #DC2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  
+  .titleSection {
+    flex: 1;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .gameInfo {
+    flex-shrink: 0;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  
+  .playerName {
+    font-size: 18px;
+  }
+  
+  .exitButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

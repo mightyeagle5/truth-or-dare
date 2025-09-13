@@ -1,0 +1,135 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.addButton {
+  padding: 8px 16px;
+  background: #3B82F6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addButton:hover:not(:disabled) {
+  background: #2563EB;
+  transform: translateY(-1px);
+}
+
+.addButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.players {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #374151;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.playerRow:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #6B7280;
+}
+
+.playerInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.nameInput {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #374151;
+  border-radius: 6px;
+  color: #F9FAFB;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.nameInput:focus {
+  outline: none;
+  border-color: #3B82F6;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nameInput::placeholder {
+  color: #9CA3AF;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.count {
+  font-size: 12px;
+  color: #9CA3AF;
+  font-weight: 500;
+}
+
+.deleteButton {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: #6B7280;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #EF4444;
+  transform: translateY(-1px);
+}
+
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.deleteButton:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}

@@ -1,0 +1,124 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin: 0;
+  font-weight: 400;
+}
+
+.deleteSelectedButton {
+  padding: 6px 12px;
+  background: #EF4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.deleteSelectedButton:hover:not(:disabled) {
+  background: #DC2626;
+  transform: translateY(-1px);
+}
+
+.deleteSelectedButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.empty {
+  font-size: 14px;
+  color: #9CA3AF;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px dashed #374151;
+}
+
+.gamesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gameItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #374151;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gameItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #6B7280;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3B82F6;
+  flex-shrink: 0;
+}
+
+.gameInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.gameId {
+  font-size: 12px;
+  font-weight: 500;
+  color: #3B82F6;
+  font-family: monospace;
+}
+
+.gameDate {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

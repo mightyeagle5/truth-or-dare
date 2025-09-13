@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.levelPill {
+  min-width: 80px;
+  text-align: center;
+}

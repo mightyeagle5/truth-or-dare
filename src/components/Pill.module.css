@@ -1,0 +1,44 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 2px solid var(--level-color-border, #374151);
+  border-radius: 24px;
+  background: var(--level-color-bg, transparent);
+  color: var(--level-color, #9CA3AF);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pill:hover:not(.disabled) {
+  border-color: var(--level-color, #6B7280);
+  color: var(--level-color, #D1D5DB);
+  transform: translateY(-1px);
+}
+
+.pill.active {
+  border-color: var(--level-color, #3B82F6);
+  background: var(--level-color, #3B82F6);
+  color: white;
+}
+
+.pill.active:hover {
+  background: var(--level-color, #2563EB);
+  border-color: var(--level-color, #2563EB);
+  color: white;
+}
+
+.pill.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pill:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
