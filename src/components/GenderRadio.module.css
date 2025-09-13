@@ -51,3 +51,16 @@
 .option.selected .label {
   color: #3B82F6;
 }
+
+/* Mobile responsive - hide labels, show only icons */
+@media (max-width: 768px) {
+  .label {
+    display: none;
+  }
+  
+  .option {
+    padding: 8px; /* Reduce padding since no text */
+    min-width: 40px; /* Ensure consistent width */
+    justify-content: center;
+  }
+}

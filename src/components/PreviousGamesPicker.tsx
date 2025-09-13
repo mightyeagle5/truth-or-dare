@@ -36,7 +36,7 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
       <div className={styles.header}>
         <div className={styles.titleSection}>
           <h3 className={styles.title}>Previous Games</h3>
-          <p className={styles.subtitle}>Select games to skip already completed challenges</p>
+          <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
         </div>
         {selectedGameIds.length > 0 && (
           <button

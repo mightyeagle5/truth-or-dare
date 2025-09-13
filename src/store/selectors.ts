@@ -1,6 +1,6 @@
 import type { GameMeta, Item, ItemKind } from '../types'
 import { getAvailableItems, getItemCounts } from '../lib/items'
-import { canChooseType } from '../lib/guards'
+import { canChooseType, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getPriorGameItems } from './storage'
 
 export const getCurrentPlayer = (game: GameMeta | null) => {
@@ -32,7 +32,22 @@ export const getDisabledChoices = (
   if (!currentPlayer) return { truth: true, dare: true }
   
   const priorGameItems = respectPriorGames ? getPriorGameItems(game.priorGameIds) : []
-  const counts = getItemCounts(items, game.currentLevel, game.usedItems, priorGameItems)
+  
+  // For custom games in Random mode, count all items regardless of level
+  const counts = game.isCustomGame && game.customGameMode === 'random'
+    ? {
+        truth: items.filter(item => 
+          item.kind === 'truth' &&
+          !game.usedItems.includes(item.id) &&
+          !priorGameItems.includes(item.id)
+        ).length,
+        dare: items.filter(item => 
+          item.kind === 'dare' &&
+          !game.usedItems.includes(item.id) &&
+          !priorGameItems.includes(item.id)
+        ).length
+      }
+    : getItemCounts(items, game.currentLevel, game.usedItems, priorGameItems)
   
   // If one type is exhausted, disable consecutive counter for the other type
   const truthExhausted = counts.truth === 0
@@ -58,6 +73,12 @@ export const getAvailableItemCounts = (
 export const shouldShowLevelSuggestion = (game: GameMeta | null, items: Item[] = [], respectPriorGames: boolean = true): boolean => {
   if (!game || !game.isProgressive) return false
   
+  // For custom games, check if there's a next available level
+  if (game.isCustomGame && game.customItems) {
+    const nextLevel = getNextCustomProgressiveLevel(game.currentLevel, game.customItems)
+    if (!nextLevel) return false // No next level available
+  }
+  
   // Show suggestion after 10 turns OR when one type of cards is exhausted
   const hasReachedTurnLimit = game.totalTurnsAtCurrentLevel >= 10
   
@@ -73,12 +94,26 @@ export const shouldShowLevelSuggestion = (game: GameMeta | null, items: Item[] =
 
 export const canAdvanceLevel = (game: GameMeta | null): boolean => {
   if (!game || !game.isProgressive) return false
+  
+  // For custom games, check if there's a next available level
+  if (game.isCustomGame && game.customItems) {
+    const nextLevel = getNextCustomProgressiveLevel(game.currentLevel, game.customItems)
+    return nextLevel !== null
+  }
+  
+  // For regular games, check if not at the highest level
   return game.currentLevel !== 'Kinky'
 }
 
 export const getNextLevel = (game: GameMeta | null): Exclude<GameMeta['currentLevel'], 'Progressive'> | null => {
   if (!game || !game.isProgressive) return null
   
+  // For custom games, use custom progressive level logic
+  if (game.isCustomGame && game.customItems) {
+    return getNextCustomProgressiveLevel(game.currentLevel, game.customItems)
+  }
+  
+  // For regular games, use standard progressive level logic
   const levels = ['Soft', 'Mild', 'Hot', 'Spicy', 'Kinky'] as const
   const currentIndex = levels.indexOf(game.currentLevel)
   return currentIndex < levels.length - 1 ? levels[currentIndex + 1] : null

@@ -9,6 +9,7 @@ const getLevelColor = (level: string) => {
     case 'Hot': return '#F59E0B'
     case 'Spicy': return '#F87171'
     case 'Kinky': return '#A78BFA'
+    case 'Custom': return '#8B5CF6' // Purple for custom games
     default: return '#9CA3AF'
   }
 }
@@ -16,7 +17,19 @@ const getLevelColor = (level: string) => {
 export const StickyFooterControls: React.FC = () => {
   const { currentGame } = useGameStore()
 
-  const levelColor = currentGame ? getLevelColor(currentGame.currentLevel) : '#9CA3AF'
+  const getDisplayLevel = () => {
+    if (!currentGame) return 'Custom'
+    
+    // For custom games in Random mode, show "Custom" instead of the level
+    if (currentGame.isCustomGame && currentGame.customGameMode === 'random') {
+      return 'Custom'
+    }
+    
+    return currentGame.currentLevel
+  }
+
+  const displayLevel = getDisplayLevel()
+  const levelColor = currentGame ? getLevelColor(displayLevel) : '#9CA3AF'
 
   return (
     <div className={styles.container}>
@@ -30,7 +43,7 @@ export const StickyFooterControls: React.FC = () => {
               backgroundColor: `${levelColor}20`
             }}
           >
-            {currentGame.currentLevel}
+            {displayLevel}
           </div>
         )}
       </div>

@@ -2,6 +2,15 @@ export type Level = 'Soft' | 'Mild' | 'Hot' | 'Spicy' | 'Kinky' | 'Progressive'
 
 export type ItemKind = 'truth' | 'dare'
 
+export interface CustomChallenge {
+  id: string
+  text: string
+  kind: ItemKind
+  level: Level
+  isCustom: boolean
+  originalId?: string // For challenges from the original game
+}
+
 export type Gender = 'male' | 'female'
 
 export interface Player {
@@ -31,6 +40,9 @@ export interface GameMeta {
   usedItems: string[] // Item IDs used in this game
   respectPriorGames: boolean // false if user pressed "Reset" on Homepage
   playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> // per-player consecutive counters
+  customItems?: Item[] // Custom challenges for custom games
+  isCustomGame?: boolean // Flag to identify custom games
+  customGameMode?: 'random' | 'progressive' // Mode for custom games
 }
 
 export interface Item {
@@ -64,6 +76,7 @@ export interface GameState {
 export interface GameActions {
   // Game lifecycle
   startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => string
+  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => string
   loadGame: (gameId: string) => void
   exitGame: () => void
   

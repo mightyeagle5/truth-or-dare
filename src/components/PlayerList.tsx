@@ -45,6 +45,9 @@ export const PlayerList: React.FC<PlayerListProps> = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <h3 className={styles.title}>Players</h3>
+        <div className={styles.count}>
+          {players.length} / {MAX_PLAYERS} players
+        </div>
         <button
           className={styles.addButton}
           onClick={addPlayer}
@@ -87,12 +90,6 @@ export const PlayerList: React.FC<PlayerListProps> = ({
             )}
           </div>
         ))}
-      </div>
-      
-      <div className={styles.footer}>
-        <span className={styles.count}>
-          {players.length} / {MAX_PLAYERS} players
-        </span>
       </div>
     </div>
   )

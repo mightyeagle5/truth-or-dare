@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level } from '../types'
+import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, CustomChallenge } from '../types'
 import { createGameId } from '../lib/ids'
-import { getProgressiveLevels, getNextProgressiveLevel } from '../lib/guards'
+import { getProgressiveLevels, getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts } from '../lib/items'
 import { 
   getGameHistory, 
@@ -85,6 +85,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
         set({ 
           currentGame: loadedGame, 
+          items: loadedGame.customItems || gameQuestions as Item[], // Use custom items if available
           currentScreen: 'choice',
           isLoading: false 
         })
@@ -124,13 +125,20 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       ? getPriorGameItems(currentGame.priorGameIds) 
       : []
 
-    const availableItems = getAvailableItems(
-      items,
-      currentGame.currentLevel,
-      kind,
-      currentGame.usedItems,
-      priorGameItems
-    )
+    // For custom games in Random mode, don't filter by level
+    const availableItems = currentGame.isCustomGame && currentGame.customGameMode === 'random'
+      ? items.filter(item => 
+          item.kind === kind &&
+          !currentGame.usedItems.includes(item.id) &&
+          !priorGameItems.includes(item.id)
+        )
+      : getAvailableItems(
+          items,
+          currentGame.currentLevel,
+          kind,
+          currentGame.usedItems,
+          priorGameItems
+        )
 
     const selectedItem = getRandomItem(availableItems)
     if (!selectedItem) return
@@ -264,7 +272,11 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const { currentGame } = get()
     if (!currentGame || !currentGame.isProgressive) return
 
-    const nextLevel = getNextProgressiveLevel(currentGame.currentLevel)
+    // For custom games, use custom progressive level logic
+    const nextLevel = currentGame.isCustomGame && currentGame.customItems
+      ? getNextCustomProgressiveLevel(currentGame.currentLevel, currentGame.customItems)
+      : getNextProgressiveLevel(currentGame.currentLevel)
+    
     if (!nextLevel) return
 
     // Reset consecutive counters for all players when advancing level
@@ -319,6 +331,86 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   loadGameHistory: () => {
     const history = getGameHistory()
     set({ gameHistory: history })
+  },
+
+  // Custom game functionality
+  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => {
+    const gameId = createGameId()
+    const isProgressive = gameMode === 'progressive'
+    
+    // Convert custom challenges to regular items for the game
+    const customItems: Item[] = customChallenges.map(challenge => ({
+      id: challenge.id,
+      text: challenge.text,
+      kind: challenge.kind,
+      level: challenge.level
+    }))
+    
+    // Initialize player counters
+    const playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> = {}
+    players.forEach(player => {
+      playerCounters[player.id] = { consecutiveTruths: 0, consecutiveDares: 0 }
+    })
+    
+    // For Random mode, determine the most common level or use 'Soft' as default
+    const getRandomModeLevel = (customItems: Item[]): Exclude<Level, 'Progressive'> => {
+      if (customItems.length === 0) return 'Soft'
+      
+      // Count items by level
+      const levelCounts: Record<string, number> = {}
+      customItems.forEach(item => {
+        levelCounts[item.level] = (levelCounts[item.level] || 0) + 1
+      })
+      
+      // Find the most common level
+      const mostCommonLevel = Object.entries(levelCounts)
+        .sort(([,a], [,b]) => b - a)[0]?.[0] as Exclude<Level, 'Progressive'> || 'Soft'
+      
+      return mostCommonLevel
+    }
+    
+    // For Progressive mode, start with the lowest available level
+    const getProgressiveModeLevel = (customItems: Item[]): Exclude<Level, 'Progressive'> => {
+      if (customItems.length === 0) return 'Soft'
+      
+      const availableLevels = getCustomProgressiveLevels(customItems)
+      return availableLevels[0] || 'Soft'
+    }
+    
+    const initialLevel = isProgressive ? getProgressiveModeLevel(customItems) : getRandomModeLevel(customItems)
+    
+    const game: GameMeta = {
+      id: gameId,
+      players,
+      selectedLevel: isProgressive ? 'Progressive' : 'Custom',
+      currentLevel: initialLevel,
+      turnIndex: 0,
+      usedItems: [],
+      totalTurnsAtCurrentLevel: 0,
+      isProgressive,
+      priorGameIds: [],
+      respectPriorGames: false,
+      playerCounters,
+      createdAt: Date.now(),
+      customItems, // Store custom items separately
+      isCustomGame: true,
+      customGameMode: gameMode
+    }
+    
+    // Set custom items as the game items
+    set({ 
+      currentGame: game, 
+      items: customItems,
+      currentItem: null,
+      currentScreen: 'choice',
+      isWildCard: false
+    })
+    
+    // Don't save custom games to localStorage or add to history
+    // saveGame(game)
+    // addGameToHistory(gameId, game.createdAt)
+    
+    return gameId
   }
 }))
 

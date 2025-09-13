@@ -9,11 +9,24 @@ export const getGameHistory = (): GameHistoryEntry[] => {
     const parsed = JSON.parse(stored)
     if (!Array.isArray(parsed)) return []
     
-    const filtered = parsed.filter((entry: any) => 
-      entry && 
-      typeof entry.id === 'string' && 
-      typeof entry.createdAt === 'number'
-    )
+    const filtered = parsed.filter((entry: any) => {
+      if (!entry || typeof entry.id !== 'string' || typeof entry.createdAt !== 'number') {
+        return false
+      }
+      
+      // Check if this is a custom game by looking at the actual game data
+      try {
+        const gameData = localStorage.getItem(`${STORAGE_KEYS.GAME_PREFIX}${entry.id}`)
+        if (gameData) {
+          const game = JSON.parse(gameData) as GameMeta
+          return !game.isCustomGame // Exclude custom games
+        }
+      } catch {
+        // If we can't parse the game data, include it (it's probably an old game)
+      }
+      
+      return true
+    })
     
     // Sort by creation date (most recent first)
     return filtered.sort((a, b) => b.createdAt - a.createdAt)
