@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  width: var(--z-dropdown)%;
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
   padding: var(--space-6);
@@ -33,7 +33,7 @@
   left: 0;
   right: 0;
   background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(var(--radius-lg));
+  backdrop-filter: blur(8px);
   border-top: 1px solid var(--color-border-primary);
   padding: var(--space-4) var(--space-6);
   display: flex;
@@ -44,7 +44,7 @@
 
 .startButton {
   padding: var(--space-4) var(--space-8);
-  background: linear-gradient(135deg, var(--color-primary-var(--font-weight-medium)), var(--color-primary-var(--font-weight-bold)));
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
   color: var(--color-text-primary);
   border: none;
   border-radius: var(--radius-xl);
@@ -52,14 +52,14 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   min-width: 200px;
 }
 
 .startButton:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-primary-var(--font-weight-semibold)), var(--color-primary-800));
-  transform: translateY(-var(--radius-sm));
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
 .startButton:disabled {
@@ -70,7 +70,7 @@
 }
 
 .customGameButton {
-  padding: var(--radius-2xl) var(--space-8);
+  padding: var(--space-4) var(--space-8);
   background: linear-gradient(135deg, #8B5CF6, #7C3AED);
   color: white;
   border: none;
@@ -85,7 +85,7 @@
 
 .customGameButton:hover {
   background: linear-gradient(135deg, #7C3AED, #6D28D9);
-  transform: translateY(-var(--radius-sm));
+  transform: translateY(-2px);
   box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(139, 92, 246, 0.4);
 }
 
@@ -94,10 +94,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  width: var(--z-dropdown)%;
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
-  padding-top: var(--radius-full);
+  padding-top: var(--space-6);
   padding-bottom: 120px;
   /* Space for sticky button */
 }
@@ -106,7 +106,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  width: var(--z-dropdown)%;
+  width: 100%;
 }
 
 .customGameContent {
@@ -121,7 +121,7 @@
   /* var(--font-size-xl) */
   font-weight: var(--font-weight-semibold);
   color: #ffffff;
-  margin: 0 0 var(--radius-2xl) 0;
+  margin: 0 0 var(--space-4) 0;
 }
 
 .playersSection,
@@ -130,7 +130,7 @@
 .challengesSection {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 /* Section dividers */
@@ -142,7 +142,7 @@
   content: '';
   height: 1px;
   background: #374151;
-  margin: var(--radius-full) auto;
+  margin: var(--space-6) auto;
   width: 80%;
 }
 
@@ -151,7 +151,7 @@
   content: '';
   height: 1px;
   background: #374151;
-  margin: var(--radius-full) auto;
+  margin: var(--space-6) auto;
   width: 80%;
 }
 
@@ -159,7 +159,7 @@
   font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
   color: #ffffff;
-  margin: 0 0 var(--radius-lg) 0;
+  margin: 0 0 var(--space-2) 0;
 }
 
 .customGameHeader p {
@@ -179,27 +179,27 @@
 .customChallengeForm {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .challengeInputRow {
   display: flex;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
   align-items: flex-start;
 }
 
 .challengeControls {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   min-width: 200px;
   flex-shrink: 0;
 }
 
 .challengeTextarea {
-  width: var(--z-dropdown)%;
-  min-height: var(--space-20);
-  padding: var(--radius-xl);
+  width: 100%;
+  min-height: 80px;
+  padding: var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-lg);
@@ -221,13 +221,13 @@
 
 .challengeOptions {
   display: flex;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   align-items: center;
   flex-wrap: wrap;
 }
 
 .challengeSelect {
-  padding: var(--radius-lg) var(--space-8) var(--radius-lg) var(--radius-xl);
+  padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-md);
@@ -236,9 +236,9 @@
   min-width: 100px;
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right var(--radius-lg) center;
+  background-position: right var(--space-2) center;
   background-repeat: no-repeat;
-  background-size: var(--radius-2xl);
+  background-size: var(--space-4);
 }
 
 .challengeSelect:focus {
@@ -247,7 +247,7 @@
 }
 
 .addCustomButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #10B981, #059669);
   color: white;
   border: none;
@@ -270,7 +270,7 @@
 }
 
 .addGameButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #3B82F6, #2563EB);
   color: white;
   border: none;
@@ -296,13 +296,13 @@
 .challengesList {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   max-height: 600px;
   /* Default max height for preview mode (showing 5) */
   height: auto;
   /* Allow height to grow up to max-height */
   overflow-y: auto;
-  padding-right: var(--radius-base);
+  padding-right: var(--space-1);
   /* Space for scrollbar */
 }
 
@@ -315,7 +315,7 @@
 
 /* Custom scrollbar for challenges list */
 .challengesList::-webkit-scrollbar {
-  width: var(--radius-md);
+  width: 6px;
 }
 
 .challengesList::-webkit-scrollbar-track {
@@ -336,15 +336,15 @@
   text-align: center;
   color: #9CA3AF;
   font-style: italic;
-  padding-top: var(--font-size-xl);
+  padding-top: var(--space-5);
 }
 
 .challengeItem {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--radius-xl);
-  padding: var(--radius-2xl);
+  gap: var(--space-3);
+  padding: var(--space-4);
   background: rgba(17, 24, 39, 0.3);
   border: 1px solid #374151;
   border-radius: var(--radius-lg);
@@ -363,7 +363,7 @@
 
 .challengeHeader {
   display: flex;
-  gap: var(--radius-lg);
+  gap: var(--space-2);
   align-items: center;
   margin-bottom: var(--radius-lg);
   flex-wrap: wrap;
@@ -371,9 +371,9 @@
 
 .challengeType {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -394,9 +394,9 @@
 
 .challengeLevel {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -435,9 +435,9 @@
 
 .challengeSource {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -491,23 +491,23 @@
 .challengesHeader {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .challengeFilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .filterButtons {
   display: flex;
-  gap: var(--radius-lg);
+  gap: var(--space-2);
 }
 
 .previewToggle {
-  padding: var(--radius-md) var(--radius-xl);
+  padding: var(--space-1) var(--space-3);
   border: 1px solid #374151;
   border-radius: var(--radius-md);
   background: #1f2937;
@@ -537,7 +537,7 @@
 }
 
 .filterButton {
-  padding: var(--radius-md) var(--radius-xl);
+  padding: var(--space-1) var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-md);
@@ -564,20 +564,20 @@
 .gameModeSection {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .gameModeOptions {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
 }
 
 .gameModeOption {
   display: flex;
   align-items: flex-start;
-  gap: var(--radius-xl);
-  padding: var(--radius-2xl);
+  gap: var(--space-3);
+  padding: var(--space-4);
   background: rgba(17, 24, 39, 0.3);
   border: 1px solid #374151;
   border-radius: var(--radius-lg);
@@ -602,17 +602,17 @@
 
 .gameModeOption input[type="radio"] {
   margin: 0;
-  width: var(--font-size-lg);
-  height: var(--font-size-lg);
+  width: 18px;
+  height: 18px;
   accent-color: #3B82F6;
   flex-shrink: 0;
-  margin-top: var(--radius-sm);
+  margin-top: 2px;
 }
 
 .gameModeLabel {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-base);
+  gap: var(--space-1);
   color: #D1D5DB;
 }
 
@@ -623,13 +623,13 @@
 }
 
 .gameModeLabel small {
-  font-size: var(--radius-xl);
+  font-size: var(--font-size-xs);
   color: #9CA3AF;
   line-height: 1.4;
 }
 
 .gameModeDisabledText {
-  font-size: var(--radius-xl);
+  font-size: var(--font-size-xs);
   color: #9CA3AF;
   font-style: italic;
   margin: 0;
@@ -637,7 +637,7 @@
 }
 
 .backButton {
-  padding: var(--radius-2xl) var(--space-8);
+  padding: var(--space-4) var(--space-8);
   background: linear-gradient(135deg, #EF4444, #DC2626);
   color: white;
   border: none;
@@ -652,7 +652,7 @@
 
 .backButton:hover {
   background: linear-gradient(135deg, #DC2626, #B91C1C);
-  transform: translateY(-var(--radius-sm));
+  transform: translateY(-2px);
   box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(239, 68, 68, 0.4);
 }
 
@@ -663,7 +663,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: var(--space-20);
+  height: 80px;
   background: linear-gradient(transparent, rgba(10, 10, 10, 0.8));
   pointer-events: none;
   z-index: 99;
@@ -671,35 +671,35 @@
 
 @media (max-width: 768px) {
   .content {
-    padding: var(--radius-2xl);
+    padding: var(--space-4);
     padding-bottom: 100px;
   }
 
   .sections {
-    gap: var(--font-size-xl);
+    gap: var(--space-5);
   }
 
   .actions {
-    padding: var(--radius-xl) var(--radius-2xl);
+    padding: var(--space-3) var(--space-4);
     flex-direction: column;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .startButton {
-    padding: var(--font-size-sm) 28px;
-    font-size: var(--radius-2xl);
+    padding: var(--space-3) 28px;
+    font-size: var(--font-size-base);
     min-width: 160px;
   }
 
   .customGameButton {
-    padding: var(--font-size-sm) 28px;
-    font-size: var(--radius-2xl);
+    padding: var(--space-3) 28px;
+    font-size: var(--font-size-base);
     min-width: 160px;
   }
 
   .backButton {
-    padding: var(--font-size-sm) 28px;
-    font-size: var(--radius-2xl);
+    padding: var(--space-3) 28px;
+    font-size: var(--font-size-base);
     min-width: 160px;
   }
 
@@ -712,7 +712,7 @@
   }
 
   .customGameContent {
-    padding: var(--radius-full);
+    padding: var(--space-6);
   }
 
   .customGameContent p {
@@ -720,8 +720,8 @@
   }
 
   .customGameContent {
-    padding: var(--radius-2xl);
-    gap: var(--radius-full);
+    padding: var(--space-4);
+    gap: var(--space-6);
   }
 
   .customGameContent h3 {
@@ -731,14 +731,14 @@
 
   .challengeInputRow {
     flex-direction: column;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .challengeControls {
     min-width: auto;
     flex-direction: column;
     align-items: stretch;
-    width: var(--z-dropdown)%;
+    width: 100%;
   }
 
   .challengeOptions {
@@ -747,21 +747,21 @@
   }
 
   .challengeSelect {
-    width: var(--z-dropdown)%;
-    padding: var(--radius-lg) var(--space-8) var(--radius-lg) var(--radius-xl);
+    width: 100%;
+    padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
   }
 
   .challengesHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .challengeFilter {
-    width: var(--z-dropdown)%;
+    width: 100%;
     flex-direction: column;
     align-items: stretch;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .filterButtons {
@@ -769,20 +769,20 @@
   }
 
   .previewToggle {
-    width: var(--z-dropdown)%;
+    width: 100%;
     text-align: center;
   }
 
   .challengeHeader {
     flex-direction: row;
     align-items: center;
-    gap: var(--radius-lg);
+    gap: var(--space-2);
     flex-wrap: wrap;
   }
 
   .challengeItem {
     flex-direction: row;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .removeButton {
@@ -819,7 +819,7 @@
 /* Upload and Download buttons */
 .uploadButton,
 .downloadButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   border: 1px solid #374151;
   border-radius: var(--radius-md);
   background: #1f2937;
@@ -853,12 +853,12 @@
   .sectionHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .uploadButton,
   .downloadButton {
-    width: var(--z-dropdown)%;
-    padding: 10px var(--radius-2xl);
+    width: 100%;
+    padding: 10px var(--space-4);
   }
 }
