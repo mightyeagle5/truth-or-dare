@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { PlayerList } from '../PlayerList'
+import { PlayerList } from './PlayerList'
 import gameQuestions from '../../data/game_questions.json'
 import type { PlayerSnapshot, Level, CustomChallenge, ItemKind } from '../../types'
 import styles from './CustomGameSection.module.css'

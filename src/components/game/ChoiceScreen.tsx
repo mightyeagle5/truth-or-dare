@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts, shouldShowLevelSuggestion, canAdvanceLevel } from '../store/selectors'
-import { useGameStore } from '../store/gameStore'
-import { Pill } from './Pill'
+import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts, shouldShowLevelSuggestion, canAdvanceLevel } from '../../store/selectors'
+import { useGameStore } from '../../store/gameStore'
+import { Pill } from '../ui/Pill'
 import styles from './ChoiceScreen.module.css'
 
 export const ChoiceScreen: React.FC = () => {

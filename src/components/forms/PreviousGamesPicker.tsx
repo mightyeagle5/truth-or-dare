@@ -1,6 +1,6 @@
 import React from 'react'
-import { formatGameDate } from '../lib/dates'
-import type { GameHistoryEntry } from '../types'
+import { formatGameDate } from '../../lib/dates'
+import type { GameHistoryEntry } from '../../types'
 import styles from './PreviousGamesPicker.module.css'
 
 interface PreviousGamesPickerProps {

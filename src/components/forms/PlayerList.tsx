@@ -1,9 +1,9 @@
 import React from 'react'
-import { GENDER_COLORS, GENDER_ICONS, MAX_PLAYERS, MIN_PLAYERS } from '../lib/constants'
-import { createPlayerId } from '../lib/ids'
+import { GENDER_COLORS, GENDER_ICONS, MAX_PLAYERS, MIN_PLAYERS } from '../../lib/constants'
+import { createPlayerId } from '../../lib/ids'
 import { GenderRadio } from './GenderRadio'
-import { IconButton } from './IconButton'
-import type { PlayerSnapshot } from '../types'
+import { IconButton } from '../ui/IconButton'
+import type { PlayerSnapshot } from '../../types'
 import styles from './PlayerList.module.css'
 
 interface PlayerListProps {

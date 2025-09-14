@@ -1,7 +1,7 @@
 import React from 'react'
-import { LEVELS } from '../lib/constants'
-import { Pill } from './Pill'
-import type { Level } from '../types'
+import { LEVELS } from '../../lib/constants'
+import { Pill } from '../ui/Pill'
+import type { Level } from '../../types'
 import styles from './LevelSelector.module.css'
 
 const getLevelColor = (level: Level) => {

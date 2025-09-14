@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getCurrentPlayer } from '../store/selectors'
-import { useGameStore } from '../store/gameStore'
-import { Badge } from './Badge'
+import { getCurrentPlayer } from '../../store/selectors'
+import { useGameStore } from '../../store/gameStore'
+import { Badge } from '../ui/Badge'
 import styles from './ItemScreen.module.css'
 
 export const ItemScreen: React.FC = () => {

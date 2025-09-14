@@ -1,6 +1,6 @@
 import React from 'react'
-import { GENDER_COLORS, GENDER_ICONS } from '../lib/constants'
-import type { Gender } from '../types'
+import { GENDER_COLORS, GENDER_ICONS } from '../../lib/constants'
+import type { Gender } from '../../types'
 import styles from './GenderRadio.module.css'
 
 interface GenderRadioProps {

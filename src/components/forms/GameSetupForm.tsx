@@ -1,7 +1,7 @@
 import React from 'react'
-import { PlayerList } from '../PlayerList'
-import { LevelSelector } from '../LevelSelector'
-import { PreviousGamesPicker } from '../PreviousGamesPicker'
+import { PlayerList } from './PlayerList'
+import { LevelSelector } from './LevelSelector'
+import { PreviousGamesPicker } from './PreviousGamesPicker'
 import type { PlayerSnapshot, Level, GameHistoryEntry } from '../../types'
 
 interface GameSetupFormProps {
