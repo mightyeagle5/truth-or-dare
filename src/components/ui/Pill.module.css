@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-2) var(--space-4);
-  border: 2px solid var(--level-color-border, var(--color-border-primary));
+  border: var(--radius-sm) solid var(--level-color-border, var(--color-border-primary));
   border-radius: var(--radius-full);
   background: var(--level-color-bg, transparent);
   color: var(--level-color, var(--color-text-muted));
@@ -15,20 +15,20 @@
 }
 
 .pill:hover:not(.disabled) {
-  border-color: var(--level-color, var(--color-neutral-500));
+  border-color: var(--level-color, var(--color-neutral-var(--font-weight-medium)));
   color: var(--level-color, var(--color-text-tertiary));
   transform: translateY(-1px);
 }
 
 .pill.active {
-  border-color: var(--level-color, var(--color-primary-500));
-  background: var(--level-color, var(--color-primary-500));
+  border-color: var(--level-color, var(--color-primary-var(--font-weight-medium)));
+  background: var(--level-color, var(--color-primary-var(--font-weight-medium)));
   color: var(--color-text-primary);
 }
 
 .pill.active:hover {
-  background: var(--level-color, var(--color-primary-600));
-  border-color: var(--level-color, var(--color-primary-600));
+  background: var(--level-color, var(--color-primary-var(--font-weight-semibold)));
+  border-color: var(--level-color, var(--color-primary-var(--font-weight-semibold)));
   color: var(--color-text-primary);
 }
 
@@ -39,6 +39,6 @@
 }
 
 .pill:focus-visible {
-  outline: 2px solid var(--color-border-focus);
-  outline-offset: 2px;
+  outline: var(--radius-sm) solid var(--color-border-focus);
+  outline-offset: var(--radius-sm);
 }

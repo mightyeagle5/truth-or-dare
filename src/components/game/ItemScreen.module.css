@@ -1,18 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 24px;
-  height: 100%;
+  gap: var(--space-8);
+  padding: var(--radius-full);
+  height: var(--z-dropdown)%;
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  width: var(--z-dropdown)%;
 }
 
 .playerName {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
   color: #F9FAFB;
   text-align: center;
   margin: 0;
@@ -21,11 +21,11 @@
 
 .itemCard {
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid #374151;
-  border-radius: 16px;
-  padding: 48px 32px;
+  border: var(--radius-sm) solid #374151;
+  border-radius: var(--radius-2xl);
+  padding: var(--font-size-5xl) var(--space-8);
   text-align: center;
-  width: 100%;
+  width: var(--z-dropdown)%;
   min-height: 280px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: var(--radius-full);
 }
 
 .itemType {
@@ -55,15 +55,15 @@
 }
 
 .itemContent {
-  margin-bottom: 24px;
+  margin-bottom: var(--radius-full);
 }
 
 .itemText {
-  font-size: 20px;
+  font-size: var(--font-size-xl);
   line-height: 1.6;
   color: #F9FAFB;
   margin: 0;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .actions {
@@ -71,38 +71,38 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: var(--radius-2xl);
   flex-wrap: wrap;
 }
 
 .wildCardButton {
-  padding: 12px 24px;
+  padding: var(--radius-xl) var(--radius-full);
   background: linear-gradient(135deg, #8B5CF6, #A855F7);
   color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--radius-xl);
+  font-size: var(--radius-2xl);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  transition: all var(--transition-base);
+  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(139, 92, 246, 0.3);
 }
 
 .wildCardButton:hover {
   background: linear-gradient(135deg, #7C3AED, #9333EA);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+  transform: translateY(-var(--radius-sm));
+  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(139, 92, 246, 0.4);
 }
 
 .skipButton,
 .completeButton {
-  padding: 16px 24px;
+  padding: var(--radius-2xl) var(--radius-full);
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--radius-xl);
+  font-size: var(--radius-2xl);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   min-width: 120px;
 }
 
@@ -113,7 +113,7 @@
 
 .skipButton:hover {
   background: #4B5563;
-  transform: translateY(-2px);
+  transform: translateY(-var(--radius-sm));
 }
 
 .completeButton {
@@ -123,37 +123,37 @@
 
 .completeButton:hover {
   background: #059669;
-  transform: translateY(-2px);
+  transform: translateY(-var(--radius-sm));
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 16px;
+    padding: var(--radius-2xl);
   }
   
   .playerName {
-    font-size: 36px;
+    font-size: var(--font-size-4xl);
   }
   
   .itemCard {
-    padding: 32px 24px;
+    padding: var(--space-8) var(--radius-full);
     min-height: 200px;
   }
   
   .itemText {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
   
   .actions {
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: var(--radius-xl);
+    width: var(--z-dropdown)%;
   }
   
   .wildCardButton,
   .skipButton,
   .completeButton {
-    width: 100%;
-    padding: 14px 20px;
+    width: var(--z-dropdown)%;
+    padding: var(--font-size-sm) var(--font-size-xl);
   }
 }

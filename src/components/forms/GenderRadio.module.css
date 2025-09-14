@@ -1,17 +1,17 @@
 .container {
   display: flex;
-  gap: 16px;
+  gap: var(--radius-2xl);
 }
 
 .option {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 2px solid #374151;
-  border-radius: 8px;
+  gap: var(--radius-lg);
+  padding: var(--radius-lg) var(--radius-xl);
+  border: var(--radius-sm) solid #374151;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   background: transparent;
 }
 
@@ -37,14 +37,14 @@
 }
 
 .icon {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: bold;
   line-height: 1;
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   color: #D1D5DB;
 }
 
@@ -59,8 +59,8 @@
   }
   
   .option {
-    padding: 8px; /* Reduce padding since no text */
-    min-width: 40px; /* Ensure consistent width */
+    padding: var(--radius-lg); /* Reduce padding since no text */
+    min-width: var(--space-10); /* Ensure consistent width */
     justify-content: center;
   }
 }

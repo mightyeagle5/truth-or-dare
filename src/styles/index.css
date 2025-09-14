@@ -10,7 +10,7 @@
 }
 
 html, body, #root {
-  height: 100%;
+  height: var(--z-dropdown)%;
 }
 
 body {
@@ -48,8 +48,8 @@ body {
 button:focus-visible,
 input:focus-visible,
 [role="button"]:focus-visible {
-  outline: 2px solid var(--color-border-focus);
-  outline-offset: 2px;
+  outline: var(--radius-sm) solid var(--color-border-focus);
+  outline-offset: var(--radius-sm);
 }
 
 /* Button base styles */
@@ -81,7 +81,7 @@ input {
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: var(--radius-lg);
 }
 
 ::-webkit-scrollbar-track {
@@ -89,12 +89,12 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-600);
+  background: var(--color-neutral-var(--font-weight-semibold));
   border-radius: var(--radius-base);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-500);
+  background: var(--color-neutral-var(--font-weight-medium));
 }
 
 /* Animation utilities */
@@ -117,7 +117,7 @@ input {
 }
 
 .slide-enter {
-  transform: translateX(100%);
+  transform: translateX(var(--z-dropdown)%);
 }
 
 .slide-enter-active {
@@ -130,6 +130,6 @@ input {
 }
 
 .slide-exit-active {
-  transform: translateX(-100%);
+  transform: translateX(-var(--z-dropdown)%);
   transition: transform var(--transition-base);
 }

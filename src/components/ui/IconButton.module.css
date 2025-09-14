@@ -3,9 +3,9 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   font-family: inherit;
 }
 
@@ -15,64 +15,64 @@
 }
 
 .iconButton.sm {
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: var(--space-8);
+  height: var(--space-8);
+  font-size: var(--radius-2xl);
 }
 
 .iconButton.md {
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
+  width: var(--space-10);
+  height: var(--space-10);
+  font-size: var(--font-size-lg);
 }
 
 .iconButton.lg {
-  width: 48px;
-  height: 48px;
-  font-size: 20px;
+  width: var(--font-size-5xl);
+  height: var(--font-size-5xl);
+  font-size: var(--font-size-xl);
 }
 
 .iconButton.primary {
-  background: #3B82F6;
-  color: white;
+  background: var(--color-primary-500);
+  color: var(--color-text-primary);
 }
 
 .iconButton.primary:hover:not(:disabled) {
-  background: #2563EB;
+  background: var(--color-primary-600);
   transform: translateY(-1px);
 }
 
 .iconButton.secondary {
-  background: #6B7280;
-  color: white;
+  background: var(--color-neutral-500);
+  color: var(--color-text-primary);
 }
 
 .iconButton.secondary:hover:not(:disabled) {
-  background: #4B5563;
+  background: var(--color-neutral-600);
   transform: translateY(-1px);
 }
 
 .iconButton.danger {
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
 }
 
 .iconButton.danger:hover:not(:disabled) {
-  background: #DC2626;
+  background: var(--color-error-600);
   transform: translateY(-1px);
 }
 
 .iconButton.ghost {
   background: transparent;
-  color: #9CA3AF;
+  color: var(--color-text-muted);
 }
 
 .iconButton.ghost:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.1);
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
 }
 
 .iconButton:focus-visible {
-  outline: 2px solid #3B82F6;
-  outline-offset: 2px;
+  outline: var(--radius-sm) solid var(--color-border-focus);
+  outline-offset: var(--radius-sm);
 }

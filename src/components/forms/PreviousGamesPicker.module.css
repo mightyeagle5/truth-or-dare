@@ -1,46 +1,46 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--radius-2xl);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: var(--radius-xl);
 }
 
 .titleSection {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--radius-base);
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   color: #F9FAFB;
   margin: 0;
 }
 
 .subtitle {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: #9CA3AF;
   margin: 0;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .deleteSelectedButton {
-  padding: 6px 12px;
+  padding: var(--radius-md) var(--radius-xl);
   background: #EF4444;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
+  border-radius: var(--radius-md);
+  font-size: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
@@ -56,32 +56,32 @@
 }
 
 .empty {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: #9CA3AF;
   font-style: italic;
   text-align: center;
-  padding: 20px;
+  padding: var(--font-size-xl);
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   border: 1px dashed #374151;
 }
 
 .gamesList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--radius-lg);
 }
 
 .gameItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
+  gap: var(--radius-xl);
+  padding: var(--radius-lg) var(--radius-xl);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid #374151;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .gameItem:hover {
@@ -90,8 +90,8 @@
 }
 
 .checkbox {
-  width: 16px;
-  height: 16px;
+  width: var(--radius-2xl);
+  height: var(--radius-2xl);
   accent-color: #3B82F6;
   flex-shrink: 0;
 }
@@ -99,19 +99,19 @@
 .gameInfo {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--radius-sm);
   flex: 1;
 }
 
 .gameId {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
   color: #3B82F6;
   font-family: monospace;
 }
 
 .gameDate {
-  font-size: 12px;
+  font-size: var(--radius-xl);
   color: #9CA3AF;
 }
 

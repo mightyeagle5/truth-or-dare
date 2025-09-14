@@ -1,18 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 24px;
-  height: 100%;
+  gap: var(--space-8);
+  padding: var(--radius-full);
+  height: var(--z-dropdown)%;
   justify-content: center;
-  width: 100%;
+  width: var(--z-dropdown)%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .playerName {
-  font-size: 48px;
-  font-weight: 700;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
   color: #F9FAFB;
   text-align: center;
   margin: 0;
@@ -22,8 +22,8 @@
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  width: 100%;
+  gap: var(--radius-full);
+  width: var(--z-dropdown)%;
 }
 
 .choiceCard {
@@ -31,20 +31,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px 32px;
+  padding: var(--font-size-5xl) var(--space-8);
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid #374151;
-  border-radius: 16px;
+  border: var(--radius-sm) solid #374151;
+  border-radius: var(--radius-2xl);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   min-height: 280px;
 }
 
 .choiceCard:hover:not(.disabled) {
   background: rgba(255, 255, 255, 0.08);
   border-color: #6B7280;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-var(--radius-base));
+  box-shadow: 0 var(--radius-lg) var(--radius-full) rgba(0, 0, 0, 0.3);
 }
 
 .choiceCard.disabled {
@@ -67,35 +67,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: var(--font-size-xl);
   text-align: center;
 }
 
 .choiceIcon {
-  font-size: 64px;
+  font-size: var(--space-16);
   line-height: 1;
 }
 
 .choiceTitle {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: #F9FAFB;
   margin: 0;
 }
 
 .mandatoryMessage {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: #F59E0B;
-  margin: 8px 0 0 0;
-  font-weight: 500;
+  margin: var(--radius-lg) 0 0 0;
+  font-weight: var(--font-weight-medium);
   text-align: center;
 }
 
 .suggestion {
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid #3B82F6;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: var(--radius-xl);
+  padding: var(--font-size-xl);
   text-align: center;
 }
 
@@ -103,30 +103,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--radius-2xl);
 }
 
 .suggestionText {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--radius-2xl);
+  font-weight: var(--font-weight-semibold);
   color: #93C5FD;
   margin: 0;
 }
 
 .suggestionButtons {
   display: flex;
-  gap: 12px;
+  gap: var(--radius-xl);
 }
 
 .stayButton,
 .goButton {
-  padding: 10px 20px;
+  padding: 10px var(--font-size-xl);
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .stayButton {
@@ -150,31 +150,31 @@
 .priorGamesNotice {
   background: rgba(245, 158, 11, 0.1);
   border: 1px solid #F59E0B;
-  border-radius: 8px;
-  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  padding: var(--radius-xl) var(--radius-2xl);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--radius-xl);
 }
 
 .noticeText {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: #FCD34D;
   margin: 0;
   flex: 1;
 }
 
 .resetButton {
-  padding: 6px 12px;
+  padding: var(--radius-md) var(--radius-xl);
   background: #F59E0B;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
+  border-radius: var(--radius-md);
+  font-size: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
@@ -185,39 +185,39 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 16px;
+    padding: var(--radius-2xl);
   }
   
   .playerName {
-    font-size: 36px;
+    font-size: var(--font-size-4xl);
   }
   
   .choices {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: var(--radius-2xl);
   }
   
   .choiceCard {
     min-height: 200px;
-    padding: 32px 24px;
+    padding: var(--space-8) var(--radius-full);
   }
   
   .choiceIcon {
-    font-size: 48px;
+    font-size: var(--font-size-5xl);
   }
   
   .choiceTitle {
-    font-size: 24px;
+    font-size: var(--radius-full);
   }
   
   .suggestionButtons {
     flex-direction: column;
-    width: 100%;
+    width: var(--z-dropdown)%;
   }
   
   .stayButton,
   .goButton {
-    width: 100%;
+    width: var(--z-dropdown)%;
   }
   
 }

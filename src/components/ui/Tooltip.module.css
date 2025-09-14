@@ -7,13 +7,13 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: var(--radius-lg) var(--radius-xl);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
   white-space: nowrap;
   pointer-events: none;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(0, 0, 0, 0.3);
 }
 
 .tooltip::before {
@@ -21,32 +21,32 @@
   position: absolute;
   width: 0;
   height: 0;
-  border: 6px solid transparent;
+  border: var(--radius-md) solid transparent;
 }
 
 .tooltip.top::before {
-  bottom: -12px;
+  bottom: -var(--radius-xl);
   left: 50%;
   transform: translateX(-50%);
   border-top-color: rgba(0, 0, 0, 0.9);
 }
 
 .tooltip.bottom::before {
-  top: -12px;
+  top: -var(--radius-xl);
   left: 50%;
   transform: translateX(-50%);
   border-bottom-color: rgba(0, 0, 0, 0.9);
 }
 
 .tooltip.left::before {
-  right: -12px;
+  right: -var(--radius-xl);
   top: 50%;
   transform: translateY(-50%);
   border-left-color: rgba(0, 0, 0, 0.9);
 }
 
 .tooltip.right::before {
-  left: -12px;
+  left: -var(--radius-xl);
   top: 50%;
   transform: translateY(-50%);
   border-right-color: rgba(0, 0, 0, 0.9);

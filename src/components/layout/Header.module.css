@@ -1,47 +1,47 @@
 .header {
   background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(var(--radius-lg));
   border-bottom: 1px solid #374151;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: var(--z-dropdown);
 }
 
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: var(--radius-2xl) var(--radius-full);
   max-width: 1200px;
   margin: 0 auto;
-  gap: 16px;
+  gap: var(--radius-2xl);
 }
 
 .titleSection {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--radius-base);
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: var(--radius-full);
+  font-weight: var(--font-weight-bold);
   color: #F9FAFB;
   margin: 0;
   line-height: 1.2;
 }
 
 .subtitle {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: #9CA3AF;
   margin: 0;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .gameInfo {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: var(--radius-full);
   flex-wrap: wrap;
 }
 
@@ -51,37 +51,37 @@
 }
 
 .playerName {
-  font-size: 20px;
+  font-size: var(--font-size-xl);
   color: #F9FAFB;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin: 0;
 }
 
 .exitButton {
-  padding: 12px 24px;
+  padding: var(--radius-xl) var(--radius-full);
   background: #EF4444;
   color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--radius-xl);
+  font-size: var(--radius-2xl);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  transition: all var(--transition-base);
+  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(239, 68, 68, 0.3);
 }
 
 .exitButton:hover {
   background: #DC2626;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+  transform: translateY(-var(--radius-sm));
+  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(239, 68, 68, 0.4);
 }
 
 @media (max-width: 768px) {
   .content {
     flex-direction: row;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
+    gap: var(--radius-xl);
+    padding: var(--radius-xl) var(--radius-2xl);
   }
   
   .titleSection {
@@ -89,25 +89,25 @@
   }
   
   .title {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
   }
   
   .subtitle {
-    font-size: 12px;
+    font-size: var(--radius-xl);
   }
   
   .gameInfo {
     flex-shrink: 0;
     justify-content: flex-end;
-    gap: 12px;
+    gap: var(--radius-xl);
   }
   
   .playerName {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
   
   .exitButton {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 10px var(--font-size-xl);
+    font-size: var(--font-size-sm);
   }
 }
