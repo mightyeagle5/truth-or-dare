@@ -2,34 +2,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 16px;
-  border: 2px solid var(--level-color-border, #374151);
-  border-radius: 24px;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--level-color-border, var(--color-border-primary));
+  border-radius: var(--radius-full);
   background: var(--level-color-bg, transparent);
-  color: var(--level-color, #9CA3AF);
-  font-size: 14px;
-  font-weight: 500;
+  color: var(--level-color, var(--color-text-muted));
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
 }
 
 .pill:hover:not(.disabled) {
-  border-color: var(--level-color, #6B7280);
-  color: var(--level-color, #D1D5DB);
+  border-color: var(--level-color, var(--color-neutral-500));
+  color: var(--level-color, var(--color-text-tertiary));
   transform: translateY(-1px);
 }
 
 .pill.active {
-  border-color: var(--level-color, #3B82F6);
-  background: var(--level-color, #3B82F6);
-  color: white;
+  border-color: var(--level-color, var(--color-primary-500));
+  background: var(--level-color, var(--color-primary-500));
+  color: var(--color-text-primary);
 }
 
 .pill.active:hover {
-  background: var(--level-color, #2563EB);
-  border-color: var(--level-color, #2563EB);
-  color: white;
+  background: var(--level-color, var(--color-primary-600));
+  border-color: var(--level-color, var(--color-primary-600));
+  color: var(--color-text-primary);
 }
 
 .pill.disabled {
@@ -39,6 +39,6 @@
 }
 
 .pill:focus-visible {
-  outline: 2px solid #3B82F6;
+  outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
 }
