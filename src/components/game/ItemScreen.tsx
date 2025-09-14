@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getCurrentPlayer } from '../../store/selectors'
-import { useGameStore } from '../../store/gameStore'
+import { useGameStore, useUIStore } from '../../store'
 import { Badge } from '../ui/Badge'
 import styles from './ItemScreen.module.css'
 

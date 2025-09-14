@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Header, StickyFooterControls } from '../components/layout'
 import { ChoiceScreen, ItemScreen } from '../components/game'
-import { useGameStore } from '../store/gameStore'
+import { useGameStore, useUIStore } from '../store'
 import { getCurrentPlayer } from '../store/selectors'
 import styles from './GamePage.module.css'
 
@@ -12,13 +12,13 @@ export const GamePage: React.FC = () => {
   const navigate = useNavigate()
   const { 
     currentGame, 
-    currentScreen, 
     loadGame, 
     exitGame, 
     pickWildCard, 
     skipItem, 
     completeItem 
   } = useGameStore()
+  const { currentScreen } = useUIStore()
 
   useEffect(() => {
     if (gameId && (!currentGame || currentGame.id !== gameId)) {

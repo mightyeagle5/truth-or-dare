@@ -1,5 +1,316 @@
 [
-
+    {
+        "id": "8c3b01f0-9e1a-4c48-9631-9f9db10c6ac1",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a spot on your body you secretly wish I kissed more often?"
+    },
+    {
+        "id": "3488a0ef-3fa6-4b18-9910-11390e8c2b52",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What small thing do I do in everyday life that turns you on unexpectedly?"
+    },
+    {
+        "id": "a1aa66c0-3b8e-44e1-b5af-77eeeaadf589",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever imagined us making out in a place we haven’t yet?"
+    },
+    {
+        "id": "ce048478-b523-4d04-9ee4-003d30543a15",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a fantasy about me you’ve never said aloud because it felt too soft or silly?"
+    },
+    {
+        "id": "dfbbf297-0b43-47c5-8138-7ab7a30d1632",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s the most romantic gesture you still remember from me?"
+    },
+    {
+        "id": "c2a42d0c-13f5-40ea-b401-48262206a32e",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "If you could replay one kiss of ours, which would it be?"
+    },
+    {
+        "id": "a2fbc73d-4588-4a01-9e55-0c30735360dd",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever dreamed of me in a sexual or romantic way? What happened?"
+    },
+    {
+        "id": "8c0bfc5a-c969-4a2a-935c-00ec470f78ae",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a compliment I gave you that you still think about?"
+    },
+    {
+        "id": "e5b5be62-8106-4c2a-bef3-ec8d218e0671",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you prefer me to initiate affection, or do you secretly enjoy doing it more?"
+    },
+    {
+        "id": "f74ce6f4-6fc3-490e-a5f0-02854b2a2c7b",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s your favorite sound I make during intimacy?"
+    },
+    {
+        "id": "8aa557e1-3f7c-43ff-87a6-e60dbffafdc3",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever thought of a pet name for me you never used?"
+    },
+    {
+        "id": "b18a1ab0-307a-4e54-a1e9-cc1ab2f364b0",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a secret turn-on you think I don’t know about?"
+    },
+    {
+        "id": "af8c3f8e-72e5-43c4-8fc7-782776d6a91c",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Which part of my body do you wish I’d touch more often?"
+    },
+    {
+        "id": "e0aa3e3c-7766-4ebf-a087-d2f2f4280d7d",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What memory of ours do you revisit when you want to feel loved?"
+    },
+    {
+        "id": "0c8d7963-83a3-4630-a6fb-9fc5f96f9b34",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s the most playful thought you’ve had about us in bed?"
+    },
+    {
+        "id": "9ff0fa64-8dfd-4f83-a2f6-dc792a33b2d7",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "If I could surprise you tomorrow with one sweet gesture, what would you want?"
+    },
+    {
+        "id": "b23ed6d2-1716-4d89-9de4-dbedb3173b2b",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s the most underrated part of your body that feels amazing when touched?"
+    },
+    {
+        "id": "3be96123-b8a2-44af-a6ad-47940490bc07",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever kept a small memento from me secretly?"
+    },
+    {
+        "id": "c41c6806-becf-42a5-bd48-d417a70f5880",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a love language gesture I’ve done that melted you instantly?"
+    },
+    {
+        "id": "e0adf5b5-00ac-4153-bd46-e1f1d7db15d4",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you like kisses more when they start soft or when they’re immediately passionate?"
+    },
+    {
+        "id": "b5a67ef1-05b7-43e5-8e41-332409dd16f0",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a fantasy about cuddling or affection you’ve never told me?"
+    },
+    {
+        "id": "365097fc-8c68-4a07-9cc2-f7e6122f8f4e",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "When did you first realize you were sexually attracted to me?"
+    },
+    {
+        "id": "1b08cd11-42a3-4b32-b77f-9697260dbfef",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a silly thing I do that unexpectedly feels sexy to you?"
+    },
+    {
+        "id": "7a1a65cc-8d42-4862-8a89-05c4601487e0",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever been flustered by me in public, even in a totally innocent way?"
+    },
+    {
+        "id": "c35f2e5d-746f-4668-804a-325dfc703214",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s your favorite affectionate ritual between us?"
+    },
+    {
+        "id": "fcb8de3f-bda4-44cb-9315-74fce6f6f059",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you prefer eye contact during kisses or during intimacy?"
+    },
+    {
+        "id": "2a22cf69-72f1-4a35-9479-3aa121d7f1af",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a flirty idea you’ve thought about but never shared with me?"
+    },
+    {
+        "id": "7cb26808-13c3-421f-950d-964ba4942b0f",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever been jealous in a funny or harmless way about me?"
+    },
+    {
+        "id": "23552b59-2c23-4d71-8159-c873ae7b8d42",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a smell or scent of mine that excites you most?"
+    },
+    {
+        "id": "6c06d428-d4f9-4e5c-92fc-783fb15d65d0",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s the funniest moment we ever had during intimacy?"
+    },
+    {
+        "id": "22e786f4-21b0-4ac1-89f2-b3cb1a1dff82",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a tiny thing I do that always makes you smile, even if I don’t notice?"
+    },
+    {
+        "id": "d3b9f9e0-8e5a-4640-a59a-bbc2cfc16027",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever daydreamed about us in a romantic or sexual way at work or in public?"
+    },
+    {
+        "id": "54361d13-2d7c-4373-abb8-9bb861b33814",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s your favorite non-sexual form of intimacy with me?"
+    },
+    {
+        "id": "2e556b73-7b09-45a7-8e14-42df28c9829f",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "If you could design the perfect make-out session, what would it include?"
+    },
+    {
+        "id": "1e93e8a0-8fd9-4729-86a5-d36ef1422fcb",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you like playful teasing during affection or do you prefer tender moments?"
+    },
+    {
+        "id": "db67e0d1-d83f-4ee0-b3f3-40b8ac3bfe57",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever wanted to kiss me in the middle of a random situation but held back?"
+    },
+    {
+        "id": "76583907-f7f6-4b40-9161-68f0a5a6ef39",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s your favorite compliment you’ve ever received from me?"
+    },
+    {
+        "id": "2344e447-28a5-46a2-8c51-f6acde7753ac",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a silly or embarrassing thought you’ve had in the middle of intimacy?"
+    },
+    {
+        "id": "e490bb9d-26e7-4f51-b65a-5c2079e1d6b2",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever fantasized about us being caught in a kiss? Did it excite or scare you?"
+    },
+    {
+        "id": "0cd9c84c-bd38-43c3-b1f1-2947c0747d8e",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you like being surprised by affection or having it build up slowly?"
+    },
+    {
+        "id": "d4575cbd-3248-4542-8a60-6fbdc918f913",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s one way I could make everyday life more romantic for you?"
+    },
+    {
+        "id": "8f0066b4-52bc-4bbf-9a0d-3803efda1d0a",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a goofy thing I do that actually turns you on?"
+    },
+    {
+        "id": "0e6e792d-cb54-4f87-91b8-b505ffcd8b3f",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s the most innocent but sexy dream you’ve had about us?"
+    },
+    {
+        "id": "7fef23a7-bbd0-460e-8e01-2c6e28276c17",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Do you enjoy when I whisper sweet things, or do you prefer something bolder?"
+    },
+    {
+        "id": "64a7640a-f19d-4c56-b79f-3a836f66fd0e",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s a body part of mine you wish you could secretly stare at more often?"
+    },
+    {
+        "id": "63cf42d7-202a-4b0d-b254-5288134517d6",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever laughed in bed but found it made things even more fun?"
+    },
+    {
+        "id": "f7f30505-df56-4eaf-bc5f-53b2729072a3",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "If you had to describe the perfect kiss in detail, how would it feel?"
+    },
+    {
+        "id": "faeade0a-8703-4cd8-a79f-e7e7e51ee228",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s something small about intimacy that you’ve always wanted to try?"
+    },
+    {
+        "id": "ac2e2a7f-d4a9-41ea-8263-74654c3cf162",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s your favorite way I hold you — playful, protective, or romantic?"
+    },
+    {
+        "id": "7aa39a8c-b1ac-4d0b-88a0-6f1a5582f79c",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "If we created a new tradition of affection, what would you want it to be?"
+    },
+    {
+        "id": "1c3513c7-2850-4686-a6f3-f54b3c556416",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "What’s one romantic secret you’ve never told me?"
+    },
+    {
+        "id": "eac64531-e321-4fe2-9c0e-c7a6e53664d8",
+        "level": "Soft",
+        "kind": "truth",
+        "text": "Have you ever hidden a fantasy from me because you thought I’d judge you?"
+    },
     {
         "id": "d6b60ab8-10e6-40d3-a9a7-30988b2269c9",
         "level": "Soft",

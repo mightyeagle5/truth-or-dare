@@ -4,25 +4,22 @@ import { createGameId } from '../lib/ids'
 import { getProgressiveLevels, getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts } from '../lib/items'
 import { 
-  getGameHistory, 
   getGame,
   saveGame, 
   addGameToHistory, 
-  removeGameFromHistory, 
   getPriorGameItems 
 } from './storage'
+import { useUIStore } from './uiStore'
+import { useHistoryStore } from './historyStore'
+import { useSettingsStore } from './settingsStore'
 import gameQuestions from '../data/game_questions.json'
 
 const useGameStore = create<GameState & GameActions>((set, get) => ({
   // Initial state
   currentGame: null,
   currentItem: null,
-  currentScreen: 'choice',
-  gameHistory: [],
   items: gameQuestions as Item[],
   isWildCard: false,
-  isLoading: false,
-  error: null,
 
   // Game lifecycle
   startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => {
@@ -55,10 +52,12 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     saveGame(game)
     addGameToHistory(gameId, game.createdAt)
 
+    // Update UI state
+    useUIStore.getState().setCurrentScreen('choice')
+    useUIStore.getState().setError(null)
+
     set({
-      currentGame: game,
-      currentScreen: 'choice',
-      error: null
+      currentGame: game
     })
 
     return gameId
@@ -68,7 +67,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const game = get().currentGame
     if (game?.id === gameId) return
 
-    set({ isLoading: true, error: null })
+    const uiStore = useUIStore.getState()
+    uiStore.setLoading(true)
+    uiStore.setError(null)
     
     try {
       const loadedGame = getGame(gameId)
@@ -83,23 +84,20 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
           saveGame(loadedGame)
         }
 
+        uiStore.setCurrentScreen('choice')
+        uiStore.setLoading(false)
+
         set({ 
           currentGame: loadedGame, 
-          items: loadedGame.customItems || gameQuestions as Item[], // Use custom items if available
-          currentScreen: 'choice',
-          isLoading: false 
+          items: loadedGame.customItems || gameQuestions as Item[] // Use custom items if available
         })
       } else {
-        set({ 
-          error: 'Game not found', 
-          isLoading: false 
-        })
+        uiStore.setError('Game not found')
+        uiStore.setLoading(false)
       }
     } catch (error) {
-      set({ 
-        error: 'Failed to load game', 
-        isLoading: false 
-      })
+      uiStore.setError('Failed to load game')
+      uiStore.setLoading(false)
     }
   },
 
@@ -109,10 +107,11 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       saveGame(game)
     }
     
+    useUIStore.getState().resetUI()
+    
     set({
       currentGame: null,
-      currentItem: null,
-      currentScreen: 'choice'
+      currentItem: null
     })
   },
 
@@ -143,9 +142,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const selectedItem = getRandomItem(availableItems)
     if (!selectedItem) return
 
+    useUIStore.getState().setCurrentScreen('item')
+    
     set({
       currentItem: selectedItem,
-      currentScreen: 'item',
       isWildCard: false
     })
   },
@@ -167,9 +167,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     if (!wildItem) return
 
+    useUIStore.getState().setCurrentScreen('item')
+    
     set({
       currentItem: wildItem,
-      currentScreen: 'item',
       isWildCard: true
     })
   },
@@ -186,10 +187,11 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     saveGame(updatedGame)
 
+    useUIStore.getState().setCurrentScreen('choice')
+    
     set({
       currentGame: updatedGame,
       currentItem: null,
-      currentScreen: 'choice',
       isWildCard: false
     })
   },
@@ -227,10 +229,11 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     saveGame(updatedGame)
 
+    useUIStore.getState().setCurrentScreen('choice')
+    
     set({
       currentGame: updatedGame,
       currentItem: null,
-      currentScreen: 'choice',
       isWildCard: false
     })
   },
@@ -260,10 +263,11 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     saveGame(updatedGame)
 
+    useUIStore.getState().setCurrentScreen('choice')
+    
     set({
       currentGame: updatedGame,
       currentItem: null,
-      currentScreen: 'choice',
       isWildCard: false
     })
   },
@@ -294,33 +298,13 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     saveGame(updatedGame)
 
+    useUIStore.getState().setCurrentScreen('choice')
+    
     set({
-      currentGame: updatedGame,
-      currentScreen: 'choice'
+      currentGame: updatedGame
     })
   },
 
-  // Settings
-  toggleRespectPriorGames: (respect: boolean) => {
-    const { currentGame } = get()
-    if (!currentGame) return
-
-    const updatedGame = {
-      ...currentGame,
-      respectPriorGames: respect
-    }
-
-    saveGame(updatedGame)
-
-    set({ currentGame: updatedGame })
-  },
-
-  // History management
-  removeGameFromHistory: (gameId: string) => {
-    removeGameFromHistory(gameId)
-    const history = getGameHistory()
-    set({ gameHistory: history })
-  },
 
   // Data loading
   loadItems: () => {
@@ -328,10 +312,6 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     set({ items: gameQuestions as Item[] })
   },
 
-  loadGameHistory: () => {
-    const history = getGameHistory()
-    set({ gameHistory: history })
-  },
 
   // Custom game functionality
   startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => {
@@ -397,12 +377,15 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       customGameMode: gameMode
     }
     
+    // Update UI state
+    useUIStore.getState().setCurrentScreen('choice')
+    useUIStore.getState().setError(null)
+    
     // Set custom items as the game items
     set({ 
       currentGame: game, 
       items: customItems,
       currentItem: null,
-      currentScreen: 'choice',
       isWildCard: false
     })
     

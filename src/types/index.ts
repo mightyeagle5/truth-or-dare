@@ -63,14 +63,8 @@ export interface GameState {
   // Current game state
   currentGame: GameMeta | null
   currentItem: Item | null
-  currentScreen: Screen
-  gameHistory: GameHistoryEntry[]
   items: Item[]
   isWildCard: boolean // tracks if current item is a wild card
-  
-  // UI state
-  isLoading: boolean
-  error: string | null
 }
 
 export interface GameActions {
@@ -88,13 +82,6 @@ export interface GameActions {
   completeWildCard: () => void
   goNextLevel: () => void
   
-  // Settings
-  toggleRespectPriorGames: (respect: boolean) => void
-  
-  // History management
-  removeGameFromHistory: (gameId: string) => void
-  
   // Data loading
   loadItems: () => void
-  loadGameHistory: () => void
 }

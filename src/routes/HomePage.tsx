@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { GameSetupForm, CustomGameSection } from '../components/forms'
-import { useGameStore } from '../store/gameStore'
+import { useGameStore, useUIStore, useHistoryStore } from '../store'
 import { useGameSetup, useCustomGame } from '../hooks'
 import styles from './HomePage.module.css'
 

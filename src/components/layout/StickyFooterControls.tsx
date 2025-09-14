@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGameStore } from '../../store/gameStore'
+import { useGameStore, useUIStore } from '../../store'
 import styles from './StickyFooterControls.module.css'
 
 const getLevelColor = (level: string) => {
