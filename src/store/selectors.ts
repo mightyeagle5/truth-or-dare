@@ -1,4 +1,4 @@
-import type { GameMeta, Item, ItemKind } from '../types'
+import type { GameMeta, Item, ItemKind, Level } from '../types'
 import { getAvailableItems, getItemCounts } from '../lib/items'
 import { canChooseType, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getPriorGameItems } from './storage'

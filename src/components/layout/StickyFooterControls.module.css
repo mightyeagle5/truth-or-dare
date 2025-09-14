@@ -3,8 +3,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(var(--radius-lg));
+  background: rgba(16, 23, 33, 0.95);
+  backdrop-filter: blur(8px);
   border-top: 1px solid #374151;
   z-index: var(--z-dropdown);
 }
@@ -13,20 +13,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--radius-2xl) var(--radius-full);
+  padding: var(--space-4) var(--space-4);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .levelInfo {
-  font-size: var(--radius-full);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: var(--radius-lg) var(--font-size-xl);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.05);
   border: var(--radius-sm) solid;
   white-space: nowrap;

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background: #0a0a0a;
+  background: var(--color-bg-secondary);
 }
 
 .main {
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--z-dropdown)%;
+  height: 100%;
   color: #9CA3AF;
   font-size: var(--font-size-lg);
 }

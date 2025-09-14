@@ -2,7 +2,8 @@ import { create } from 'zustand'
 import type { GameHistoryEntry } from '../types'
 import { 
   getGameHistory, 
-  removeGameFromHistory as removeGameFromStorage 
+  removeGameFromHistory as removeGameFromStorage,
+  cleanupCustomGames
 } from './storage'
 
 interface HistoryState {
@@ -23,6 +24,8 @@ export const useHistoryStore = create<HistoryStore>((set, get) => ({
 
   // Actions
   loadGameHistory: () => {
+    // Clean up any existing custom games first
+    cleanupCustomGames()
     const history = getGameHistory()
     set({ gameHistory: history })
   },

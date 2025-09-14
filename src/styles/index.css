@@ -10,7 +10,7 @@
 }
 
 html, body, #root {
-  height: var(--z-dropdown)%;
+  height: 100%;
 }
 
 body {
@@ -89,12 +89,12 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-var(--font-weight-semibold));
+  background: var(--color-neutral-600);
   border-radius: var(--radius-base);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-var(--font-weight-medium));
+  background: var(--color-neutral-500);
 }
 
 /* Animation utilities */

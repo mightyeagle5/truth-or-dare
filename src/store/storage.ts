@@ -19,7 +19,11 @@ export const getGameHistory = (): GameHistoryEntry[] => {
         const gameData = localStorage.getItem(`${STORAGE_KEYS.GAME_PREFIX}${entry.id}`)
         if (gameData) {
           const game = JSON.parse(gameData) as GameMeta
-          return !game.isCustomGame // Exclude custom games
+          if (game.isCustomGame) {
+            // Remove custom game from localStorage and history
+            localStorage.removeItem(`${STORAGE_KEYS.GAME_PREFIX}${entry.id}`)
+            return false // Exclude custom games
+          }
         }
       } catch {
         // If we can't parse the game data, include it (it's probably an old game)
@@ -27,6 +31,11 @@ export const getGameHistory = (): GameHistoryEntry[] => {
       
       return true
     })
+    
+    // Update the history in localStorage to remove any custom games
+    if (filtered.length !== parsed.length) {
+      saveGameHistory(filtered)
+    }
     
     // Sort by creation date (most recent first)
     return filtered.sort((a, b) => b.createdAt - a.createdAt)
@@ -90,4 +99,46 @@ export const getPriorGameItems = (priorGameIds: string[]): string[] => {
   })
   
   return allUsedItems
+}
+
+export const cleanupCustomGames = (): void => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEYS.GAMES)
+    if (!stored) return
+    
+    const parsed = JSON.parse(stored)
+    if (!Array.isArray(parsed)) return
+    
+    const customGameIds: string[] = []
+    
+    // Find all custom game IDs
+    parsed.forEach((entry: any) => {
+      if (entry && typeof entry.id === 'string') {
+        try {
+          const gameData = localStorage.getItem(`${STORAGE_KEYS.GAME_PREFIX}${entry.id}`)
+          if (gameData) {
+            const game = JSON.parse(gameData) as GameMeta
+            if (game.isCustomGame) {
+              customGameIds.push(entry.id)
+            }
+          }
+        } catch {
+          // Ignore parsing errors
+        }
+      }
+    })
+    
+    // Remove custom games from localStorage
+    customGameIds.forEach(gameId => {
+      localStorage.removeItem(`${STORAGE_KEYS.GAME_PREFIX}${gameId}`)
+    })
+    
+    // Remove custom games from history
+    const filteredHistory = parsed.filter((entry: any) => !customGameIds.includes(entry.id))
+    if (filteredHistory.length !== parsed.length) {
+      saveGameHistory(filteredHistory)
+    }
+  } catch (error) {
+    console.error('Failed to cleanup custom games:', error)
+  }
 }

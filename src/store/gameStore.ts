@@ -55,7 +55,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     useUIStore.getState().setError(null)
 
     set({
-      currentGame: game
+      currentGame: game,
+      items: gameQuestions as Item[],
+      currentItem: null,
+      isWildCard: false
     })
 
     return gameId
@@ -87,7 +90,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
         set({ 
           currentGame: loadedGame, 
-          items: loadedGame.customItems || gameQuestions as Item[] // Use custom items if available
+          items: loadedGame.isCustomGame ? (loadedGame.customItems || []) : (gameQuestions as Item[])
         })
       } else {
         uiStore.setError('Game not found')
@@ -322,6 +325,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   loadItems: () => {
     // Load from the JSON file
     set({ items: gameQuestions as Item[] })
+  },
+
+  // Clear game state
+  clearGame: () => {
+    set({
+      currentGame: null,
+      items: gameQuestions as Item[],
+      currentItem: null,
+      isWildCard: false
+    })
   },
 
 

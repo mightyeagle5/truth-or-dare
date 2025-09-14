@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  width: var(--z-dropdown)%;
+  width: 100%;
   max-width: 860px;
   margin: 0 auto;
-  padding-top: var(--radius-full);
+  padding-top: var(--space-4);
   padding-bottom: 120px;
   /* Space for sticky button */
 }
@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  width: var(--z-dropdown)%;
+  width: 100%;
 }
 
 .customGameContent {
@@ -30,7 +30,7 @@
   /* var(--font-size-xl) */
   font-weight: var(--font-weight-semibold);
   color: #ffffff;
-  margin: 0 0 var(--radius-2xl) 0;
+  margin: 0 0 var(--space-4) 0;
 }
 
 .playersSection,
@@ -39,7 +39,7 @@
 .challengesSection {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 /* Section dividers */
@@ -51,7 +51,7 @@
   content: '';
   height: 1px;
   background: #374151;
-  margin: var(--radius-full) auto;
+  margin: var(--space-4) auto;
   width: 80%;
 }
 
@@ -59,7 +59,7 @@
   font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
   color: #ffffff;
-  margin: 0 0 var(--radius-lg) 0;
+  margin: 0 0 var(--space-3) 0;
 }
 
 .customGameHeader p {
@@ -78,27 +78,27 @@
 .customChallengeForm {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .challengeInputRow {
   display: flex;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
   align-items: flex-start;
 }
 
 .challengeControls {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   min-width: 200px;
   flex-shrink: 0;
 }
 
 .challengeTextarea {
-  width: var(--z-dropdown)%;
+  width: 100%;
   min-height: var(--space-20);
-  padding: var(--radius-xl);
+  padding: var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-lg);
@@ -120,13 +120,13 @@
 
 .challengeOptions {
   display: flex;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   align-items: center;
   flex-wrap: wrap;
 }
 
 .challengeSelect {
-  padding: var(--radius-lg) var(--space-8) var(--radius-lg) var(--radius-xl);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-md);
@@ -135,9 +135,9 @@
   min-width: 100px;
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right var(--radius-lg) center;
+  background-position: right var(--space-2) center;
   background-repeat: no-repeat;
-  background-size: var(--radius-2xl);
+  background-size: var(--space-4);
 }
 
 .challengeSelect:focus {
@@ -146,7 +146,7 @@
 }
 
 .addCustomButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #10B981, #059669);
   color: white;
   border: none;
@@ -169,7 +169,7 @@
 }
 
 .addGameButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #3B82F6, #2563EB);
   color: white;
   border: none;
@@ -195,13 +195,13 @@
 .challengesList {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
   max-height: 600px;
   /* Default max height for preview mode (showing 5) */
   height: auto;
   /* Allow height to grow up to max-height */
   overflow-y: auto;
-  padding-right: var(--radius-base);
+  padding-right: var(--space-1);
   /* Space for scrollbar */
 }
 
@@ -214,7 +214,7 @@
 
 /* Custom scrollbar for challenges list */
 .challengesList::-webkit-scrollbar {
-  width: var(--radius-md);
+  width: var(--space-1);
 }
 
 .challengesList::-webkit-scrollbar-track {
@@ -235,15 +235,15 @@
   text-align: center;
   color: #9CA3AF;
   font-style: italic;
-  padding-top: var(--font-size-xl);
+  padding-top: var(--space-5);
 }
 
 .challengeItem {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: var(--radius-xl);
-  padding: var(--radius-2xl);
+  gap: var(--space-3);
+  padding: var(--space-4);
   background: rgba(17, 24, 39, 0.3);
   border: 1px solid #374151;
   border-radius: var(--radius-lg);
@@ -262,17 +262,17 @@
 
 .challengeHeader {
   display: flex;
-  gap: var(--radius-lg);
+  gap: var(--space-2);
   align-items: center;
-  margin-bottom: var(--radius-lg);
+  margin-bottom: var(--space-2);
   flex-wrap: wrap;
 }
 
 .challengeType {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -293,9 +293,9 @@
 
 .challengeLevel {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -334,9 +334,9 @@
 
 .challengeSource {
   height: 28px;
-  padding: 0 var(--radius-xl);
-  border-radius: var(--font-size-sm);
-  font-size: var(--radius-xl);
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
@@ -390,23 +390,23 @@
 .challengesHeader {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .challengeFilter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .filterButtons {
   display: flex;
-  gap: var(--radius-lg);
+  gap: var(--space-2);
 }
 
 .previewToggle {
-  padding: var(--radius-md) var(--radius-xl);
+  padding: var(--space-1) var(--space-3);
   border: 1px solid #374151;
   border-radius: var(--radius-md);
   background: #1f2937;
@@ -436,7 +436,7 @@
 }
 
 .filterButton {
-  padding: var(--radius-md) var(--radius-xl);
+  padding: var(--space-1) var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
   border-radius: var(--radius-md);
@@ -463,20 +463,20 @@
 .gameModeSection {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--space-4);
 }
 
 .gameModeOptions {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-xl);
+  gap: var(--space-3);
 }
 
 .gameModeOption {
   display: flex;
   align-items: flex-start;
-  gap: var(--radius-xl);
-  padding: var(--radius-2xl);
+  gap: var(--space-3);
+  padding: var(--space-4);
   background: rgba(17, 24, 39, 0.3);
   border: 1px solid #374151;
   border-radius: var(--radius-lg);
@@ -505,13 +505,13 @@
   height: var(--font-size-lg);
   accent-color: #3B82F6;
   flex-shrink: 0;
-  margin-top: var(--radius-sm);
+  margin-top: var(--space-1);
 }
 
 .gameModeLabel {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-base);
+  gap: var(--space-1);
   color: #D1D5DB;
 }
 
@@ -522,13 +522,13 @@
 }
 
 .gameModeLabel small {
-  font-size: var(--radius-xl);
+  font-size: var(--font-size-sm);
   color: #9CA3AF;
   line-height: 1.4;
 }
 
 .gameModeDisabledText {
-  font-size: var(--radius-xl);
+  font-size: var(--font-size-sm);
   color: #9CA3AF;
   font-style: italic;
   margin: 0;
@@ -540,7 +540,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--radius-2xl);
+  margin-bottom: var(--space-4);
 }
 
 .sectionHeader h3 {
@@ -550,7 +550,7 @@
 /* Upload and Download buttons */
 .uploadButton,
 .downloadButton {
-  padding: var(--radius-lg) var(--radius-2xl);
+  padding: var(--space-2) var(--space-4);
   border: 1px solid #374151;
   border-radius: var(--radius-md);
   background: #1f2937;
@@ -585,34 +585,34 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(var(--radius-lg));
+  background: rgba(16, 23, 33, 0.95);
+  backdrop-filter: blur(8px);
   border-top: 1px solid #374151;
-  padding: var(--radius-2xl) var(--radius-full);
+  padding: var(--space-4) var(--space-4);
   display: flex;
   justify-content: center;
-  gap: var(--radius-2xl);
-  z-index: var(--z-dropdown);
+  gap: var(--space-4);
+  z-index: 1000;
 }
 
 .startButton {
-  padding: var(--radius-2xl) var(--space-8);
+  padding: var(--space-4) var(--space-2);
   background: linear-gradient(135deg, #3B82F6, #1D4ED8);
   color: white;
   border: none;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(59, 130, 246, 0.3);
+  box-shadow: 0 var(--space-1) var(--space-3) rgba(59, 130, 246, 0.3);
   min-width: 200px;
 }
 
 .startButton:hover:not(:disabled) {
   background: linear-gradient(135deg, #2563EB, #1E40AF);
-  transform: translateY(-var(--radius-sm));
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(59, 130, 246, 0.4);
+  transform: translateY(-var(--space-1));
+  box-shadow: 0 var(--space-2) var(--space-4) rgba(59, 130, 0.4);
 }
 
 .startButton:disabled {
@@ -623,23 +623,23 @@
 }
 
 .backButton {
-  padding: var(--radius-2xl) var(--space-8);
+  padding: var(--space-4) var(--space-2);
   background: linear-gradient(135deg, #EF4444, #DC2626);
   color: white;
   border: none;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-lg);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(239, 68, 68, 0.3);
+  box-shadow: 0 var(--space-1) var(--space-3) rgba(239, 68, 68, 0.3);
   min-width: 200px;
 }
 
 .backButton:hover {
   background: linear-gradient(135deg, #DC2626, #B91C1C);
-  transform: translateY(-var(--radius-sm));
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(239, 68, 68, 0.4);
+  transform: translateY(-var(--space-1));
+  box-shadow: 0 var(--space-2) var(--space-4) rgba(239, 68, 68, 0.4);
 }
 
 /* Mobile responsive for section headers */
@@ -647,30 +647,30 @@
   .sectionHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .uploadButton,
   .downloadButton {
-    width: var(--z-dropdown)%;
-    padding: 10px var(--radius-2xl);
+    width: 100%;
+    padding: 10px var(--space-4);
   }
 
   .actions {
-    padding: var(--radius-xl) var(--radius-2xl);
+    padding: var(--space-3) var(--space-4);
     flex-direction: column;
-    gap: var(--radius-xl);
+    gap: var(--space-3);
   }
 
   .startButton {
     padding: var(--font-size-sm) 28px;
-    font-size: var(--radius-2xl);
+    font-size: var(--font-size-base);
     min-width: 160px;
   }
 
   .backButton {
     padding: var(--font-size-sm) 28px;
-    font-size: var(--radius-2xl);
+    font-size: var(--font-size-base);
     min-width: 160px;
   }
 }

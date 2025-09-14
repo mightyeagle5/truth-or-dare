@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  padding: var(--radius-full);
-  height: var(--z-dropdown)%;
+  padding: var(--space-4);
+  height: 100%;
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-  width: var(--z-dropdown)%;
+  width: 100%;
 }
 
 .playerName {
@@ -25,7 +25,7 @@
   border-radius: var(--radius-2xl);
   padding: var(--font-size-5xl) var(--space-8);
   text-align: center;
-  width: var(--z-dropdown)%;
+  width: 100%;
   min-height: 280px;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: var(--radius-full);
+  margin-bottom: var(--space-4);
 }
 
 .itemType {
@@ -55,7 +55,7 @@
 }
 
 .itemContent {
-  margin-bottom: var(--radius-full);
+  margin-bottom: var(--space-4);
 }
 
 .itemText {
@@ -76,7 +76,7 @@
 }
 
 .wildCardButton {
-  padding: var(--radius-xl) var(--radius-full);
+  padding: var(--space-3) var(--space-4);
   background: linear-gradient(135deg, #8B5CF6, #A855F7);
   color: white;
   border: none;
@@ -96,7 +96,7 @@
 
 .skipButton,
 .completeButton {
-  padding: var(--radius-2xl) var(--radius-full);
+  padding: var(--space-4) var(--space-4);
   border: none;
   border-radius: var(--radius-xl);
   font-size: var(--radius-2xl);
@@ -136,7 +136,7 @@
   }
   
   .itemCard {
-    padding: var(--space-8) var(--radius-full);
+    padding: var(--space-2) var(--space-4);
     min-height: 200px;
   }
   
@@ -147,13 +147,13 @@
   .actions {
     flex-direction: column;
     gap: var(--radius-xl);
-    width: var(--z-dropdown)%;
+    width: 100%;
   }
   
   .wildCardButton,
   .skipButton,
   .completeButton {
-    width: var(--z-dropdown)%;
+    width: 100%;
     padding: var(--font-size-sm) var(--font-size-xl);
   }
 }

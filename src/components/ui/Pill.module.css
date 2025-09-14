@@ -15,20 +15,20 @@
 }
 
 .pill:hover:not(.disabled) {
-  border-color: var(--level-color, var(--color-neutral-var(--font-weight-medium)));
+  border-color: var(--level-color, var(--color-border-primary));
   color: var(--level-color, var(--color-text-tertiary));
   transform: translateY(-1px);
 }
 
 .pill.active {
-  border-color: var(--level-color, var(--color-primary-var(--font-weight-medium)));
-  background: var(--level-color, var(--color-primary-var(--font-weight-medium)));
+  border-color: var(--level-color, var(--color-primary-500));
+  background: var(--level-color, var(--color-primary-500));
   color: var(--color-text-primary);
 }
 
 .pill.active:hover {
-  background: var(--level-color, var(--color-primary-var(--font-weight-semibold)));
-  border-color: var(--level-color, var(--color-primary-var(--font-weight-semibold)));
+  background: var(--level-color, var(--color-primary-600));
+  border-color: var(--level-color, var(--color-primary-600));
   color: var(--color-text-primary);
 }
 
