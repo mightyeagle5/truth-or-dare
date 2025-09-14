@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { createPlayerId } from '../lib/ids'
-import type { PlayerSnapshot, Level } from '../types'
+import type { PlayerSnapshot, Level, GameHistoryEntry } from '../types'
 
 export const useGameSetup = () => {
-  // Game setup state
   const [players, setPlayers] = useState<PlayerSnapshot[]>([
     { id: createPlayerId(), name: '', gender: 'male' },
     { id: createPlayerId(), name: '', gender: 'female' }
@@ -14,17 +13,11 @@ export const useGameSetup = () => {
   const [showCustomGame, setShowCustomGame] = useState(false)
 
   // Computed values
-  const canStartGame = selectedLevel && players.length >= 2 && players.every(p => p.name.trim().length > 0)
-  
-  const canStartCustomGame = (customChallengesCount: number) => 
-    customChallengesCount > 0 && players.length >= 2 && players.every(p => p.name.trim().length > 0)
+  const canStartGame = Boolean(selectedLevel && players.length >= 2 && players.every(p => p.name.trim().length > 0))
+  const canStartCustomGame = players.length >= 2 && players.every(p => p.name.trim().length > 0)
+  const getValidPlayers = () => players.filter(p => p.name.trim().length > 0)
 
-  // Validate players for game start
-  const getValidPlayers = () => {
-    return players.filter(p => p.name.trim().length > 0)
-  }
-
-  // Reset form state
+  // Actions
   const resetForm = () => {
     setPlayers([
       { id: createPlayerId(), name: '', gender: 'male' },
@@ -32,6 +25,7 @@ export const useGameSetup = () => {
     ])
     setSelectedLevel(null)
     setSelectedPriorGames([])
+    setIsStarting(false)
     setShowCustomGame(false)
   }
 
@@ -50,7 +44,7 @@ export const useGameSetup = () => {
     setIsStarting,
     setShowCustomGame,
     
-    // Computed values
+    // Computed
     canStartGame,
     canStartCustomGame,
     getValidPlayers,

@@ -1,17 +1,20 @@
 import { useRef } from 'react'
+import { createPlayerId } from '../lib/ids'
 import type { CustomChallenge } from '../types'
 
-export const useFileOperations = (
-  customChallenges: CustomChallenge[],
-  onChallengesUpdate: (challenges: CustomChallenge[]) => void
-) => {
+export const useFileOperations = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleUploadChallenges = () => {
     fileInputRef.current?.click()
   }
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    onChallengesUpdate: (challenges: CustomChallenge[]) => void,
+    onFilterChange: (filter: 'all' | 'custom' | 'game') => void,
+    onScrollToTop: () => void
+  ) => {
     const file = event.target.files?.[0]
     if (!file) return
 
@@ -23,47 +26,41 @@ export const useFileOperations = (
         
         // Validate the format
         if (!Array.isArray(uploadedChallenges)) {
-          throw new Error('Invalid file format: expected an array of challenges')
+          alert('Invalid file format. Please upload a JSON array of challenges.')
+          return
         }
-        
-        const validChallenges = uploadedChallenges.filter(challenge => 
-          challenge.id && 
-          challenge.text && 
-          challenge.kind && 
-          challenge.level
-        )
-        
-        if (validChallenges.length === 0) {
-          throw new Error('No valid challenges found in file')
+
+        // Convert uploaded items to CustomChallenge format
+        const newChallenges: CustomChallenge[] = uploadedChallenges.map((item: any) => ({
+          id: `custom-${Date.now()}-${Math.random()}`,
+          text: item.text || '',
+          kind: item.kind || 'truth',
+          level: item.level || 'Soft',
+          isCustom: true
+        })).filter(challenge => challenge.text.trim().length > 0)
+
+        if (newChallenges.length === 0) {
+          alert('No valid challenges found in the uploaded file.')
+          return
         }
+
+        // Add new challenges to the top of the list
+        onChallengesUpdate(newChallenges)
+        onFilterChange('all')
+        onScrollToTop()
         
-        // Convert to CustomChallenge format
-        const newChallenges: CustomChallenge[] = validChallenges.map(challenge => ({
-          id: challenge.id,
-          text: challenge.text,
-          kind: challenge.kind,
-          level: challenge.level,
-          source: 'custom' as const
-        }))
-        
-        // Add to existing challenges
-        onChallengesUpdate([...newChallenges, ...customChallenges])
-        
-        // Clear the file input
-        if (fileInputRef.current) {
-          fileInputRef.current.value = ''
-        }
-        
+        alert(`Successfully uploaded ${newChallenges.length} challenges!`)
       } catch (error) {
-        console.error('Error uploading challenges:', error)
-        alert('Error uploading challenges. Please check the file format.')
+        alert('Error reading file. Please make sure it\'s a valid JSON file.')
       }
     }
-    
     reader.readAsText(file)
+    
+    // Reset the input
+    event.target.value = ''
   }
 
-  const handleDownloadChallenges = () => {
+  const handleDownloadChallenges = (customChallenges: CustomChallenge[]) => {
     if (customChallenges.length === 0) return
 
     // Convert custom challenges to the standard Item format

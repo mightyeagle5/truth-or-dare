@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
-import { createChallengeId } from '../lib/ids'
-import type { CustomChallenge, ItemKind, Level } from '../types'
+import { useState, useRef } from 'react'
+import { createPlayerId } from '../lib/ids'
 import gameQuestions from '../data/game_questions.json'
+import type { Level, CustomChallenge, ItemKind } from '../types'
 
 export const useCustomGame = () => {
-  // Custom game state
   const [customChallenges, setCustomChallenges] = useState<CustomChallenge[]>([])
   const [customChallengeForm, setCustomChallengeForm] = useState({
     text: '',
@@ -20,94 +19,92 @@ export const useCustomGame = () => {
   const [showAllChallenges, setShowAllChallenges] = useState(false)
   const challengesListRef = useRef<HTMLDivElement>(null)
 
-  // Filter challenges based on current filter
-  const filteredChallenges = customChallenges.filter(challenge => {
-    if (challengeFilter === 'all') return true
-    if (challengeFilter === 'custom') return challenge.source === 'custom'
-    if (challengeFilter === 'game') return challenge.source === 'game'
-    return true
-  })
-
-  // Get available game challenges that haven't been added yet
-  const getAvailableGameChallenges = () => {
-    const addedGameIds = customChallenges
-      .filter(c => c.source === 'game')
-      .map(c => c.id)
-    
-    return gameQuestions.filter(item => !addedGameIds.includes(item.id))
+  // Helper functions
+  const getAvailableGameChallenges = (kind: ItemKind, level: Level) => {
+    const allChallenges = gameQuestions.filter((item: any) => item.kind === kind && item.level === level)
+    const addedOriginalIds = customChallenges
+      .filter(challenge => !challenge.isCustom && challenge.kind === kind && challenge.level === level)
+      .map(challenge => challenge.originalId)
+    return allChallenges.filter((challenge: any) => !addedOriginalIds.includes(challenge.id))
   }
 
-  // Get count of available challenges by kind and level
-  const getAvailableChallengeCount = (kind: ItemKind, level: Level) => {
-    const available = getAvailableGameChallenges()
-    return available.filter(item => item.kind === kind && item.level === level).length
-  }
-
-  // Add custom challenge
   const addCustomChallenge = () => {
     if (!customChallengeForm.text.trim()) return
-
+    
     const newChallenge: CustomChallenge = {
-      id: createChallengeId(),
+      id: `custom-${Date.now()}`,
       text: customChallengeForm.text.trim(),
       kind: customChallengeForm.kind,
       level: customChallengeForm.level,
-      source: 'custom'
+      isCustom: true
     }
-
+    
     setCustomChallenges(prev => [newChallenge, ...prev])
-    setCustomChallengeForm(prev => ({ ...prev, text: '' }))
-    
-    // Reset filter to 'all' and scroll to top when new item is added
+    setCustomChallengeForm(prev => ({ ...prev, text: '' })) // Keep kind and level
     setChallengeFilter('all')
-    if (challengesListRef.current) {
-      challengesListRef.current.scrollTop = 0
-    }
+    scrollToTop()
   }
 
-  // Add game challenges
   const addGameChallenges = () => {
-    const available = getAvailableGameChallenges()
-    const matching = available.filter(item => 
-      item.kind === gameChallengeSelector.kind && 
-      item.level === gameChallengeSelector.level
-    )
-
-    const newChallenges: CustomChallenge[] = matching.map(item => ({
-      id: item.id,
-      text: item.text,
-      kind: item.kind,
-      level: item.level,
-      source: 'game'
-    }))
-
-    setCustomChallenges(prev => [...newChallenges, ...prev])
+    const availableChallenges = getAvailableGameChallenges(gameChallengeSelector.kind, gameChallengeSelector.level)
     
-    // Reset filter to 'all' and scroll to top when new items are added
+    const newChallenges: CustomChallenge[] = availableChallenges.map((challenge: any) => ({
+      id: `game-${challenge.id}-${Date.now()}`,
+      text: challenge.text,
+      kind: challenge.kind as ItemKind,
+      level: challenge.level as Level,
+      isCustom: false,
+      originalId: challenge.id
+    }))
+    
+    setCustomChallenges(prev => [...newChallenges, ...prev])
     setChallengeFilter('all')
+    scrollToTop()
+  }
+
+  const scrollToTop = () => {
     if (challengesListRef.current) {
       challengesListRef.current.scrollTop = 0
     }
   }
 
-  // Remove challenge
   const removeChallenge = (challengeId: string) => {
-    setCustomChallenges(prev => prev.filter(c => c.id !== challengeId))
+    setCustomChallenges(prev => prev.filter(challenge => challenge.id !== challengeId))
   }
 
-  // Clear all challenges
   const clearAllChallenges = () => {
     setCustomChallenges([])
+    setChallengeFilter('all')
   }
 
-  // Update challenges (for file operations)
-  const updateChallenges = (newChallenges: CustomChallenge[]) => {
-    setCustomChallenges(newChallenges)
-  }
-
-  // Toggle preview mode
   const togglePreviewMode = () => {
     setShowAllChallenges(prev => !prev)
+  }
+
+  const updateChallenges = (challenges: CustomChallenge[]) => {
+    setCustomChallenges(challenges)
+  }
+
+  // Filter challenges based on selected filter
+  const filteredChallenges = customChallenges.filter(challenge => {
+    if (challengeFilter === 'all') return true
+    if (challengeFilter === 'custom') return challenge.isCustom
+    if (challengeFilter === 'game') return !challenge.isCustom
+    return true
+  })
+
+  // Apply preview mode (show only top 5 if not showing all)
+  const displayChallenges = showAllChallenges ? filteredChallenges : filteredChallenges.slice(0, 5)
+  
+  // Check if preview toggle should be visible (only if more than 5 challenges after filtering)
+  const shouldShowPreviewToggle = filteredChallenges.length > 5
+
+  // Check if game mode selection should be disabled
+  const isGameModeDisabled = () => {
+    if (customChallenges.length === 0) return true
+    
+    const uniqueLevels = new Set(customChallenges.map(challenge => challenge.level))
+    return uniqueLevels.size <= 1
   }
 
   return {
@@ -119,22 +116,30 @@ export const useCustomGame = () => {
     gameMode,
     showAllChallenges,
     challengesListRef,
-    filteredChallenges,
     
-    // Actions
+    // Setters
+    setCustomChallenges,
     setCustomChallengeForm,
     setGameChallengeSelector,
     setChallengeFilter,
     setGameMode,
+    setShowAllChallenges,
+    
+    // Computed
+    filteredChallenges,
+    displayChallenges,
+    shouldShowPreviewToggle,
+    isGameModeDisabled,
+    getAvailableChallengeCount: (kind: ItemKind, level: Level) => getAvailableGameChallenges(kind, level).length,
+    getAvailableGameChallenges,
+    
+    // Actions
     addCustomChallenge,
     addGameChallenges,
     removeChallenge,
     clearAllChallenges,
     togglePreviewMode,
     updateChallenges,
-    
-    // Computed values
-    getAvailableChallengeCount,
-    getAvailableGameChallenges
+    scrollToTop
   }
 }
