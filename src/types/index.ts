@@ -1,4 +1,4 @@
-export type Level = 'Soft' | 'Mild' | 'Hot' | 'Spicy' | 'Kinky' | 'Progressive'
+export type Level = 'Soft' | 'Mild' | 'Hot' | 'Spicy' | 'Kinky' | 'Progressive' | 'Custom'
 
 export type ItemKind = 'truth' | 'dare'
 
@@ -81,6 +81,9 @@ export interface GameActions {
   completeItem: () => void
   completeWildCard: () => void
   goNextLevel: () => void
+  
+  // Settings
+  toggleRespectPriorGames: (respect: boolean) => void
   
   // Data loading
   loadItems: () => void

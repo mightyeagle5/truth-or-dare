@@ -115,6 +115,6 @@ export const getNextLevel = (game: GameMeta | null): Exclude<GameMeta['currentLe
   
   // For regular games, use standard progressive level logic
   const levels = ['Soft', 'Mild', 'Hot', 'Spicy', 'Kinky'] as const
-  const currentIndex = levels.indexOf(game.currentLevel)
+  const currentIndex = levels.indexOf(game.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>)
   return currentIndex < levels.length - 1 ? levels[currentIndex + 1] : null
 }

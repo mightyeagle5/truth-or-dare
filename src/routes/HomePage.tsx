@@ -8,7 +8,8 @@ import styles from './HomePage.module.css'
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate()
-  const { startGame, startCustomGame, gameHistory, loadGameHistory, removeGameFromHistory } = useGameStore()
+  const { startGame, startCustomGame } = useGameStore()
+  const { gameHistory, loadGameHistory, removeGameFromHistory } = useHistoryStore()
   
   // Custom hooks
   const gameSetup = useGameSetup()

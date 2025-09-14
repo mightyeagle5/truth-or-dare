@@ -78,7 +78,8 @@ describe('Local Storage', () => {
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
       usedItems: [],
-      respectPriorGames: true
+      respectPriorGames: true,
+      playerCounters: { 'p1': { consecutiveTruths: 0, consecutiveDares: 0 } }
     }
 
     saveGame(game)
@@ -125,7 +126,8 @@ describe('Local Storage', () => {
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
       usedItems: ['item1', 'item2'],
-      respectPriorGames: true
+      respectPriorGames: true,
+      playerCounters: {}
     }
 
     const game2: GameMeta = {
@@ -139,7 +141,8 @@ describe('Local Storage', () => {
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
       usedItems: ['item3'],
-      respectPriorGames: true
+      respectPriorGames: true,
+      playerCounters: {}
     }
 
     saveGame(game1)

@@ -1,7 +1,7 @@
 import { create } from 'zustand'
-import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, CustomChallenge } from '../types'
+import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, CustomChallenge, ItemKind } from '../types'
 import { createGameId } from '../lib/ids'
-import { getProgressiveLevels, getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
+import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts } from '../lib/items'
 import { 
   getGame,
@@ -10,8 +10,6 @@ import {
   getPriorGameItems 
 } from './storage'
 import { useUIStore } from './uiStore'
-import { useHistoryStore } from './historyStore'
-import { useSettingsStore } from './settingsStore'
 import gameQuestions from '../data/game_questions.json'
 
 const useGameStore = create<GameState & GameActions>((set, get) => ({
@@ -305,6 +303,20 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     })
   },
 
+  // Settings
+  toggleRespectPriorGames: (respect: boolean) => {
+    const { currentGame } = get()
+    if (!currentGame) return
+
+    const updatedGame = {
+      ...currentGame,
+      respectPriorGames: respect
+    }
+
+    saveGame(updatedGame)
+
+    set({ currentGame: updatedGame })
+  },
 
   // Data loading
   loadItems: () => {
@@ -319,12 +331,14 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const isProgressive = gameMode === 'progressive'
     
     // Convert custom challenges to regular items for the game
-    const customItems: Item[] = customChallenges.map(challenge => ({
-      id: challenge.id,
-      text: challenge.text,
-      kind: challenge.kind,
-      level: challenge.level
-    }))
+    const customItems: Item[] = customChallenges
+      .filter(challenge => challenge.level !== 'Progressive') // Filter out Progressive challenges
+      .map(challenge => ({
+        id: challenge.id,
+        text: challenge.text,
+        kind: challenge.kind,
+        level: challenge.level as Exclude<Level, 'Progressive' | 'Custom'>
+      }))
     
     // Initialize player counters
     const playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> = {}

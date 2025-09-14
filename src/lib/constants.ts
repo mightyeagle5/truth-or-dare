@@ -8,7 +8,8 @@ export const LEVEL_TOOLTIPS: Record<Level, string> = {
   Hot: 'Steamy challenges that will heat things up.',
   Spicy: 'Intense and daring with explicit content.',
   Kinky: 'The wildest challenges for experienced players.',
-  Progressive: 'Start soft and work your way up through all levels.'
+  Progressive: 'Start soft and work your way up through all levels.',
+  Custom: 'Your own custom challenges'
 }
 
 export const GENDER_COLORS = {

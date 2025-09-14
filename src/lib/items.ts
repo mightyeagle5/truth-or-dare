@@ -66,7 +66,7 @@ export const PLACEHOLDER_ITEMS: Item[] = [
 ]
 
 export const createItemLookup = (items: Item[]) => {
-  const lookup: Record<Exclude<Level, 'Progressive'>, Record<ItemKind, Item[]>> = {
+  const lookup: Record<Exclude<Level, 'Progressive' | 'Custom'>, Record<ItemKind, Item[]>> = {
     Soft: { truth: [], dare: [] },
     Mild: { truth: [], dare: [] },
     Hot: { truth: [], dare: [] },
