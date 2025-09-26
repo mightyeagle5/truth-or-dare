@@ -52,7 +52,7 @@ export const isLevelProgressive = (level: Level): boolean => {
 }
 
 export const getProgressiveLevels = (): Exclude<Level, 'Progressive'>[] => {
-  return ['Soft', 'Mild', 'Hot', 'Spicy', 'Kinky']
+  return ['soft', 'mild', 'hot', 'spicy', 'kinky']
 }
 
 export const getNextProgressiveLevel = (currentLevel: Exclude<Level, 'Progressive'>): Exclude<Level, 'Progressive'> | null => {

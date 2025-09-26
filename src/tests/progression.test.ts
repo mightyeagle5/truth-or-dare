@@ -4,19 +4,19 @@ import { getNextProgressiveLevel, isLevelProgressive } from '../lib/guards'
 describe('Level Progression', () => {
   it('should identify progressive level correctly', () => {
     expect(isLevelProgressive('Progressive')).toBe(true)
-    expect(isLevelProgressive('Soft')).toBe(false)
-    expect(isLevelProgressive('Kinky')).toBe(false)
+    expect(isLevelProgressive('soft')).toBe(false)
+    expect(isLevelProgressive('kinky')).toBe(false)
   })
 
   it('should advance through progressive levels', () => {
-    expect(getNextProgressiveLevel('Soft')).toBe('Mild')
-    expect(getNextProgressiveLevel('Mild')).toBe('Hot')
-    expect(getNextProgressiveLevel('Hot')).toBe('Spicy')
-    expect(getNextProgressiveLevel('Spicy')).toBe('Kinky')
+    expect(getNextProgressiveLevel('soft')).toBe('mild')
+    expect(getNextProgressiveLevel('mild')).toBe('hot')
+    expect(getNextProgressiveLevel('hot')).toBe('spicy')
+    expect(getNextProgressiveLevel('spicy')).toBe('kinky')
   })
 
   it('should return null at the highest level', () => {
-    expect(getNextProgressiveLevel('Kinky')).toBe(null)
+    expect(getNextProgressiveLevel('kinky')).toBe(null)
   })
 
   it('should handle 10-turn suggestion logic', () => {

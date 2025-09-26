@@ -35,8 +35,11 @@ export const useFileOperations = () => {
           id: `custom-${Date.now()}-${Math.random()}`,
           text: item.text || '',
           kind: item.kind || 'truth',
-          level: item.level || 'Soft',
-          isCustom: true
+          level: item.level || 'soft',
+          isCustom: true,
+          gender_for: item.gender_for || ['female', 'male'],
+          gender_target: item.gender_target || ['female', 'male'],
+          tags: item.tags || []
         })).filter(challenge => challenge.text.trim().length > 0)
 
         if (newChallenges.length === 0) {

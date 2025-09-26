@@ -3,6 +3,7 @@ import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, Cus
 import { createGameId } from '../lib/ids'
 import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts } from '../lib/items'
+import { substitutePlayerNames, selectTargetPlayer } from '../lib/playerSubstitution'
 import { 
   getGame,
   saveGame, 
@@ -23,7 +24,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => {
     const gameId = createGameId()
     const isProgressive = level === 'Progressive'
-    const currentLevel = isProgressive ? 'Soft' : level as Exclude<Level, 'Progressive'>
+    const currentLevel = isProgressive ? 'soft' : level as Exclude<Level, 'Progressive'>
     
     // Initialize player counters
     const playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> = {}
@@ -125,12 +126,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       ? getPriorGameItems(currentGame.priorGameIds) 
       : []
 
+    // Get current player
+    const currentPlayer = currentGame.players[currentGame.turnIndex]
+
     // For custom games in Random mode, don't filter by level
     const availableItems = currentGame.isCustomGame && currentGame.customGameMode === 'random'
       ? items.filter(item => 
           item.kind === kind &&
           !currentGame.usedItems.includes(item.id) &&
-          !priorGameItems.includes(item.id)
+          !priorGameItems.includes(item.id) &&
+          (item.gender_for || ['female', 'male']).includes(currentPlayer.gender) // Filter by gender_for
         )
       : getAvailableItems(
           items,
@@ -138,7 +143,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
           kind,
           currentGame.usedItems,
           priorGameItems
-        )
+        ).filter(item => (item.gender_for || ['female', 'male']).includes(currentPlayer.gender)) // Filter by gender_for
 
     const selectedItem = getRandomItem(availableItems)
     if (!selectedItem) return
@@ -350,7 +355,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
         id: challenge.id,
         text: challenge.text,
         kind: challenge.kind,
-        level: challenge.level as Exclude<Level, 'Progressive' | 'Custom'>
+        level: challenge.level as Exclude<Level, 'Progressive' | 'Custom'>,
+        gender_for: challenge.gender_for,
+        gender_target: challenge.gender_target,
+        tags: challenge.tags
       }))
     
     // Initialize player counters
@@ -361,7 +369,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     
     // For Random mode, determine the most common level or use 'Soft' as default
     const getRandomModeLevel = (customItems: Item[]): Exclude<Level, 'Progressive'> => {
-      if (customItems.length === 0) return 'Soft'
+      if (customItems.length === 0) return 'soft'
       
       // Count items by level
       const levelCounts: Record<string, number> = {}
@@ -378,7 +386,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     
     // For Progressive mode, start with the lowest available level
     const getProgressiveModeLevel = (customItems: Item[]): Exclude<Level, 'Progressive'> => {
-      if (customItems.length === 0) return 'Soft'
+      if (customItems.length === 0) return 'soft'
       
       const availableLevels = getCustomProgressiveLevels(customItems)
       return availableLevels[0] || 'Soft'

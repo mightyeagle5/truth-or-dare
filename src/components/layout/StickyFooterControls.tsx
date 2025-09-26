@@ -4,13 +4,25 @@ import styles from './StickyFooterControls.module.css'
 
 const getLevelColor = (level: string) => {
   switch (level) {
-    case 'Soft': return '#6EE7B7'
-    case 'Mild': return '#60A5FA'
-    case 'Hot': return '#F59E0B'
-    case 'Spicy': return '#F87171'
-    case 'Kinky': return '#A78BFA'
+    case 'soft': return '#6EE7B7'
+    case 'mild': return '#60A5FA'
+    case 'hot': return '#F59E0B'
+    case 'spicy': return '#F87171'
+    case 'kinky': return '#A78BFA'
     case 'Custom': return '#8B5CF6' // Purple for custom games
     default: return '#9CA3AF'
+  }
+}
+
+const getDisplayName = (level: string) => {
+  switch (level) {
+    case 'soft': return 'Soft'
+    case 'mild': return 'Mild'
+    case 'hot': return 'Hot'
+    case 'spicy': return 'Spicy'
+    case 'kinky': return 'Kinky'
+    case 'Custom': return 'Custom'
+    default: return level
   }
 }
 
@@ -30,6 +42,7 @@ export const StickyFooterControls: React.FC = () => {
 
   const displayLevel = getDisplayLevel()
   const levelColor = currentGame ? getLevelColor(displayLevel) : '#9CA3AF'
+  const displayName = getDisplayName(displayLevel)
 
   return (
     <div className={styles.container}>
@@ -43,7 +56,7 @@ export const StickyFooterControls: React.FC = () => {
               backgroundColor: `${levelColor}20`
             }}
           >
-            {displayLevel}
+            {displayName}
           </div>
         )}
       </div>

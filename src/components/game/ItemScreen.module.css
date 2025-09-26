@@ -126,6 +126,13 @@
   transform: translateY(-var(--radius-sm));
 }
 
+/* Desktop styles */
+@media (min-width: 769px) {
+  .itemText {
+    font-size: 28px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: var(--radius-2xl);

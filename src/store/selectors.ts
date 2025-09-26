@@ -102,7 +102,7 @@ export const canAdvanceLevel = (game: GameMeta | null): boolean => {
   }
   
   // For regular games, check if not at the highest level
-  return game.currentLevel !== 'Kinky'
+  return game.currentLevel !== 'kinky'
 }
 
 export const getNextLevel = (game: GameMeta | null): Exclude<GameMeta['currentLevel'], 'Progressive'> | null => {
@@ -114,7 +114,7 @@ export const getNextLevel = (game: GameMeta | null): Exclude<GameMeta['currentLe
   }
   
   // For regular games, use standard progressive level logic
-  const levels = ['Soft', 'Mild', 'Hot', 'Spicy', 'Kinky'] as const
+  const levels = ['soft', 'mild', 'hot', 'spicy', 'kinky'] as const
   const currentIndex = levels.indexOf(game.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>)
   return currentIndex < levels.length - 1 ? levels[currentIndex + 1] : null
 }

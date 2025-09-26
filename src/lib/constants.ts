@@ -1,13 +1,13 @@
 import type { Level } from '../types'
 
-export const LEVELS: Level[] = ['Soft', 'Mild', 'Hot', 'Spicy', 'Kinky', 'Progressive']
+export const LEVELS: Level[] = ['soft', 'mild', 'hot', 'spicy', 'kinky', 'Progressive']
 
 export const LEVEL_TOOLTIPS: Record<Level, string> = {
-  Soft: 'Gentle and romantic challenges to get you started.',
-  Mild: 'A bit more adventurous with some playful teasing.',
-  Hot: 'Steamy challenges that will heat things up.',
-  Spicy: 'Intense and daring with explicit content.',
-  Kinky: 'The wildest challenges for experienced players.',
+  soft: 'Gentle and romantic challenges to get you started.',
+  mild: 'A bit more adventurous with some playful teasing.',
+  hot: 'Steamy challenges that will heat things up.',
+  spicy: 'Intense and daring with explicit content.',
+  kinky: 'The wildest challenges for experienced players.',
   Progressive: 'Start soft and work your way up through all levels.',
   Custom: 'Your own custom challenges'
 }

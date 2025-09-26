@@ -1,4 +1,4 @@
-export type Level = 'Soft' | 'Mild' | 'Hot' | 'Spicy' | 'Kinky' | 'Progressive' | 'Custom'
+export type Level = 'soft' | 'mild' | 'hot' | 'spicy' | 'kinky' | 'Progressive' | 'Custom'
 
 export type ItemKind = 'truth' | 'dare'
 
@@ -9,6 +9,9 @@ export interface CustomChallenge {
   level: Level
   isCustom: boolean
   originalId?: string // For challenges from the original game
+  gender_for: Gender[] // Genders that can receive this challenge
+  gender_target: Gender[] // Genders that this challenge can be performed on
+  tags: string[] // Tags for filtering/exclusion
 }
 
 export type Gender = 'male' | 'female'
@@ -47,9 +50,12 @@ export interface GameMeta {
 
 export interface Item {
   id: string // Item ID
-  level: Exclude<Level, 'Progressive'>
+  level: Exclude<Level, 'Progressive' | 'Custom'>
   kind: ItemKind
   text: string
+  gender_for: Gender[] // Genders that can receive this challenge
+  gender_target: Gender[] // Genders that this challenge can be performed on
+  tags: string[] // Tags for filtering/exclusion
 }
 
 export interface GameHistoryEntry {

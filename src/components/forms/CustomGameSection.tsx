@@ -92,7 +92,10 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
       text: customChallengeForm.text.trim(),
       kind: customChallengeForm.kind,
       level: customChallengeForm.level,
-      isCustom: true
+      isCustom: true,
+      gender_for: ['female', 'male'], // Default to all genders
+      gender_target: ['female', 'male'], // Default to all genders
+      tags: [] // Default to no tags
     }
     
     setCustomChallenges(prev => [newChallenge, ...prev])
@@ -110,7 +113,10 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
       kind: challenge.kind as ItemKind,
       level: challenge.level as Level,
       isCustom: false,
-      originalId: challenge.id
+      originalId: challenge.id,
+      gender_for: challenge.gender_for || ['female', 'male'],
+      gender_target: challenge.gender_target || ['female', 'male'],
+      tags: challenge.tags || []
     }))
     
     setCustomChallenges(prev => [...newChallenges, ...prev])
@@ -176,8 +182,11 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
           id: `custom-${Date.now()}-${Math.random()}`,
           text: item.text || '',
           kind: item.kind || 'truth',
-          level: item.level || 'Soft',
-          isCustom: true
+          level: item.level || 'soft',
+          isCustom: true,
+          gender_for: item.gender_for || ['female', 'male'],
+          gender_target: item.gender_target || ['female', 'male'],
+          tags: item.tags || []
         })).filter(challenge => challenge.text.trim().length > 0)
 
         if (newChallenges.length === 0) {
@@ -276,11 +285,11 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                     value={customChallengeForm.level}
                     onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, level: e.target.value as Level }))}
                   >
-                    <option value="Soft">Soft</option>
-                    <option value="Mild">Mild</option>
-                    <option value="Hot">Hot</option>
-                    <option value="Spicy">Spicy</option>
-                    <option value="Kinky">Kinky</option>
+                    <option value="soft">Soft</option>
+                    <option value="mild">Mild</option>
+                    <option value="hot">Hot</option>
+                    <option value="spicy">Spicy</option>
+                    <option value="kinky">Kinky</option>
                   </select>
                   <button
                     className={styles.addCustomButton}
@@ -312,11 +321,11 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                   value={gameChallengeSelector.level}
                   onChange={(e) => setGameChallengeSelector(prev => ({ ...prev, level: e.target.value as Level }))}
                 >
-                  <option value="Soft">Soft</option>
-                  <option value="Mild">Mild</option>
-                  <option value="Hot">Hot</option>
-                  <option value="Spicy">Spicy</option>
-                  <option value="Kinky">Kinky</option>
+                  <option value="soft">Soft</option>
+                  <option value="mild">Mild</option>
+                  <option value="hot">Hot</option>
+                  <option value="spicy">Spicy</option>
+                  <option value="kinky">Kinky</option>
                 </select>
                 <button
                   className={styles.addGameButton}

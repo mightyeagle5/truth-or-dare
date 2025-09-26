@@ -5,73 +5,103 @@ import { createId } from './ids'
 export const PLACEHOLDER_ITEMS: Item[] = [
   {
     id: 'soft-truth-1',
-    level: 'Soft',
+    level: 'soft',
     kind: 'truth',
-    text: 'What is your biggest turn-on?'
+    text: 'What is your biggest turn-on?',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: []
   },
   {
     id: 'soft-dare-1',
-    level: 'Soft',
+    level: 'soft',
     kind: 'dare',
-    text: 'Give your partner a 30-second massage.'
+    text: 'Give your partner a 30-second massage.',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['physical', 'massage']
   },
   {
     id: 'mild-truth-1',
-    level: 'Mild',
+    level: 'mild',
     kind: 'truth',
-    text: 'What is your favorite position?'
+    text: 'What is your favorite position?',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['sexual']
   },
   {
     id: 'mild-dare-1',
-    level: 'Mild',
+    level: 'mild',
     kind: 'dare',
-    text: 'Send a sexy text to your partner.'
+    text: 'Send a sexy text to your partner.',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['technology', 'sexual']
   },
   {
     id: 'hot-truth-1',
-    level: 'Hot',
+    level: 'hot',
     kind: 'truth',
-    text: 'What is your wildest fantasy?'
+    text: 'What is your wildest fantasy?',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['sexual', 'fantasy']
   },
   {
     id: 'hot-dare-1',
-    level: 'Hot',
+    level: 'hot',
     kind: 'dare',
-    text: 'Striptease for your partner for 2 minutes.'
+    text: 'Striptease for your partner for 2 minutes.',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['physical', 'sexual', 'dancing']
   },
   {
     id: 'spicy-truth-1',
-    level: 'Spicy',
+    level: 'spicy',
     kind: 'truth',
-    text: 'What is the kinkiest thing you have ever done?'
+    text: 'What is the kinkiest thing you have ever done?',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['sexual', 'kinky']
   },
   {
     id: 'spicy-dare-1',
-    level: 'Spicy',
+    level: 'spicy',
     kind: 'dare',
-    text: 'Let your partner choose your underwear for the day.'
+    text: 'Let your partner choose your underwear for the day.',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['clothing', 'control']
   },
   {
     id: 'kinky-truth-1',
-    level: 'Kinky',
+    level: 'kinky',
     kind: 'truth',
-    text: 'What is your most taboo desire?'
+    text: 'What is your most taboo desire?',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['sexual', 'taboo']
   },
   {
     id: 'kinky-dare-1',
-    level: 'Kinky',
+    level: 'kinky',
     kind: 'dare',
-    text: 'Be your partner\'s slave for the next hour.'
+    text: 'Be your partner\'s slave for the next hour.',
+    gender_for: ['female', 'male'],
+    gender_target: ['female', 'male'],
+    tags: ['control', 'dominance', 'submission']
   }
 ]
 
 export const createItemLookup = (items: Item[]) => {
   const lookup: Record<Exclude<Level, 'Progressive' | 'Custom'>, Record<ItemKind, Item[]>> = {
-    Soft: { truth: [], dare: [] },
-    Mild: { truth: [], dare: [] },
-    Hot: { truth: [], dare: [] },
-    Spicy: { truth: [], dare: [] },
-    Kinky: { truth: [], dare: [] }
+    soft: { truth: [], dare: [] },
+    mild: { truth: [], dare: [] },
+    hot: { truth: [], dare: [] },
+    spicy: { truth: [], dare: [] },
+    kinky: { truth: [], dare: [] }
   }
 
   items.forEach(item => {

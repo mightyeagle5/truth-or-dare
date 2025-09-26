@@ -8,11 +8,11 @@ export const useCustomGame = () => {
   const [customChallengeForm, setCustomChallengeForm] = useState({
     text: '',
     kind: 'truth' as ItemKind,
-    level: 'Soft' as Level
+    level: 'soft' as Level
   })
   const [gameChallengeSelector, setGameChallengeSelector] = useState({
     kind: 'truth' as ItemKind,
-    level: 'Soft' as Level
+    level: 'soft' as Level
   })
   const [challengeFilter, setChallengeFilter] = useState<'all' | 'custom' | 'game'>('all')
   const [gameMode, setGameMode] = useState<'random' | 'progressive'>('random')
@@ -36,7 +36,10 @@ export const useCustomGame = () => {
       text: customChallengeForm.text.trim(),
       kind: customChallengeForm.kind,
       level: customChallengeForm.level,
-      isCustom: true
+      isCustom: true,
+      gender_for: ['female', 'male'], // Default to all genders
+      gender_target: ['female', 'male'], // Default to all genders
+      tags: [] // Default to no tags
     }
     
     setCustomChallenges(prev => [newChallenge, ...prev])
@@ -54,7 +57,10 @@ export const useCustomGame = () => {
       kind: challenge.kind as ItemKind,
       level: challenge.level as Level,
       isCustom: false,
-      originalId: challenge.id
+      originalId: challenge.id,
+      gender_for: challenge.gender_for || ['female', 'male'],
+      gender_target: challenge.gender_target || ['female', 'male'],
+      tags: challenge.tags || []
     }))
     
     setCustomChallenges(prev => [...newChallenges, ...prev])

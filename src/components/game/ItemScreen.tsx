@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { getCurrentPlayer } from '../../store/selectors'
 import { useGameStore, useUIStore } from '../../store'
 import { Badge } from '../ui/Badge'
+import { substitutePlayerNames, selectTargetPlayer } from '../../lib/playerSubstitution'
 import styles from './ItemScreen.module.css'
 
 export const ItemScreen: React.FC = () => {
@@ -26,6 +27,16 @@ export const ItemScreen: React.FC = () => {
   if (!currentGame || !currentItem) return null
 
   const currentPlayer = getCurrentPlayer(currentGame)
+  
+  if (!currentPlayer) return null
+  
+  // Select target player for the challenge
+  const targetPlayer = selectTargetPlayer(currentPlayer, currentGame.players, currentItem.gender_target || [])
+  
+  // Substitute player names in the challenge text
+  const personalizedText = targetPlayer 
+    ? substitutePlayerNames(currentItem.text, currentPlayer, targetPlayer)
+    : currentItem.text
 
   const handleWildCard = () => {
     setIsWildCardPicking(true)
@@ -80,7 +91,7 @@ export const ItemScreen: React.FC = () => {
           </div>
 
           <div className={styles.itemContent}>
-            <p className={styles.itemText}>{currentItem.text}</p>
+            <p className={styles.itemText}>{personalizedText}</p>
           </div>
         </motion.div>
       </AnimatePresence>
