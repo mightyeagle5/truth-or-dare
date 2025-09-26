@@ -117,23 +117,12 @@ export const HomePage: React.FC = () => {
               selectedGameIds={selectedPriorGames}
               onSelectionChange={setSelectedPriorGames}
               onRemoveGame={removeGameFromHistory}
+              isDevMode={isDevMode}
+              disableGameSaving={disableGameSaving}
+              onDisableGameSavingChange={setDisableGameSaving}
             />
           </div>
         </div>
-        
-        {/* Development-only checkbox */}
-        {isDevMode && (
-          <div className={styles.devSection}>
-            <label className={styles.devCheckbox}>
-              <input
-                type="checkbox"
-                checked={disableGameSaving}
-                onChange={(e) => setDisableGameSaving(e.target.checked)}
-              />
-              <span>Disable game saving (dev mode)</span>
-            </label>
-          </div>
-        )}
         
         <div className={styles.actions}>
           <button

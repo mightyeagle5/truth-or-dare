@@ -9,6 +9,9 @@ interface PreviousGamesPickerProps {
   onSelectionChange: (gameIds: string[]) => void
   onRemoveGame: (gameId: string) => void
   disabled?: boolean
+  isDevMode?: boolean
+  disableGameSaving?: boolean
+  onDisableGameSavingChange?: (disable: boolean) => void
 }
 
 export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
@@ -16,7 +19,10 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
   selectedGameIds,
   onSelectionChange,
   onRemoveGame,
-  disabled = false
+  disabled = false,
+  isDevMode = false,
+  disableGameSaving = false,
+  onDisableGameSavingChange
 }) => {
   const handleGameToggle = (gameId: string) => {
     const newSelection = selectedGameIds.includes(gameId)
@@ -35,7 +41,19 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleSection}>
-          <h3 className={styles.title}>Previous Games</h3>
+          <div className={styles.titleRow}>
+            <h3 className={styles.title}>Previous Games</h3>
+            {isDevMode && onDisableGameSavingChange && (
+              <label className={styles.devCheckbox}>
+                <input
+                  type="checkbox"
+                  checked={disableGameSaving}
+                  onChange={(e) => onDisableGameSavingChange(e.target.checked)}
+                />
+                <span>Disable saving</span>
+              </label>
+            )}
+          </div>
           <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
         </div>
         {selectedGameIds.length > 0 && (

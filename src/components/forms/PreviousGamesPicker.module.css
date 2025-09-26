@@ -17,6 +17,13 @@
   gap: var(--radius-base);
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-xl);
+  flex-wrap: wrap;
+}
+
 .title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
@@ -113,6 +120,36 @@
 .gameDate {
   font-size: var(--radius-xl);
   color: #9CA3AF;
+}
+
+.devCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: #9CA3AF;
+  cursor: pointer;
+  padding: var(--radius-sm) var(--radius-md);
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.devCheckbox:hover {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.5);
+}
+
+.devCheckbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #F59E0B;
+}
+
+.devCheckbox span {
+  user-select: none;
+  font-weight: var(--font-weight-medium);
 }
 
 
