@@ -12,6 +12,7 @@ import {
 } from './storage'
 import { useUIStore } from './uiStore'
 import { useDevStore } from './devStore'
+import { useHistoryStore } from './historyStore'
 import gameQuestions from '../data/game_questions.json'
 
 const useGameStore = create<GameState & GameActions>((set, get) => ({
@@ -53,6 +54,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     if (!devStore.disableGameSaving) {
       saveGame(game)
       addGameToHistory(gameId, game.createdAt)
+      // Refresh history store to show the new game immediately
+      useHistoryStore.getState().refreshHistory()
     }
 
     // Update UI state
@@ -113,6 +116,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       const devStore = useDevStore.getState()
       if (!devStore.disableGameSaving) {
         saveGame(game)
+        // Refresh history store to show the new game immediately
+        useHistoryStore.getState().refreshHistory()
       }
     }
     
@@ -451,6 +456,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     if (!devStore.disableGameSaving) {
       saveGame(game)
       addGameToHistory(gameId, game.createdAt)
+      // Refresh history store to show the new game immediately
+      useHistoryStore.getState().refreshHistory()
     }
     
     return gameId
