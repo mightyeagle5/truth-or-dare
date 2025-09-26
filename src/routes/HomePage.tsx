@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { PlayerList, LevelSelector, PreviousGamesPicker } from '../components/forms'
 import { CustomGameSection } from '../components/forms/CustomGameSection'
-import { useGameStore, useHistoryStore } from '../store'
+import { useGameStore, useHistoryStore, useDevStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
 import { useCustomGame } from '../hooks/useCustomGame'
 import styles from './HomePage.module.css'
@@ -12,6 +12,7 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate()
   const { startGame, startCustomGame, clearGame } = useGameStore()
   const { gameHistory, removeGameFromHistory } = useHistoryStore()
+  const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
   
   const [showCustomGame, setShowCustomGame] = useState(false)
   const [isStarting, setIsStarting] = useState(false)
@@ -119,6 +120,20 @@ export const HomePage: React.FC = () => {
             />
           </div>
         </div>
+        
+        {/* Development-only checkbox */}
+        {isDevMode && (
+          <div className={styles.devSection}>
+            <label className={styles.devCheckbox}>
+              <input
+                type="checkbox"
+                checked={disableGameSaving}
+                onChange={(e) => setDisableGameSaving(e.target.checked)}
+              />
+              <span>Disable game saving (dev mode)</span>
+            </label>
+          </div>
+        )}
         
         <div className={styles.actions}>
           <button

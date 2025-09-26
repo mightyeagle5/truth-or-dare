@@ -93,4 +93,7 @@ export interface GameActions {
   
   // Data loading
   loadItems: () => void
+  
+  // Clear game state
+  clearGame: () => void
 }

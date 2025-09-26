@@ -11,6 +11,7 @@ import {
   getPriorGameItems 
 } from './storage'
 import { useUIStore } from './uiStore'
+import { useDevStore } from './devStore'
 import gameQuestions from '../data/game_questions.json'
 
 const useGameStore = create<GameState & GameActions>((set, get) => ({
@@ -47,9 +48,12 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       playerCounters
     }
 
-    // Save game and add to history
-    saveGame(game)
-    addGameToHistory(gameId, game.createdAt)
+    // Save game and add to history (only if not in dev mode with saving disabled)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(game)
+      addGameToHistory(gameId, game.createdAt)
+    }
 
     // Update UI state
     useUIStore.getState().setCurrentScreen('choice')
@@ -106,7 +110,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   exitGame: () => {
     const game = get().currentGame
     if (game) {
-      saveGame(game)
+      const devStore = useDevStore.getState()
+      if (!devStore.disableGameSaving) {
+        saveGame(game)
+      }
     }
     
     useUIStore.getState().resetUI()
@@ -191,7 +198,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1
     }
 
-    saveGame(updatedGame)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(updatedGame)
+    }
 
     useUIStore.getState().setCurrentScreen('choice')
     
@@ -233,7 +243,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       playerCounters: updatedCounters
     }
 
-    saveGame(updatedGame)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(updatedGame)
+    }
 
     useUIStore.getState().setCurrentScreen('choice')
     
@@ -267,7 +280,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       playerCounters: updatedCounters
     }
 
-    saveGame(updatedGame)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(updatedGame)
+    }
 
     useUIStore.getState().setCurrentScreen('choice')
     
@@ -302,7 +318,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       playerCounters: resetCounters
     }
 
-    saveGame(updatedGame)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(updatedGame)
+    }
 
     useUIStore.getState().setCurrentScreen('choice')
     
@@ -321,7 +340,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       respectPriorGames: respect
     }
 
-    saveGame(updatedGame)
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(updatedGame)
+    }
 
     set({ currentGame: updatedGame })
   },
@@ -424,9 +446,12 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       isWildCard: false
     })
     
-    // Don't save custom games to localStorage or add to history
-    // saveGame(game)
-    // addGameToHistory(gameId, game.createdAt)
+    // Save custom games only if not in dev mode with saving disabled
+    const devStore = useDevStore.getState()
+    if (!devStore.disableGameSaving) {
+      saveGame(game)
+      addGameToHistory(gameId, game.createdAt)
+    }
     
     return gameId
   }
