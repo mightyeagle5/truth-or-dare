@@ -4100,23 +4100,6 @@
         ]
     },
     {
-        "id": "e5569f84-ff7e-4d6c-ae3e-50c74d68aedd",
-        "level": "hot",
-        "kind": "truth",
-        "text": "{active_player}, what porn-related fantasy makes you laugh more than aroused when thinking of {other_player}?",
-        "gender_for": [
-            "female",
-            "male"
-        ],
-        "gender_target": [
-            "female",
-            "male"
-        ],
-        "tags": [
-            "porn"
-        ]
-    },
-    {
         "id": "2adc788d-3c8f-4879-8ae2-903910221274",
         "level": "hot",
         "kind": "truth",
@@ -4149,24 +4132,6 @@
         ]
     },
     {
-        "id": "cef9b2bb-d973-4c7e-a53f-6eb2dfab25de",
-        "level": "hot",
-        "kind": "truth",
-        "text": "{active_player}, have you ever wanted {other_player} to roleplay as a porn star?",
-        "gender_for": [
-            "female",
-            "male"
-        ],
-        "gender_target": [
-            "female",
-            "male"
-        ],
-        "tags": [
-            "porn",
-            "roleplay"
-        ]
-    },
-    {
         "id": "80886c32-2a44-4004-b7a1-e755fdfc3e8e",
         "level": "hot",
         "kind": "truth",
@@ -4180,23 +4145,6 @@
             "male"
         ],
         "tags": []
-    },
-    {
-        "id": "b7253fa7-c13d-4341-a960-48148d589424",
-        "level": "hot",
-        "kind": "truth",
-        "text": "{active_player}, which porn position would make you laugh if you and {other_player} tried it?",
-        "gender_for": [
-            "female",
-            "male"
-        ],
-        "gender_target": [
-            "female",
-            "male"
-        ],
-        "tags": [
-            "porn"
-        ]
     },
     {
         "id": "ce82bc37-6e3a-45a0-accf-1dfc9b5be4ba",
@@ -4219,7 +4167,7 @@
         "id": "f9278ba5-a490-4990-9c1b-f2fe9e43fcba",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, go down on {other_player} (or let them go down on you) for one minute, no stopping.",
+        "text": "{active_player}, treat {other_player} (or let them treat you) to one full minute of uninterrupted oral pleasure.",
         "gender_for": [
             "female",
             "male"
@@ -4250,7 +4198,7 @@
         "id": "913e1bd1-2e9d-4ca0-9174-6bb262dd6548",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, use your mouth to tease {other_player} until they squirm, then stop.",
+        "text": "active_player}, use your mouth to playfully tease {other_player} until they can’t help but squirm — then pause right there.",
         "gender_for": [
             "female",
             "male"
@@ -4269,8 +4217,7 @@
         "kind": "dare",
         "text": "{active_player}, sit on {other_player}'s face (or let them sit on yours) for one minute.",
         "gender_for": [
-            "female",
-            "male"
+            "female"
         ],
         "gender_target": [
             "female",
@@ -4314,7 +4261,7 @@
         "id": "5fa18044-683d-45d7-a622-e05be0140451",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, let {other_player} tease you with a toy for one minute (if applicable).",
+        "text": "{active_player}, let {other_player} tease you with a toy for one minute.",
         "gender_for": [
             "female",
             "male"

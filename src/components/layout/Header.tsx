@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
 interface HeaderProps {
@@ -30,8 +31,13 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
         
-        {showGameInfo && onExit && (
-          <div className={styles.gameInfo}>
+        <div className={styles.actions}>
+          {import.meta.env.DEV && (
+            <Link to="/admin/edit-challenges" className={styles.adminLink}>
+              Admin
+            </Link>
+          )}
+          {showGameInfo && onExit && (
             <button
               className={styles.exitButton}
               onClick={onExit}
@@ -39,8 +45,8 @@ export const Header: React.FC<HeaderProps> = ({
             >
               Exit
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   )
