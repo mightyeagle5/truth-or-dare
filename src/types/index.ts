@@ -76,7 +76,7 @@ export interface GameState {
 
 export interface GameActions {
   // Game lifecycle
-  startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => string
+  startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => Promise<string | null>
   startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => string
   loadGame: (gameId: string) => void
   exitGame: () => void

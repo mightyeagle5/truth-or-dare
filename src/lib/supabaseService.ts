@@ -1,4 +1,4 @@
-import { supabaseTyped } from './supabase'
+import { supabase } from './supabase'
 import { Item } from '../types'
 
 // Challenge service for Supabase operations
@@ -32,7 +32,7 @@ export class SupabaseChallengeService {
 
   // Get all challenges
   static async getAllChallenges(): Promise<Item[]> {
-    const { data, error } = await supabaseTyped
+    const { data, error } = await supabase
       .from('challenges')
       .select('*')
       .order('created_at', { ascending: true })
@@ -47,7 +47,7 @@ export class SupabaseChallengeService {
 
   // Get challenge by ID
   static async getChallengeById(id: string): Promise<Item | null> {
-    const { data, error } = await supabaseTyped
+    const { data, error } = await supabase
       .from('challenges')
       .select('*')
       .eq('id', id)
@@ -73,7 +73,7 @@ export class SupabaseChallengeService {
       tags: challenge.tags
     }
     
-    const { data, error } = await supabaseTyped
+    const { data, error } = await supabase
       .from('challenges')
       .insert([dbData])
       .select()
@@ -90,7 +90,7 @@ export class SupabaseChallengeService {
   // Update challenge
   static async updateChallenge(id: string, updates: Partial<Item>): Promise<Item> {
     const dbData = this.convertItemToDb(updates as Item)
-    const { data, error } = await supabaseTyped
+    const { data, error } = await supabase
       .from('challenges')
       .update({
         ...dbData,
@@ -110,7 +110,7 @@ export class SupabaseChallengeService {
 
   // Delete challenge
   static async deleteChallenge(id: string): Promise<void> {
-    const { error } = await supabaseTyped
+    const { error } = await supabase
       .from('challenges')
       .delete()
       .eq('id', id)
@@ -133,7 +133,7 @@ export class SupabaseChallengeService {
       tags: challenge.tags
     }))
     
-    const { data, error } = await supabaseTyped
+    const { data, error } = await supabase
       .from('challenges')
       .insert(dbData)
       .select()
@@ -155,7 +155,7 @@ export class SupabaseChallengeService {
   }
 
   static async batchDeleteChallenges(ids: string[]): Promise<void> {
-    const { error } = await supabaseTyped
+    const { error } = await supabase
       .from('challenges')
       .delete()
       .in('id', ids)

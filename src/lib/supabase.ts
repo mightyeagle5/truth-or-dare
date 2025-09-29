@@ -10,7 +10,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 // Database types matching your Supabase table structure
 export interface Database {
   public: {
-    Tables: {
+    tables: {
       challenges: {
         Row: {
           id: string
