@@ -56,6 +56,7 @@ export interface Item {
   gender_for: Gender[] // Genders that can receive this challenge
   gender_target: Gender[] // Genders that this challenge can be performed on
   tags: string[] // Tags for filtering/exclusion
+  updated_at?: string // Last updated timestamp
 }
 
 export interface GameHistoryEntry {

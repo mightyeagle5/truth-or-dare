@@ -4,6 +4,15 @@
   padding: 20px;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  font-size: 18px;
+  color: #666;
+}
+
 .header {
   background: white;
   padding: 20px;
@@ -19,6 +28,12 @@
   gap: 20px;
 }
 
+.headerActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
 .header h1 {
   margin: 0 0 8px 0;
   color: #333;
@@ -32,11 +47,12 @@
   font-size: 14px;
 }
 
+
 .content {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 20px;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 165px);
 }
 
 .sidebar {
@@ -44,13 +60,17 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .filters {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
+  flex-shrink: 0;
 }
 
 .filters h3 {
@@ -85,12 +105,20 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+  flex-shrink: 0;
 }
 
 .itemListHeader h3 {
   margin: 0;
   color: #333;
   font-size: 16px;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .itemList h3 {
@@ -100,8 +128,10 @@
 }
 
 .listContainer {
-  max-height: 400px;
+  flex: 1;
   overflow-y: auto;
+  padding-right: 8px;
+  min-height: 0;
 }
 
 .listItem {
@@ -125,10 +155,44 @@
   box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
+.listItem.deleted {
+  opacity: 0.5;
+  background-color: #f8f9fa;
+  border-color: #dc3545;
+  cursor: not-allowed;
+}
+
+.listItem.deleted:hover {
+  border-color: #dc3545;
+  box-shadow: none;
+}
+
+.listItem.pending {
+  border-color: #ffc107;
+  background-color: #fff3cd;
+}
+
+.listItem.pending:hover {
+  border-color: #ffc107;
+  box-shadow: 0 2px 4px rgba(255, 193, 7, 0.2);
+}
+
 .itemHeader {
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
+}
+
+.itemHeaderLeft {
+  display: flex;
+  gap: 8px;
+}
+
+.itemHeaderRight {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .itemLevel {
@@ -149,10 +213,35 @@
   font-weight: 500;
 }
 
+.pendingBadge {
+  background: #fff3e0;
+  color: #f57c00;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.deletedBadge {
+  background: #ffebee;
+  color: #d32f2f;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .itemText {
   color: #666;
   font-size: 14px;
   line-height: 1.4;
+}
+
+.itemTimestamp {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+  font-style: italic;
 }
 
 .mainContent {
@@ -200,11 +289,17 @@
 
 .editorHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 15px;
   margin-bottom: 20px;
   padding-bottom: 15px;
   border-bottom: 1px solid #eee;
+}
+
+.editorHeaderTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .editorHeader h2 {
@@ -256,6 +351,7 @@
 .updateBtn:disabled {
   background: #6c757d;
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .addBtn {
@@ -318,8 +414,15 @@
 
 .pendingChangesHeader {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.pendingActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .pendingCount {
@@ -341,6 +444,38 @@
 
 .saveChangesBtn:hover {
   background: #218838;
+}
+
+.viewChangesBtn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.viewChangesBtn:hover {
+  background: #5a6268;
+}
+
+.undoAllBtn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.undoAllBtn:hover {
+  background: #c82333;
 }
 
 .pendingChangesList {
@@ -497,6 +632,204 @@
 .confirmBtn:hover {
   background: #218838;
 }
+
+.confirmBtn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.confirmBtn:disabled:hover {
+  background: #6c757d;
+}
+
+
+.updateChanges {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Changed Items View */
+.changedItemsView {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.changedItemsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  background: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.changedItemsHeader h2 {
+  margin: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.closeChangedItemsBtn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.closeChangedItemsBtn:hover {
+  background: #5a6268;
+}
+
+.changedItemsList {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.changedItem {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.changedItem:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+}
+
+.changedItemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.changeTypeBadge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.changeTypeBadge.add {
+  background: #d4edda;
+  color: #155724;
+}
+
+.changeTypeBadge.update {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.changeTypeBadge.delete {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.itemText {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.itemTimestamp {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.deletedBadge {
+  background: #dc3545;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.pendingBadge {
+  background: #ffc107;
+  color: #212529;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.pendingInfo {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #856404;
+  font-style: italic;
+}
+
+.pendingNotification {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #856404;
+}
+
+.pendingIcon {
+  font-size: 16px;
+}
+
+.changedFields {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.changedItemActions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.undoBtn {
+  background: #ffc107;
+  color: #212529;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.undoBtn:hover {
+  background: #e0a800;
+}
+
 
 .form {
   display: flex;

@@ -4325,23 +4325,6 @@
         ]
     },
     {
-        "id": "79bf4c28-2dc9-488a-9158-30647a8be857",
-        "level": "hot",
-        "kind": "dare",
-        "text": "{active_player}, pretend you're a porn star and perform one explicit move on {other_player} or yourself, focused on the penis or vagina.",
-        "gender_for": [
-            "female",
-            "male"
-        ],
-        "gender_target": [
-            "female",
-            "male"
-        ],
-        "tags": [
-            "porn"
-        ]
-    },
-    {
         "id": "04e71e51-c2ab-4319-bbec-812bd739f850",
         "level": "hot",
         "kind": "dare",
@@ -4458,7 +4441,7 @@
         "id": "2d3a349a-2de7-4370-b002-e6a1df0e0738",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, record a 10-second sexy moan on {other_player}'s phone (kept private).",
+        "text": "{active_player}, record a 10-second sexy moan on {other_player}'s phone.",
         "gender_for": [
             "female",
             "male"
@@ -4568,7 +4551,7 @@
         "id": "e6d2aa13-5363-4119-a1ae-898b6d2a9092",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, suck a finger, toy, or piece of fruit in a teasing way (if comfortable) while {other_player} watches.",
+        "text": "{active_player}, suck a finger, toy, or piece of fruit in a teasing way while {other_player} watches.",
         "gender_for": [
             "female",
             "male"
@@ -4586,7 +4569,7 @@
         "id": "3dd399f6-54a8-4031-88e7-f2f0f9b7dbcb",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, masturbate while {other_player} watches (if comfortable).",
+        "text": "{active_player}, masturbate while {other_player} watches.",
         "gender_for": [
             "female",
             "male"
@@ -4601,7 +4584,7 @@
         "id": "71cf0e53-347b-429a-96ca-a41882e18520",
         "level": "hot",
         "kind": "dare",
-        "text": "{active_player}, blindfold yourself while {other_player} kisses you (if comfortable).",
+        "text": "{active_player}, blindfold yourself while {other_player} kisses you.",
         "gender_for": [
             "female",
             "male"
@@ -9024,7 +9007,7 @@
         "tags": []
     },
     {
-        "id": "7def46ad-aa15-4e1e-97ff-36c49743b562-dup",
+        "id": "7def46ad-aa15-4e1e-97f2-36c49743b562",
         "level": "hot",
         "kind": "dare",
         "text": "{active_player}, watch a porn video together with {other_player} and talk about what you like and don’t like in it.",

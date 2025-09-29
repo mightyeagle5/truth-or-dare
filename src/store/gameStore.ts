@@ -13,17 +13,17 @@ import {
 import { useUIStore } from './uiStore'
 import { useDevStore } from './devStore'
 import { useHistoryStore } from './historyStore'
-import gameQuestions from '../data/game_questions.json'
+import { SupabaseChallengeService } from '../lib/supabaseService'
 
 const useGameStore = create<GameState & GameActions>((set, get) => ({
   // Initial state
   currentGame: null,
   currentItem: null,
-  items: gameQuestions as Item[],
+  items: [] as Item[], // Will be loaded from Supabase
   isWildCard: false,
 
   // Game lifecycle
-  startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => {
+  startGame: async (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => {
     const gameId = createGameId()
     const isProgressive = level === 'Progressive'
     const currentLevel = isProgressive ? 'soft' : level as Exclude<Level, 'Progressive'>
@@ -49,30 +49,39 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       playerCounters
     }
 
-    // Save game and add to history (only if not in dev mode with saving disabled)
-    const devStore = useDevStore.getState()
-    if (!devStore.disableGameSaving) {
-      saveGame(game)
-      addGameToHistory(gameId, game.createdAt)
-      // Refresh history store to show the new game immediately
-      useHistoryStore.getState().refreshHistory()
+    // Load items from Supabase
+    try {
+      const items = await SupabaseChallengeService.getAllChallenges()
+      
+      // Save game and add to history (only if not in dev mode with saving disabled)
+      const devStore = useDevStore.getState()
+      if (!devStore.disableGameSaving) {
+        saveGame(game)
+        addGameToHistory(gameId, game.createdAt)
+        // Refresh history store to show the new game immediately
+        useHistoryStore.getState().refreshHistory()
+      }
+
+      // Update UI state
+      useUIStore.getState().setCurrentScreen('choice')
+      useUIStore.getState().setError(null)
+
+      set({
+        currentGame: game,
+        items,
+        currentItem: null,
+        isWildCard: false
+      })
+
+      return gameId
+    } catch (error) {
+      console.error('Failed to load challenges from Supabase:', error)
+      useUIStore.getState().setError('Failed to load challenges')
+      return null
     }
-
-    // Update UI state
-    useUIStore.getState().setCurrentScreen('choice')
-    useUIStore.getState().setError(null)
-
-    set({
-      currentGame: game,
-      items: gameQuestions as Item[],
-      currentItem: null,
-      isWildCard: false
-    })
-
-    return gameId
   },
 
-  loadGame: (gameId: string) => {
+  loadGame: async (gameId: string) => {
     const game = get().currentGame
     if (game?.id === gameId) return
 
@@ -93,18 +102,24 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
           saveGame(loadedGame)
         }
 
+        // Load items from Supabase (unless it's a custom game)
+        const items = loadedGame.isCustomGame 
+          ? (loadedGame.customItems || [])
+          : await SupabaseChallengeService.getAllChallenges()
+
         uiStore.setCurrentScreen('choice')
         uiStore.setLoading(false)
 
         set({ 
           currentGame: loadedGame, 
-          items: loadedGame.isCustomGame ? (loadedGame.customItems || []) : (gameQuestions as Item[])
+          items
         })
       } else {
         uiStore.setError('Game not found')
         uiStore.setLoading(false)
       }
     } catch (error) {
+      console.error('Failed to load game:', error)
       uiStore.setError('Failed to load game')
       uiStore.setLoading(false)
     }
@@ -354,16 +369,21 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   },
 
   // Data loading
-  loadItems: () => {
-    // Load from the JSON file
-    set({ items: gameQuestions as Item[] })
+  loadItems: async () => {
+    try {
+      const items = await SupabaseChallengeService.getAllChallenges()
+      set({ items })
+    } catch (error) {
+      console.error('Failed to load items from Supabase:', error)
+      useUIStore.getState().setError('Failed to load challenges')
+    }
   },
 
   // Clear game state
   clearGame: () => {
     set({
       currentGame: null,
-      items: gameQuestions as Item[],
+      items: [],
       currentItem: null,
       isWildCard: false
     })
