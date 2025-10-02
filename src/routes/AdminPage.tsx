@@ -109,6 +109,23 @@ const AdminPage: React.FC = () => {
     }
   }
 
+  const handleAddAsNew = () => {
+    // Create a new item from current form data
+    const newItem = createItemFromFormData()
+    newItem.id = createId()
+    
+    const change: PendingChange = {
+      type: 'add',
+      item: newItem
+    }
+    addPendingChange(change)
+    
+    // Reset form to start fresh
+    resetForm()
+    setSelectedItem(null)
+    setIsAddingNew(false)
+  }
+
 
   const handleConfirmSaveChanges = useCallback(async () => {
     await confirmSaveChanges(itemCacheRef, loadingCacheRef, levelFilter, kindFilter, () => {
@@ -173,7 +190,7 @@ const AdminPage: React.FC = () => {
               currentChanges={currentChanges}
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
-              handleAddNew={handleAddNew}
+              handleAddAsNew={handleAddAsNew}
               handleSave={handleSave}
               pendingChanges={pendingChanges}
             />

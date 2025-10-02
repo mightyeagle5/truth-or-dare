@@ -12,7 +12,7 @@ interface ItemEditorProps {
   currentChanges: ChangeDetection
   handleDelete: () => void
   handleUpdate: () => void
-  handleAddNew: () => void
+  handleAddAsNew: () => void
   handleSave: () => void
   pendingChanges: PendingChange[]
 }
@@ -25,7 +25,7 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
   currentChanges,
   handleDelete,
   handleUpdate,
-  handleAddNew,
+  handleAddAsNew,
   handleSave,
   pendingChanges
 }) => {
@@ -52,7 +52,7 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
                 </button>
                 <button 
                   className={styles.addAsNewBtn}
-                  onClick={handleAddNew}
+                  onClick={handleAddAsNew}
                 >
                   Add as New
                 </button>
