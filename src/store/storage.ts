@@ -94,7 +94,12 @@ export const getPriorGameItems = (priorGameIds: string[]): string[] => {
   priorGameIds.forEach(gameId => {
     const game = getGame(gameId)
     if (game) {
-      allUsedItems.push(...game.usedItems)
+      // Flatten the new usedItems structure back to a simple array
+      Object.values(game.usedItems).forEach(levelItems => {
+        Object.values(levelItems).forEach(kindItems => {
+          allUsedItems.push(...kindItems)
+        })
+      })
     }
   })
   

@@ -1,6 +1,12 @@
 import { supabase } from './supabase'
 import { Item } from '../types'
 
+export interface ChallengeSummary {
+  level: string
+  kind: string
+  total: number
+}
+
 // Challenge service for Supabase operations
 export class SupabaseChallengeService {
   // Convert database row to Item type
@@ -164,5 +170,42 @@ export class SupabaseChallengeService {
       console.error('Error batch deleting challenges:', error)
       throw error
     }
+  }
+
+  // Get challenges summary for custom game creation
+  static async getChallengesSummary(): Promise<ChallengeSummary[]> {
+    const { data, error } = await supabase
+      .from('challenges_summary')
+      .select('*')
+      .order('level', { ascending: true })
+      .order('kind', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching challenges summary:', error)
+      throw error
+    }
+
+    return (data || []).map(item => ({
+      level: item.level,
+      kind: item.kind,
+      total: item.total
+    }))
+  }
+
+  // Get challenges by level and kind for custom game creation
+  static async getChallengesByLevelAndKind(level: string, kind: string): Promise<Item[]> {
+    const { data, error } = await supabase
+      .from('challenges')
+      .select('*')
+      .eq('level', level)
+      .eq('kind', kind)
+      .order('id', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching challenges by level and kind:', error)
+      throw error
+    }
+
+    return (data || []).map(row => this.convertDbRowToItem(row))
   }
 }

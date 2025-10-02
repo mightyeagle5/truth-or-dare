@@ -1,6 +1,42 @@
 import type { Item, ItemKind, Level } from '../types'
 import { createId } from './ids'
 
+// Helper functions for the new usedItems structure
+export const addUsedItem = (
+  usedItems: Record<string, Record<string, string[]>>,
+  item: Item
+): Record<string, Record<string, string[]>> => {
+  const newUsedItems = { ...usedItems }
+  
+  if (!newUsedItems[item.level]) {
+    newUsedItems[item.level] = {}
+  }
+  if (!newUsedItems[item.level][item.kind]) {
+    newUsedItems[item.level][item.kind] = []
+  }
+  
+  if (!newUsedItems[item.level][item.kind].includes(item.id)) {
+    newUsedItems[item.level][item.kind].push(item.id)
+  }
+  
+  return newUsedItems
+}
+
+export const isItemUsed = (
+  usedItems: Record<string, Record<string, string[]>>,
+  item: Item
+): boolean => {
+  return usedItems[item.level]?.[item.kind]?.includes(item.id) || false
+}
+
+export const getUsedItemsForLevelKind = (
+  usedItems: Record<string, Record<string, string[]>>,
+  level: string,
+  kind: string
+): string[] => {
+  return usedItems[level]?.[kind] || []
+}
+
 // Placeholder data structure - user will replace with actual game_questions.json
 export const PLACEHOLDER_ITEMS: Item[] = [
   {
@@ -117,13 +153,15 @@ export const getAvailableItems = (
   items: Item[],
   level: Exclude<Level, 'Progressive'>,
   kind: ItemKind,
-  usedItems: string[],
+  usedItems: Record<string, Record<string, string[]>>,
   priorGameItems: string[] = []
 ): Item[] => {
+  const usedForLevelKind = getUsedItemsForLevelKind(usedItems, level, kind)
+  
   return items.filter(item => 
     item.level === level &&
     item.kind === kind &&
-    !usedItems.includes(item.id) &&
+    !usedForLevelKind.includes(item.id) &&
     !priorGameItems.includes(item.id)
   )
 }
@@ -138,12 +176,12 @@ export const getRandomItem = (availableItems: Item[]): Item | null => {
 export const getWildCardItem = (
   items: Item[],
   level: Exclude<Level, 'Progressive'>,
-  usedItems: string[],
+  usedItems: Record<string, Record<string, string[]>>,
   priorGameItems: string[] = []
 ): Item | null => {
   const availableItems = items.filter(item => 
     item.level === level &&
-    !usedItems.includes(item.id) &&
+    !isItemUsed(usedItems, item) &&
     !priorGameItems.includes(item.id)
   )
   
@@ -153,7 +191,7 @@ export const getWildCardItem = (
 export const getItemCounts = (
   items: Item[],
   level: Exclude<Level, 'Progressive'>,
-  usedItems: string[],
+  usedItems: Record<string, Record<string, string[]>>,
   priorGameItems: string[] = []
 ): { truth: number; dare: number } => {
   const truthItems = getAvailableItems(items, level, 'truth', usedItems, priorGameItems)

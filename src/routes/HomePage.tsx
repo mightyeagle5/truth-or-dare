@@ -41,8 +41,10 @@ export const HomePage: React.FC = () => {
     
     setIsStarting(true)
     try {
-      const gameId = startGame(players, selectedLevel, selectedPriorGames)
-      navigate(`/game/${gameId}`)
+      const gameId = await startGame(players, selectedLevel, selectedPriorGames)
+      if (gameId) {
+        navigate(`/game/${gameId}`)
+      }
     } catch (error) {
       console.error('Failed to start game:', error)
     } finally {

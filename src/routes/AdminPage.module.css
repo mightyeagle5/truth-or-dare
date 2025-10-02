@@ -134,6 +134,15 @@
   min-height: 0;
 }
 
+.listLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+}
+
 .listItem {
   padding: 12px;
   border: 1px solid #eee;

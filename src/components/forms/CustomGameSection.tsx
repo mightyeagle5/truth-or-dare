@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { PlayerList } from './PlayerList'
-import gameQuestions from '../../data/game_questions.json'
+import { SupabaseChallengeService, ChallengeSummary } from '../../lib/supabaseService'
 import type { PlayerSnapshot, Level, CustomChallenge, ItemKind } from '../../types'
 import styles from './CustomGameSection.module.css'
 
@@ -74,14 +74,39 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
 }) => {
   const challengesListRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  
+  // State for challenges summary
+  const [challengesSummary, setChallengesSummary] = useState<ChallengeSummary[]>([])
+  const [loadingSummary, setLoadingSummary] = useState(false)
+  const [loadingChallenges, setLoadingChallenges] = useState(false)
+
+  // Load challenges summary on component mount
+  useEffect(() => {
+    const loadChallengesSummary = async () => {
+      setLoadingSummary(true)
+      try {
+        const summary = await SupabaseChallengeService.getChallengesSummary()
+        setChallengesSummary(summary)
+      } catch (error) {
+        console.error('Failed to load challenges summary:', error)
+      } finally {
+        setLoadingSummary(false)
+      }
+    }
+    
+    loadChallengesSummary()
+  }, [])
 
   // Helper functions for custom challenges
-  const getAvailableGameChallenges = (kind: ItemKind, level: Level) => {
-    const allChallenges = gameQuestions.filter((item: any) => item.kind === kind && item.level === level)
-    const addedOriginalIds = customChallenges
+  const getAvailableCount = (kind: ItemKind, level: Level) => {
+    const summary = challengesSummary.find(s => s.level === level && s.kind === kind)
+    if (!summary) return 0
+    
+    const addedCount = customChallenges
       .filter(challenge => !challenge.isCustom && challenge.kind === kind && challenge.level === level)
-      .map(challenge => challenge.originalId)
-    return allChallenges.filter((challenge: any) => !addedOriginalIds.includes(challenge.id))
+      .length
+    
+    return Math.max(0, summary.total - addedCount)
   }
 
   const addCustomChallenge = () => {
@@ -104,24 +129,43 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
     scrollToTop()
   }
 
-  const addGameChallenges = () => {
-    const availableChallenges = getAvailableGameChallenges(gameChallengeSelector.kind, gameChallengeSelector.level)
+  const addGameChallenges = async () => {
+    if (loadingChallenges) return
     
-    const newChallenges: CustomChallenge[] = availableChallenges.map((challenge: any) => ({
-      id: `game-${challenge.id}-${Date.now()}`,
-      text: challenge.text,
-      kind: challenge.kind as ItemKind,
-      level: challenge.level as Level,
-      isCustom: false,
-      originalId: challenge.id,
-      gender_for: challenge.gender_for || ['female', 'male'],
-      gender_target: challenge.gender_target || ['female', 'male'],
-      tags: challenge.tags || []
-    }))
-    
-    setCustomChallenges(prev => [...newChallenges, ...prev])
-    setChallengeFilter('all')
-    scrollToTop()
+    setLoadingChallenges(true)
+    try {
+      const challenges = await SupabaseChallengeService.getChallengesByLevelAndKind(
+        gameChallengeSelector.level,
+        gameChallengeSelector.kind
+      )
+      
+      // Filter out already added challenges
+      const addedOriginalIds = customChallenges
+        .filter(challenge => !challenge.isCustom && challenge.kind === gameChallengeSelector.kind && challenge.level === gameChallengeSelector.level)
+        .map(challenge => challenge.originalId)
+      
+      const availableChallenges = challenges.filter(challenge => !addedOriginalIds.includes(challenge.id))
+      
+      const newChallenges: CustomChallenge[] = availableChallenges.map(challenge => ({
+        id: `game-${challenge.id}-${Date.now()}`,
+        text: challenge.text,
+        kind: challenge.kind,
+        level: challenge.level,
+        isCustom: false,
+        originalId: challenge.id,
+        gender_for: challenge.gender_for || ['female', 'male'],
+        gender_target: challenge.gender_target || ['female', 'male'],
+        tags: challenge.tags || []
+      }))
+      
+      setCustomChallenges(prev => [...newChallenges, ...prev])
+      setChallengeFilter('all')
+      scrollToTop()
+    } catch (error) {
+      console.error('Failed to load challenges:', error)
+    } finally {
+      setLoadingChallenges(false)
+    }
   }
 
   const scrollToTop = () => {
@@ -330,9 +374,12 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                 <button
                   className={styles.addGameButton}
                   onClick={addGameChallenges}
-                  disabled={getAvailableGameChallenges(gameChallengeSelector.kind, gameChallengeSelector.level).length === 0}
+                  disabled={getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level) === 0 || loadingChallenges}
                 >
-                  Add All ({getAvailableGameChallenges(gameChallengeSelector.kind, gameChallengeSelector.level).length} available)
+                  {loadingChallenges 
+                    ? 'Loading...' 
+                    : `Add All (${getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level)} available)`
+                  }
                 </button>
               </div>
             </div>

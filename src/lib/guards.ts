@@ -24,7 +24,7 @@ export const isValidGame = (game: any): game is GameMeta => {
     typeof game.isProgressive === 'boolean' &&
     typeof game.turnIndex === 'number' &&
     typeof game.totalTurnsAtCurrentLevel === 'number' &&
-    Array.isArray(game.usedItems) &&
+    typeof game.usedItems === 'object' && game.usedItems !== null &&
     typeof game.respectPriorGames === 'boolean'
   )
 }

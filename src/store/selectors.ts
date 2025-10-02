@@ -1,5 +1,5 @@
 import type { GameMeta, Item, ItemKind, Level } from '../types'
-import { getAvailableItems, getItemCounts } from '../lib/items'
+import { getAvailableItems, getItemCounts, isItemUsed } from '../lib/items'
 import { canChooseType, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getPriorGameItems } from './storage'
 
@@ -38,12 +38,12 @@ export const getDisabledChoices = (
     ? {
         truth: items.filter(item => 
           item.kind === 'truth' &&
-          !game.usedItems.includes(item.id) &&
+          !isItemUsed(game.usedItems, item) &&
           !priorGameItems.includes(item.id)
         ).length,
         dare: items.filter(item => 
           item.kind === 'dare' &&
-          !game.usedItems.includes(item.id) &&
+          !isItemUsed(game.usedItems, item) &&
           !priorGameItems.includes(item.id)
         ).length
       }

@@ -77,7 +77,7 @@ describe('Local Storage', () => {
       isProgressive: false,
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
-      usedItems: [],
+      usedItems: {},
       respectPriorGames: true,
       playerCounters: { 'p1': { consecutiveTruths: 0, consecutiveDares: 0 } }
     }
@@ -125,7 +125,7 @@ describe('Local Storage', () => {
       isProgressive: false,
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
-      usedItems: ['item1', 'item2'],
+      usedItems: { 'soft': { 'truth': ['item1'], 'dare': ['item2'] } },
       respectPriorGames: true,
       playerCounters: {}
     }
@@ -140,7 +140,7 @@ describe('Local Storage', () => {
       isProgressive: false,
       turnIndex: 0,
       totalTurnsAtCurrentLevel: 0,
-      usedItems: ['item3'],
+      usedItems: { 'mild': { 'truth': ['item3'] } },
       respectPriorGames: true,
       playerCounters: {}
     }

@@ -40,7 +40,7 @@ export interface GameMeta {
   isProgressive: boolean
   turnIndex: number // index into players array
   totalTurnsAtCurrentLevel: number // for 10-turn suggestion
-  usedItems: string[] // Item IDs used in this game
+  usedItems: Record<string, Record<string, string[]>> // Item IDs used in this game, organized by level and kind
   respectPriorGames: boolean // false if user pressed "Reset" on Homepage
   playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> // per-player consecutive counters
   customItems?: Item[] // Custom challenges for custom games
@@ -72,6 +72,8 @@ export interface GameState {
   currentItem: Item | null
   items: Item[]
   isWildCard: boolean // tracks if current item is a wild card
+  challengePairLoading: boolean // tracks if challenge pairs are loading
+  challengePairError: string | null // tracks challenge pair loading errors
 }
 
 export interface GameActions {
@@ -82,12 +84,13 @@ export interface GameActions {
   exitGame: () => void
   
   // Gameplay
-  pickItem: (kind: ItemKind) => void
-  pickWildCard: () => void
+  pickItem: (kind: ItemKind) => Promise<void>
+  pickWildCard: () => Promise<void>
   skipItem: () => void
   completeItem: () => void
-  completeWildCard: () => void
-  goNextLevel: () => void
+  completeWildCard: () => Promise<void>
+  goNextLevel: () => Promise<void>
+  changeLevel: (newLevel: Level) => Promise<void>
   
   // Settings
   toggleRespectPriorGames: (respect: boolean) => void

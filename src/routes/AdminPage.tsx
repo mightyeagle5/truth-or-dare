@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useGameStore } from '../store'
 import { Item, Level, ItemKind, Gender } from '../types'
 import { createId } from '../lib/ids'
@@ -30,9 +30,13 @@ const AdminPage: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false)
   const [showChangedItems, setShowChangedItems] = useState(false)
   
-  // Filter states
-  const [levelFilter, setLevelFilter] = useState<Level | 'all'>('all')
-  const [kindFilter, setKindFilter] = useState<ItemKind | 'all'>('all')
+  // Filter states - default to soft/truth, no "all" options
+  const [levelFilter, setLevelFilter] = useState<Level>('soft')
+  const [kindFilter, setKindFilter] = useState<ItemKind>('truth')
+  
+  // Cache for fetched items by level/kind combination (using refs to avoid re-renders)
+  const itemCacheRef = useRef<Record<string, Item[]>>({})
+  const loadingCacheRef = useRef<Record<string, boolean>>({})
   
   // Form states for editing/adding
   const [formData, setFormData] = useState({
@@ -44,21 +48,73 @@ const AdminPage: React.FC = () => {
     tags: ''
   })
 
-  // Load items from Supabase on mount
+  // Load items for current filter combination
   useEffect(() => {
-    const loadItemsFromSupabase = async () => {
+    let isMounted = true
+    
+    const loadItemsForFilter = async () => {
+      const cacheKey = `${levelFilter}-${kindFilter}`
+      
+      // If already cached, use cached data
+      if (itemCacheRef.current[cacheKey]) {
+        if (isMounted) {
+          setFilteredItems(itemCacheRef.current[cacheKey])
+          setIsLoading(false)
+        }
+        return
+      }
+      
+      // If already loading this combination, don't start another request
+      if (loadingCacheRef.current[cacheKey]) {
+        // Still need to ensure loading state is set to false if we have cached data
+        if (itemCacheRef.current[cacheKey]) {
+          if (isMounted) {
+            setFilteredItems(itemCacheRef.current[cacheKey])
+            setIsLoading(false)
+          }
+        }
+        return
+      }
+      
       try {
-        setIsLoading(true)
-        await loadItems()
+        loadingCacheRef.current[cacheKey] = true
+        
+        // Fetch only the specific level and kind
+        const items = await SupabaseChallengeService.getChallengesByLevelAndKind(levelFilter, kindFilter)
+        
+        // Sort items by updated_at descending (newest first)
+        const sortedItems = [...items].sort((a, b) => {
+          const dateA = a.updated_at ? new Date(a.updated_at).getTime() : 0
+          const dateB = b.updated_at ? new Date(b.updated_at).getTime() : 0
+          return dateB - dateA
+        })
+        
+        // Cache the results
+        itemCacheRef.current[cacheKey] = sortedItems
+        
+        if (isMounted) {
+          setFilteredItems(sortedItems)
+          setIsLoading(false)
+        }
       } catch (error) {
         console.error('Failed to load items:', error)
+        if (isMounted) {
+          setIsLoading(false)
+        }
       } finally {
-        setIsLoading(false)
+        loadingCacheRef.current[cacheKey] = false
       }
     }
     
-    loadItemsFromSupabase()
-  }, [loadItems])
+    loadItemsForFilter()
+    
+    return () => {
+      isMounted = false
+      // Reset loading state for this combination
+      const currentCacheKey = `${levelFilter}-${kindFilter}`
+      loadingCacheRef.current[currentCacheKey] = false
+    }
+  }, [levelFilter, kindFilter])
 
   // Format date function
   const formatDate = (dateString?: string) => {
@@ -75,27 +131,6 @@ const AdminPage: React.FC = () => {
     })
   }
 
-  // Filter items based on current filters
-  useEffect(() => {
-    let filtered = items
-    
-    if (levelFilter !== 'all') {
-      filtered = filtered.filter(item => item.level === levelFilter)
-    }
-    
-    if (kindFilter !== 'all') {
-      filtered = filtered.filter(item => item.kind === kindFilter)
-    }
-    
-    // Sort by updated_at descending (newest first)
-    filtered.sort((a, b) => {
-      const dateA = a.updated_at ? new Date(a.updated_at).getTime() : 0
-      const dateB = b.updated_at ? new Date(b.updated_at).getTime() : 0
-      return dateB - dateA
-    })
-    
-    setFilteredItems(filtered)
-  }, [items, levelFilter, kindFilter])
 
   // Initialize form data when editing
   useEffect(() => {
@@ -331,8 +366,33 @@ const AdminPage: React.FC = () => {
         }
       }
       
-      // Reload items from Supabase
-      await loadItemsFromSupabase()
+      // Invalidate cache for affected level/kind combinations
+      const affectedCombinations = new Set<string>()
+      for (const change of pendingChanges) {
+        // Add current level/kind combination
+        affectedCombinations.add(`${change.item.level}-${change.item.kind}`)
+        
+        // If it's an update that changed level or kind, also invalidate the original
+        if (change.type === 'update' && change.originalItem) {
+          if (change.item.level !== change.originalItem.level || change.item.kind !== change.originalItem.kind) {
+            affectedCombinations.add(`${change.originalItem.level}-${change.originalItem.kind}`)
+          }
+        }
+      }
+      
+      // Clear cache for affected combinations
+      affectedCombinations.forEach(combo => {
+        delete itemCacheRef.current[combo]
+        delete loadingCacheRef.current[combo]
+      })
+      
+      // Reload current filter if it was affected
+      const currentCombo = `${levelFilter}-${kindFilter}`
+      if (affectedCombinations.has(currentCombo)) {
+        const items = await SupabaseChallengeService.getChallengesByLevelAndKind(levelFilter, kindFilter)
+        itemCacheRef.current[currentCombo] = items
+        setFilteredItems(items)
+      }
       
       if (errorCount === 0) {
         alert(`✅ All changes saved successfully! (${successCount} operations)`)
@@ -435,9 +495,8 @@ const AdminPage: React.FC = () => {
               <label>Level:</label>
               <select 
                 value={levelFilter} 
-                onChange={(e) => setLevelFilter(e.target.value as Level | 'all')}
+                onChange={(e) => setLevelFilter(e.target.value as Level)}
               >
-                <option value="all">All Levels</option>
                 <option value="soft">Soft</option>
                 <option value="mild">Mild</option>
                 <option value="hot">Hot</option>
@@ -450,9 +509,8 @@ const AdminPage: React.FC = () => {
               <label>Kind:</label>
               <select 
                 value={kindFilter} 
-                onChange={(e) => setKindFilter(e.target.value as ItemKind | 'all')}
+                onChange={(e) => setKindFilter(e.target.value as ItemKind)}
               >
-                <option value="all">All Kinds</option>
                 <option value="truth">Truth</option>
                 <option value="dare">Dare</option>
               </select>
@@ -468,16 +526,16 @@ const AdminPage: React.FC = () => {
             </div>
             <div className={styles.listContainer}>
               {filteredItems.map(item => {
-                const pendingChange = pendingChanges.find(p => p.item.id === item.id)
-                const isDeleted = pendingChange?.type === 'delete'
-                const hasPendingChanges = pendingChange && pendingChange.type !== 'delete'
-                
-                return (
-                  <div 
-                    key={item.id}
-                    className={`${styles.listItem} ${selectedItem?.id === item.id ? styles.selected : ''} ${isDeleted ? styles.deleted : ''} ${hasPendingChanges ? styles.pending : ''}`}
-                    onClick={() => handleItemSelect(item)}
-                  >
+                  const pendingChange = pendingChanges.find(p => p.item.id === item.id)
+                  const isDeleted = pendingChange?.type === 'delete'
+                  const hasPendingChanges = pendingChange && pendingChange.type !== 'delete'
+                  
+                  return (
+                    <div 
+                      key={item.id}
+                      className={`${styles.listItem} ${selectedItem?.id === item.id ? styles.selected : ''} ${isDeleted ? styles.deleted : ''} ${hasPendingChanges ? styles.pending : ''}`}
+                      onClick={() => handleItemSelect(item)}
+                    >
                     <div className={styles.itemHeader}>
                       <div className={styles.itemHeaderLeft}>
                         <span className={styles.itemLevel}>{item.level}</span>
