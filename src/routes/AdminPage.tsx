@@ -104,8 +104,8 @@ const AdminPage: React.FC = () => {
         item: newItem
       }
       addPendingChange(change)
-      setIsAddingNew(false)
-      setSelectedItem(null)
+      // Keep the form in "adding new" mode so user can continue adding more items
+      // Don't reset isAddingNew or selectedItem
     }
   }
 
@@ -120,10 +120,14 @@ const AdminPage: React.FC = () => {
     }
     addPendingChange(change)
     
-    // Reset form to start fresh
-    resetForm()
-    setSelectedItem(null)
+    // Keep the form in "adding new" mode so user can continue adding more items
+    // Don't reset form, selectedItem, or isAddingNew
+  }
+
+  const handleCancel = () => {
     setIsAddingNew(false)
+    setSelectedItem(null)
+    resetForm()
   }
 
 
@@ -192,6 +196,7 @@ const AdminPage: React.FC = () => {
               handleUpdate={handleUpdate}
               handleAddAsNew={handleAddAsNew}
               handleSave={handleSave}
+              handleCancel={handleCancel}
               pendingChanges={pendingChanges}
             />
           ) : (

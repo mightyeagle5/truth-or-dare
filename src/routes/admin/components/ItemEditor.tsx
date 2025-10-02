@@ -14,6 +14,7 @@ interface ItemEditorProps {
   handleUpdate: () => void
   handleAddAsNew: () => void
   handleSave: () => void
+  handleCancel: () => void
   pendingChanges: PendingChange[]
 }
 
@@ -27,6 +28,7 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
   handleUpdate,
   handleAddAsNew,
   handleSave,
+  handleCancel,
   pendingChanges
 }) => {
   return (
@@ -59,12 +61,20 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
               </>
             )}
             {isAddingNew && (
-              <button 
-                className={styles.saveBtn}
-                onClick={handleSave}
-              >
-                Save
-              </button>
+              <>
+                <button 
+                  className={styles.saveBtn}
+                  onClick={handleSave}
+                >
+                  Save
+                </button>
+                <button 
+                  className={styles.cancelBtn}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </>
             )}
           </div>
         </div>
