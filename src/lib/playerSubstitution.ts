@@ -4,17 +4,24 @@ import type { Player, PlayerSnapshot } from '../types'
  * Substitutes player name placeholders in challenge text with actual player names
  * @param text - The challenge text with {active_player} and {other_player} placeholders
  * @param activePlayer - The player whose turn it is
- * @param targetPlayer - The player the challenge is performed on
+ * @param targetPlayer - The player the challenge is performed on (can be null)
  * @returns The text with player names substituted
  */
 export const substitutePlayerNames = (
   text: string,
   activePlayer: Player | PlayerSnapshot,
-  targetPlayer: Player | PlayerSnapshot
+  targetPlayer: Player | PlayerSnapshot | null
 ): string => {
-  return text
-    .replace(/{active_player}/g, activePlayer.name)
-    .replace(/{other_player}/g, targetPlayer.name)
+  let result = text.replace(/{active_player}/g, activePlayer.name)
+  
+  if (targetPlayer) {
+    result = result.replace(/{other_player}/g, targetPlayer.name)
+  } else {
+    // If no target player, replace {other_player} with a generic term
+    result = result.replace(/{other_player}/g, 'another player')
+  }
+  
+  return result
 }
 
 /**

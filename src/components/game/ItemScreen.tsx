@@ -34,9 +34,7 @@ export const ItemScreen: React.FC = () => {
   const targetPlayer = selectTargetPlayer(currentPlayer, currentGame.players, currentItem.gender_target || [])
   
   // Substitute player names in the challenge text
-  const personalizedText = targetPlayer 
-    ? substitutePlayerNames(currentItem.text, currentPlayer, targetPlayer)
-    : currentItem.text
+  const personalizedText = substitutePlayerNames(currentItem.text, currentPlayer, targetPlayer)
 
   const handleWildCard = () => {
     setIsWildCardPicking(true)
