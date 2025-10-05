@@ -7,8 +7,10 @@ import styles from '../../AdminPage.module.css'
 interface FilterSidebarProps {
   levelFilter: Level
   kindFilter: ItemKind
+  hideDeleted: boolean
   setLevelFilter: (level: Level) => void
   setKindFilter: (kind: ItemKind) => void
+  setHideDeleted: (hide: boolean) => void
   filteredItems: Item[]
   selectedItem: Item | null
   handleItemSelect: (item: Item) => void
@@ -19,8 +21,10 @@ interface FilterSidebarProps {
 export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   levelFilter,
   kindFilter,
+  hideDeleted,
   setLevelFilter,
   setKindFilter,
+  setHideDeleted,
   filteredItems,
   selectedItem,
   handleItemSelect,
@@ -56,6 +60,17 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <option value="dare">Dare</option>
           </select>
         </div>
+
+        <div className={styles.filterGroup}>
+          <label>
+            <input 
+              type="checkbox" 
+              checked={hideDeleted}
+              onChange={(e) => setHideDeleted(e.target.checked)}
+            />
+            Do not show deleted
+          </label>
+        </div>
       </div>
 
       <div className={styles.itemList}>
@@ -68,7 +83,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div className={styles.listContainer}>
           {filteredItems.map(item => {
               const pendingChange = pendingChanges.find(p => p.item.id === item.id)
-              const isDeleted = pendingChange?.type === 'delete'
+              const isDeleted = pendingChange?.type === 'delete' || item.is_deleted
               const hasPendingChanges = pendingChange && pendingChange.type !== 'delete'
               
               return (
@@ -91,7 +106,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   {item.text.length > 100 ? `${item.text.substring(0, 100)}...` : item.text}
                 </div>
                 <div className={styles.itemTimestamp}>
-                  Updated: {formatDate(item.updated_at)}
+                  {item.is_deleted && item.deleted_at ? `Deleted: ${formatDate(item.deleted_at)}` : `Updated: ${formatDate(item.updated_at)}`}
                 </div>
                 {hasPendingChanges && (
                   <div className={styles.pendingInfo}>

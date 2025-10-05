@@ -1,0 +1,5 @@
+---
+description: when a new chat is started, always create a new branch for the request in that chat. Never merge this ranch without permission.
+globs:
+alwaysApply: true
+---

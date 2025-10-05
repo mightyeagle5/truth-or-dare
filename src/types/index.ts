@@ -56,6 +56,8 @@ export interface Item {
   gender_for: Gender[] // Genders that can receive this challenge
   gender_target: Gender[] // Genders that this challenge can be performed on
   tags: string[] // Tags for filtering/exclusion
+  is_deleted?: boolean // Whether the challenge is soft deleted
+  deleted_at?: string // Timestamp when the challenge was deleted
   updated_at?: string // Last updated timestamp
   is_time_based?: boolean // Whether the challenge is time-based
   duration?: number // Duration in seconds for time-based challenges

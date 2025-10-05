@@ -19,6 +19,8 @@ export class SupabaseChallengeService {
       gender_for: row.gender_for || [],
       gender_target: row.gender_target || [],
       tags: row.tags || [],
+      is_deleted: row.is_deleted || false,
+      deleted_at: row.deleted_at,
       updated_at: row.updated_at,
       is_time_based: row.is_time_based || false,
       duration: row.duration || 0
@@ -35,20 +37,38 @@ export class SupabaseChallengeService {
       gender_for: item.gender_for,
       gender_target: item.gender_target,
       tags: item.tags,
+      is_deleted: item.is_deleted,
+      deleted_at: item.deleted_at,
       is_time_based: item.is_time_based,
       duration: item.duration
     }
   }
 
-  // Get all challenges
+  // Get all challenges (for game - excludes deleted)
   static async getAllChallenges(): Promise<Item[]> {
+    const { data, error } = await supabase
+      .from('challenges')
+      .select('*')
+      .eq('is_deleted', false)
+      .order('created_at', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching challenges:', error)
+      throw error
+    }
+
+    return (data || []).map(row => this.convertDbRowToItem(row))
+  }
+
+  // Get all challenges including deleted (for admin panel)
+  static async getAllChallengesForAdmin(): Promise<Item[]> {
     const { data, error } = await supabase
       .from('challenges')
       .select('*')
       .order('created_at', { ascending: true })
 
     if (error) {
-      console.error('Error fetching challenges:', error)
+      console.error('Error fetching challenges for admin:', error)
       throw error
     }
 
@@ -120,15 +140,34 @@ export class SupabaseChallengeService {
     return this.convertDbRowToItem(data)
   }
 
-  // Delete challenge
-  static async deleteChallenge(id: string): Promise<void> {
+  // Soft delete challenge
+  static async softDeleteChallenge(id: string): Promise<void> {
     const { error } = await supabase
       .from('challenges')
-      .delete()
+      .update({
+        is_deleted: true,
+        deleted_at: new Date().toISOString()
+      })
       .eq('id', id)
 
     if (error) {
-      console.error('Error deleting challenge:', error)
+      console.error('Error soft deleting challenge:', error)
+      throw error
+    }
+  }
+
+  // Restore challenge
+  static async restoreChallenge(id: string): Promise<void> {
+    const { error } = await supabase
+      .from('challenges')
+      .update({
+        is_deleted: false,
+        deleted_at: null
+      })
+      .eq('id', id)
+
+    if (error) {
+      console.error('Error restoring challenge:', error)
       throw error
     }
   }
@@ -168,14 +207,17 @@ export class SupabaseChallengeService {
     return Promise.all(promises)
   }
 
-  static async batchDeleteChallenges(ids: string[]): Promise<void> {
+  static async batchSoftDeleteChallenges(ids: string[]): Promise<void> {
     const { error } = await supabase
       .from('challenges')
-      .delete()
+      .update({
+        is_deleted: true,
+        deleted_at: new Date().toISOString()
+      })
       .in('id', ids)
 
     if (error) {
-      console.error('Error batch deleting challenges:', error)
+      console.error('Error batch soft deleting challenges:', error)
       throw error
     }
   }
@@ -200,8 +242,26 @@ export class SupabaseChallengeService {
     }))
   }
 
-  // Get challenges by level and kind for custom game creation
+  // Get challenges by level and kind for custom game creation (excludes deleted)
   static async getChallengesByLevelAndKind(level: string, kind: string): Promise<Item[]> {
+    const { data, error } = await supabase
+      .from('challenges')
+      .select('*')
+      .eq('level', level)
+      .eq('kind', kind)
+      .eq('is_deleted', false)
+      .order('id', { ascending: true })
+
+    if (error) {
+      console.error('Error fetching challenges by level and kind:', error)
+      throw error
+    }
+
+    return (data || []).map(row => this.convertDbRowToItem(row))
+  }
+
+  // Get challenges by level and kind for admin panel (includes deleted)
+  static async getChallengesByLevelAndKindForAdmin(level: string, kind: string): Promise<Item[]> {
     const { data, error } = await supabase
       .from('challenges')
       .select('*')
@@ -210,7 +270,7 @@ export class SupabaseChallengeService {
       .order('id', { ascending: true })
 
     if (error) {
-      console.error('Error fetching challenges by level and kind:', error)
+      console.error('Error fetching challenges by level and kind for admin:', error)
       throw error
     }
 

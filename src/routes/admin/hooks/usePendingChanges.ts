@@ -3,7 +3,7 @@ import { Item } from '../../../types'
 import { SupabaseChallengeService } from '../../../lib/supabaseService'
 
 export interface PendingChange {
-  type: 'add' | 'update' | 'delete'
+  type: 'add' | 'update' | 'delete' | 'restore'
   item: Item
   originalItem?: Item // For updates, store the original
   changes?: string[] // List of what fields were changed
@@ -82,8 +82,12 @@ export const usePendingChanges = () => {
               console.log(`✅ Updated challenge: ${change.item.text.substring(0, 50)}...`)
               break
             case 'delete':
-              await SupabaseChallengeService.deleteChallenge(change.item.id)
-              console.log(`✅ Deleted challenge: ${change.item.text.substring(0, 50)}...`)
+              await SupabaseChallengeService.softDeleteChallenge(change.item.id)
+              console.log(`✅ Soft deleted challenge: ${change.item.text.substring(0, 50)}...`)
+              break
+            case 'restore':
+              await SupabaseChallengeService.restoreChallenge(change.item.id)
+              console.log(`✅ Restored challenge: ${change.item.text.substring(0, 50)}...`)
               break
           }
           successCount++
@@ -113,13 +117,8 @@ export const usePendingChanges = () => {
         delete loadingCacheRef.current[combo]
       })
       
-      // Reload current filter if it was affected
-      const currentCombo = `${levelFilter}-${kindFilter}`
-      if (affectedCombinations.has(currentCombo)) {
-        const items = await SupabaseChallengeService.getChallengesByLevelAndKind(levelFilter as any, kindFilter as any)
-        itemCacheRef.current[currentCombo] = items
-        setFilteredItems(items)
-      }
+      // Clear cache for affected combinations - the parent component will handle refresh
+      // This ensures the cache is invalidated and fresh data will be loaded
       
       if (errorCount === 0) {
         alert(`✅ All changes saved successfully! (${successCount} operations)`)

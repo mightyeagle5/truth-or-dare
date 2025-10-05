@@ -84,7 +84,9 @@
 }
 
 .filterGroup label {
-  display: block;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   margin-bottom: 5px;
   font-weight: 500;
   color: #555;
@@ -98,6 +100,16 @@
   border-radius: 4px;
   font-size: 14px;
   background: white;
+}
+
+.filterGroup input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.filterGroup label:hover {
+  color: #333;
 }
 
 .itemListHeader {
@@ -340,6 +352,21 @@
 .deleteBtn:disabled {
   background: #6c757d;
   cursor: not-allowed;
+}
+
+.restoreBtn {
+  background: #17a2b8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.restoreBtn:hover:not(:disabled) {
+  background: #138496;
 }
 
 .updateBtn {

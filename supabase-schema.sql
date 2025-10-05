@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS challenges (
   gender_for TEXT[] NOT NULL DEFAULT '{}',
   gender_target TEXT[] NOT NULL DEFAULT '{}',
   tags TEXT[] NOT NULL DEFAULT '{}',
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
+  deleted_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -15,6 +17,8 @@ CREATE TABLE IF NOT EXISTS challenges (
 CREATE INDEX IF NOT EXISTS idx_challenges_level ON challenges(level);
 CREATE INDEX IF NOT EXISTS idx_challenges_kind ON challenges(kind);
 CREATE INDEX IF NOT EXISTS idx_challenges_created_at ON challenges(created_at);
+CREATE INDEX IF NOT EXISTS idx_challenges_is_deleted ON challenges(is_deleted);
+CREATE INDEX IF NOT EXISTS idx_challenges_deleted_at ON challenges(deleted_at);
 
 -- Create updated_at trigger
 CREATE OR REPLACE FUNCTION update_updated_at_column()

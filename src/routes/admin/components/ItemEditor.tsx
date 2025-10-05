@@ -11,6 +11,7 @@ interface ItemEditorProps {
   handleFormChange: (field: string, value: string) => void
   currentChanges: ChangeDetection
   handleDelete: () => void
+  handleRestore: () => void
   handleUpdate: () => void
   handleAddAsNew: () => void
   handleSave: () => void
@@ -25,6 +26,7 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
   handleFormChange,
   currentChanges,
   handleDelete,
+  handleRestore,
   handleUpdate,
   handleAddAsNew,
   handleSave,
@@ -39,12 +41,21 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
           <div className={styles.actionButtons}>
             {!isAddingNew && (
               <>
-                <button 
-                  className={styles.deleteBtn}
-                  onClick={handleDelete}
-                >
-                  Delete
-                </button>
+                {selectedItem?.is_deleted ? (
+                  <button 
+                    className={styles.restoreBtn}
+                    onClick={handleRestore}
+                  >
+                    Restore
+                  </button>
+                ) : (
+                  <button 
+                    className={styles.deleteBtn}
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </button>
+                )}
                 <button 
                   className={styles.updateBtn}
                   onClick={handleUpdate}

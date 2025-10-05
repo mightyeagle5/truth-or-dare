@@ -17,8 +17,11 @@ const AdminPage: React.FC = () => {
     isLoading,
     levelFilter,
     kindFilter,
+    hideDeleted,
     setLevelFilter,
     setKindFilter,
+    setHideDeleted,
+    refreshCurrentFilter,
     itemCacheRef,
     loadingCacheRef
   } = useAdminFilters()
@@ -72,6 +75,17 @@ const AdminPage: React.FC = () => {
     if (selectedItem) {
       const change: PendingChange = {
         type: 'delete',
+        item: selectedItem
+      }
+      addPendingChange(change)
+      setSelectedItem(null)
+    }
+  }
+
+  const handleRestore = () => {
+    if (selectedItem) {
+      const change: PendingChange = {
+        type: 'restore',
         item: selectedItem
       }
       addPendingChange(change)
@@ -135,7 +149,10 @@ const AdminPage: React.FC = () => {
     await confirmSaveChanges(itemCacheRef, loadingCacheRef, levelFilter, kindFilter, () => {
       // This would be handled by the useAdminFilters hook
     })
-  }, [confirmSaveChanges, itemCacheRef, loadingCacheRef, levelFilter, kindFilter])
+    
+    // Refresh the current filter to show updated data
+    await refreshCurrentFilter()
+  }, [confirmSaveChanges, itemCacheRef, loadingCacheRef, levelFilter, kindFilter, refreshCurrentFilter])
 
   if (isLoading) {
     return (
@@ -169,8 +186,10 @@ const AdminPage: React.FC = () => {
         <FilterSidebar
           levelFilter={levelFilter}
           kindFilter={kindFilter}
+          hideDeleted={hideDeleted}
           setLevelFilter={setLevelFilter}
           setKindFilter={setKindFilter}
+          setHideDeleted={setHideDeleted}
           filteredItems={filteredItems}
           selectedItem={selectedItem}
           handleItemSelect={handleItemSelect}
@@ -193,6 +212,7 @@ const AdminPage: React.FC = () => {
               handleFormChange={handleFormChange}
               currentChanges={currentChanges}
               handleDelete={handleDelete}
+              handleRestore={handleRestore}
               handleUpdate={handleUpdate}
               handleAddAsNew={handleAddAsNew}
               handleSave={handleSave}
