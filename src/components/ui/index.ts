@@ -1,4 +1,5 @@
 export { Badge } from './Badge'
 export { IconButton } from './IconButton'
 export { Pill } from './Pill'
+export { Timer } from './Timer'
 export { Tooltip } from './Tooltip'
