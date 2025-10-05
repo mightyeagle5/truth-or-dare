@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getCurrentPlayer } from '../../store/selectors'
 import { useGameStore, useUIStore } from '../../store'
-import { Badge } from '../ui/Badge'
+import { Badge, Timer } from '../ui'
 import { substitutePlayerNames, selectTargetPlayer } from '../../lib/playerSubstitution'
 import styles from './ItemScreen.module.css'
 
@@ -89,6 +89,13 @@ export const ItemScreen: React.FC = () => {
               </Badge>
             </div>
           </div>
+
+          {currentItem.is_time_based && currentItem.duration && currentItem.duration > 0 && (
+            <Timer 
+              duration={currentItem.duration} 
+              autoStart={false}
+            />
+          )}
 
           <div className={styles.itemContent}>
             <p className={styles.itemText}>{personalizedText}</p>

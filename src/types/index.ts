@@ -57,6 +57,8 @@ export interface Item {
   gender_target: Gender[] // Genders that this challenge can be performed on
   tags: string[] // Tags for filtering/exclusion
   updated_at?: string // Last updated timestamp
+  is_time_based?: boolean // Whether the challenge is time-based
+  duration?: number // Duration in seconds for time-based challenges
 }
 
 export interface GameHistoryEntry {

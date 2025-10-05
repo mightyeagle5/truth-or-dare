@@ -22,6 +22,8 @@ export interface Database {
           tags: string[]
           created_at: string
           updated_at: string
+          is_time_based: boolean
+          duration: number
         }
         Insert: {
           id?: string
@@ -33,6 +35,8 @@ export interface Database {
           tags?: string[]
           created_at?: string
           updated_at?: string
+          is_time_based?: boolean
+          duration?: number
         }
         Update: {
           id?: string
@@ -44,6 +48,8 @@ export interface Database {
           tags?: string[]
           created_at?: string
           updated_at?: string
+          is_time_based?: boolean
+          duration?: number
         }
       }
     }

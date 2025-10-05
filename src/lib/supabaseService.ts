@@ -19,7 +19,9 @@ export class SupabaseChallengeService {
       gender_for: row.gender_for || [],
       gender_target: row.gender_target || [],
       tags: row.tags || [],
-      updated_at: row.updated_at
+      updated_at: row.updated_at,
+      is_time_based: row.is_time_based || false,
+      duration: row.duration || 0
     }
   }
 
@@ -32,7 +34,9 @@ export class SupabaseChallengeService {
       text: item.text,
       gender_for: item.gender_for,
       gender_target: item.gender_target,
-      tags: item.tags
+      tags: item.tags,
+      is_time_based: item.is_time_based,
+      duration: item.duration
     }
   }
 
@@ -76,7 +80,9 @@ export class SupabaseChallengeService {
       text: challenge.text,
       gender_for: challenge.gender_for,
       gender_target: challenge.gender_target,
-      tags: challenge.tags
+      tags: challenge.tags,
+      is_time_based: challenge.is_time_based,
+      duration: challenge.duration
     }
     
     const { data, error } = await supabase
@@ -136,7 +142,9 @@ export class SupabaseChallengeService {
       text: challenge.text,
       gender_for: challenge.gender_for,
       gender_target: challenge.gender_target,
-      tags: challenge.tags
+      tags: challenge.tags,
+      is_time_based: challenge.is_time_based,
+      duration: challenge.duration
     }))
     
     const { data, error } = await supabase
