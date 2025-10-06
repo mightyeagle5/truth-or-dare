@@ -1,5 +1,5 @@
 import { supabase } from './supabase'
-import { Item } from '../types'
+import { Item, ChallengeReaction, ReactionType } from '../types'
 
 export interface ChallengeSummary {
   level: string
@@ -275,5 +275,69 @@ export class SupabaseChallengeService {
     }
 
     return (data || []).map(row => this.convertDbRowToItem(row))
+  }
+
+  // Rating/Reaction methods
+  static async submitReaction(challengeId: string, reaction: ReactionType): Promise<ChallengeReaction> {
+    const { data, error } = await supabase
+      .from('challenge_reactions')
+      .insert([{
+        challenge_id: challengeId,
+        reaction: reaction
+      }])
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Error submitting reaction:', error)
+      throw error
+    }
+
+    return {
+      id: data.id,
+      challenge_id: data.challenge_id,
+      reaction: data.reaction,
+      created_at: data.created_at
+    }
+  }
+
+  static async getReactionsForChallenge(challengeId: string): Promise<ChallengeReaction[]> {
+    const { data, error } = await supabase
+      .from('challenge_reactions')
+      .select('*')
+      .eq('challenge_id', challengeId)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching reactions:', error)
+      throw error
+    }
+
+    return (data || []).map(row => ({
+      id: row.id,
+      challenge_id: row.challenge_id,
+      reaction: row.reaction,
+      created_at: row.created_at
+    }))
+  }
+
+  static async getReactionStats(challengeId: string): Promise<{ up: number; down: number }> {
+    const { data, error } = await supabase
+      .from('challenge_reactions')
+      .select('reaction')
+      .eq('challenge_id', challengeId)
+
+    if (error) {
+      console.error('Error fetching reaction stats:', error)
+      throw error
+    }
+
+    const stats = { up: 0, down: 0 }
+    data?.forEach(row => {
+      if (row.reaction === 'up') stats.up++
+      else if (row.reaction === 'down') stats.down++
+    })
+
+    return stats
   }
 }
