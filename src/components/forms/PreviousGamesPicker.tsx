@@ -93,34 +93,35 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
           </div>
         </div>
       
-        {isOpen && (
-          <div className={styles.content}>
-            <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
-            {gameHistory.length === 0 ? (
-              <p id="previous-games-content" className={styles.empty}>No previous games</p>
-            ) : (
-              <div id="previous-games-content" className={styles.gamesList}>
-                {gameHistory.map((game) => (
-                  <label key={game.id} className={styles.gameItem}>
-                    <input
-                      type="checkbox"
-                      checked={selectedGameIds.includes(game.id)}
-                      onChange={() => handleGameToggle(game.id)}
-                      disabled={disabled}
-                      className={styles.checkbox}
-                    />
-                    <div className={styles.gameInfo}>
-                      <span className={styles.gameId}>{game.id}</span>
-                      <span className={styles.gameDate}>
-                        {formatGameDate(game.createdAt)}
-                      </span>
-                    </div>
-                  </label>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        <div
+          className={`${styles.content} ${isOpen ? styles.contentOpen : ''}`}
+          aria-hidden={!isOpen}
+        >
+          <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
+          {gameHistory.length === 0 ? (
+            <p id="previous-games-content" className={styles.empty}>No previous games</p>
+          ) : (
+            <div id="previous-games-content" className={styles.gamesList}>
+              {gameHistory.map((game) => (
+                <label key={game.id} className={styles.gameItem}>
+                  <input
+                    type="checkbox"
+                    checked={selectedGameIds.includes(game.id)}
+                    onChange={() => handleGameToggle(game.id)}
+                    disabled={disabled}
+                    className={styles.checkbox}
+                  />
+                  <div className={styles.gameInfo}>
+                    <span className={styles.gameId}>{game.id}</span>
+                    <span className={styles.gameDate}>
+                      {formatGameDate(game.createdAt)}
+                    </span>
+                  </div>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

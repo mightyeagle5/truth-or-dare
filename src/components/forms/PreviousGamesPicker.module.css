@@ -86,7 +86,11 @@
 }
 
 .content {
-  padding: 0 var(--radius-xl) var(--radius-xl);
+  padding: 0 var(--radius-xl) 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform-origin: top;
 }
 
 .gamesList {
@@ -95,6 +99,12 @@
   gap: var(--radius-lg);
   padding: 0;
   margin-top: var(--radius-lg);
+}
+
+.contentOpen {
+  max-height: 1200px; /* generous cap for smooth growth */
+  padding-bottom: var(--radius-xl);
+  opacity: 1;
 }
 
 .gameItem {
