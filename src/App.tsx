@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage } from './routes/HomePage'
 import { GamePage } from './routes/GamePage'
 import AdminPage from './routes/AdminPage'
@@ -25,6 +25,7 @@ function App() {
           {import.meta.env.DEV && (
             <Route path="/admin/edit-challenges" element={<AdminPage />} />
           )}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>
