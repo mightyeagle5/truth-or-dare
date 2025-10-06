@@ -18,13 +18,20 @@ export const GamePage: React.FC = () => {
     skipItem, 
     completeItem 
   } = useGameStore()
-  const { currentScreen } = useUIStore()
+  const { currentScreen, isLoading, error } = useUIStore()
 
   useEffect(() => {
     if (gameId && (!currentGame || currentGame.id !== gameId)) {
       loadGame(gameId)
     }
   }, [gameId, currentGame, loadGame])
+
+  useEffect(() => {
+    // If loading has finished and the game was not found, redirect to home
+    if (!isLoading && error === 'Game not found') {
+      navigate('/')
+    }
+  }, [isLoading, error, navigate])
 
   const handleExit = () => {
     if (window.confirm('Are you sure you want to exit the game? Your progress will be saved.')) {
@@ -36,9 +43,11 @@ export const GamePage: React.FC = () => {
   const currentPlayer = getCurrentPlayer(currentGame)
 
   if (!currentGame) {
+    // If there's no current game after attempting to load, redirect to home.
+    // This avoids showing a loading state that never resolves for invalid game IDs.
     return (
       <div className={styles.container}>
-        <Header title="Loading..." />
+        <Header title="Truth or Dare" subtitle="The sexy version" />
         <main className={styles.main}>
           <div className={styles.loading}>
             <p>Loading game...</p>
