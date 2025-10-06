@@ -63,6 +63,15 @@ export interface Item {
   duration?: number // Duration in seconds for time-based challenges
 }
 
+export type ReactionType = 'up' | 'down'
+
+export interface ChallengeReaction {
+  id: string
+  challenge_id: string
+  reaction: ReactionType
+  created_at: string
+}
+
 export interface GameHistoryEntry {
   id: string
   createdAt: number

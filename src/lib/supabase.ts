@@ -52,6 +52,26 @@ export interface Database {
           duration?: number
         }
       }
+      challenge_reactions: {
+        Row: {
+          id: string
+          challenge_id: string
+          reaction: 'up' | 'down'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          challenge_id: string
+          reaction: 'up' | 'down'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          challenge_id?: string
+          reaction?: 'up' | 'down'
+          created_at?: string
+        }
+      }
     }
   }
 }

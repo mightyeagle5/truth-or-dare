@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getCurrentPlayer } from '../../store/selectors'
 import { useGameStore, useUIStore } from '../../store'
-import { Badge, Timer } from '../ui'
+import { Badge, Timer, ChallengeRating } from '../ui'
 import { substitutePlayerNames, selectTargetPlayer } from '../../lib/playerSubstitution'
 import styles from './ItemScreen.module.css'
 
@@ -98,6 +98,11 @@ export const ItemScreen: React.FC = () => {
           <div className={styles.itemContent}>
             <p className={styles.itemText}>{personalizedText}</p>
           </div>
+          
+          <ChallengeRating 
+            challengeId={currentItem.id}
+            isCustomGame={currentGame.isCustomGame}
+          />
         </motion.div>
       </AnimatePresence>
 
