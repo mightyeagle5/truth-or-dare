@@ -2,23 +2,26 @@
   display: flex;
   flex-direction: column;
   gap: var(--radius-2xl);
-  padding: var(--radius-xl);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #374151;
+  border-radius: var(--radius-lg);
+  padding: 0; /* padding managed by header/content for click area control */
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--radius-xl);
-  padding: var(--radius-lg) var(--radius-xl);
+  padding: var(--radius-xl);
   cursor: pointer;
   transition: all var(--transition-fast);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #374151;
-  border-radius: var(--radius-lg);
 }
 
-.header:hover { background: rgba(255, 255, 255, 0.08); }
+/* No hover background change for header */
 
 .titleSection {
   display: flex;
@@ -75,21 +78,23 @@
   font-size: var(--font-size-sm);
   color: #9CA3AF;
   font-style: italic;
-  text-align: center;
-  padding: var(--font-size-xl);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
-  border: 1px dashed #374151;
+  text-align: left;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+}
+
+.content {
+  padding: 0 var(--radius-xl) var(--radius-xl);
 }
 
 .gamesList {
   display: flex;
   flex-direction: column;
   gap: var(--radius-lg);
-  padding: var(--radius-xl);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid #374151;
-  border-radius: var(--radius-lg);
+  padding: 0;
+  margin-top: var(--radius-lg);
 }
 
 .gameItem {
