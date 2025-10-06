@@ -9,6 +9,7 @@
   font-weight: var(--font-weight-semibold);
   color: #F9FAFB;
   margin: 0;
+  padding: 0 var(--radius-xl);
 }
 
 .levels {
