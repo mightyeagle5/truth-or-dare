@@ -78,10 +78,10 @@
   font-size: var(--font-size-sm);
   color: #9CA3AF;
   font-style: italic;
-  text-align: left;
-  padding: 0;
+  text-align: center;
+  padding: var(--font-size-xl);
   background: transparent;
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   border: none;
 }
 
