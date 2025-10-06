@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { BsFillHandThumbsDownFill, BsFillHandThumbsUpFill } from 'react-icons/bs'
 import { SupabaseChallengeService } from '../../lib/supabaseService'
 import { ReactionType } from '../../types'
 import styles from './ChallengeRating.module.css'
@@ -72,7 +73,7 @@ export const ChallengeRating: React.FC<ChallengeRatingProps> = ({
           title="Thumbs up"
           style={{ cursor: hasRated ? 'default' as const : undefined }}
         >
-          👍
+          <BsFillHandThumbsUpFill />
         </button>
         <button
           className={`${styles.ratingButton} ${styles.thumbsDown} ${
@@ -84,7 +85,7 @@ export const ChallengeRating: React.FC<ChallengeRatingProps> = ({
           title="Thumbs down"
           style={{ cursor: hasRated ? 'default' as const : undefined }}
         >
-          👎
+          <BsFillHandThumbsDownFill />
         </button>
       </div>
       <div className={styles.messageArea}>

@@ -1,69 +1,99 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
   padding: var(--space-4);
-  height: 100%;
-  justify-content: center;
-  max-width: 1200px;
+  justify-content: flex-start;
+  max-width: 860px; /* requested max width */
   margin: 0 auto;
   width: 100%;
+  background: var(--color-bg-secondary);
 }
 
-.playerName {
+.challengeType {
+  text-align: center;
+  margin: 64px 0 0 0; /* 64px below header */
+}
+
+.challengeTypeContainer {
   font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  color: #F9FAFB;
+  line-height: 1.2;
+  display: inline-block;
+  padding: 0 16px 16px 16px;
+  border-bottom: 4px solid;
+  border-radius: 2px;
+}
+
+.truthType {
+  border-bottom-color: #3B82F6;
+}
+
+.dareType {
+  border-bottom-color: #EF4444;
+}
+
+.timerSection {
+  margin: 64px 0 0 0; /* 64px below challenge type */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80px; /* reserve space for timer */
+}
+
+.timer {
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   color: #F9FAFB;
   text-align: center;
   margin: 0;
-  line-height: 1.2;
 }
 
-.itemCard {
-  background: rgba(255, 255, 255, 0.05);
-  border: var(--radius-sm) solid #374151;
-  border-radius: var(--radius-2xl);
-  padding: var(--font-size-5xl) var(--space-8);
-  text-align: center;
-  width: 100%;
-  min-height: 280px;
+.timerControls {
   display: flex;
-  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0 0 0; /* 24px below timer */
+}
+
+.timerButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6B7280;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.timerButton:hover {
+  background: #4B5563;
+}
+
+.textSection {
+  margin: 48px 0 0 0; /* 48px below timer controls */
+  min-height: 150px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.truthCard {
-  border-color: #3B82F6;
-  background: rgba(59, 130, 246, 0.1);
-}
-
-.dareCard {
-  border-color: #EF4444;
-  background: rgba(239, 68, 68, 0.1);
-}
-
-.itemHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: var(--space-4);
-}
-
-.itemType {
-  display: flex;
-  align-items: center;
-}
-
-.itemContent {
-  margin-bottom: var(--space-4);
-}
-
-.itemText {
-  font-size: var(--font-size-xl);
+.challengeText {
+  font-size: var(--font-size-4xl);
   line-height: 1.6;
   color: #F9FAFB;
   margin: 0;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
+.ratingSection {
+  margin: 48px 0 0 0; /* 48px below text */
+  display: flex;
+  justify-content: center;
 }
 
 .actions {
@@ -71,39 +101,32 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: var(--radius-2xl);
+  gap: 16px;
   flex-wrap: wrap;
+  margin: 64px 0 120px 0; /* 64px below rating buttons, 120px bottom margin */
 }
 
-.wildCardButton {
-  padding: var(--space-3) var(--space-4);
-  background: linear-gradient(135deg, #8B5CF6, #A855F7);
-  color: white;
+.wildCardButton,
+.skipButton,
+.completeButton {
+  width: 132px; /* requested width */
+  height: 48px; /* requested height */
   border: none;
-  border-radius: var(--radius-xl);
-  font-size: var(--radius-2xl);
+  border-radius: 12px; /* requested border radius */
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(139, 92, 246, 0.3);
+}
+
+.wildCardButton {
+  background: linear-gradient(135deg, #8B5CF6, #A855F7);
+  color: white;
 }
 
 .wildCardButton:hover {
   background: linear-gradient(135deg, #7C3AED, #9333EA);
-  transform: translateY(-var(--radius-sm));
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(139, 92, 246, 0.4);
-}
-
-.skipButton,
-.completeButton {
-  padding: var(--space-4) var(--space-4);
-  border: none;
-  border-radius: var(--radius-xl);
-  font-size: var(--radius-2xl);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  min-width: 120px;
+  transform: translateY(-2px);
 }
 
 .skipButton {
@@ -113,7 +136,7 @@
 
 .skipButton:hover {
   background: #4B5563;
-  transform: translateY(-var(--radius-sm));
+  transform: translateY(-2px);
 }
 
 .completeButton {
@@ -123,37 +146,25 @@
 
 .completeButton:hover {
   background: #059669;
-  transform: translateY(-var(--radius-sm));
-}
-
-/* Desktop styles */
-@media (min-width: 769px) {
-  .itemText {
-    font-size: 28px;
-  }
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: var(--radius-2xl);
+    padding: var(--space-4);
   }
   
-  .playerName {
+  .challengeType {
     font-size: var(--font-size-4xl);
   }
   
-  .itemCard {
-    padding: var(--space-2) var(--space-4);
-    min-height: 200px;
-  }
-  
-  .itemText {
-    font-size: var(--font-size-lg);
+  .challengeText {
+    font-size: var(--font-size-xl);
   }
   
   .actions {
     flex-direction: column;
-    gap: var(--radius-xl);
+    gap: 12px;
     width: 100%;
   }
   
@@ -161,6 +172,5 @@
   .skipButton,
   .completeButton {
     width: 100%;
-    padding: var(--font-size-sm) var(--font-size-xl);
   }
 }

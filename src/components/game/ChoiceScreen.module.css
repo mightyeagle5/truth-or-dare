@@ -1,13 +1,44 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 0; /* remove gap since we have explicit margins */
   padding: var(--space-4);
-  height: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
+  background: var(--color-bg-secondary);
+}
+
+.levelBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px; /* requested gap */
+  margin: 64px auto 48px auto; /* 64px from header, 48px below */
+  max-width: 700px; /* requested width */
+  width: 100%;
+}
+
+.levelPill {
+  height: 48px; /* requested height */
+  border-radius: 12px !important; /* requested radius */
+  width: 120px; /* requested width */
+}
+
+.playerName {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  color: #F9FAFB;
+  text-align: center;
+  margin: 48px 0; /* spacing between pills and squares */
+  line-height: 1.2;
+}
+
+.choicesWrap {
+  margin: 120px 0; /* 120px top and bottom margin */
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center;
 }
 
 .playerName {
@@ -22,8 +53,9 @@
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-  width: 100%;
+  gap: 48px; /* 48px gap between squares */
+  align-items: center;
+  justify-items: center;
 }
 
 .choiceCard {
@@ -31,13 +63,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--font-size-5xl) var(--space-8);
+  padding: 16px;
   background: rgba(255, 255, 255, 0.05);
   border: var(--radius-sm) solid #374151;
-  border-radius: var(--radius-2xl);
+  border-radius: 24px;
   cursor: pointer;
   transition: all var(--transition-base);
-  min-height: 280px;
+  aspect-ratio: 1 / 1;
+  width: 300px;
+  height: 300px;
+  box-sizing: border-box;
 }
 
 .choiceCard:hover:not(.disabled) {
@@ -67,13 +102,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--font-size-xl);
+  justify-content: center;
   text-align: center;
+  gap: var(--space-2);
 }
 
 .choiceIcon {
-  font-size: var(--space-16);
-  line-height: 1;
+  display: none;
 }
 
 .choiceTitle {
@@ -86,7 +121,7 @@
 .mandatoryMessage {
   font-size: var(--font-size-sm);
   color: #F59E0B;
-  margin: var(--radius-lg) 0 0 0;
+  margin: var(--space-2) 0 0 0;
   font-weight: var(--font-weight-medium);
   text-align: center;
 }
@@ -193,17 +228,16 @@
   }
   
   .choices {
-    grid-template-columns: 1fr;
-    gap: var(--radius-2xl);
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
   }
   
   .choiceCard {
-    min-height: 200px;
-    padding: var(--space-2) var(--space-4);
+    width: min(300px, 42vw);
   }
   
   .choiceIcon {
-    font-size: var(--font-size-5xl);
+    display: none;
   }
   
   .choiceTitle {

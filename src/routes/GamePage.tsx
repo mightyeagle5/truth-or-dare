@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import { Header, StickyFooterControls } from '../components/layout'
+import { Header } from '../components/layout'
 import { ChoiceScreen, ItemScreen } from '../components/game'
 import { useGameStore, useUIStore } from '../store'
 import { getCurrentPlayer } from '../store/selectors'
@@ -77,8 +77,7 @@ export const GamePage: React.FC = () => {
           </AnimatePresence>
         </div>
       </main>
-      
-      <StickyFooterControls />
+      <button className={styles.exitSticky} onClick={handleExit} type="button">Exit game</button>
     </div>
   )
 }

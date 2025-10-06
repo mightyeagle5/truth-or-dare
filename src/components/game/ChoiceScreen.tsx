@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts, shouldShowLevelSuggestion, canAdvanceLevel } from '../../store/selectors'
+import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts } from '../../store/selectors'
 import { useGameStore, useUIStore } from '../../store'
 import { Pill } from '../ui/Pill'
 import styles from './ChoiceScreen.module.css'
@@ -11,8 +11,6 @@ export const ChoiceScreen: React.FC = () => {
     items,
     pickItem, 
     pickWildCard,
-    goNextLevel, 
-    toggleRespectPriorGames,
     exitGame
   } = useGameStore()
 
@@ -23,8 +21,6 @@ export const ChoiceScreen: React.FC = () => {
   const currentPlayer = getCurrentPlayer(currentGame)
   const disabledChoices = getDisabledChoices(currentGame, items, currentGame.respectPriorGames)
   const availableCounts = getAvailableItemCounts(currentGame, items, currentGame.respectPriorGames)
-  const showLevelSuggestion = shouldShowLevelSuggestion(currentGame, items, currentGame.respectPriorGames)
-  const canAdvance = canAdvanceLevel(currentGame)
 
   // Determine the reason for disabling each choice
   const truthDisabledReason = disabledChoices.truth ? (availableCounts.truth === 0 ? 'no-items' : 'consecutive') : null
@@ -42,17 +38,32 @@ export const ChoiceScreen: React.FC = () => {
     }
   }
 
-  const handleNextLevel = () => {
-    goNextLevel()
-  }
-
-  const handleResetPriorGames = () => {
-    toggleRespectPriorGames(false)
-  }
 
   const handleExit = () => {
     if (window.confirm('Are you sure you want to exit the game? Your progress will be saved.')) {
       exitGame()
+    }
+  }
+
+  const levelColor = (level: 'soft' | 'mild' | 'hot' | 'spicy' | 'kinky') => {
+    switch (level) {
+      case 'soft': return '#6EE7B7'
+      case 'mild': return '#60A5FA'
+      case 'hot': return '#F59E0B'
+      case 'spicy': return '#F87171'
+      case 'kinky': return '#A78BFA'
+      default: return '#9CA3AF'
+    }
+  }
+
+  const displayName = (level: 'soft' | 'mild' | 'hot' | 'spicy' | 'kinky') => {
+    switch (level) {
+      case 'soft': return 'Soft'
+      case 'mild': return 'Mild'
+      case 'hot': return 'Hot'
+      case 'spicy': return 'Spicy'
+      case 'kinky': return 'Kinky'
+      default: return level
     }
   }
 
@@ -64,12 +75,30 @@ export const ChoiceScreen: React.FC = () => {
       transition={{ duration: 0.3 }}
       className={styles.container}
     >
-
-      <div className={styles.playerName}>
-        {currentPlayer?.name || 'Unknown Player'}
+      <div className={styles.levelBar}>
+        {(['soft','mild','hot','spicy','kinky'] as const).map((lvl) => (
+          <Pill
+            key={lvl}
+            active={currentGame.currentLevel === lvl}
+            className={styles.levelPill}
+            style={{
+              '--level-color': levelColor(lvl),
+              '--level-color-bg': `${levelColor(lvl)}20`,
+              '--level-color-border': levelColor(lvl)
+            } as React.CSSProperties}
+            onClick={() => { /* to be implemented */ }}
+          >
+            {displayName(lvl)}
+          </Pill>
+        ))}
       </div>
 
-      <div className={styles.choices}>
+      <div className={styles.playerName}>
+        {currentPlayer?.name || 'Unknown Player'}'s turn
+      </div>
+
+      <div className={styles.choicesWrap}>
+        <div className={styles.choices}>
         <button
           className={`${styles.choiceCard} ${styles.truthCard} ${disabledChoices.truth ? styles.disabled : ''}`}
           onClick={handleTruthClick}
@@ -77,7 +106,6 @@ export const ChoiceScreen: React.FC = () => {
           type="button"
         >
           <div className={styles.choiceContent}>
-            <div className={styles.choiceIcon}>💭</div>
             <h3 className={styles.choiceTitle}>Truth</h3>
             {!disabledChoices.truth && disabledChoices.dare && dareDisabledReason === 'consecutive' && (
               <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
@@ -95,7 +123,6 @@ export const ChoiceScreen: React.FC = () => {
           type="button"
         >
           <div className={styles.choiceContent}>
-            <div className={styles.choiceIcon}>🔥</div>
             <h3 className={styles.choiceTitle}>Dare</h3>
             {!disabledChoices.dare && disabledChoices.truth && truthDisabledReason === 'consecutive' && (
               <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
@@ -105,48 +132,9 @@ export const ChoiceScreen: React.FC = () => {
             )}
           </div>
         </button>
+        </div>
       </div>
 
-      {showLevelSuggestion && (
-        <div className={styles.suggestion}>
-          <div className={styles.suggestionContent}>
-            <p className={styles.suggestionText}>
-              Move to the next level?
-            </p>
-            <div className={styles.suggestionButtons}>
-              <button
-                className={styles.stayButton}
-                onClick={() => {/* Hide suggestion for next 10 turns */}}
-                type="button"
-              >
-                Stay
-              </button>
-              <button
-                className={styles.goButton}
-                onClick={handleNextLevel}
-                type="button"
-              >
-                Go to next level
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {currentGame.priorGameIds.length > 0 && currentGame.respectPriorGames && (
-        <div className={styles.priorGamesNotice}>
-          <p className={styles.noticeText}>
-            Some challenges are filtered based on previous games.
-          </p>
-          <button
-            className={styles.resetButton}
-            onClick={handleResetPriorGames}
-            type="button"
-          >
-            Reset Filters
-          </button>
-        </div>
-      )}
 
     </motion.div>
   )

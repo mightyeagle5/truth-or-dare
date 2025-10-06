@@ -37,15 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
               Admin
             </Link>
           )}
-          {showGameInfo && onExit && (
-            <button
-              className={styles.exitButton}
-              onClick={onExit}
-              type="button"
-            >
-              Exit
-            </button>
-          )}
+          {/* Exit button removed from header per new design */}
         </div>
       </div>
     </header>

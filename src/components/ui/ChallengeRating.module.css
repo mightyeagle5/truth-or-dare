@@ -15,22 +15,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border: 2px solid transparent;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.1);
-  color: #F9FAFB;
-  font-size: var(--font-size-xl);
+  border-radius: 50%;
+  background: transparent;
+  color: #6B7280;
+  font-size: 20px;
   cursor: pointer;
   transition: all var(--transition-base);
-  backdrop-filter: blur(10px);
 }
 
 .ratingButton:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .ratingButton:disabled {
@@ -40,16 +37,34 @@
   box-shadow: none !important;
 }
 
+.thumbsUp {
+  border-color: #10B981;
+  color: #10B981;
+}
+
+.thumbsUp:hover:not(:disabled) {
+  background: #10B981;
+  color: white;
+}
+
 .thumbsUp.selected {
-  background: rgba(34, 197, 94, 0.2);
-  border-color: #22C55E;
-  color: #22C55E;
+  background: #10B981;
+  color: white;
+}
+
+.thumbsDown {
+  border-color: #EF4444;
+  color: #EF4444;
+}
+
+.thumbsDown:hover:not(:disabled) {
+  background: #EF4444;
+  color: white;
 }
 
 .thumbsDown.selected {
-  background: rgba(239, 68, 68, 0.2);
-  border-color: #EF4444;
-  color: #EF4444;
+  background: #EF4444;
+  color: white;
 }
 
 

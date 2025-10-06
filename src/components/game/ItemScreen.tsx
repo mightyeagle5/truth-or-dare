@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 import { getCurrentPlayer } from '../../store/selectors'
-import { useGameStore, useUIStore } from '../../store'
-import { Badge, Timer, ChallengeRating } from '../ui'
+import { useGameStore } from '../../store'
+import { ChallengeRating } from '../ui'
 import { substitutePlayerNames, selectTargetPlayer } from '../../lib/playerSubstitution'
+import dingSound from '../../sounds/ding.mp3'
 import styles from './ItemScreen.module.css'
 
 export const ItemScreen: React.FC = () => {
@@ -17,12 +19,34 @@ export const ItemScreen: React.FC = () => {
     completeWildCard
   } = useGameStore()
 
-  const [isWildCardPicking, setIsWildCardPicking] = useState(false)
+  const [timerRunning, setTimerRunning] = useState(false)
+  const [timeLeft, setTimeLeft] = useState(currentItem?.duration || 0)
 
-  // Reset animation state when item changes
+  // Reset timer state when item changes
   useEffect(() => {
-    setIsWildCardPicking(false)
-  }, [currentItem?.id])
+    setTimeLeft(currentItem?.duration || 0)
+    setTimerRunning(false)
+  }, [currentItem?.id, currentItem?.duration])
+
+  // Timer effect
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (timerRunning && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft(time => {
+          if (time <= 1) {
+            // Play sound when timer hits 0
+            const audio = new Audio(dingSound)
+            audio.play().catch(console.error)
+            setTimerRunning(false)
+            return 0
+          }
+          return time - 1
+        })
+      }, 1000)
+    }
+    return () => clearInterval(interval)
+  }, [timerRunning, timeLeft])
 
   if (!currentGame || !currentItem) return null
 
@@ -37,11 +61,7 @@ export const ItemScreen: React.FC = () => {
   const personalizedText = substitutePlayerNames(currentItem.text, currentPlayer, targetPlayer)
 
   const handleWildCard = () => {
-    setIsWildCardPicking(true)
-    // Reset the animation state after the animation completes
-    setTimeout(() => {
-      pickWildCard()
-    }, 300)
+    pickWildCard()
   }
 
   const handleSkip = () => {
@@ -56,6 +76,22 @@ export const ItemScreen: React.FC = () => {
     }
   }
 
+  const handleTimerRestart = () => {
+    setTimeLeft(currentItem.duration || 0)
+    setTimerRunning(false)
+  }
+
+  const handleTimerToggle = () => {
+    setTimerRunning(!timerRunning)
+  }
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 100 }}
@@ -64,47 +100,48 @@ export const ItemScreen: React.FC = () => {
       transition={{ duration: 0.3 }}
       className={styles.container}
     >
-      <div className={styles.playerName}>
-        {currentPlayer?.name || 'Unknown Player'}
+      <div className={styles.challengeType}>
+        <div className={`${styles.challengeTypeContainer} ${currentItem.kind === 'truth' ? styles.truthType : styles.dareType}`}>
+          {currentItem.kind === 'truth' ? 'Truth' : 'Dare'}
+        </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentItem.id}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.3 }}
-          className={`${styles.itemCard} ${currentItem.kind === 'truth' ? styles.truthCard : styles.dareCard}`}
-        >
-          <div className={styles.itemHeader}>
-            <div className={styles.itemType}>
-              <Badge 
-                variant={currentItem.kind === 'truth' ? 'primary' : 'error'} 
-                size="md"
-              >
-                {currentItem.kind === 'truth' ? '💭 Truth' : '🔥 Dare'}
-              </Badge>
+      <div className={styles.timerSection}>
+        {currentItem.is_time_based && currentItem.duration && currentItem.duration > 0 && (
+          <>
+            <div className={styles.timer}>
+              {formatTime(timeLeft)}
             </div>
-          </div>
+            <div className={styles.timerControls}>
+              <button 
+                className={styles.timerButton}
+                onClick={handleTimerRestart}
+                type="button"
+              >
+                <Icon icon="solar:restart-bold" />
+              </button>
+              <button 
+                className={styles.timerButton}
+                onClick={handleTimerToggle}
+                type="button"
+              >
+                <Icon icon={timerRunning ? "solar:pause-bold" : "solar:play-bold"} />
+              </button>
+            </div>
+          </>
+        )}
+      </div>
 
-          {currentItem.is_time_based && currentItem.duration && currentItem.duration > 0 && (
-            <Timer 
-              duration={currentItem.duration} 
-              autoStart={false}
-            />
-          )}
+      <div className={styles.textSection}>
+        <p className={styles.challengeText}>{personalizedText}</p>
+      </div>
 
-          <div className={styles.itemContent}>
-            <p className={styles.itemText}>{personalizedText}</p>
-          </div>
-          
-          <ChallengeRating 
-            challengeId={currentItem.id}
-            isCustomGame={currentGame.isCustomGame}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <div className={styles.ratingSection}>
+        <ChallengeRating 
+          challengeId={currentItem.id}
+          isCustomGame={currentGame.isCustomGame}
+        />
+      </div>
 
       <div className={styles.actions}>
         <button
@@ -112,7 +149,7 @@ export const ItemScreen: React.FC = () => {
           onClick={handleWildCard}
           type="button"
         >
-          🎲 Wild Card
+          Wild card
         </button>
         
         <button

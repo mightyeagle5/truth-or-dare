@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--color-bg-secondary);
 }
 
@@ -9,14 +9,33 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  background: var(--color-bg-secondary);
 }
 
 .gameArea {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  background: var(--color-bg-secondary);
+}
+
+.exitSticky {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: var(--space-4) var(--space-4);
+  background: #6B7280;
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.exitSticky:hover {
+  background: #4B5563;
 }
 
 .loading {
