@@ -53,8 +53,8 @@ export const getDisabledChoices = (
   const truthExhausted = counts.truth === 0
   const dareExhausted = counts.dare === 0
   
-  const truthDisabled = truthExhausted || (!dareExhausted && !canChooseType(currentPlayer, 'truth'))
-  const dareDisabled = dareExhausted || (!truthExhausted && !canChooseType(currentPlayer, 'dare'))
+  const truthDisabled = truthExhausted || (!dareExhausted && !canChooseType(currentPlayer, 'truth', game.gameConfiguration))
+  const dareDisabled = dareExhausted || (!truthExhausted && !canChooseType(currentPlayer, 'dare', game.gameConfiguration))
   
   return { truth: truthDisabled, dare: dareDisabled }
 }

@@ -79,7 +79,12 @@ describe('Local Storage', () => {
       totalTurnsAtCurrentLevel: 0,
       usedItems: {},
       respectPriorGames: true,
-      playerCounters: { 'p1': { consecutiveTruths: 0, consecutiveDares: 0 } }
+      playerCounters: { 'p1': { consecutiveTruths: 0, consecutiveDares: 0 } },
+      gameConfiguration: {
+        wildCardEnabled: true,
+        skipEnabled: true,
+        consecutiveLimit: null
+      }
     }
 
     saveGame(game)
@@ -127,7 +132,12 @@ describe('Local Storage', () => {
       totalTurnsAtCurrentLevel: 0,
       usedItems: { 'soft': { 'truth': ['item1'], 'dare': ['item2'] } },
       respectPriorGames: true,
-      playerCounters: {}
+      playerCounters: {},
+      gameConfiguration: {
+        wildCardEnabled: true,
+        skipEnabled: true,
+        consecutiveLimit: null
+      }
     }
 
     const game2: GameMeta = {
@@ -142,7 +152,12 @@ describe('Local Storage', () => {
       totalTurnsAtCurrentLevel: 0,
       usedItems: { 'mild': { 'truth': ['item3'] } },
       respectPriorGames: true,
-      playerCounters: {}
+      playerCounters: {},
+      gameConfiguration: {
+        wildCardEnabled: true,
+        skipEnabled: true,
+        consecutiveLimit: null
+      }
     }
 
     saveGame(game1)

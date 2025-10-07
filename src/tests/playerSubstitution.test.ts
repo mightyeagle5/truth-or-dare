@@ -6,13 +6,17 @@ describe('playerSubstitution', () => {
   const mockPlayer1: Player = {
     id: '1',
     name: 'Alice',
-    gender: 'female'
+    gender: 'female',
+    consecutiveTruths: 0,
+    consecutiveDares: 0
   }
 
   const mockPlayer2: Player = {
     id: '2', 
     name: 'Bob',
-    gender: 'male'
+    gender: 'male',
+    consecutiveTruths: 0,
+    consecutiveDares: 0
   }
 
   it('should substitute both placeholders when target player is provided', () => {

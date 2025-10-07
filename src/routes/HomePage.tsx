@@ -25,7 +25,9 @@ export const HomePage: React.FC = () => {
     setSelectedLevel,
     selectedPriorGames,
     setSelectedPriorGames,
-    canStartGame
+    canStartGame,
+    gameConfiguration,
+    setGameConfiguration
   } = useGameSetup()
   
   // Custom game setup
@@ -42,7 +44,7 @@ export const HomePage: React.FC = () => {
     
     setIsStarting(true)
     try {
-      const gameId = await startGame(players, selectedLevel, selectedPriorGames)
+      const gameId = await startGame(players, selectedLevel, selectedPriorGames, gameConfiguration)
       if (gameId) {
         navigate(`/game/${gameId}`)
       }
@@ -60,36 +62,36 @@ export const HomePage: React.FC = () => {
   if (showCustomGame) {
     return (
       <PageLayout hideHeader title="" subtitle="">
-        <CustomGameSection
-            players={players}
-            onPlayersChange={setPlayers}
-            customChallenges={customGameProps.customChallenges}
-            setCustomChallenges={customGameProps.setCustomChallenges}
-            customChallengeForm={customGameProps.customChallengeForm}
-            setCustomChallengeForm={customGameProps.setCustomChallengeForm}
-            gameChallengeSelector={customGameProps.gameChallengeSelector}
-            setGameChallengeSelector={customGameProps.setGameChallengeSelector}
-            challengeFilter={customGameProps.challengeFilter}
-            setChallengeFilter={customGameProps.setChallengeFilter}
-            showAllChallenges={customGameProps.showAllChallenges}
-            setShowAllChallenges={customGameProps.setShowAllChallenges}
-            gameMode={customGameProps.gameMode}
-            setGameMode={customGameProps.setGameMode}
-            onBackToHome={() => setShowCustomGame(false)}
-            onStartCustomGame={async () => {
-              setIsStarting(true)
-              try {
-                const gameId = startCustomGame(players, customGameProps.customChallenges, customGameProps.gameMode)
-                navigate(`/game/${gameId}`)
-              } catch (error) {
-                console.error('Failed to start custom game:', error)
-              } finally {
-                setIsStarting(false)
-              }
-            }}
-            isStarting={isStarting}
-            canStartCustomGame={customGameProps.customChallenges.length > 0}
-          />
+            <CustomGameSection
+                players={players}
+                onPlayersChange={setPlayers}
+                customChallenges={customGameProps.customChallenges}
+                setCustomChallenges={customGameProps.setCustomChallenges}
+                customChallengeForm={customGameProps.customChallengeForm}
+                setCustomChallengeForm={customGameProps.setCustomChallengeForm}
+                gameChallengeSelector={customGameProps.gameChallengeSelector}
+                setGameChallengeSelector={customGameProps.setGameChallengeSelector}
+                challengeFilter={customGameProps.challengeFilter}
+                setChallengeFilter={customGameProps.setChallengeFilter}
+                gameMode={customGameProps.gameMode}
+                setGameMode={customGameProps.setGameMode}
+                gameConfiguration={gameConfiguration}
+                setGameConfiguration={setGameConfiguration}
+                onBackToHome={() => setShowCustomGame(false)}
+                onStartCustomGame={async () => {
+                  setIsStarting(true)
+                  try {
+                    const gameId = startCustomGame(players, customGameProps.customChallenges, customGameProps.gameMode, gameConfiguration)
+                    navigate(`/game/${gameId}`)
+                  } catch (error) {
+                    console.error('Failed to start custom game:', error)
+                  } finally {
+                    setIsStarting(false)
+                  }
+                }}
+                isStarting={isStarting}
+                canStartCustomGame={customGameProps.customChallenges.length > 0}
+              />
       </PageLayout>
     )
   }
@@ -131,12 +133,85 @@ export const HomePage: React.FC = () => {
             
             <div className={styles.configSection}>
               <h3 className={styles.sectionTitle}>Game configuration</h3>
-              <PreviousGamesPicker
-                gameHistory={gameHistory}
-                selectedGameIds={selectedPriorGames}
-                onSelectionChange={setSelectedPriorGames}
-                onRemoveGame={removeGameFromHistory}
-              />
+              
+              {/* Game Configuration Options */}
+              <div className={styles.gameConfigOptions}>
+                <div className={styles.configRow}>
+                  <div className={styles.configLabel}>
+                    <span className={styles.configTitle}>Enable Wild Card</span>
+                    <span className={styles.configSubtitle}>Allow players to pick a random challenge</span>
+                  </div>
+                  <label className={styles.configToggle}>
+                    <input
+                      type="checkbox"
+                      checked={gameConfiguration.wildCardEnabled}
+                      onChange={(e) => setGameConfiguration(prev => ({ ...prev, wildCardEnabled: e.target.checked }))}
+                    />
+                    <span className={styles.toggleSlider}></span>
+                  </label>
+                </div>
+
+                <div className={styles.configRow}>
+                  <div className={styles.configLabel}>
+                    <span className={styles.configTitle}>Enable Skip</span>
+                    <span className={styles.configSubtitle}>Allow players to skip challenges</span>
+                  </div>
+                  <label className={styles.configToggle}>
+                    <input
+                      type="checkbox"
+                      checked={gameConfiguration.skipEnabled}
+                      onChange={(e) => setGameConfiguration(prev => ({ ...prev, skipEnabled: e.target.checked }))}
+                    />
+                    <span className={styles.toggleSlider}></span>
+                  </label>
+                </div>
+
+                <div className={styles.configRow}>
+                  <div className={styles.configLabel}>
+                    <span className={styles.configTitle}>Consecutive Same Type Limit</span>
+                        <span className={styles.configSubtitle}>Limit how many consecutive challenges of the same type player can choose</span>
+                  </div>
+                  <div className={styles.configControls}>
+                    {gameConfiguration.consecutiveLimit !== null && (
+                      <select
+                        className={styles.consecutiveSelect}
+                        value={gameConfiguration.consecutiveLimit}
+                        onChange={(e) => setGameConfiguration(prev => ({ 
+                          ...prev, 
+                          consecutiveLimit: parseInt(e.target.value) 
+                        }))}
+                      >
+                        <option value={1}>1 challenge</option>
+                        <option value={2}>2 challenges</option>
+                        <option value={3}>3 challenges</option>
+                        <option value={4}>4 challenges</option>
+                        <option value={5}>5 challenges</option>
+                      </select>
+                    )}
+                    <label className={styles.configToggle}>
+                      <input
+                        type="checkbox"
+                        checked={gameConfiguration.consecutiveLimit !== null}
+                        onChange={(e) => setGameConfiguration(prev => ({ 
+                          ...prev, 
+                          consecutiveLimit: e.target.checked ? 2 : null 
+                        }))}
+                      />
+                      <span className={styles.toggleSlider}></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Previous Games temporarily disabled */}
+              {false && (
+                <PreviousGamesPicker
+                  gameHistory={gameHistory}
+                  selectedGameIds={selectedPriorGames}
+                  onSelectionChange={setSelectedPriorGames}
+                  onRemoveGame={removeGameFromHistory}
+                />
+              )}
             </div>
           </div>
         </div>

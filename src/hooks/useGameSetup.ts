@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createPlayerId } from '../lib/ids'
-import type { PlayerSnapshot, Level, GameHistoryEntry } from '../types'
+import type { PlayerSnapshot, Level, GameHistoryEntry, GameConfiguration } from '../types'
 
 export const useGameSetup = () => {
   const [players, setPlayers] = useState<PlayerSnapshot[]>([
@@ -13,6 +13,11 @@ export const useGameSetup = () => {
   const [selectedPriorGames, setSelectedPriorGames] = useState<string[]>([])
   const [isStarting, setIsStarting] = useState(false)
   const [showCustomGame, setShowCustomGame] = useState(false)
+  const [gameConfiguration, setGameConfiguration] = useState<GameConfiguration>({
+    wildCardEnabled: true,
+    skipEnabled: true,
+    consecutiveLimit: null
+  })
 
   // Computed values
   // Allow starting with optional names. Names will default to "Player 1", "Player 2" at start.
@@ -31,6 +36,11 @@ export const useGameSetup = () => {
     setSelectedPriorGames([])
     setIsStarting(false)
     setShowCustomGame(false)
+    setGameConfiguration({
+      wildCardEnabled: true,
+      skipEnabled: true,
+      consecutiveLimit: null
+    })
   }
 
   return {
@@ -40,6 +50,7 @@ export const useGameSetup = () => {
     selectedPriorGames,
     isStarting,
     showCustomGame,
+    gameConfiguration,
     
     // Setters
     setPlayers,
@@ -47,6 +58,7 @@ export const useGameSetup = () => {
     setSelectedPriorGames,
     setIsStarting,
     setShowCustomGame,
+    setGameConfiguration,
     
     // Computed
     canStartGame,

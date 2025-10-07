@@ -280,3 +280,62 @@
   }
   
 }
+
+/* Action buttons for wild card and skip */
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.wildCardButton,
+.skipButton {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-primary);
+  background: var(--color-background);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.wildCardButton:hover,
+.skipButton:hover {
+  background: var(--color-primary);
+  color: var(--color-background);
+  transform: translateY(-1px);
+}
+
+.wildCardButton:active,
+.skipButton:active {
+  transform: translateY(0);
+}
+
+.skipButton {
+  border-color: var(--color-text-secondary);
+  color: var(--color-text-secondary);
+}
+
+.skipButton:hover {
+  background: var(--color-text-secondary);
+  color: var(--color-background);
+}
+
+@media (max-width: 768px) {
+  .actionButtons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .wildCardButton,
+  .skipButton {
+    width: 100%;
+    max-width: 200px;
+  }
+}

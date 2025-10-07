@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { PlayerList } from './PlayerList'
 import { SupabaseChallengeService, ChallengeSummary } from '../../lib/supabaseService'
-import type { PlayerSnapshot, Level, CustomChallenge, ItemKind } from '../../types'
+import type { PlayerSnapshot, Level, CustomChallenge, ItemKind, GameConfiguration } from '../../types'
 import styles from './CustomGameSection.module.css'
 
 interface CustomGameSectionProps {
@@ -43,6 +43,10 @@ interface CustomGameSectionProps {
   gameMode: 'random' | 'progressive'
   setGameMode: React.Dispatch<React.SetStateAction<'random' | 'progressive'>>
   
+  // Game configuration
+  gameConfiguration: GameConfiguration
+  setGameConfiguration: React.Dispatch<React.SetStateAction<GameConfiguration>>
+  
   // Actions
   onBackToHome: () => void
   onStartCustomGame: () => void
@@ -63,6 +67,8 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
   setChallengeFilter,
   gameMode,
   setGameMode,
+  gameConfiguration,
+  setGameConfiguration,
   onBackToHome,
   onStartCustomGame,
   isStarting,
@@ -453,6 +459,79 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                   </div>
                 ))
               )}
+            </div>
+          </div>
+
+          {/* Game Configuration */}
+          <div className={styles.gameConfigSection}>
+            <h3>Game Configuration</h3>
+            
+            <div className={styles.gameConfigOptions}>
+              <div className={styles.configRow}>
+                <div className={styles.configLabel}>
+                  <span className={styles.configTitle}>Enable Wild Card</span>
+                  <span className={styles.configSubtitle}>Allow players to pick a random challenge</span>
+                </div>
+                <label className={styles.configToggle}>
+                  <input
+                    type="checkbox"
+                    checked={gameConfiguration.wildCardEnabled}
+                    onChange={(e) => setGameConfiguration(prev => ({ ...prev, wildCardEnabled: e.target.checked }))}
+                  />
+                  <span className={styles.toggleSlider}></span>
+                </label>
+              </div>
+
+              <div className={styles.configRow}>
+                <div className={styles.configLabel}>
+                  <span className={styles.configTitle}>Enable Skip</span>
+                  <span className={styles.configSubtitle}>Allow players to skip challenges</span>
+                </div>
+                <label className={styles.configToggle}>
+                  <input
+                    type="checkbox"
+                    checked={gameConfiguration.skipEnabled}
+                    onChange={(e) => setGameConfiguration(prev => ({ ...prev, skipEnabled: e.target.checked }))}
+                  />
+                  <span className={styles.toggleSlider}></span>
+                </label>
+              </div>
+
+              <div className={styles.configRow}>
+                <div className={styles.configLabel}>
+                  <span className={styles.configTitle}>Consecutive Same Type Limit</span>
+                  <span className={styles.configSubtitle}>Limit how many consecutive challenges of the same type player can choose</span>
+                </div>
+                <div className={styles.configControls}>
+                  {gameConfiguration.consecutiveLimit !== null && (
+                    <select
+                      className={styles.consecutiveSelect}
+                      value={gameConfiguration.consecutiveLimit}
+                      onChange={(e) => setGameConfiguration(prev => ({
+                        ...prev,
+                        consecutiveLimit: parseInt(e.target.value)
+                      }))}
+                    >
+                      <option value={1}>1 challenge</option>
+                      <option value={2}>2 challenges</option>
+                      <option value={3}>3 challenges</option>
+                      <option value={4}>4 challenges</option>
+                      <option value={5}>5 challenges</option>
+                    </select>
+                  )}
+                  <label className={styles.configToggle}>
+                    <input
+                      type="checkbox"
+                      checked={gameConfiguration.consecutiveLimit !== null}
+                      onChange={(e) => setGameConfiguration(prev => ({
+                        ...prev,
+                        consecutiveLimit: e.target.checked ? 2 : null
+                      }))}
+                    />
+                    <span className={styles.toggleSlider}></span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
 

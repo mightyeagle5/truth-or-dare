@@ -30,6 +30,12 @@ export interface PlayerSnapshot {
   gender: Gender
 }
 
+export interface GameConfiguration {
+  wildCardEnabled: boolean // Enable/disable wild card - default enabled
+  skipEnabled: boolean // Enable/disable skip - default enabled
+  consecutiveLimit: number | null // Limit for consecutive same type challenges - default null (no limit)
+}
+
 export interface GameMeta {
   id: string // Game ID (nanoid)
   createdAt: number // epoch ms
@@ -46,6 +52,7 @@ export interface GameMeta {
   customItems?: Item[] // Custom challenges for custom games
   isCustomGame?: boolean // Flag to identify custom games
   customGameMode?: 'random' | 'progressive' // Mode for custom games
+  gameConfiguration: GameConfiguration // Game configuration settings
 }
 
 export interface Item {
@@ -91,8 +98,8 @@ export interface GameState {
 
 export interface GameActions {
   // Game lifecycle
-  startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => Promise<string | null>
-  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => string
+  startGame: (players: PlayerSnapshot[], level: Level, priorGameIds: string[], gameConfiguration: GameConfiguration) => Promise<string | null>
+  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive', gameConfiguration: GameConfiguration) => string
   loadGame: (gameId: string) => void
   exitGame: () => void
   

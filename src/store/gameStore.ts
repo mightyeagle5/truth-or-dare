@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, CustomChallenge, ItemKind } from '../types'
+import type { GameState, GameActions, GameMeta, PlayerSnapshot, Item, Level, CustomChallenge, ItemKind, GameConfiguration } from '../types'
 import { createGameId } from '../lib/ids'
 import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts, addUsedItem, isItemUsed } from '../lib/items'
@@ -25,7 +25,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   challengePairError: null,
 
   // Game lifecycle
-  startGame: async (players: PlayerSnapshot[], level: Level, priorGameIds: string[]) => {
+  startGame: async (players: PlayerSnapshot[], level: Level, priorGameIds: string[], gameConfiguration: GameConfiguration) => {
     const gameId = createGameId()
     const isProgressive = level === 'Progressive'
     const currentLevel = isProgressive ? 'soft' : level as Exclude<Level, 'Progressive'>
@@ -54,7 +54,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: 0,
       usedItems: {},
       respectPriorGames: true,
-      playerCounters
+      playerCounters,
+      gameConfiguration
     }
 
     // Load items from Supabase and initialize challenge pairs
@@ -118,6 +119,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
             playerCounters[player.id] = { consecutiveTruths: 0, consecutiveDares: 0 }
           })
           loadedGame.playerCounters = playerCounters
+          saveGame(loadedGame)
+        }
+
+        // Initialize gameConfiguration if not present (for existing games)
+        if (!loadedGame.gameConfiguration) {
+          loadedGame.gameConfiguration = {
+            wildCardEnabled: true,
+            skipEnabled: true,
+            consecutiveLimit: null
+          }
           saveGame(loadedGame)
         }
 
@@ -355,11 +366,18 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     
     // Update counters: increment the completed type, reset the other
     // But don't increment if the other type is exhausted (consecutive rule disabled)
+    // Also respect the configured consecutive limit
+    const consecutiveLimit = currentGame.gameConfiguration.consecutiveLimit
+    const shouldIncrementTruth = currentItem.kind === 'truth' && !dareExhausted && 
+      (consecutiveLimit === null || currentCounters.consecutiveTruths < consecutiveLimit)
+    const shouldIncrementDare = currentItem.kind === 'dare' && !truthExhausted && 
+      (consecutiveLimit === null || currentCounters.consecutiveDares < consecutiveLimit)
+    
     const updatedCounters = {
       ...currentGame.playerCounters,
       [currentPlayerId]: {
-        consecutiveTruths: currentItem.kind === 'truth' && !dareExhausted ? currentCounters.consecutiveTruths + 1 : 0,
-        consecutiveDares: currentItem.kind === 'dare' && !truthExhausted ? currentCounters.consecutiveDares + 1 : 0
+        consecutiveTruths: shouldIncrementTruth ? currentCounters.consecutiveTruths + 1 : 0,
+        consecutiveDares: shouldIncrementDare ? currentCounters.consecutiveDares + 1 : 0
       }
     }
 
@@ -556,7 +574,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
 
   // Custom game functionality
-  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive') => {
+  startCustomGame: (players: PlayerSnapshot[], customChallenges: CustomChallenge[], gameMode: 'random' | 'progressive', gameConfiguration: GameConfiguration) => {
     const gameId = createGameId()
     const isProgressive = gameMode === 'progressive'
     
@@ -627,7 +645,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       createdAt: Date.now(),
       customItems, // Store custom items separately
       isCustomGame: true,
-      customGameMode: gameMode
+      customGameMode: gameMode,
+      gameConfiguration
     }
     
     // Update UI state

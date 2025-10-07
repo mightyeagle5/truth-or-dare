@@ -44,6 +44,7 @@
 .addCustomSection:not(:first-child)::before,
 .addGameSection:not(:first-child)::before,
 .challengesSection:not(:first-child)::before,
+.gameConfigSection:not(:first-child)::before,
 .gameModeSection:not(:first-child)::before {
   content: '';
   height: 1px;
@@ -673,5 +674,172 @@
     padding: var(--font-size-sm) 28px;
     font-size: var(--font-size-base);
     min-width: 160px;
+  }
+}
+
+/* Game Configuration Styles */
+.gameConfigSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.gameConfigOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.configRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0 0;
+}
+
+.configRow:first-child {
+  padding-top: 0;
+}
+
+.configLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.configTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+}
+
+.configSubtitle {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.configToggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  cursor: pointer;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: 28px;
+  background-color: var(--color-background);
+  transition: all 0.3s ease;
+}
+
+.configToggle:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.configToggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-border-secondary);
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.toggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.configToggle input:checked + .toggleSlider {
+  background-color: #10b981;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.configToggle input:checked + .toggleSlider:before {
+  transform: translateX(22px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.configToggle input:checked {
+  border-color: #10b981;
+}
+
+.configControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.consecutiveSelect {
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-input);
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  min-width: 120px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.consecutiveSelect:hover {
+  border-color: var(--color-primary-300);
+  background-color: var(--color-bg-hover);
+  box-shadow: var(--shadow-base);
+}
+
+.consecutiveSelect:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-200);
+  background-color: var(--color-bg-input);
+}
+
+/* Mobile responsive for game config */
+@media (max-width: 768px) {
+  .configRow {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .configLabel {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .configControls {
+    flex-shrink: 0;
+    flex-direction: row;
+  }
+  
+  .consecutiveSelect {
+    min-width: 100px;
   }
 }

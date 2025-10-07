@@ -10,8 +10,8 @@ const makeItem = (id: string, level: Exclude<Level, 'Progressive' | 'Custom'>, k
   gender_target: [],
   tags: [],
   is_deleted: false,
-  deleted_at: null,
-  updated_at: null,
+  deleted_at: undefined,
+  updated_at: undefined,
   is_time_based: false,
   duration: 0
 })

@@ -1,7 +1,14 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--radius-2xl);
+  gap: var(--radius-xl);
+  padding-top: 0.75rem;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--radius-base);
 }
 
 .card {
@@ -21,6 +28,12 @@
   transition: all var(--transition-fast);
 }
 
+.headerText {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
 /* No hover background change for header */
 
 .titleSection {
@@ -37,17 +50,18 @@
 }
 
 .title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
   color: #F9FAFB;
   margin: 0;
 }
 
 .subtitle {
-  font-size: var(--font-size-sm);
-  color: #9CA3AF;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
   margin: 0;
   font-weight: var(--font-weight-normal);
+  line-height: 1.3;
 }
 
 .deleteSelectedButton {

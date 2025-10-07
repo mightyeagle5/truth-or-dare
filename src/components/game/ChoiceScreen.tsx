@@ -156,6 +156,7 @@ export const ChoiceScreen: React.FC = () => {
         </AnimatePresence>
       </div>
 
+
       {challengePairLoading && (
         <div className={styles.loadingOverlay}>
           <div className={styles.loadingSpinner} />

@@ -164,22 +164,27 @@ export const ItemScreen: React.FC = () => {
       </div>
 
       <div className={styles.actions}>
-        <button
-          className={`${styles.wildCardButton} ${!wildCardAvailable ? styles.disabled : ''}`}
-          onClick={handleWildCard}
-          disabled={!wildCardAvailable}
-          type="button"
-        >
-          Wild card
-        </button>
+        {currentGame.gameConfiguration.wildCardEnabled && (
+          <button
+            className={`${styles.wildCardButton} ${!wildCardAvailable ? styles.disabled : ''}`}
+            onClick={handleWildCard}
+            disabled={!wildCardAvailable}
+            type="button"
+          >
+            Wild card
+          </button>
+        )}
         
-        <button
-          className={styles.skipButton}
-          onClick={handleSkip}
-          type="button"
-        >
-          Skip
-        </button>
+        {currentGame.gameConfiguration.skipEnabled && (
+          <button
+            className={styles.skipButton}
+            onClick={handleSkip}
+            type="button"
+          >
+            Skip
+          </button>
+        )}
+        
         <button
           className={styles.completeButton}
           onClick={handleComplete}

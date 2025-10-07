@@ -41,6 +41,13 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
 
   return (
     <div className={styles.container}>
+      {/* Header outside accordion */}
+      <div className={styles.headerSection}>
+        <h3 className={styles.title}>Previous Games</h3>
+        <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
+      </div>
+
+      {/* Accordion for games list */}
       <div className={styles.card}>
         <div
           className={styles.header}
@@ -56,26 +63,9 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
             }
           }}
         >
-          <div className={styles.titleSection}>
-            <div className={styles.titleRow}>
-              <h3 className={styles.title}>Previous Games</h3>
-              {false && isDevMode && onDisableGameSavingChange && (
-                // Hiding the "Disable saving" dev toggle for now. Logic retained for later use.
-                <label
-                  className={styles.devCheckbox}
-                  onClick={(e) => e.stopPropagation()}
-                  onKeyDown={(e) => e.stopPropagation()}
-                >
-                  <input
-                    type="checkbox"
-                    checked={disableGameSaving}
-                    onChange={(e) => onDisableGameSavingChange(e.target.checked)}
-                  />
-                  <span>Disable saving</span>
-                </label>
-              )}
-            </div>
-          </div>
+          <span className={styles.headerText}>
+            {isOpen ? 'Hide games' : 'Show games'}
+          </span>
           <div className={styles.headerActions}>
             {isOpen && selectedGameIds.length > 0 && (
               <button
@@ -98,7 +88,6 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
           className={`${styles.content} ${isOpen ? styles.contentOpen : ''}`}
           aria-hidden={!isOpen}
         >
-          <p className={styles.subtitle}>Select games to skip already completed challenges (custom games not included)</p>
           {gameHistory.length === 0 ? (
             <p id="previous-games-content" className={styles.empty}>No previous games</p>
           ) : (

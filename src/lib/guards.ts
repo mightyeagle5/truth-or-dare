@@ -1,4 +1,4 @@
-import type { GameMeta, Item, ItemKind, Level } from '../types'
+import type { GameMeta, Item, ItemKind, Level, GameConfiguration } from '../types'
 import { CONSECUTIVE_LIMIT } from './constants'
 
 export const isValidPlayer = (player: any): player is { id: string; name: string; gender: 'male' | 'female' } => {
@@ -39,11 +39,33 @@ export const isValidItem = (item: any): item is Item => {
   )
 }
 
-export const canChooseType = (player: { consecutiveTruths: number; consecutiveDares: number }, kind: ItemKind): boolean => {
+export const canChooseType = (
+  player: { consecutiveTruths: number; consecutiveDares: number }, 
+  kind: ItemKind, 
+  gameConfiguration?: GameConfiguration
+): boolean => {
+  // If no game configuration provided, use default limit
+  if (!gameConfiguration) {
+    const consecutiveLimit = CONSECUTIVE_LIMIT
+    if (kind === 'truth') {
+      return player.consecutiveTruths < consecutiveLimit
+    } else {
+      return player.consecutiveDares < consecutiveLimit
+    }
+  }
+  
+  // If limit is explicitly set to null (disabled), allow unlimited consecutive challenges
+  if (gameConfiguration.consecutiveLimit === null) {
+    return true
+  }
+  
+  // Use the configured limit
+  const consecutiveLimit = gameConfiguration.consecutiveLimit
+  
   if (kind === 'truth') {
-    return player.consecutiveTruths < CONSECUTIVE_LIMIT
+    return player.consecutiveTruths < consecutiveLimit
   } else {
-    return player.consecutiveDares < CONSECUTIVE_LIMIT
+    return player.consecutiveDares < consecutiveLimit
   }
 }
 
