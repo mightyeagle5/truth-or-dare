@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts } from '../../store/selectors'
-import { useGameStore, useUIStore } from '../../store'
+import { useGameStore } from '../../store'
 import { Pill } from '../ui/Pill'
 import styles from './ChoiceScreen.module.css'
 
@@ -10,13 +10,10 @@ export const ChoiceScreen: React.FC = () => {
     currentGame, 
     items,
     pickItem, 
-    pickWildCard,
-    exitGame,
     changeLevel,
     challengePairLoading
   } = useGameStore()
 
-  const [isWildCardPicking, setIsWildCardPicking] = useState(false)
 
   if (!currentGame) return null
 
@@ -41,11 +38,6 @@ export const ChoiceScreen: React.FC = () => {
   }
 
 
-  const handleExit = () => {
-    if (window.confirm('Are you sure you want to exit the game? Your progress will be saved.')) {
-      exitGame()
-    }
-  }
 
   const levelColor = (level: 'soft' | 'mild' | 'hot' | 'spicy' | 'kinky') => {
     switch (level) {
@@ -69,12 +61,31 @@ export const ChoiceScreen: React.FC = () => {
     }
   }
 
+  // Get available levels for custom games in "By level" mode
+  const getAvailableLevels = () => {
+    if (!currentGame.isCustomGame || currentGame.customGameMode === 'random') {
+      return ['soft','mild','hot','spicy','kinky'] as const
+    }
+    
+    // For custom games in "By level" mode, only show levels that have items
+    if (currentGame.customItems) {
+      const availableLevels = new Set(currentGame.customItems.map(item => item.level))
+      return (['soft','mild','hot','spicy','kinky'] as const).filter(level => 
+        availableLevels.has(level)
+      )
+    }
+    
+    return ['soft','mild','hot','spicy','kinky'] as const
+  }
+
+  const availableLevels = getAvailableLevels()
+
   return (
     <div className={styles.container}>
       {/* Only show level bar if not in random mode for custom games */}
       {!(currentGame.isCustomGame && currentGame.customGameMode === 'random') && (
         <div className={styles.levelBar}>
-          {(['soft','mild','hot','spicy','kinky'] as const).map((lvl) => (
+          {availableLevels.map((lvl) => (
             <Pill
               key={lvl}
               active={currentGame.currentLevel === lvl}

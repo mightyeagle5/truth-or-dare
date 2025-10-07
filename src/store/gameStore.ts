@@ -257,12 +257,19 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       )
 
       if (!wildItem) return
-
+      
+      // Mark the wild card as used immediately to prevent it from being selected again
+      const updatedUsedItems = addUsedItem(currentGame.usedItems, wildItem)
+      
       useUIStore.getState().setCurrentScreen('item')
       
       set({
         currentItem: wildItem,
-        isWildCard: true
+        isWildCard: true,
+        currentGame: {
+          ...currentGame,
+          usedItems: updatedUsedItems
+        }
       })
       return
     }
@@ -297,9 +304,12 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     // Check if item already used
     void isItemUsed(currentGame.usedItems, currentItem)
 
+    // For wild cards, the item is already marked as used when selected
+    // For regular items, we need to mark them as used when skipped
+    const isWildCard = get().isWildCard
     const updatedGame = {
       ...currentGame,
-      usedItems: addUsedItem(currentGame.usedItems, currentItem),
+      usedItems: isWildCard ? currentGame.usedItems : addUsedItem(currentGame.usedItems, currentItem),
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1
     }
 
@@ -407,9 +417,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     // Check if item already used
     void isItemUsed(currentGame.usedItems, currentItem)
 
+    // For wild cards, the item is already marked as used when selected
+    // So we don't need to mark it again here
     const updatedGame = {
       ...currentGame,
-      usedItems: addUsedItem(currentGame.usedItems, currentItem),
       turnIndex: (currentGame.turnIndex + 1) % currentGame.players.length,
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1,
       playerCounters: updatedCounters
@@ -646,8 +657,28 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
   // Change level and fetch new challenge pairs
   changeLevel: async (newLevel: Level) => {
     const { currentGame } = get()
-    if (!currentGame || currentGame.isCustomGame) return
+    if (!currentGame) return
 
+    // For custom games, just update the level without fetching
+    if (currentGame.isCustomGame) {
+      const updatedGame = {
+        ...currentGame,
+        currentLevel: newLevel as Exclude<Level, 'Progressive'>,
+        totalTurnsAtCurrentLevel: 0
+      }
+
+      const devStore = useDevStore.getState()
+      if (!devStore.disableGameSaving) {
+        saveGame(updatedGame)
+      }
+
+      set({
+        currentGame: updatedGame
+      })
+      return
+    }
+
+    // For regular games, fetch new challenge pairs
     try {
       set({ challengePairLoading: true, challengePairError: null })
       

@@ -1,5 +1,4 @@
 import type { Item, ItemKind, Level } from '../types'
-import { createId } from './ids'
 
 // Helper functions for the new usedItems structure
 export const addUsedItem = (
@@ -175,12 +174,11 @@ export const getRandomItem = (availableItems: Item[]): Item | null => {
 
 export const getWildCardItem = (
   items: Item[],
-  level: Exclude<Level, 'Progressive'>,
+  _level: Exclude<Level, 'Progressive'>,
   usedItems: Record<string, Record<string, string[]>>,
   priorGameItems: string[] = []
 ): Item | null => {
   const availableItems = items.filter(item => 
-    item.level === level &&
     !isItemUsed(usedItems, item) &&
     !priorGameItems.includes(item.id)
   )
@@ -201,4 +199,17 @@ export const getItemCounts = (
     truth: truthItems.length,
     dare: dareItems.length
   }
+}
+
+export const isWildCardAvailable = (
+  items: Item[],
+  usedItems: Record<string, Record<string, string[]>>,
+  priorGameItems: string[] = []
+): boolean => {
+  const availableItems = items.filter(item => 
+    !isItemUsed(usedItems, item) &&
+    !priorGameItems.includes(item.id)
+  )
+  
+  return availableItems.length > 0
 }

@@ -5,6 +5,8 @@ import { getCurrentPlayer } from '../../store/selectors'
 import { useGameStore } from '../../store'
 import { ChallengeRating } from '../ui'
 import { substitutePlayerNames, selectTargetPlayer } from '../../lib/playerSubstitution'
+import { isWildCardAvailable } from '../../lib/items'
+import { getPriorGameItems } from '../../store/storage'
 import dingSound from '../../sounds/ding.mp3'
 import styles from './ItemScreen.module.css'
 
@@ -16,7 +18,8 @@ export const ItemScreen: React.FC = () => {
     pickWildCard, 
     skipItem, 
     completeItem,
-    completeWildCard
+    completeWildCard,
+    items
   } = useGameStore()
 
   const [timerRunning, setTimerRunning] = useState(false)
@@ -59,6 +62,12 @@ export const ItemScreen: React.FC = () => {
   
   // Substitute player names in the challenge text
   const personalizedText = substitutePlayerNames(currentItem.text, currentPlayer, targetPlayer)
+
+  // Check if wild card is available (only for custom games)
+  const priorGameItems = currentGame.respectPriorGames ? getPriorGameItems(currentGame.priorGameIds) : []
+  const wildCardAvailable = currentGame.isCustomGame 
+    ? isWildCardAvailable(items, currentGame.usedItems, priorGameItems)
+    : true // For regular games, assume wild card is always available
 
   const handleWildCard = () => {
     pickWildCard()
@@ -156,8 +165,9 @@ export const ItemScreen: React.FC = () => {
 
       <div className={styles.actions}>
         <button
-          className={styles.wildCardButton}
+          className={`${styles.wildCardButton} ${!wildCardAvailable ? styles.disabled : ''}`}
           onClick={handleWildCard}
+          disabled={!wildCardAvailable}
           type="button"
         >
           Wild card
