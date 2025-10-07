@@ -102,9 +102,29 @@
 }
 
 .contentOpen {
-  max-height: 1200px; /* generous cap for smooth growth */
+  max-height: 400px;
   padding-bottom: var(--radius-xl);
   opacity: 1;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for previous games content */
+.contentOpen::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contentOpen::-webkit-scrollbar-track {
+  background: rgba(17, 24, 39, 0.3);
+  border-radius: 3px;
+}
+
+.contentOpen::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 3px;
+}
+
+.contentOpen::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
 }
 
 .gameItem {
@@ -198,7 +218,8 @@
 
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    align-items: flex-start;
+    /* Keep header layout in a row on mobile to keep chevron aligned */
+    flex-direction: row;
+    align-items: center;
   }
 }

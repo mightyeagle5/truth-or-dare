@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   background: var(--color-bg-secondary);
 }
 
@@ -17,8 +16,8 @@
   max-width: 860px;
   margin: 0 auto;
   padding: 24px;
-  padding-bottom: 120px;
-  /* Space for sticky button */
+  /* Removed extra bottom padding since sticky footer is gone */
+  margin-bottom: 64px;
 }
 
 .sections {
@@ -27,20 +26,53 @@
   gap: 24px;
 }
 
-.actions {
+.homeTitle {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+}
+
+.fixedAdminLink {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(16, 23, 33, 0.95);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid var(--color-border-primary);
-  padding: 16px 24px;
+  top: 16px;
+  right: 16px;
+  z-index: 2000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #374151;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.fixedAdminLink:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+/* Add spacing above the first section (players) */
+.sections > div:first-child {
+  margin-top: 192px;
+}
+
+/* Inline actions placed within content flow */
+.actionsInline {
   display: flex;
   justify-content: center;
   gap: 16px;
-  z-index: 1030;
+  flex-wrap: wrap;
+  margin-top: 48px;
 }
+
+/* Full-width divider above the buttons; bottom divider comes from next section */
+/* Remove divider above actions and rely on margin for spacing */
+.sections > .actionsInline:not(:first-child)::before {
+  content: none;
+}
+
+/* Prevent the generic section divider from also adding a line above actions */
+/* Ensure actions use the standard section divider behavior */
 
 .startButton {
   padding: var(--space-4) var(--space-8);
@@ -98,8 +130,7 @@
   max-width: 860px;
   margin: 0 auto;
   padding-top: var(--space-6);
-  padding-bottom: 120px;
-  /* Space for sticky button */
+  /* Removed bottom padding since sticky footer is gone */
 }
 
 .customGameTemplate {
@@ -119,6 +150,20 @@
 .customGameContent h3 {
   font-size: 1.25rem;
   /* var(--font-size-xl) */
+  font-weight: var(--font-weight-semibold);
+  color: #ffffff;
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* Game configuration section */
+.configSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
   font-weight: var(--font-weight-semibold);
   color: #ffffff;
   margin: 0 0 var(--space-4) 0;
@@ -149,10 +194,16 @@
 /* Regular game sections */
 .sections>div:not(:first-child)::before {
   content: '';
+  display: block;
   height: 1px;
   background: #374151;
   margin: var(--space-6) auto;
   width: 80%;
+}
+
+/* Remove divider immediately after the big home title */
+.homeTitle + div::before {
+  content: none !important;
 }
 
 .customGameHeader h2 {
@@ -657,32 +708,20 @@
 }
 
 /* Fade effect for content behind sticky button */
-.content::after {
-  content: '';
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background: linear-gradient(transparent, rgba(10, 10, 10, 0.8));
-  pointer-events: none;
-  z-index: 99;
-}
+/* Removed fade effect previously used for sticky footer overlap */
 
 @media (max-width: 768px) {
   .content {
     padding: var(--space-4);
-    padding-bottom: 100px;
   }
 
   .sections {
     gap: var(--space-5);
   }
 
-  .actions {
-    padding: var(--space-3) var(--space-4);
+  .actionsInline {
     flex-direction: column;
-    gap: var(--space-3);
+    align-items: stretch;
   }
 
   .startButton {
@@ -799,9 +838,7 @@
     /* Same max height for mobile show all mode */
   }
 
-  .content::after {
-    height: 60px;
-  }
+  /* Removed mobile fade effect */
 }
 
 /* Section headers with buttons */

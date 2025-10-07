@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
-import { PlayerList, LevelSelector, PreviousGamesPicker } from '../components/forms'
+import { PlayerList, PreviousGamesPicker } from '../components/forms'
 import { CustomGameSection } from '../components/forms/CustomGameSection'
 import { useGameStore, useHistoryStore, useDevStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
@@ -37,6 +37,7 @@ export const HomePage: React.FC = () => {
   }, [clearGame])
   
   const handleStartGame = async () => {
+    // Level is defaulted to 'soft' and UI is hidden, but logic remains for later use.
     if (!selectedLevel || !canStartGame) return
     
     setIsStarting(true)
@@ -97,53 +98,50 @@ export const HomePage: React.FC = () => {
   }
   
   return (
-    <PageLayout
-      title="Truth or Dare"
-      subtitle="The sexy version"
-    >
+    <PageLayout hideHeader title="" subtitle="">
       <div className={styles.container}>
+        {import.meta.env.DEV && (
+          <Link to="/admin/edit-challenges" className={styles.fixedAdminLink}>Admin</Link>
+        )}
         <div className={styles.content}>
           <div className={styles.sections}>
+            <div className={styles.homeTitle}>Truth or Dare</div>
             <PlayerList
               players={players}
               onPlayersChange={setPlayers}
             />
+            {/* Actions moved below players and above previous games. */}
+            <div className={styles.actionsInline}>
+              <button
+                className={styles.customGameButton}
+                onClick={handleStartCustomGame}
+                disabled={isStarting}
+                type="button"
+              >
+                Create Custom Game
+              </button>
+              <button
+                className={styles.startButton}
+                onClick={handleStartGame}
+                disabled={!canStartGame || isStarting}
+                type="button"
+              >
+                {isStarting ? 'Starting...' : 'Start Game'}
+              </button>
+            </div>
             
-            <LevelSelector
-              selectedLevel={selectedLevel}
-              onLevelChange={setSelectedLevel}
-            />
+            {/* Level selector hidden for now. Leaving logic/state in place for future use. */}
             
-            <PreviousGamesPicker
-              gameHistory={gameHistory}
-              selectedGameIds={selectedPriorGames}
-              onSelectionChange={setSelectedPriorGames}
-              onRemoveGame={removeGameFromHistory}
-              isDevMode={isDevMode}
-              disableGameSaving={disableGameSaving}
-              onDisableGameSavingChange={setDisableGameSaving}
-            />
+            <div className={styles.configSection}>
+              <h3 className={styles.sectionTitle}>Game configuration</h3>
+              <PreviousGamesPicker
+                gameHistory={gameHistory}
+                selectedGameIds={selectedPriorGames}
+                onSelectionChange={setSelectedPriorGames}
+                onRemoveGame={removeGameFromHistory}
+              />
+            </div>
           </div>
-        </div>
-        
-        <div className={styles.actions}>
-          <button
-            className={styles.customGameButton}
-            onClick={handleStartCustomGame}
-            disabled={isStarting}
-            type="button"
-          >
-            Create Custom Game
-          </button>
-          
-          <button
-            className={styles.startButton}
-            onClick={handleStartGame}
-            disabled={!canStartGame || isStarting}
-            type="button"
-          >
-            {isStarting ? 'Starting...' : 'Start Game'}
-          </button>
         </div>
       </div>
     </PageLayout>
