@@ -11,7 +11,8 @@ export const ChoiceScreen: React.FC = () => {
     items,
     pickItem, 
     pickWildCard,
-    exitGame
+    exitGame,
+    changeLevel
   } = useGameStore()
 
   const [isWildCardPicking, setIsWildCardPicking] = useState(false)
@@ -86,7 +87,7 @@ export const ChoiceScreen: React.FC = () => {
               '--level-color-bg': `${levelColor(lvl)}20`,
               '--level-color-border': levelColor(lvl)
             } as React.CSSProperties}
-            onClick={() => { /* to be implemented */ }}
+            onClick={() => { changeLevel(lvl) }}
           >
             {displayName(lvl)}
           </Pill>

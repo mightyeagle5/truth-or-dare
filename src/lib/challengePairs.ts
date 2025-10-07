@@ -110,6 +110,7 @@ export class ChallengePairManager {
       this.state.exhausted = true
       const emptyPair: ChallengePair = { truth: null, dare: null }
       this.levelCache[level] = emptyPair
+      console.log(`[Pairs] fetched level=${level} truth=none dare=none`)
       return emptyPair
     }
 
@@ -123,6 +124,7 @@ export class ChallengePairManager {
 
     const pair: ChallengePair = { truth: randomTruth, dare: randomDare }
     this.levelCache[level] = pair
+    console.log(`[Pairs] fetched level=${level} truth=${randomTruth ? randomTruth.id : 'none'} dare=${randomDare ? randomDare.id : 'none'}`)
     return pair
   }
 
@@ -351,6 +353,10 @@ export class ChallengePairManager {
       this.state.current = pair
       this.state.next = { truth: null, dare: null }
       this.state.exhausted = pair.truth === null && pair.dare === null
+
+      if (cached) {
+        console.log(`[Pairs] cached level=${newLevel} truth=${cached.truth ? cached.truth.id : 'none'} dare=${cached.dare ? cached.dare.id : 'none'}`)
+      }
       
       // Start background fetch for next pair
       if (!this.state.exhausted) {
