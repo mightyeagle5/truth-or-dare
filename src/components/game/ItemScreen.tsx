@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { getCurrentPlayer } from '../../store/selectors'
 import { useGameStore } from '../../store'
@@ -133,7 +133,18 @@ export const ItemScreen: React.FC = () => {
       </div>
 
       <div className={styles.textSection}>
-        <p className={styles.challengeText}>{personalizedText}</p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={currentItem.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className={styles.challengeText}
+          >
+            {personalizedText}
+          </motion.p>
+        </AnimatePresence>
       </div>
 
       <div className={styles.ratingSection}>

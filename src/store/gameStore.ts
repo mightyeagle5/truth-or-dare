@@ -4,7 +4,6 @@ import { createGameId } from '../lib/ids'
 import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts, addUsedItem, isItemUsed } from '../lib/items'
 import { challengePairManager } from '../lib/challengePairs'
-import { substitutePlayerNames, selectTargetPlayer } from '../lib/playerSubstitution'
 import { 
   getGame,
   saveGame, 
@@ -289,11 +288,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const { currentGame, currentItem } = get()
     if (!currentGame || !currentItem) return
 
+    // Check if item already used
+    void isItemUsed(currentGame.usedItems, currentItem)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1
     }
+
+    
 
     // Update challenge pair manager with new used items
     if (!currentGame.isCustomGame) {
@@ -343,6 +347,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       }
     }
 
+    // Check if item already used
+    void isItemUsed(currentGame.usedItems, currentItem)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
@@ -350,6 +357,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1,
       playerCounters: updatedCounters
     }
+
+    
 
     // Update challenge pair manager with new used items
     if (!currentGame.isCustomGame) {
@@ -389,6 +398,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       }
     }
 
+    // Check if item already used
+    void isItemUsed(currentGame.usedItems, currentItem)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
@@ -396,6 +408,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1,
       playerCounters: updatedCounters
     }
+
+    
 
     // Handle wild card completion in challenge pair manager
     if (!currentGame.isCustomGame) {
@@ -487,6 +501,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const devStore = useDevStore.getState()
     if (!devStore.disableGameSaving) {
       saveGame(updatedGame)
+    }
+
+    // Update challenge pair manager so availability reflects the new prior-game filter
+    if (!updatedGame.isCustomGame) {
+      const priorGameItems = respect ? getPriorGameItems(updatedGame.priorGameIds) : []
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      // Optionally refresh background next pair to reflect new availability
+      if (!challengePairManager.isExhausted()) {
+        challengePairManager.loadNextPair()
+      }
     }
 
     set({ currentGame: updatedGame })

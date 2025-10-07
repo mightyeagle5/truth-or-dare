@@ -1,6 +1,5 @@
-import type { Item, Level, ItemKind } from '../types'
-import { SupabaseChallengeService } from './supabaseService'
-import { getAvailableItems, isItemUsed } from './items'
+import type { Item, Level } from '../types'
+import { getAvailableItems } from './items'
 
 export interface ChallengePair {
   truth: Item | null
@@ -30,6 +29,7 @@ export class ChallengePairManager {
   private priorGameItems: string[] = []
   private loadingStartTime: number = 0
   private loadingTimeout: NodeJS.Timeout | null = null
+  private levelCache: Partial<Record<Exclude<Level, 'Progressive' | 'Custom'>, ChallengePair>> = {}
 
   // Initialize with all items and current game state
   initialize(
@@ -49,6 +49,7 @@ export class ChallengePairManager {
       error: null,
       exhausted: false
     }
+    this.levelCache = {}
   }
 
   // Get current pair (for display)
@@ -104,16 +105,25 @@ export class ChallengePairManager {
       this.priorGameItems
     )
 
-    if (availableTruth.length === 0 || availableDare.length === 0) {
+    // If both are empty, level is exhausted
+    if (availableTruth.length === 0 && availableDare.length === 0) {
       this.state.exhausted = true
-      return { truth: null, dare: null }
+      const emptyPair: ChallengePair = { truth: null, dare: null }
+      this.levelCache[level] = emptyPair
+      return emptyPair
     }
 
-    // Pick random items
-    const randomTruth = availableTruth[Math.floor(Math.random() * availableTruth.length)]
-    const randomDare = availableDare[Math.floor(Math.random() * availableDare.length)]
+    // Pick random items when available (allow partial availability)
+    const randomTruth = availableTruth.length > 0
+      ? availableTruth[Math.floor(Math.random() * availableTruth.length)]
+      : null
+    const randomDare = availableDare.length > 0
+      ? availableDare[Math.floor(Math.random() * availableDare.length)]
+      : null
 
-    return { truth: randomTruth, dare: randomDare }
+    const pair: ChallengePair = { truth: randomTruth, dare: randomDare }
+    this.levelCache[level] = pair
+    return pair
   }
 
   // Start loading with smart timing
@@ -168,7 +178,11 @@ export class ChallengePairManager {
     try {
       const pair = await this.fetchPair()
       this.state.current = pair
-      this.state.exhausted = pair.truth === null || pair.dare === null
+      this.state.exhausted = pair.truth === null && pair.dare === null
+      // Start background fetch for next pair when not exhausted
+      if (!this.state.exhausted) {
+        this.loadNextPair()
+      }
       this.stopLoading()
       return pair
     } catch (error) {
@@ -187,7 +201,7 @@ export class ChallengePairManager {
     try {
       const pair = await this.fetchPair()
       this.state.next = pair
-      if (pair.truth === null || pair.dare === null) {
+      if (pair.truth === null && pair.dare === null) {
         this.state.exhausted = true
       }
     } catch (error) {
@@ -308,7 +322,7 @@ export class ChallengePairManager {
       try {
         const newPair = await this.fetchPair()
         this.state.next = newPair
-        if (newPair.truth === null || newPair.dare === null) {
+        if (newPair.truth === null && newPair.dare === null) {
           this.state.exhausted = true
         }
       } catch (error) {
@@ -331,10 +345,16 @@ export class ChallengePairManager {
     this.startLoading()
     
     try {
-      const pair = await this.fetchPair(newLevel)
+      // Use cached pair if available; otherwise fetch a new pair
+      const cached = this.levelCache[newLevel]
+      const pair = cached ?? await this.fetchPair(newLevel)
       this.state.current = pair
       this.state.next = { truth: null, dare: null }
-      this.state.exhausted = pair.truth === null || pair.dare === null
+      this.state.exhausted = pair.truth === null && pair.dare === null
+
+      if (cached) {
+        // cached pair used
+      }
       
       // Start background fetch for next pair
       if (!this.state.exhausted) {
@@ -367,6 +387,7 @@ export class ChallengePairManager {
     this.allItems = []
     this.usedItems = {}
     this.priorGameItems = []
+    this.levelCache = {}
     
     if (this.loadingTimeout) {
       clearTimeout(this.loadingTimeout)
