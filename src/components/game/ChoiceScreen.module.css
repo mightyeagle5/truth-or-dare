@@ -7,6 +7,7 @@
   width: 100%;
   margin: 0;
   background: var(--color-bg-secondary);
+  position: relative;
 }
 
 .levelBar {
@@ -215,6 +216,30 @@
 
 .resetButton:hover {
   background: #D97706;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255,255,255,0.35);
+  border-top-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 
