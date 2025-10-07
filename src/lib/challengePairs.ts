@@ -302,8 +302,10 @@ export class ChallengePairManager {
       // For wild cards, remove the item from the next pair
       if (this.state.next.truth?.id === itemId) {
         this.state.next.truth = null
+        console.log(`[Pairs] dropped from next kind=truth id=${itemId}`)
       } else if (this.state.next.dare?.id === itemId) {
         this.state.next.dare = null
+        console.log(`[Pairs] dropped from next kind=dare id=${itemId}`)
       }
       
       // If next pair is now empty, mark it as invalid
@@ -314,8 +316,10 @@ export class ChallengePairManager {
       // For regular items, remove the item from the current pair
       if (this.state.current.truth?.id === itemId) {
         this.state.current.truth = null
+        console.log(`[Pairs] dropped from current kind=truth id=${itemId}`)
       } else if (this.state.current.dare?.id === itemId) {
         this.state.current.dare = null
+        console.log(`[Pairs] dropped from current kind=dare id=${itemId}`)
       }
     }
 

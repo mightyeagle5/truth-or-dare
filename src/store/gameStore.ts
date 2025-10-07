@@ -288,11 +288,17 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const { currentGame, currentItem } = get()
     if (!currentGame || !currentItem) return
 
+    // Check if item already used
+    const alreadyUsed = isItemUsed(currentGame.usedItems, currentItem)
+    console.log(`[UsedItems] check id=${currentItem.id} used=${alreadyUsed}`)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1
     }
+
+    console.log(`[UsedItems] moved id=${currentItem.id} level=${currentItem.level} kind=${currentItem.kind}`)
 
     // Update challenge pair manager with new used items
     if (!currentGame.isCustomGame) {
@@ -342,6 +348,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       }
     }
 
+    // Check if item already used
+    const alreadyUsed = isItemUsed(currentGame.usedItems, currentItem)
+    console.log(`[UsedItems] check id=${currentItem.id} used=${alreadyUsed}`)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
@@ -349,6 +359,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1,
       playerCounters: updatedCounters
     }
+
+    console.log(`[UsedItems] moved id=${currentItem.id} level=${currentItem.level} kind=${currentItem.kind}`)
 
     // Update challenge pair manager with new used items
     if (!currentGame.isCustomGame) {
@@ -388,6 +400,10 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       }
     }
 
+    // Check if item already used
+    const alreadyUsed = isItemUsed(currentGame.usedItems, currentItem)
+    console.log(`[UsedItems] check id=${currentItem.id} used=${alreadyUsed}`)
+
     const updatedGame = {
       ...currentGame,
       usedItems: addUsedItem(currentGame.usedItems, currentItem),
@@ -395,6 +411,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       totalTurnsAtCurrentLevel: currentGame.totalTurnsAtCurrentLevel + 1,
       playerCounters: updatedCounters
     }
+
+    console.log(`[UsedItems] moved id=${currentItem.id} level=${currentItem.level} kind=${currentItem.kind}`)
 
     // Handle wild card completion in challenge pair manager
     if (!currentGame.isCustomGame) {
