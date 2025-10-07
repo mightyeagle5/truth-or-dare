@@ -89,57 +89,56 @@ export const ChoiceScreen: React.FC = () => {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentGame.currentLevel}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.22, ease: 'easeInOut' }}
-        >
-          <div className={styles.playerName}>
-            {currentPlayer?.name || 'Unknown Player'}'s turn
-          </div>
+      <div className={styles.playerName}>
+        {currentPlayer?.name || 'Unknown Player'}'s turn
+      </div>
 
-          <div className={styles.choicesWrap}>
-            <div className={styles.choices}>
-              <button
-                className={`${styles.choiceCard} ${styles.truthCard} ${disabledChoices.truth ? styles.disabled : ''}`}
-                onClick={handleTruthClick}
-                disabled={disabledChoices.truth}
-                type="button"
-              >
-                <div className={styles.choiceContent}>
-                  <h3 className={styles.choiceTitle}>Truth</h3>
-                  {!disabledChoices.truth && disabledChoices.dare && dareDisabledReason === 'consecutive' && (
-                    <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
-                  )}
-                  {disabledChoices.truth && truthDisabledReason === 'no-items' && (
-                    <p className={styles.mandatoryMessage}>Nothing left to answer on this level</p>
-                  )}
-                </div>
-              </button>
+      <div className={styles.choicesWrap}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentGame.currentLevel}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+            className={styles.choices}
+          >
+            <button
+              className={`${styles.choiceCard} ${styles.truthCard} ${disabledChoices.truth ? styles.disabled : ''}`}
+              onClick={handleTruthClick}
+              disabled={disabledChoices.truth}
+              type="button"
+            >
+              <div className={styles.choiceContent}>
+                <h3 className={styles.choiceTitle}>Truth</h3>
+                {!disabledChoices.truth && disabledChoices.dare && dareDisabledReason === 'consecutive' && (
+                  <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
+                )}
+                {disabledChoices.truth && truthDisabledReason === 'no-items' && (
+                  <p className={styles.mandatoryMessage}>Nothing left to answer on this level</p>
+                )}
+              </div>
+            </button>
 
-              <button
-                className={`${styles.choiceCard} ${styles.dareCard} ${disabledChoices.dare ? styles.disabled : ''}`}
-                onClick={handleDareClick}
-                disabled={disabledChoices.dare}
-                type="button"
-              >
-                <div className={styles.choiceContent}>
-                  <h3 className={styles.choiceTitle}>Dare</h3>
-                  {!disabledChoices.dare && disabledChoices.truth && truthDisabledReason === 'consecutive' && (
-                    <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
-                  )}
-                  {disabledChoices.dare && dareDisabledReason === 'no-items' && (
-                    <p className={styles.mandatoryMessage}>Nothing left to dare on this level</p>
-                  )}
-                </div>
-              </button>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+            <button
+              className={`${styles.choiceCard} ${styles.dareCard} ${disabledChoices.dare ? styles.disabled : ''}`}
+              onClick={handleDareClick}
+              disabled={disabledChoices.dare}
+              type="button"
+            >
+              <div className={styles.choiceContent}>
+                <h3 className={styles.choiceTitle}>Dare</h3>
+                {!disabledChoices.dare && disabledChoices.truth && truthDisabledReason === 'consecutive' && (
+                  <p className={styles.mandatoryMessage}>Mandatory choice to keep things interesting</p>
+                )}
+                {disabledChoices.dare && dareDisabledReason === 'no-items' && (
+                  <p className={styles.mandatoryMessage}>Nothing left to dare on this level</p>
+                )}
+              </div>
+            </button>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {challengePairLoading && (
         <div className={styles.loadingOverlay}>
