@@ -12,10 +12,12 @@ export const substitutePlayerNames = (
   activePlayer: Player | PlayerSnapshot,
   targetPlayer: Player | PlayerSnapshot | null
 ): string => {
-  let result = text.replace(/{active_player}/g, activePlayer.name)
+  const activeName = (activePlayer.name && activePlayer.name.trim().length > 0) ? activePlayer.name : 'Player 1'
+  let result = text.replace(/{active_player}/g, activeName)
   
   if (targetPlayer) {
-    result = result.replace(/{other_player}/g, targetPlayer.name)
+    const targetName = (targetPlayer.name && targetPlayer.name.trim().length > 0) ? targetPlayer.name : 'Player 2'
+    result = result.replace(/{other_player}/g, targetName)
   } else {
     // If no target player, replace {other_player} with a generic term
     result = result.replace(/{other_player}/g, 'another player')

@@ -7,15 +7,18 @@ export const useGameSetup = () => {
     { id: createPlayerId(), name: '', gender: 'male' },
     { id: createPlayerId(), name: '', gender: 'female' }
   ])
-  const [selectedLevel, setSelectedLevel] = useState<Level | null>(null)
+  // Default game level to 'soft' by default. The level selector UI is hidden on
+  // the home screen, but the state and logic remain for future use.
+  const [selectedLevel, setSelectedLevel] = useState<Level | null>('soft')
   const [selectedPriorGames, setSelectedPriorGames] = useState<string[]>([])
   const [isStarting, setIsStarting] = useState(false)
   const [showCustomGame, setShowCustomGame] = useState(false)
 
   // Computed values
-  const canStartGame = Boolean(selectedLevel && players.length >= 2 && players.every(p => p.name.trim().length > 0))
-  const canStartCustomGame = players.length >= 2 && players.every(p => p.name.trim().length > 0)
-  const getValidPlayers = () => players.filter(p => p.name.trim().length > 0)
+  // Allow starting with optional names. Names will default to "Player 1", "Player 2" at start.
+  const canStartGame = Boolean(selectedLevel && players.length >= 2)
+  const canStartCustomGame = players.length >= 2
+  const getValidPlayers = () => players
 
   // Actions
   const resetForm = () => {
@@ -23,7 +26,8 @@ export const useGameSetup = () => {
       { id: createPlayerId(), name: '', gender: 'male' },
       { id: createPlayerId(), name: '', gender: 'female' }
     ])
-    setSelectedLevel(null)
+    // Keep defaulting to 'soft' on reset as level selection is currently hidden.
+    setSelectedLevel('soft')
     setSelectedPriorGames([])
     setIsStarting(false)
     setShowCustomGame(false)

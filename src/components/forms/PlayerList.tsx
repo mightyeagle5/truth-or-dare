@@ -1,8 +1,6 @@
 import React from 'react'
-import { GENDER_COLORS, GENDER_ICONS, MAX_PLAYERS, MIN_PLAYERS } from '../../lib/constants'
-import { createPlayerId } from '../../lib/ids'
+import { MIN_PLAYERS } from '../../lib/constants'
 import { GenderRadio } from './GenderRadio'
-import { IconButton } from '../ui/IconButton'
 import type { PlayerSnapshot } from '../../types'
 import styles from './PlayerList.module.css'
 
@@ -17,17 +15,13 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   onPlayersChange, 
   disabled = false 
 }) => {
-  const addPlayer = () => {
-    if (players.length >= MAX_PLAYERS) return
-    
-    const newPlayer: PlayerSnapshot = {
-      id: createPlayerId(),
-      name: '',
-      gender: 'male'
-    }
-    
-    onPlayersChange([...players, newPlayer])
-  }
+  /* Keeping addPlayer logic for future use when enabling more than two players again.
+     const addPlayer = () => {
+       if (players.length >= MAX_PLAYERS) return
+       const newPlayer: PlayerSnapshot = { id: createPlayerId(), name: '', gender: 'male' }
+       onPlayersChange([...players, newPlayer])
+     }
+  */
 
   const removePlayer = (playerId: string) => {
     if (players.length <= MIN_PLAYERS) return
@@ -45,17 +39,9 @@ export const PlayerList: React.FC<PlayerListProps> = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <h3 className={styles.title}>Players</h3>
-        <div className={styles.count}>
-          {players.length} / {MAX_PLAYERS} players
-        </div>
-        <button
-          className={styles.addButton}
-          onClick={addPlayer}
-          disabled={disabled || players.length >= MAX_PLAYERS}
-          type="button"
-        >
-          + Add Player
-        </button>
+        {/* Hiding players count while game is limited to two players. Keeping markup for future use. */}
+        {/* Intentionally hiding the "+ Add Player" button for now to limit the game to two players.
+            The add player logic and UI are kept for future re-enablement. */}
       </div>
       
       <div className={styles.players}>

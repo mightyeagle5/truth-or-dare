@@ -59,7 +59,8 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
           <div className={styles.titleSection}>
             <div className={styles.titleRow}>
               <h3 className={styles.title}>Previous Games</h3>
-              {isDevMode && onDisableGameSavingChange && (
+              {false && isDevMode && onDisableGameSavingChange && (
+                // Hiding the "Disable saving" dev toggle for now. Logic retained for later use.
                 <label
                   className={styles.devCheckbox}
                   onClick={(e) => e.stopPropagation()}

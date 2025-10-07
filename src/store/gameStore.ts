@@ -30,16 +30,22 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const isProgressive = level === 'Progressive'
     const currentLevel = isProgressive ? 'soft' : level as Exclude<Level, 'Progressive'>
     
+    // Ensure players have default names if none provided
+    const normalizedPlayers = players.map((player, index) => ({
+      ...player,
+      name: (player.name && player.name.trim().length > 0) ? player.name : `Player ${index + 1}`
+    }))
+
     // Initialize player counters
     const playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> = {}
-    players.forEach(player => {
+    normalizedPlayers.forEach(player => {
       playerCounters[player.id] = { consecutiveTruths: 0, consecutiveDares: 0 }
     })
     
     const game: GameMeta = {
       id: gameId,
       createdAt: Date.now(),
-      players,
+      players: normalizedPlayers,
       selectedLevel: level,
       priorGameIds,
       currentLevel,
@@ -556,9 +562,15 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
         tags: challenge.tags
       }))
     
+    // Ensure players have default names if none provided
+    const normalizedPlayers = players.map((player, index) => ({
+      ...player,
+      name: (player.name && player.name.trim().length > 0) ? player.name : `Player ${index + 1}`
+    }))
+
     // Initialize player counters
     const playerCounters: Record<string, { consecutiveTruths: number; consecutiveDares: number }> = {}
-    players.forEach(player => {
+    normalizedPlayers.forEach(player => {
       playerCounters[player.id] = { consecutiveTruths: 0, consecutiveDares: 0 }
     })
     
@@ -591,7 +603,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     
     const game: GameMeta = {
       id: gameId,
-      players,
+      players: normalizedPlayers,
       selectedLevel: isProgressive ? 'Progressive' : 'Custom',
       currentLevel: initialLevel,
       turnIndex: 0,

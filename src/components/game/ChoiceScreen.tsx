@@ -90,7 +90,9 @@ export const ChoiceScreen: React.FC = () => {
       </div>
 
       <div className={styles.playerName}>
-        {currentPlayer?.name || 'Unknown Player'}'s turn
+        {(currentPlayer?.name && currentPlayer.name.trim().length > 0)
+          ? currentPlayer.name
+          : `Player ${currentGame.turnIndex + 1}`}&#39;s turn
       </div>
 
       <div className={styles.choicesWrap}>

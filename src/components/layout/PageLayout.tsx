@@ -8,6 +8,7 @@ interface PageLayoutProps {
   children: React.ReactNode
   showGameInfo?: boolean
   onExit?: () => void
+  hideHeader?: boolean
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
@@ -15,16 +16,19 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   subtitle,
   children,
   showGameInfo = false,
-  onExit
+  onExit,
+  hideHeader = false
 }) => {
   return (
     <div className={styles.container}>
-      <Header 
-        title={title}
-        subtitle={subtitle}
-        showGameInfo={showGameInfo}
-        onExit={onExit}
-      />
+      {!hideHeader && (
+        <Header 
+          title={title}
+          subtitle={subtitle}
+          showGameInfo={showGameInfo}
+          onExit={onExit}
+        />
+      )}
       
       <main className={styles.main}>
         {children}
