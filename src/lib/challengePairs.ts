@@ -110,7 +110,6 @@ export class ChallengePairManager {
       this.state.exhausted = true
       const emptyPair: ChallengePair = { truth: null, dare: null }
       this.levelCache[level] = emptyPair
-      console.log(`[Pairs] fetched level=${level} truth=none dare=none`)
       return emptyPair
     }
 
@@ -124,7 +123,6 @@ export class ChallengePairManager {
 
     const pair: ChallengePair = { truth: randomTruth, dare: randomDare }
     this.levelCache[level] = pair
-    console.log(`[Pairs] fetched level=${level} truth=${randomTruth ? randomTruth.id : 'none'} dare=${randomDare ? randomDare.id : 'none'}`)
     return pair
   }
 
@@ -302,10 +300,8 @@ export class ChallengePairManager {
       // For wild cards, remove the item from the next pair
       if (this.state.next.truth?.id === itemId) {
         this.state.next.truth = null
-        console.log(`[Pairs] dropped from next kind=truth id=${itemId}`)
       } else if (this.state.next.dare?.id === itemId) {
         this.state.next.dare = null
-        console.log(`[Pairs] dropped from next kind=dare id=${itemId}`)
       }
       
       // If next pair is now empty, mark it as invalid
@@ -316,10 +312,8 @@ export class ChallengePairManager {
       // For regular items, remove the item from the current pair
       if (this.state.current.truth?.id === itemId) {
         this.state.current.truth = null
-        console.log(`[Pairs] dropped from current kind=truth id=${itemId}`)
       } else if (this.state.current.dare?.id === itemId) {
         this.state.current.dare = null
-        console.log(`[Pairs] dropped from current kind=dare id=${itemId}`)
       }
     }
 
@@ -359,7 +353,7 @@ export class ChallengePairManager {
       this.state.exhausted = pair.truth === null && pair.dare === null
 
       if (cached) {
-        console.log(`[Pairs] cached level=${newLevel} truth=${cached.truth ? cached.truth.id : 'none'} dare=${cached.dare ? cached.dare.id : 'none'}`)
+        // cached pair used
       }
       
       // Start background fetch for next pair
