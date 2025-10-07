@@ -71,23 +71,26 @@ export const ChoiceScreen: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.levelBar}>
-        {(['soft','mild','hot','spicy','kinky'] as const).map((lvl) => (
-          <Pill
-            key={lvl}
-            active={currentGame.currentLevel === lvl}
-            className={styles.levelPill}
-            style={{
-              '--level-color': levelColor(lvl),
-              '--level-color-bg': `${levelColor(lvl)}20`,
-              '--level-color-border': levelColor(lvl)
-            } as React.CSSProperties}
-            onClick={() => { changeLevel(lvl) }}
-          >
-            {displayName(lvl)}
-          </Pill>
-        ))}
-      </div>
+      {/* Only show level bar if not in random mode for custom games */}
+      {!(currentGame.isCustomGame && currentGame.customGameMode === 'random') && (
+        <div className={styles.levelBar}>
+          {(['soft','mild','hot','spicy','kinky'] as const).map((lvl) => (
+            <Pill
+              key={lvl}
+              active={currentGame.currentLevel === lvl}
+              className={styles.levelPill}
+              style={{
+                '--level-color': levelColor(lvl),
+                '--level-color-bg': `${levelColor(lvl)}20`,
+                '--level-color-border': levelColor(lvl)
+              } as React.CSSProperties}
+              onClick={() => { changeLevel(lvl) }}
+            >
+              {displayName(lvl)}
+            </Pill>
+          ))}
+        </div>
+      )}
 
       <div className={styles.playerName}>
         {(currentPlayer?.name && currentPlayer.name.trim().length > 0)

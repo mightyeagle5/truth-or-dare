@@ -59,10 +59,7 @@ export const HomePage: React.FC = () => {
   
   if (showCustomGame) {
     return (
-      <PageLayout
-        title="Truth or Dare"
-        subtitle="The sexy version"
-      >
+      <PageLayout hideHeader title="" subtitle="">
         <CustomGameSection
             players={players}
             onPlayersChange={setPlayers}

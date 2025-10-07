@@ -84,21 +84,18 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   min-width: 200px;
 }
 
 .startButton:hover:not(:disabled) {
   background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
 }
 
 .startButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
 }
 
 .customGameButton {
@@ -111,14 +108,12 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(139, 92, 246, 0.3);
   min-width: 200px;
 }
 
 .customGameButton:hover {
   background: linear-gradient(135deg, #7C3AED, #6D28D9);
   transform: translateY(-2px);
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(139, 92, 246, 0.4);
 }
 
 /* Custom Game Template Styles */
@@ -697,14 +692,12 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--radius-base) var(--radius-xl) rgba(239, 68, 68, 0.3);
   min-width: 200px;
 }
 
 .backButton:hover {
   background: linear-gradient(135deg, #DC2626, #B91C1C);
   transform: translateY(-2px);
-  box-shadow: 0 var(--radius-md) var(--radius-2xl) rgba(239, 68, 68, 0.4);
 }
 
 /* Fade effect for content behind sticky button */

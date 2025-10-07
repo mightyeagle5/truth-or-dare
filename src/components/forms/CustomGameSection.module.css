@@ -2,27 +2,25 @@
 .customGameContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 24px;
   width: 100%;
   max-width: 860px;
   margin: 0 auto;
-  padding-top: var(--space-4);
-  padding-bottom: 120px;
-  /* Space for sticky button */
+  padding: 24px;
 }
 
 .customGameTemplate {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 24px;
   width: 100%;
 }
 
 .customGameContent {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
-  max-width: 860px;
+  gap: 24px;
+  width: 100%;
 }
 
 .customGameContent h3 {
@@ -30,7 +28,6 @@
   /* var(--font-size-xl) */
   font-weight: var(--font-weight-semibold);
   color: #ffffff;
-  margin: 0 0 var(--space-4) 0;
 }
 
 .playersSection,
@@ -51,21 +48,66 @@
   content: '';
   height: 1px;
   background: #374151;
-  margin: var(--space-4) auto;
+  margin: var(--space-6) auto;
   width: 80%;
 }
 
-.customGameHeader h2 {
-  font-size: 2.5rem;
+.customGameHeaderAlt {
+  text-align: center;
+  font-size: 3rem;
   font-weight: var(--font-weight-bold);
   color: #ffffff;
-  margin: 0 0 var(--space-3) 0;
+  margin-top: 192px; /* Add top margin above the title */
 }
 
-.customGameHeader p {
-  font-size: 1.125rem;
-  color: #9CA3AF;
-  margin: 0;
+.addSectionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
+  row-gap: 32px;
+}
+
+/* 2x2 grid placement: left spans two rows; right split in two */
+.addCustomSection { grid-column: 1; grid-row: 1 / span 2; }
+.addGameSection { grid-column: 2; grid-row: 1; }
+.uploadSection { grid-column: 2; grid-row: 2; }
+
+/* Single divider above the grouped grid; none between the two columns */
+.addSectionsContainer::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #374151;
+  margin: var(--space-6) auto;
+  width: 80%;
+}
+.addSectionsGrid .addCustomSection::before,
+.addSectionsGrid .addGameSection::before,
+.addSectionsGrid .uploadSection::before {
+  content: none !important;
+}
+.uploadSection { display: flex; flex-direction: column; gap: var(--space-3); justify-content: flex-end; }
+.uploadHelpText { color: #9CA3AF; margin: 0; font-size: var(--font-size-sm); }
+
+/* Kind + Level in one row (two columns), button spans full width below */
+.challengeControlsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.challengeControlsGrid .addCustomButton {
+  grid-column: 1 / -1; /* place button on its own row under Kind/Level */
+  width: 100%;
+}
+
+.gameChallengeSelectorColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.gameChallengeSelectorColumn .addGameButton {
+  grid-column: 1 / -1; /* place button on its own row under Kind/Level */
+  width: 100%;
 }
 
 .customGameContent p {
@@ -81,23 +123,15 @@
   gap: var(--space-4);
 }
 
-.challengeInputRow {
-  display: flex;
-  gap: var(--space-4);
-  align-items: flex-start;
-}
+.sectionHeaderSimple { margin: 0 0 var(--space-2) 0; }
+.addCustomSection .sectionHeaderSimple,
+.addGameSection .sectionHeaderSimple,
+.uploadSection .sectionHeaderSimple { margin-bottom: var(--space-2); }
 
-.challengeControls {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  min-width: 200px;
-  flex-shrink: 0;
-}
 
 .challengeTextarea {
   width: 100%;
-  min-height: var(--space-20);
+  min-height: 105px;
   padding: var(--space-3);
   background: rgba(17, 24, 39, 0.5);
   border: 1px solid #4B5563;
@@ -118,12 +152,7 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.challengeOptions {
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
-  flex-wrap: wrap;
-}
+.gameChallengeSelectorColumn { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
 
 .challengeSelect {
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
@@ -149,7 +178,7 @@
   padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #10B981, #059669);
   color: white;
-  border: none;
+  border: 1px solid #059669;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -172,7 +201,7 @@
   padding: var(--space-2) var(--space-4);
   background: linear-gradient(135deg, #3B82F6, #2563EB);
   color: white;
-  border: none;
+  border: 1px solid #2563EB;
   border-radius: var(--radius-md);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -196,20 +225,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  max-height: 600px;
-  /* Default max height for preview mode (showing 5) */
+  max-height: 480px;
   height: auto;
-  /* Allow height to grow up to max-height */
   overflow-y: auto;
   padding-right: var(--space-1);
-  /* Space for scrollbar */
-}
-
-.challengesList.showAllMode {
-  max-height: 600px;
-  /* Same max height for show all mode */
-  height: auto;
-  /* Allow height to grow up to max-height */
 }
 
 /* Custom scrollbar for challenges list */
@@ -580,20 +599,7 @@
 }
 
 /* Footer Actions */
-.actions {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(16, 23, 33, 0.95);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid #374151;
-  padding: var(--space-4) var(--space-4);
-  display: flex;
-  justify-content: center;
-  gap: var(--space-4);
-  z-index: 1000;
-}
+.actions { display: flex; justify-content: center; gap: var(--space-4); }
 
 .startButton {
   padding: var(--space-4) var(--space-2);
@@ -605,21 +611,18 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--space-1) var(--space-3) rgba(59, 130, 246, 0.3);
   min-width: 200px;
 }
 
 .startButton:hover:not(:disabled) {
   background: linear-gradient(135deg, #2563EB, #1E40AF);
-  transform: translateY(-var(--space-1));
-  box-shadow: 0 var(--space-2) var(--space-4) rgba(59, 130, 0.4);
+  transform: translateY(-2px);
 }
 
 .startButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
 }
 
 .backButton {
@@ -632,14 +635,12 @@
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-base);
-  box-shadow: 0 var(--space-1) var(--space-3) rgba(239, 68, 68, 0.3);
   min-width: 200px;
 }
 
 .backButton:hover {
   background: linear-gradient(135deg, #DC2626, #B91C1C);
-  transform: translateY(-var(--space-1));
-  box-shadow: 0 var(--space-2) var(--space-4) rgba(239, 68, 68, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Mobile responsive for section headers */

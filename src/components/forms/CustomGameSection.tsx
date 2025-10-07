@@ -38,8 +38,6 @@ interface CustomGameSectionProps {
   // Challenge filter and display
   challengeFilter: 'all' | 'custom' | 'game'
   setChallengeFilter: React.Dispatch<React.SetStateAction<'all' | 'custom' | 'game'>>
-  showAllChallenges: boolean
-  setShowAllChallenges: React.Dispatch<React.SetStateAction<boolean>>
   
   // Game mode
   gameMode: 'random' | 'progressive'
@@ -63,8 +61,6 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
   setGameChallengeSelector,
   challengeFilter,
   setChallengeFilter,
-  showAllChallenges,
-  setShowAllChallenges,
   gameMode,
   setGameMode,
   onBackToHome,
@@ -186,11 +182,8 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
     return true
   })
 
-  // Apply preview mode (show only top 5 if not showing all)
-  const displayChallenges = showAllChallenges ? filteredChallenges : filteredChallenges.slice(0, 5)
-  
-  // Check if preview toggle should be visible (only if more than 5 challenges after filtering)
-  const shouldShowPreviewToggle = filteredChallenges.length > 5
+  // Show all filtered challenges
+  const displayChallenges = filteredChallenges
 
   // Check if game mode selection should be disabled
   const isGameModeDisabled = () => {
@@ -281,10 +274,7 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
   return (
     <div className={styles.customGameContainer}>
       <div className={styles.customGameTemplate}>
-        <div className={styles.customGameHeader}>
-          <h2>Create Custom Game</h2>
-          <p>Design your own Truth or Dare experience</p>
-        </div>
+        <div className={styles.customGameHeaderAlt}>Custom Truth or Dare</div>
         
         <div className={styles.customGameContent}>
           {/* Players Section */}
@@ -295,39 +285,68 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
             />
           </div>
 
-          {/* Add Custom Challenge */}
-          <div className={styles.addCustomSection}>
-            <div className={styles.sectionHeader}>
-              <h3>Add Custom Challenge</h3>
-              <button
-                className={styles.uploadButton}
-                onClick={handleUploadChallenges}
-                type="button"
-              >
-                Upload Challenges
-              </button>
-            </div>
-            <div className={styles.customChallengeForm}>
-              <div className={styles.challengeInputRow}>
-                <textarea
-                  className={styles.challengeTextarea}
-                  placeholder="Enter your custom truth or dare..."
-                  value={customChallengeForm.text}
-                  onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, text: e.target.value }))}
-                />
-                <div className={styles.challengeControls}>
+          {/* Add sections container with divider */}
+          <div className={styles.addSectionsContainer}>
+            <div className={styles.addSectionsGrid}>
+              {/* Add Custom Challenge */}
+              <div className={styles.addCustomSection}>
+                <div className={styles.sectionHeaderSimple}>
+                  <h3>Add Custom Challenge</h3>
+                </div>
+                <div className={styles.customChallengeForm}>
+                  <textarea
+                    className={styles.challengeTextarea}
+                    placeholder="Use {active_player} for current player's name and {other_player} for the other player's name to personalize experience"
+                    value={customChallengeForm.text}
+                    onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, text: e.target.value }))}
+                  />
+                  <div className={styles.challengeControlsGrid}>
+                    <select
+                      className={styles.challengeSelect}
+                      value={customChallengeForm.kind}
+                      onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, kind: e.target.value as ItemKind }))}
+                    >
+                      <option value="truth">Truth</option>
+                      <option value="dare">Dare</option>
+                    </select>
+                    <select
+                      className={styles.challengeSelect}
+                      value={customChallengeForm.level}
+                      onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, level: e.target.value as Level }))}
+                    >
+                      <option value="soft">Soft</option>
+                      <option value="mild">Mild</option>
+                      <option value="hot">Hot</option>
+                      <option value="spicy">Spicy</option>
+                      <option value="kinky">Kinky</option>
+                    </select>
+                    <button
+                      className={styles.addCustomButton}
+                      onClick={addCustomChallenge}
+                      disabled={!customChallengeForm.text.trim()}
+                    >
+                      Add Custom
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Add from Original Game (top-right) */}
+              <div className={styles.addGameSection}>
+                <div className={styles.sectionHeaderSimple}><h3>Add from Original Game</h3></div>
+                <div className={styles.gameChallengeSelectorColumn}>
                   <select
                     className={styles.challengeSelect}
-                    value={customChallengeForm.kind}
-                    onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, kind: e.target.value as ItemKind }))}
+                    value={gameChallengeSelector.kind}
+                    onChange={(e) => setGameChallengeSelector(prev => ({ ...prev, kind: e.target.value as ItemKind }))}
                   >
                     <option value="truth">Truth</option>
                     <option value="dare">Dare</option>
                   </select>
                   <select
                     className={styles.challengeSelect}
-                    value={customChallengeForm.level}
-                    onChange={(e) => setCustomChallengeForm(prev => ({ ...prev, level: e.target.value as Level }))}
+                    value={gameChallengeSelector.level}
+                    onChange={(e) => setGameChallengeSelector(prev => ({ ...prev, level: e.target.value as Level }))}
                   >
                     <option value="soft">Soft</option>
                     <option value="mild">Mild</option>
@@ -336,50 +355,27 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                     <option value="kinky">Kinky</option>
                   </select>
                   <button
-                    className={styles.addCustomButton}
-                    onClick={addCustomChallenge}
-                    disabled={!customChallengeForm.text.trim()}
+                    className={styles.addGameButton}
+                    onClick={addGameChallenges}
+                    disabled={getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level) === 0 || loadingChallenges}
                   >
-                    Add Custom
+                    {loadingChallenges 
+                      ? 'Loading...' 
+                      : `Add All (${getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level)} available)`
+                    }
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Add from Game */}
-          <div className={styles.addGameSection}>
-            <h3>Add from Original Game</h3>
-            <div className={styles.gameChallengeSelector}>
-              <div className={styles.challengeOptions}>
-                <select
-                  className={styles.challengeSelect}
-                  value={gameChallengeSelector.kind}
-                  onChange={(e) => setGameChallengeSelector(prev => ({ ...prev, kind: e.target.value as ItemKind }))}
-                >
-                  <option value="truth">Truth</option>
-                  <option value="dare">Dare</option>
-                </select>
-                <select
-                  className={styles.challengeSelect}
-                  value={gameChallengeSelector.level}
-                  onChange={(e) => setGameChallengeSelector(prev => ({ ...prev, level: e.target.value as Level }))}
-                >
-                  <option value="soft">Soft</option>
-                  <option value="mild">Mild</option>
-                  <option value="hot">Hot</option>
-                  <option value="spicy">Spicy</option>
-                  <option value="kinky">Kinky</option>
-                </select>
+              {/* Upload Challenges (right column) */}
+              <div className={styles.uploadSection}>
+                <div className={styles.sectionHeaderSimple}><h3>Upload Challenges</h3></div>
                 <button
-                  className={styles.addGameButton}
-                  onClick={addGameChallenges}
-                  disabled={getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level) === 0 || loadingChallenges}
+                  className={styles.uploadButton}
+                  onClick={handleUploadChallenges}
+                  type="button"
                 >
-                  {loadingChallenges 
-                    ? 'Loading...' 
-                    : `Add All (${getAvailableCount(gameChallengeSelector.kind, gameChallengeSelector.level)} available)`
-                  }
+                  Upload Challenges
                 </button>
               </div>
             </div>
@@ -420,17 +416,9 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                     Game
                   </button>
                 </div>
-                {shouldShowPreviewToggle && (
-                  <button
-                    className={`${styles.previewToggle} ${showAllChallenges ? styles.active : ''}`}
-                    onClick={() => setShowAllChallenges(!showAllChallenges)}
-                  >
-                    {showAllChallenges ? 'Show Preview' : 'Show All'}
-                  </button>
-                )}
               </div>
             </div>
-            <div className={`${styles.challengesList} ${showAllChallenges ? styles.showAllMode : ''}`} ref={challengesListRef}>
+            <div className={styles.challengesList} ref={challengesListRef}>
               {filteredChallenges.length === 0 ? (
                 <p className={styles.emptyMessage}>
                   {challengeFilter === 'all' 
@@ -496,8 +484,8 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
                   disabled={isGameModeDisabled()}
                 />
                 <span className={styles.gameModeLabel}>
-                  <strong>Progressive</strong>
-                  <small>Start with easier levels and progress to harder ones</small>
+                  <strong>By level</strong>
+                  <small>User can change the level at any time during the game</small>
                 </span>
               </label>
             </div>
