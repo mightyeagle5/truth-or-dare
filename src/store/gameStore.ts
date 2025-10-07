@@ -4,7 +4,6 @@ import { createGameId } from '../lib/ids'
 import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts, addUsedItem, isItemUsed } from '../lib/items'
 import { challengePairManager } from '../lib/challengePairs'
-import { substitutePlayerNames, selectTargetPlayer } from '../lib/playerSubstitution'
 import { 
   getGame,
   saveGame, 
@@ -487,6 +486,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     const devStore = useDevStore.getState()
     if (!devStore.disableGameSaving) {
       saveGame(updatedGame)
+    }
+
+    // Update challenge pair manager so availability reflects the new prior-game filter
+    if (!updatedGame.isCustomGame) {
+      const priorGameItems = respect ? getPriorGameItems(updatedGame.priorGameIds) : []
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      // Optionally refresh background next pair to reflect new availability
+      if (!challengePairManager.isExhausted()) {
+        challengePairManager.loadNextPair()
+      }
     }
 
     set({ currentGame: updatedGame })
