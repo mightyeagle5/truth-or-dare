@@ -2,19 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { PlayerList, PreviousGamesPicker } from '../components/forms'
-import { CustomGameSection } from '../components/forms/CustomGameSection'
 import { useGameStore, useHistoryStore, useDevStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
-import { useCustomGame } from '../hooks/useCustomGame'
 import styles from './HomePage.module.css'
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate()
-  const { startGame, startCustomGame, clearGame } = useGameStore()
+  const { startGame, clearGame } = useGameStore()
   const { gameHistory, removeGameFromHistory } = useHistoryStore()
   const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
   
-  const [showCustomGame, setShowCustomGame] = useState(false)
   const [isStarting, setIsStarting] = useState(false)
   
   // Regular game setup
@@ -29,9 +26,6 @@ export const HomePage: React.FC = () => {
     gameConfiguration,
     setGameConfiguration
   } = useGameSetup()
-  
-  // Custom game setup
-  const customGameProps = useCustomGame()
   
   // Clear game state when returning to homepage
   useEffect(() => {
@@ -56,44 +50,7 @@ export const HomePage: React.FC = () => {
   }
   
   const handleStartCustomGame = () => {
-    setShowCustomGame(true)
-  }
-  
-  if (showCustomGame) {
-    return (
-      <PageLayout hideHeader title="" subtitle="">
-            <CustomGameSection
-                players={players}
-                onPlayersChange={setPlayers}
-                customChallenges={customGameProps.customChallenges}
-                setCustomChallenges={customGameProps.setCustomChallenges}
-                customChallengeForm={customGameProps.customChallengeForm}
-                setCustomChallengeForm={customGameProps.setCustomChallengeForm}
-                gameChallengeSelector={customGameProps.gameChallengeSelector}
-                setGameChallengeSelector={customGameProps.setGameChallengeSelector}
-                challengeFilter={customGameProps.challengeFilter}
-                setChallengeFilter={customGameProps.setChallengeFilter}
-                gameMode={customGameProps.gameMode}
-                setGameMode={customGameProps.setGameMode}
-                gameConfiguration={gameConfiguration}
-                setGameConfiguration={setGameConfiguration}
-                onBackToHome={() => setShowCustomGame(false)}
-                onStartCustomGame={async () => {
-                  setIsStarting(true)
-                  try {
-                    const gameId = startCustomGame(players, customGameProps.customChallenges, customGameProps.gameMode, gameConfiguration)
-                    navigate(`/game/${gameId}`)
-                  } catch (error) {
-                    console.error('Failed to start custom game:', error)
-                  } finally {
-                    setIsStarting(false)
-                  }
-                }}
-                isStarting={isStarting}
-                canStartCustomGame={customGameProps.customChallenges.length > 0}
-              />
-      </PageLayout>
-    )
+    navigate('/create-custom-game')
   }
   
   return (

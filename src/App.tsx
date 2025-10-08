@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage } from './routes/HomePage'
 import { GamePage } from './routes/GamePage'
+import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
 import { useGameStore, useHistoryStore } from './store'
 import './styles/index.css'
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/game/:gameId" element={<GamePage />} />
+          <Route path="/create-custom-game" element={<CreateCustomGamePage />} />
           {import.meta.env.DEV && (
             <Route path="/admin/edit-challenges" element={<AdminPage />} />
           )}
