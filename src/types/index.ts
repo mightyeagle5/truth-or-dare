@@ -16,18 +16,42 @@ export interface CustomChallenge {
 
 export type Gender = 'male' | 'female'
 
+export type PreferenceCategory =
+  | 'role_playing'
+  | 'temperature'
+  | 'food'
+  | 'naughty_accessories'
+  | 'photos_videos_audio'
+  | 'adult_videos'
+  | 'oral'
+  | 'domination'
+  | 'submission'
+  | 'butt_stuff'
+  | 'bondage'
+  | 'other_people'
+  | 'past_relationships'
+  | 'alcohol'
+  | 'public'
+  | 'facial'
+
+export interface PlayerPreferences {
+  [key: string]: boolean // Maps category to enabled/disabled
+}
+
 export interface Player {
   id: string
   name: string
   gender: Gender
   consecutiveTruths: number
   consecutiveDares: number
+  preferences?: PlayerPreferences
 }
 
 export interface PlayerSnapshot {
   id: string
   name: string
   gender: Gender
+  preferences?: PlayerPreferences
 }
 
 export interface GameConfiguration {

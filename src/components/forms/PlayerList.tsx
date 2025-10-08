@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { IoSettingsOutline } from 'react-icons/io5'
 import { MIN_PLAYERS } from '../../lib/constants'
 import { GenderRadio } from './GenderRadio'
-import type { PlayerSnapshot } from '../../types'
+import { PlayerPreferencesModal } from './PlayerPreferencesModal'
+import type { PlayerSnapshot, PlayerPreferences } from '../../types'
 import styles from './PlayerList.module.css'
 
 interface PlayerListProps {
@@ -15,6 +17,8 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   onPlayersChange, 
   disabled = false 
 }) => {
+  const [modalOpenForPlayer, setModalOpenForPlayer] = useState<string | null>(null)
+
   /* Keeping addPlayer logic for future use when enabling more than two players again.
      const addPlayer = () => {
        if (players.length >= MAX_PLAYERS) return
@@ -33,6 +37,18 @@ export const PlayerList: React.FC<PlayerListProps> = ({
     onPlayersChange(players.map(p => 
       p.id === playerId ? { ...p, ...updates } : p
     ))
+  }
+
+  const openPreferences = (playerId: string) => {
+    setModalOpenForPlayer(playerId)
+  }
+
+  const closePreferences = () => {
+    setModalOpenForPlayer(null)
+  }
+
+  const savePreferences = (playerId: string, preferences: PlayerPreferences) => {
+    updatePlayer(playerId, { preferences })
   }
 
   return (
@@ -63,17 +79,36 @@ export const PlayerList: React.FC<PlayerListProps> = ({
               />
             </div>
             
-            {players.length > MIN_PLAYERS && (
+            <div className={styles.actions}>
               <button
-                className={styles.deleteButton}
-                onClick={() => removePlayer(player.id)}
+                className={styles.configButton}
+                onClick={() => openPreferences(player.id)}
                 disabled={disabled}
                 type="button"
-                aria-label={`Remove ${player.name}`}
+                aria-label={`Configure preferences for ${player.name || `Player ${index + 1}`}`}
               >
-                ×
+                <IoSettingsOutline />
               </button>
-            )}
+              
+              {players.length > MIN_PLAYERS && (
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => removePlayer(player.id)}
+                  disabled={disabled}
+                  type="button"
+                  aria-label={`Remove ${player.name}`}
+                >
+                  ×
+                </button>
+              )}
+            </div>
+
+            <PlayerPreferencesModal
+              player={player}
+              isOpen={modalOpenForPlayer === player.id}
+              onClose={closePreferences}
+              onSave={(preferences) => savePreferences(player.id, preferences)}
+            />
           </div>
         ))}
       </div>

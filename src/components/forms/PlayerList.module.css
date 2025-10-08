@@ -98,6 +98,44 @@
   margin: 0;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-md);
+}
+
+.configButton {
+  width: var(--space-8);
+  height: var(--space-8);
+  border: none;
+  border-radius: var(--radius-md);
+  background: #3B82F6;
+  color: white;
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.configButton:hover:not(:disabled) {
+  background: #2563EB;
+  transform: translateY(-1px);
+}
+
+.configButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.configButton:focus-visible {
+  outline: var(--radius-sm) solid #3B82F6;
+  outline-offset: var(--radius-sm);
+}
+
 .deleteButton {
   width: var(--space-8);
   height: var(--space-8);

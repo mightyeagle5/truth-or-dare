@@ -27,6 +27,7 @@ export class ChallengePairManager {
   private allItems: Item[] = []
   private usedItems: Record<string, Record<string, string[]>> = {}
   private priorGameItems: string[] = []
+  private excludedTags: string[] = []
   private loadingStartTime: number = 0
   private loadingTimeout: NodeJS.Timeout | null = null
   private levelCache: Partial<Record<Exclude<Level, 'Progressive' | 'Custom'>, ChallengePair>> = {}
@@ -36,12 +37,14 @@ export class ChallengePairManager {
     allItems: Item[], 
     currentLevel: Exclude<Level, 'Progressive' | 'Custom'>, 
     usedItems: Record<string, Record<string, string[]>>, 
-    priorGameItems: string[] = []
+    priorGameItems: string[] = [],
+    excludedTags: string[] = []
   ) {
     this.allItems = allItems
     this.currentLevel = currentLevel
     this.usedItems = usedItems
     this.priorGameItems = priorGameItems
+    this.excludedTags = excludedTags
     this.state = {
       current: { truth: null, dare: null },
       next: { truth: null, dare: null },
@@ -94,7 +97,8 @@ export class ChallengePairManager {
       level,
       'truth',
       this.usedItems,
-      this.priorGameItems
+      this.priorGameItems,
+      this.excludedTags
     )
 
     const availableDare = getAvailableItems(
@@ -102,7 +106,8 @@ export class ChallengePairManager {
       level,
       'dare',
       this.usedItems,
-      this.priorGameItems
+      this.priorGameItems,
+      this.excludedTags
     )
 
     // If both are empty, level is exhausted
@@ -266,9 +271,10 @@ export class ChallengePairManager {
   }
 
   // Update used items (when item is selected)
-  updateUsedItems(usedItems: Record<string, Record<string, string[]>>, priorGameItems: string[] = []) {
+  updateUsedItems(usedItems: Record<string, Record<string, string[]>>, priorGameItems: string[] = [], excludedTags: string[] = []) {
     this.usedItems = usedItems
     this.priorGameItems = priorGameItems
+    this.excludedTags = excludedTags
   }
 
   // Handle wild card completion - move to next pair and start background fetch
@@ -387,6 +393,7 @@ export class ChallengePairManager {
     this.allItems = []
     this.usedItems = {}
     this.priorGameItems = []
+    this.excludedTags = []
     this.levelCache = {}
     
     if (this.loadingTimeout) {

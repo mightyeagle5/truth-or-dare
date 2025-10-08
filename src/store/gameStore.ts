@@ -4,6 +4,7 @@ import { createGameId } from '../lib/ids'
 import { getNextProgressiveLevel, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
 import { getRandomItem, getWildCardItem, getAvailableItems, getItemCounts, addUsedItem, isItemUsed } from '../lib/items'
 import { challengePairManager } from '../lib/challengePairs'
+import { getExcludedTagsFromPreferences } from '../lib/preferences'
 import { 
   getGame,
   saveGame, 
@@ -64,7 +65,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       
       // Initialize challenge pair manager
       const priorGameItems = getPriorGameItems(priorGameIds)
-      challengePairManager.initialize(items, currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, {}, priorGameItems)
+      // Get excluded tags for the first player (turn index 0)
+      const firstPlayerExcludedTags = getExcludedTagsFromPreferences(normalizedPlayers[0]?.preferences)
+      challengePairManager.initialize(items, currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, {}, priorGameItems, firstPlayerExcludedTags)
       
       // Load initial pair
       set({ challengePairLoading: true, challengePairError: null })
@@ -142,7 +145,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
           const priorGameItems = loadedGame.respectPriorGames 
             ? getPriorGameItems(loadedGame.priorGameIds) 
             : []
-          challengePairManager.initialize(items, loadedGame.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, loadedGame.usedItems, priorGameItems)
+          // Get excluded tags for the current player
+          const currentPlayerExcludedTags = getExcludedTagsFromPreferences(loadedGame.players[loadedGame.turnIndex]?.preferences)
+          challengePairManager.initialize(items, loadedGame.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, loadedGame.usedItems, priorGameItems, currentPlayerExcludedTags)
           
           // Load initial pair
           set({ challengePairLoading: true, challengePairError: null })
@@ -331,7 +336,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       const priorGameItems = currentGame.respectPriorGames 
         ? getPriorGameItems(currentGame.priorGameIds) 
         : []
-      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      // Skip doesn't advance turn, so use current player's excluded tags
+      const currentPlayerExcludedTags = getExcludedTagsFromPreferences(currentGame.players[currentGame.turnIndex]?.preferences)
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems, currentPlayerExcludedTags)
       
       // Move to next pair and start background fetch
       await challengePairManager.moveToNext()
@@ -360,7 +367,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     
     // Check if one type is exhausted
     const priorGameItems = currentGame.respectPriorGames ? getPriorGameItems(currentGame.priorGameIds) : []
-    const counts = getItemCounts(items, currentGame.currentLevel, currentGame.usedItems, priorGameItems)
+    const currentPlayerExcludedTags = getExcludedTagsFromPreferences(currentGame.players[currentGame.turnIndex]?.preferences)
+    const counts = getItemCounts(items, currentGame.currentLevel, currentGame.usedItems, priorGameItems, currentPlayerExcludedTags)
     const truthExhausted = counts.truth === 0
     const dareExhausted = counts.dare === 0
     
@@ -397,7 +405,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     // Update challenge pair manager with new used items
     if (!currentGame.isCustomGame) {
       console.log('✅ Completing item and moving to next pair')
-      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      // Turn has advanced, so use next player's excluded tags
+      const nextPlayerExcludedTags = getExcludedTagsFromPreferences(updatedGame.players[updatedGame.turnIndex]?.preferences)
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems, nextPlayerExcludedTags)
       
       // Move to next pair and start background fetch
       await challengePairManager.moveToNext()
@@ -451,7 +461,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       const priorGameItems = currentGame.respectPriorGames 
         ? getPriorGameItems(currentGame.priorGameIds) 
         : []
-      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      // Turn has advanced, so use next player's excluded tags
+      const nextPlayerExcludedTags = getExcludedTagsFromPreferences(updatedGame.players[updatedGame.turnIndex]?.preferences)
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems, nextPlayerExcludedTags)
       
       // Handle wild card completion and move to next pair
       await challengePairManager.handleWildCardCompletion()
@@ -541,7 +553,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
     // Update challenge pair manager so availability reflects the new prior-game filter
     if (!updatedGame.isCustomGame) {
       const priorGameItems = respect ? getPriorGameItems(updatedGame.priorGameIds) : []
-      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems)
+      const currentPlayerExcludedTags = getExcludedTagsFromPreferences(updatedGame.players[updatedGame.turnIndex]?.preferences)
+      challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems, currentPlayerExcludedTags)
       // Optionally refresh background next pair to reflect new availability
       if (!challengePairManager.isExhausted()) {
         challengePairManager.loadNextPair()

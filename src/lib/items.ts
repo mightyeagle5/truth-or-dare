@@ -153,16 +153,25 @@ export const getAvailableItems = (
   level: Exclude<Level, 'Progressive'>,
   kind: ItemKind,
   usedItems: Record<string, Record<string, string[]>>,
-  priorGameItems: string[] = []
+  priorGameItems: string[] = [],
+  excludedTags: string[] = []
 ): Item[] => {
   const usedForLevelKind = getUsedItemsForLevelKind(usedItems, level, kind)
   
-  return items.filter(item => 
-    item.level === level &&
-    item.kind === kind &&
-    !usedForLevelKind.includes(item.id) &&
-    !priorGameItems.includes(item.id)
-  )
+  return items.filter(item => {
+    // Basic checks
+    if (item.level !== level || item.kind !== kind) return false
+    if (usedForLevelKind.includes(item.id)) return false
+    if (priorGameItems.includes(item.id)) return false
+    
+    // Check if item has any excluded tags
+    if (excludedTags.length > 0 && item.tags && item.tags.length > 0) {
+      const hasExcludedTag = item.tags.some(tag => excludedTags.includes(tag))
+      if (hasExcludedTag) return false
+    }
+    
+    return true
+  })
 }
 
 export const getRandomItem = (availableItems: Item[]): Item | null => {
@@ -176,12 +185,22 @@ export const getWildCardItem = (
   items: Item[],
   _level: Exclude<Level, 'Progressive'>,
   usedItems: Record<string, Record<string, string[]>>,
-  priorGameItems: string[] = []
+  priorGameItems: string[] = [],
+  excludedTags: string[] = []
 ): Item | null => {
-  const availableItems = items.filter(item => 
-    !isItemUsed(usedItems, item) &&
-    !priorGameItems.includes(item.id)
-  )
+  const availableItems = items.filter(item => {
+    // Basic checks
+    if (isItemUsed(usedItems, item)) return false
+    if (priorGameItems.includes(item.id)) return false
+    
+    // Check if item has any excluded tags
+    if (excludedTags.length > 0 && item.tags && item.tags.length > 0) {
+      const hasExcludedTag = item.tags.some(tag => excludedTags.includes(tag))
+      if (hasExcludedTag) return false
+    }
+    
+    return true
+  })
   
   return getRandomItem(availableItems)
 }
@@ -190,10 +209,11 @@ export const getItemCounts = (
   items: Item[],
   level: Exclude<Level, 'Progressive'>,
   usedItems: Record<string, Record<string, string[]>>,
-  priorGameItems: string[] = []
+  priorGameItems: string[] = [],
+  excludedTags: string[] = []
 ): { truth: number; dare: number } => {
-  const truthItems = getAvailableItems(items, level, 'truth', usedItems, priorGameItems)
-  const dareItems = getAvailableItems(items, level, 'dare', usedItems, priorGameItems)
+  const truthItems = getAvailableItems(items, level, 'truth', usedItems, priorGameItems, excludedTags)
+  const dareItems = getAvailableItems(items, level, 'dare', usedItems, priorGameItems, excludedTags)
   
   return {
     truth: truthItems.length,

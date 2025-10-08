@@ -1,0 +1,184 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--radius-xl);
+}
+
+.modal {
+  background: #1F2937;
+  border-radius: var(--radius-xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid #374151;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--radius-2xl);
+  border-bottom: 1px solid #374151;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.closeButton {
+  width: var(--space-8);
+  height: var(--space-8);
+  border: none;
+  background: transparent;
+  color: #9CA3AF;
+  font-size: var(--font-size-2xl);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  line-height: 1;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #F9FAFB;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--radius-2xl);
+}
+
+.subtitle {
+  font-size: var(--font-size-base);
+  color: #D1D5DB;
+  margin: 0 0 var(--radius-xl) 0;
+  font-weight: var(--font-weight-medium);
+}
+
+.categoriesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--radius-lg);
+}
+
+.categoryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--radius-md) 0;
+}
+
+.categoryLabel {
+  font-size: var(--font-size-base);
+  color: #F9FAFB;
+  font-weight: var(--font-weight-normal);
+}
+
+.toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  padding: 0;
+}
+
+.toggleOn {
+  background: #10B981;
+}
+
+.toggleOff {
+  background: #6B7280;
+}
+
+.toggleSlider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transition: transform var(--transition-fast);
+  display: block;
+}
+
+.toggleOn .toggleSlider {
+  transform: translateX(20px);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--radius-lg);
+  padding: var(--radius-2xl);
+  border-top: 1px solid #374151;
+}
+
+.cancelButton,
+.saveButton {
+  padding: var(--radius-lg) var(--radius-2xl);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.cancelButton {
+  background: #374151;
+  color: #F9FAFB;
+}
+
+.cancelButton:hover {
+  background: #4B5563;
+}
+
+.saveButton {
+  background: #3B82F6;
+  color: white;
+}
+
+.saveButton:hover {
+  background: #2563EB;
+  transform: translateY(-1px);
+}
+
+/* Scrollbar styling */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #4B5563;
+}
