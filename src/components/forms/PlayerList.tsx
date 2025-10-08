@@ -10,12 +10,14 @@ interface PlayerListProps {
   players: PlayerSnapshot[]
   onPlayersChange: (players: PlayerSnapshot[]) => void
   disabled?: boolean
+  hidePreferences?: boolean // Hide the preferences config button
 }
 
 export const PlayerList: React.FC<PlayerListProps> = ({ 
   players, 
   onPlayersChange, 
-  disabled = false 
+  disabled = false,
+  hidePreferences = false
 }) => {
   const [modalOpenForPlayer, setModalOpenForPlayer] = useState<string | null>(null)
 
@@ -80,15 +82,17 @@ export const PlayerList: React.FC<PlayerListProps> = ({
             </div>
             
             <div className={styles.actions}>
-              <button
-                className={styles.configButton}
-                onClick={() => openPreferences(player.id)}
-                disabled={disabled}
-                type="button"
-                aria-label={`Configure preferences for ${player.name || `Player ${index + 1}`}`}
-              >
-                <IoSettingsOutline />
-              </button>
+              {!hidePreferences && (
+                <button
+                  className={styles.configButton}
+                  onClick={() => openPreferences(player.id)}
+                  disabled={disabled}
+                  type="button"
+                  aria-label={`Configure preferences for ${player.name || `Player ${index + 1}`}`}
+                >
+                  <IoSettingsOutline />
+                </button>
+              )}
               
               {players.length > MIN_PLAYERS && (
                 <button
@@ -103,12 +107,14 @@ export const PlayerList: React.FC<PlayerListProps> = ({
               )}
             </div>
 
-            <PlayerPreferencesModal
-              player={player}
-              isOpen={modalOpenForPlayer === player.id}
-              onClose={closePreferences}
-              onSave={(preferences) => savePreferences(player.id, preferences)}
-            />
+            {!hidePreferences && (
+              <PlayerPreferencesModal
+                player={player}
+                isOpen={modalOpenForPlayer === player.id}
+                onClose={closePreferences}
+                onSave={(preferences) => savePreferences(player.id, preferences)}
+              />
+            )}
           </div>
         ))}
       </div>

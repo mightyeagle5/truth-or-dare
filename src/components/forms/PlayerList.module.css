@@ -105,30 +105,29 @@
 }
 
 .configButton {
-  width: var(--space-8);
-  height: var(--space-8);
-  border: none;
-  border-radius: var(--radius-md);
-  background: #3B82F6;
-  color: white;
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--radius-lg);
+  padding: var(--radius-lg) var(--radius-xl);
+  border: var(--radius-sm) solid #374151;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  color: #9CA3AF;
+  font-size: var(--font-size-lg);
   line-height: 1;
 }
 
 .configButton:hover:not(:disabled) {
-  background: #2563EB;
-  transform: translateY(-1px);
+  border-color: #6B7280;
+  background: rgba(255, 255, 255, 0.05);
+  color: #D1D5DB;
 }
 
 .configButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
 .configButton:focus-visible {

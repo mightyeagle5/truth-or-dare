@@ -288,6 +288,7 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
             <PlayerList
               players={players}
               onPlayersChange={onPlayersChange}
+              hidePreferences={true}
             />
           </div>
 
