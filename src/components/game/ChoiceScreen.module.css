@@ -145,7 +145,7 @@
 .suggestionText {
   font-size: var(--radius-2xl);
   font-weight: var(--font-weight-semibold);
-  color: #93C5FD;
+  color: var(--color-primary-300);
   margin: 0;
 }
 
@@ -196,7 +196,7 @@
 
 .noticeText {
   font-size: var(--font-size-sm);
-  color: #FCD34D;
+  color: var(--color-warning-300);
   margin: 0;
   flex: 1;
 }

@@ -40,13 +40,16 @@ export const ChoiceScreen: React.FC = () => {
 
 
   const levelColor = (level: 'soft' | 'mild' | 'hot' | 'spicy' | 'kinky') => {
+    const root = document.documentElement;
+    const getColor = (varName: string) => getComputedStyle(root).getPropertyValue(varName).trim();
+    
     switch (level) {
-      case 'soft': return '#6EE7B7'
-      case 'mild': return '#60A5FA'
-      case 'hot': return '#F59E0B'
-      case 'spicy': return '#F87171'
-      case 'kinky': return '#A78BFA'
-      default: return '#9CA3AF'
+      case 'soft': return getColor('--color-level-soft')
+      case 'mild': return getColor('--color-level-mild')
+      case 'hot': return getColor('--color-level-hot')
+      case 'spicy': return getColor('--color-level-spicy')
+      case 'kinky': return getColor('--color-level-kinky')
+      default: return getColor('--color-text-muted')
     }
   }
 

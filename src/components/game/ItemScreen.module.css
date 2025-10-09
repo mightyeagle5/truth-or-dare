@@ -120,12 +120,12 @@
 }
 
 .wildCardButton {
-  background: linear-gradient(135deg, var(--color-source-game), #A855F7);
+  background: linear-gradient(135deg, var(--color-source-game), var(--color-purple-500));
   color: var(--color-text-primary);
 }
 
 .wildCardButton:hover {
-  background: linear-gradient(135deg, var(--color-purple-700), #9333EA);
+  background: linear-gradient(135deg, var(--color-purple-700), var(--color-purple-600));
   transform: translateY(-2px);
 }
 
