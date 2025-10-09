@@ -154,7 +154,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           >
             Cancel
           </button>
-          {Object.keys(savedPreferences).length > 0 && (
+          {Object.values(savedPreferences).some(val => val !== undefined) && (
             <button
               className={styles.resetButton}
               onClick={handleReset}
