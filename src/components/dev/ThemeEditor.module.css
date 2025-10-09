@@ -1,11 +1,11 @@
 .container {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   width: 420px;
   height: 100vh;
   background: var(--color-bg-secondary);
-  border-left: 2px solid var(--color-border-primary);
+  border-right: 2px solid var(--color-border-primary);
   display: flex;
   flex-direction: column;
   z-index: var(--z-modal);
@@ -280,7 +280,7 @@
 .notification {
   position: fixed;
   top: var(--space-20);
-  right: var(--space-4);
+  left: var(--space-4);
   background: var(--color-success-600);
   color: var(--color-text-primary);
   padding: var(--space-3) var(--space-4);
@@ -294,7 +294,7 @@
 
 @keyframes slideIn {
   from {
-    transform: translateX(100%);
+    transform: translateX(-100%);
     opacity: 0;
   }
   to {
