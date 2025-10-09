@@ -7,7 +7,10 @@ import {
   resetTheme,
   isColorValue,
   resolveValue,
+  findVariableUsage,
+  formatElementUsage,
   type ThemeTokens,
+  type VariableUsage,
 } from '../../lib/themeUtils';
 import styles from './ThemeEditor.module.css';
 
@@ -57,6 +60,8 @@ export function ThemeEditor() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['colors']));
   const [notification, setNotification] = useState<string | null>(null);
+  const [usageCache, setUsageCache] = useState<Map<string, VariableUsage>>(new Map());
+  const [hoveredVariable, setHoveredVariable] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -85,6 +90,19 @@ export function ThemeEditor() {
     // Re-extract to update state
     const extracted = extractThemeTokens();
     setTokens(extracted);
+    // Clear usage cache for this variable so it recalculates
+    const newCache = new Map(usageCache);
+    newCache.delete(variableName);
+    setUsageCache(newCache);
+  };
+
+  const getVariableUsage = (variableName: string): VariableUsage => {
+    if (usageCache.has(variableName)) {
+      return usageCache.get(variableName)!;
+    }
+    const usage = findVariableUsage(variableName);
+    setUsageCache(new Map(usageCache).set(variableName, usage));
+    return usage;
   };
 
   const handleExport = () => {
@@ -135,12 +153,42 @@ export function ThemeEditor() {
     const variableName = getVariableName(categoryKey, subcategoryKey, tokenKey);
     const resolvedValue = resolveValue(value);
     const isColor = isColorValue(resolvedValue);
+    const usage = getVariableUsage(variableName);
+    const isHovered = hoveredVariable === variableName;
 
     return (
       <div key={variableName} className={styles.tokenItem}>
-        <span className={styles.tokenLabel} title={variableName}>
-          {tokenKey}
-        </span>
+        <div className={styles.tokenLabelContainer}>
+          <span className={styles.tokenLabel} title={variableName}>
+            {tokenKey}
+          </span>
+          {usage.count > 0 && (
+            <span
+              className={styles.usageBadge}
+              onMouseEnter={() => setHoveredVariable(variableName)}
+              onMouseLeave={() => setHoveredVariable(null)}
+            >
+              {usage.count}
+            </span>
+          )}
+          {isHovered && usage.elements.length > 0 && (
+            <div className={styles.usageTooltip}>
+              <div className={styles.tooltipHeader}>Used in {usage.count} element(s):</div>
+              <div className={styles.tooltipList}>
+                {usage.elements.slice(0, 10).map((element, idx) => (
+                  <div key={idx} className={styles.tooltipItem}>
+                    {formatElementUsage(element)}
+                  </div>
+                ))}
+                {usage.elements.length > 10 && (
+                  <div className={styles.tooltipItem}>
+                    ...and {usage.elements.length - 10} more
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
         {isColor ? (
           <>
             <label className={styles.colorPreview} style={{ backgroundColor: resolvedValue }}>

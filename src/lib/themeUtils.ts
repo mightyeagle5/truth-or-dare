@@ -78,7 +78,7 @@ export function extractThemeTokens(): ThemeTokens {
     },
   };
 
-  // Get all CSS custom properties
+  // First, get all CSS custom properties from stylesheets
   Array.from(document.styleSheets).forEach((styleSheet) => {
     try {
       Array.from(styleSheet.cssRules).forEach((rule) => {
@@ -93,6 +93,17 @@ export function extractThemeTokens(): ThemeTokens {
       });
     } catch (e) {
       // Skip external stylesheets that might cause CORS issues
+    }
+  });
+
+  // Then, override with any inline styles set on :root (these are our live edits)
+  const inlineStyle = document.documentElement.style;
+  Array.from(inlineStyle).forEach((property) => {
+    if (property.startsWith('--')) {
+      const value = inlineStyle.getPropertyValue(property).trim();
+      if (value) {
+        categorizeToken(property, value, tokens);
+      }
     }
   });
 
@@ -381,5 +392,105 @@ export function resolveValue(value: string): string {
     }
   }
   return value;
+}
+
+/**
+ * Interface for CSS variable usage information
+ */
+export interface VariableUsage {
+  count: number;
+  elements: Array<{
+    tag: string;
+    classes: string[];
+    id: string | null;
+    property: string;
+  }>;
+}
+
+/**
+ * Finds all elements using a specific CSS variable
+ */
+export function findVariableUsage(variableName: string): VariableUsage {
+  const usage: VariableUsage = {
+    count: 0,
+    elements: [],
+  };
+
+  // Ensure variable name starts with --
+  const varName = variableName.startsWith('--') ? variableName : `--${variableName}`;
+  const varPattern = new RegExp(`var\\(${varName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\)`, 'i');
+
+  // Check all elements in the document
+  const allElements = document.querySelectorAll('*');
+  allElements.forEach((element) => {
+    const computedStyle = window.getComputedStyle(element);
+    
+    // Check all style properties for this element
+    const usedInProperties: string[] = [];
+    
+    // Common properties that might use CSS variables
+    const propertiesToCheck = [
+      'color',
+      'background-color',
+      'background',
+      'border-color',
+      'border',
+      'border-top-color',
+      'border-right-color',
+      'border-bottom-color',
+      'border-left-color',
+      'fill',
+      'stroke',
+      'padding',
+      'margin',
+      'gap',
+      'font-size',
+      'font-weight',
+      'line-height',
+      'border-radius',
+      'box-shadow',
+      'transition',
+      'z-index',
+      'width',
+      'height',
+      'top',
+      'right',
+      'bottom',
+      'left',
+    ];
+
+    propertiesToCheck.forEach((prop) => {
+      const value = computedStyle.getPropertyValue(prop);
+      if (value && varPattern.test(value)) {
+        usedInProperties.push(prop);
+      }
+    });
+
+    if (usedInProperties.length > 0) {
+      usage.count++;
+      usage.elements.push({
+        tag: element.tagName.toLowerCase(),
+        classes: Array.from(element.classList),
+        id: element.id || null,
+        property: usedInProperties.join(', '),
+      });
+    }
+  });
+
+  return usage;
+}
+
+/**
+ * Formats element usage for display
+ */
+export function formatElementUsage(element: VariableUsage['elements'][0]): string {
+  let identifier = element.tag;
+  if (element.id) {
+    identifier += `#${element.id}`;
+  }
+  if (element.classes.length > 0) {
+    identifier += `.${element.classes.join('.')}`;
+  }
+  return `${identifier} (${element.property})`;
 }
 
