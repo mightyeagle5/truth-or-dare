@@ -42,11 +42,13 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
   }
 
   const handleSave = () => {
-    // Set defaults for unselected categories (treat as Yes/true)
+    // Only save explicitly selected categories (not undefined)
     const finalPreferences: PlayerPreferences = {}
     PREFERENCE_CATEGORIES.forEach(category => {
-      // If undefined, default to true (Yes)
-      finalPreferences[category.key] = preferences[category.key] ?? true
+      // Only include if explicitly set (true or false, not undefined)
+      if (preferences[category.key] !== undefined) {
+        finalPreferences[category.key] = preferences[category.key]
+      }
     })
     
     savePlayerPreferences(player.id, finalPreferences)
