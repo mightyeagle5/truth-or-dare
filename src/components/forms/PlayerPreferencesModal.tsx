@@ -21,7 +21,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
   const [preferences, setPreferences] = React.useState<PlayerPreferences>(
     player.preferences || {}
   )
-  const [hasBeenSaved, setHasBeenSaved] = React.useState(false)
+  const [savedPreferences, setSavedPreferences] = React.useState<PlayerPreferences>({})
 
   React.useEffect(() => {
     // Initialize with player's current preferences
@@ -31,7 +31,8 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
       initialPreferences[category.key] = player.preferences?.[category.key]
     })
     setPreferences(initialPreferences)
-    setHasBeenSaved(!!player.preferences && Object.keys(player.preferences).length > 0)
+    // Track what was saved before opening the modal
+    setSavedPreferences({ ...initialPreferences })
   }, [player.preferences, isOpen])
 
   const handleSelection = (categoryKey: string, value: boolean) => {
@@ -53,7 +54,6 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
     
     savePlayerPreferences(player.id, finalPreferences)
     onSave(finalPreferences)
-    setHasBeenSaved(true)
     onClose()
   }
 
@@ -63,18 +63,13 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
       resetPreferences[category.key] = undefined
     })
     setPreferences(resetPreferences)
-    setHasBeenSaved(false)
+    setSavedPreferences({})
     resetPlayerPreferences(player.id)
   }
 
   const handleCancel = () => {
-    // Reset to original preferences
-    const resetPreferences: PlayerPreferences = {}
-    PREFERENCE_CATEGORIES.forEach(category => {
-      resetPreferences[category.key] = player.preferences?.[category.key]
-    })
-    setPreferences(resetPreferences)
-    setHasBeenSaved(!!player.preferences && Object.keys(player.preferences).length > 0)
+    // Reset to original preferences (what was saved before opening modal)
+    setPreferences({ ...savedPreferences })
     onClose()
   }
 
@@ -109,9 +104,8 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           <div className={styles.categoriesList}>
             {PREFERENCE_CATEGORIES.map(category => {
               const value = preferences[category.key]
-              // Only show "Already selected" if the value was explicitly set (not undefined)
-              // and preferences have been saved at least once
-              const isExplicitlySelected = value !== undefined && hasBeenSaved
+              // Only show "Already selected" if it was saved BEFORE opening this modal
+              const wasPreviouslySaved = savedPreferences[category.key] !== undefined
               
               return (
                 <div key={category.key} className={styles.categoryRow}>
@@ -119,7 +113,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
                     {category.label}
                   </label>
                   
-                  {isExplicitlySelected ? (
+                  {wasPreviouslySaved ? (
                     <div className={styles.alreadySelected}>
                       <IoMdCheckmarkCircleOutline className={styles.checkIcon} />
                       <span>Already selected</span>
@@ -160,7 +154,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           >
             Cancel
           </button>
-          {hasBeenSaved && (
+          {Object.keys(savedPreferences).length > 0 && (
             <button
               className={styles.resetButton}
               onClick={handleReset}
