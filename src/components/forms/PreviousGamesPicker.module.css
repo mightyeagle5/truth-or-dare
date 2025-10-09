@@ -223,7 +223,7 @@
 .chevron {
   width: 20px;
   height: 20px;
-  color: #E5E7EB;
+  color: var(--color-neutral-200);
   transition: transform var(--transition-fast);
 }
 

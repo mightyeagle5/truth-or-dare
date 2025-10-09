@@ -441,7 +441,7 @@
 .previewToggle:hover {
   background: var(--color-border-primary);
   border-color: var(--color-border-secondary);
-  color: #f9fafb;
+  color: var(--color-text-secondary);
 }
 
 .previewToggle.active {
@@ -574,7 +574,7 @@
   border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
   background: var(--color-bg-tertiary);
-  color: #f9fafb;
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
