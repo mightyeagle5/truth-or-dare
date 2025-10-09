@@ -107,6 +107,8 @@
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-secondary);
   transition: color var(--transition-fast);
+  cursor: pointer;
+  user-select: none;
 }
 
 .categoryBadge {
@@ -163,6 +165,22 @@
 
 .tokenItem:hover {
   background: var(--color-bg-input);
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-primary-600);
+}
+
+.categoryCheckbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-primary-600);
+  flex-shrink: 0;
 }
 
 .tokenLabel {

@@ -57,6 +57,7 @@ export function ThemeEditor() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['colors']));
   const [notification, setNotification] = useState<string | null>(null);
+  const [checkedProperties, setCheckedProperties] = useState<Set<string>>(new Set());
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -88,11 +89,64 @@ export function ThemeEditor() {
   };
 
   const handleExport = () => {
-    if (tokens) {
+    if (!tokens) return;
+    
+    // If no properties are checked, export everything
+    if (checkedProperties.size === 0) {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
       downloadTheme(tokens, `theme-${timestamp}.json`);
       showNotification('Theme exported successfully!');
+      return;
     }
+
+    // Otherwise, export only checked properties
+    const filteredTokens: ThemeTokens = {
+      colors: {
+        primary: {},
+        secondary: {},
+        neutral: {},
+        success: {},
+        warning: {},
+        error: {},
+        purple: {},
+        level: {},
+        gender: {},
+        challenge: {},
+        source: {},
+        background: {},
+        text: {},
+        border: {},
+      },
+      spacing: {},
+      typography: {
+        fontSize: {},
+        fontWeight: {},
+        lineHeight: {},
+      },
+      borderRadius: {},
+      shadows: {},
+      transitions: {},
+      zIndex: {},
+      components: {
+        button: {},
+        input: {},
+        card: {},
+        layout: {},
+      },
+    };
+
+    // Filter tokens based on checked properties
+    checkedProperties.forEach((varName) => {
+      const [categoryKey, subcategoryKey, tokenKey] = parseVariableName(varName);
+      const value = getTokenValue(tokens, categoryKey, subcategoryKey, tokenKey);
+      if (value) {
+        setTokenValue(filteredTokens, categoryKey, subcategoryKey, tokenKey, value);
+      }
+    });
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+    downloadTheme(filteredTokens, `theme-${timestamp}.json`);
+    showNotification(`Exported ${checkedProperties.size} selected properties!`);
   };
 
   const handleImport = () => {
@@ -108,7 +162,13 @@ export function ThemeEditor() {
           const json = e.target?.result as string;
           const imported = importTheme(json);
           setTokens(imported);
-          showNotification('Theme imported successfully!');
+          
+          // Check only the properties that were imported
+          const importedVarNames = new Set<string>();
+          extractVariableNames(imported).forEach(varName => importedVarNames.add(varName));
+          setCheckedProperties(importedVarNames);
+          
+          showNotification(`Imported ${importedVarNames.size} properties!`);
         } catch (error) {
           showNotification('Failed to import theme. Invalid JSON format.');
           console.error('Import error:', error);
@@ -126,6 +186,59 @@ export function ThemeEditor() {
     }
   };
 
+  const togglePropertyCheck = (variableName: string) => {
+    setCheckedProperties((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(variableName)) {
+        newSet.delete(variableName);
+      } else {
+        newSet.add(variableName);
+      }
+      return newSet;
+    });
+  };
+
+  const toggleAllInCategory = (category: CategoryConfig) => {
+    if (!tokens) return;
+    
+    const categoryVarNames = new Set<string>();
+    const categoryData = tokens[category.key];
+    
+    if (category.subcategories) {
+      category.subcategories.forEach((subcat) => {
+        const subcatData = categoryData[subcat as keyof typeof categoryData];
+        if (subcatData && typeof subcatData === 'object') {
+          Object.keys(subcatData).forEach((key) => {
+            const varName = getVariableName(category.key, subcat, key);
+            categoryVarNames.add(varName);
+          });
+        }
+      });
+    } else {
+      Object.keys(categoryData).forEach((key) => {
+        const varName = getVariableName(category.key, null, key);
+        categoryVarNames.add(varName);
+      });
+    }
+
+    // Check if all are already checked
+    const allChecked = Array.from(categoryVarNames).every(varName => 
+      checkedProperties.has(varName)
+    );
+
+    setCheckedProperties((prev) => {
+      const newSet = new Set(prev);
+      if (allChecked) {
+        // Uncheck all in this category
+        categoryVarNames.forEach(varName => newSet.delete(varName));
+      } else {
+        // Check all in this category
+        categoryVarNames.forEach(varName => newSet.add(varName));
+      }
+      return newSet;
+    });
+  };
+
   const renderTokenInput = (
     categoryKey: string,
     subcategoryKey: string | null,
@@ -135,9 +248,17 @@ export function ThemeEditor() {
     const variableName = getVariableName(categoryKey, subcategoryKey, tokenKey);
     const resolvedValue = resolveValue(value);
     const isColor = isColorValue(resolvedValue);
+    const isChecked = checkedProperties.has(variableName);
 
     return (
       <div key={variableName} className={styles.tokenItem}>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => togglePropertyCheck(variableName)}
+          className={styles.checkbox}
+          title="Select for export"
+        />
         <span className={styles.tokenLabel} title={variableName}>
           {tokenKey}
         </span>
@@ -200,6 +321,160 @@ export function ThemeEditor() {
     return `--${tokenKey}`;
   };
 
+  const parseVariableName = (varName: string): [string, string | null, string] => {
+    // Remove -- prefix
+    const name = varName.startsWith('--') ? varName.slice(2) : varName;
+    
+    // Try to match patterns
+    if (name.startsWith('color-bg-')) {
+      return ['colors', 'background', name.replace('color-bg-', '')];
+    }
+    if (name.startsWith('color-text-')) {
+      return ['colors', 'text', name.replace('color-text-', '')];
+    }
+    if (name.startsWith('color-border-')) {
+      return ['colors', 'border', name.replace('color-border-', '')];
+    }
+    if (name.startsWith('color-')) {
+      const parts = name.split('-');
+      return ['colors', parts[1], parts.slice(2).join('-')];
+    }
+    if (name.startsWith('space-')) {
+      return ['spacing', null, name.replace('space-', '')];
+    }
+    if (name.startsWith('font-size-')) {
+      return ['typography', 'fontSize', name.replace('font-size-', '')];
+    }
+    if (name.startsWith('font-weight-')) {
+      return ['typography', 'fontWeight', name.replace('font-weight-', '')];
+    }
+    if (name.startsWith('line-height-')) {
+      return ['typography', 'lineHeight', name.replace('line-height-', '')];
+    }
+    if (name.startsWith('radius-')) {
+      return ['borderRadius', null, name.replace('radius-', '')];
+    }
+    if (name.startsWith('shadow-')) {
+      return ['shadows', null, name.replace('shadow-', '')];
+    }
+    if (name.startsWith('transition-')) {
+      return ['transitions', null, name.replace('transition-', '')];
+    }
+    if (name.startsWith('z-')) {
+      return ['zIndex', null, name.replace('z-', '')];
+    }
+    if (name.startsWith('button-') || name.startsWith('input-') || name.startsWith('card-')) {
+      const parts = name.split('-');
+      return ['components', parts[0], parts.slice(1).join('-')];
+    }
+    if (name.match(/^(header|footer|sidebar|content)-/)) {
+      return ['components', 'layout', name];
+    }
+    
+    return ['', null, name];
+  };
+
+  const getTokenValue = (
+    tokens: ThemeTokens,
+    categoryKey: string,
+    subcategoryKey: string | null,
+    tokenKey: string
+  ): string | undefined => {
+    const categoryData = tokens[categoryKey as keyof ThemeTokens];
+    if (!categoryData) return undefined;
+    
+    if (subcategoryKey) {
+      const subcatData = categoryData[subcategoryKey as keyof typeof categoryData];
+      if (subcatData && typeof subcatData === 'object') {
+        return (subcatData as Record<string, string>)[tokenKey];
+      }
+    } else {
+      return (categoryData as Record<string, string>)[tokenKey];
+    }
+    return undefined;
+  };
+
+  const setTokenValue = (
+    tokens: ThemeTokens,
+    categoryKey: string,
+    subcategoryKey: string | null,
+    tokenKey: string,
+    value: string
+  ): void => {
+    const categoryData = tokens[categoryKey as keyof ThemeTokens];
+    if (!categoryData) return;
+    
+    if (subcategoryKey) {
+      const subcatData = categoryData[subcategoryKey as keyof typeof categoryData];
+      if (subcatData && typeof subcatData === 'object') {
+        (subcatData as Record<string, string>)[tokenKey] = value;
+      }
+    } else {
+      (categoryData as Record<string, string>)[tokenKey] = value;
+    }
+  };
+
+  const extractVariableNames = (tokens: ThemeTokens): string[] => {
+    const varNames: string[] = [];
+    
+    // Colors
+    Object.keys(tokens.colors).forEach((subcatKey) => {
+      const subcatData = tokens.colors[subcatKey as keyof typeof tokens.colors];
+      if (subcatData && typeof subcatData === 'object') {
+        Object.keys(subcatData).forEach((key) => {
+          varNames.push(getVariableName('colors', subcatKey, key));
+        });
+      }
+    });
+    
+    // Spacing
+    Object.keys(tokens.spacing).forEach((key) => {
+      varNames.push(getVariableName('spacing', null, key));
+    });
+    
+    // Typography
+    Object.keys(tokens.typography).forEach((subcatKey) => {
+      const subcatData = tokens.typography[subcatKey as keyof typeof tokens.typography];
+      if (subcatData && typeof subcatData === 'object') {
+        Object.keys(subcatData).forEach((key) => {
+          varNames.push(getVariableName('typography', subcatKey, key));
+        });
+      }
+    });
+    
+    // Border Radius
+    Object.keys(tokens.borderRadius).forEach((key) => {
+      varNames.push(getVariableName('borderRadius', null, key));
+    });
+    
+    // Shadows
+    Object.keys(tokens.shadows).forEach((key) => {
+      varNames.push(getVariableName('shadows', null, key));
+    });
+    
+    // Transitions
+    Object.keys(tokens.transitions).forEach((key) => {
+      varNames.push(getVariableName('transitions', null, key));
+    });
+    
+    // Z-Index
+    Object.keys(tokens.zIndex).forEach((key) => {
+      varNames.push(getVariableName('zIndex', null, key));
+    });
+    
+    // Components
+    Object.keys(tokens.components).forEach((subcatKey) => {
+      const subcatData = tokens.components[subcatKey as keyof typeof tokens.components];
+      if (subcatData && typeof subcatData === 'object') {
+        Object.keys(subcatData).forEach((key) => {
+          varNames.push(getVariableName('components', subcatKey, key));
+        });
+      }
+    });
+    
+    return varNames;
+  };
+
   const renderCategory = (category: CategoryConfig) => {
     if (!tokens) return null;
 
@@ -208,17 +483,30 @@ export function ThemeEditor() {
 
     const isExpanded = expandedCategories.has(category.key);
     
-    // Count tokens in category
+    // Count tokens in category and how many are checked
     let tokenCount = 0;
+    let checkedCount = 0;
+    const categoryVarNames: string[] = [];
+    
     if (category.subcategories) {
       category.subcategories.forEach((subcat) => {
         const subcatData = categoryData[subcat as keyof typeof categoryData];
         if (subcatData && typeof subcatData === 'object') {
-          tokenCount += Object.keys(subcatData).length;
+          Object.keys(subcatData).forEach((key) => {
+            tokenCount++;
+            const varName = getVariableName(category.key, subcat, key);
+            categoryVarNames.push(varName);
+            if (checkedProperties.has(varName)) checkedCount++;
+          });
         }
       });
     } else {
-      tokenCount = Object.keys(categoryData).length;
+      Object.keys(categoryData).forEach((key) => {
+        tokenCount++;
+        const varName = getVariableName(category.key, null, key);
+        categoryVarNames.push(varName);
+        if (checkedProperties.has(varName)) checkedCount++;
+      });
     }
 
     // Filter logic
@@ -227,12 +515,29 @@ export function ThemeEditor() {
 
     return (
       <div key={category.key} className={styles.category}>
-        <div className={styles.categoryHeader} onClick={() => toggleCategory(category.key)}>
+        <div className={styles.categoryHeader}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-            <h3 className={styles.categoryTitle}>{category.title}</h3>
-            <span className={styles.categoryBadge}>{tokenCount}</span>
+            <input
+              type="checkbox"
+              checked={checkedCount === tokenCount && tokenCount > 0}
+              onChange={() => toggleAllInCategory(category)}
+              className={styles.categoryCheckbox}
+              title="Select all in category"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <h3 className={styles.categoryTitle} onClick={() => toggleCategory(category.key)}>
+              {category.title}
+            </h3>
+            <span className={styles.categoryBadge}>
+              {checkedCount > 0 ? `${checkedCount}/` : ''}{tokenCount}
+            </span>
           </div>
-          <span className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`}>▼</span>
+          <span 
+            className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`}
+            onClick={() => toggleCategory(category.key)}
+          >
+            ▼
+          </span>
         </div>
         {isExpanded && (
           <div className={styles.categoryContent}>
