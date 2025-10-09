@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   extractThemeTokens,
   updateThemeToken,
@@ -7,10 +7,7 @@ import {
   resetTheme,
   isColorValue,
   resolveValue,
-  findVariableUsage,
-  formatElementUsage,
   type ThemeTokens,
-  type VariableUsage,
 } from '../../lib/themeUtils';
 import styles from './ThemeEditor.module.css';
 
@@ -60,8 +57,6 @@ export function ThemeEditor() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(['colors']));
   const [notification, setNotification] = useState<string | null>(null);
-  const [usageCache, setUsageCache] = useState<Map<string, VariableUsage>>(new Map());
-  const [hoveredVariable, setHoveredVariable] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -90,35 +85,7 @@ export function ThemeEditor() {
     // Re-extract to update state
     const extracted = extractThemeTokens();
     setTokens(extracted);
-    // Clear usage cache for this variable so it recalculates
-    setUsageCache((prevCache) => {
-      const newCache = new Map(prevCache);
-      newCache.delete(variableName);
-      return newCache;
-    });
   };
-
-  const getVariableUsage = (variableName: string): VariableUsage | null => {
-    // Return cached value if available
-    if (usageCache.has(variableName)) {
-      return usageCache.get(variableName)!;
-    }
-    // Return null if not cached (will calculate on hover)
-    return null;
-  };
-
-  const calculateUsage = useCallback((variableName: string) => {
-    setUsageCache((prevCache) => {
-      // Don't recalculate if already cached
-      if (prevCache.has(variableName)) {
-        return prevCache;
-      }
-      const usage = findVariableUsage(variableName);
-      const newCache = new Map(prevCache);
-      newCache.set(variableName, usage);
-      return newCache;
-    });
-  }, []);
 
   const handleExport = () => {
     if (tokens) {
@@ -168,46 +135,12 @@ export function ThemeEditor() {
     const variableName = getVariableName(categoryKey, subcategoryKey, tokenKey);
     const resolvedValue = resolveValue(value);
     const isColor = isColorValue(resolvedValue);
-    const usage = getVariableUsage(variableName);
-    const isHovered = hoveredVariable === variableName;
-
-    const handleMouseEnter = () => {
-      setHoveredVariable(variableName);
-      // Calculate usage when hovering (lazy loading)
-      calculateUsage(variableName);
-    };
 
     return (
       <div key={variableName} className={styles.tokenItem}>
-        <div className={styles.tokenLabelContainer}>
-          <span className={styles.tokenLabel} title={variableName}>
-            {tokenKey}
-          </span>
-          <span
-            className={styles.usageBadge}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={() => setHoveredVariable(null)}
-          >
-            {usage ? usage.count : '?'}
-          </span>
-          {isHovered && usage && usage.elements.length > 0 && (
-            <div className={styles.usageTooltip}>
-              <div className={styles.tooltipHeader}>Used in {usage.count} element(s):</div>
-              <div className={styles.tooltipList}>
-                {usage.elements.slice(0, 10).map((element, idx) => (
-                  <div key={idx} className={styles.tooltipItem}>
-                    {formatElementUsage(element)}
-                  </div>
-                ))}
-                {usage.elements.length > 10 && (
-                  <div className={styles.tooltipItem}>
-                    ...and {usage.elements.length - 10} more
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
+        <span className={styles.tokenLabel} title={variableName}>
+          {tokenKey}
+        </span>
         {isColor ? (
           <>
             <label className={styles.colorPreview} style={{ backgroundColor: resolvedValue }}>
