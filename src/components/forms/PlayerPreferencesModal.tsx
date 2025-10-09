@@ -107,7 +107,9 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           <div className={styles.categoriesList}>
             {PREFERENCE_CATEGORIES.map(category => {
               const value = preferences[category.key]
-              const isSelected = value !== undefined
+              // Only show "Already selected" if the value was explicitly set (not undefined)
+              // and preferences have been saved at least once
+              const isExplicitlySelected = value !== undefined && hasBeenSaved
               
               return (
                 <div key={category.key} className={styles.categoryRow}>
@@ -115,7 +117,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
                     {category.label}
                   </label>
                   
-                  {hasBeenSaved && isSelected ? (
+                  {isExplicitlySelected ? (
                     <div className={styles.alreadySelected}>
                       <IoMdCheckmarkCircleOutline className={styles.checkIcon} />
                       <span>Already selected</span>

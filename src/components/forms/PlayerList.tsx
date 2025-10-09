@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { IoSettingsOutline } from 'react-icons/io5'
+import { IoSettingsOutline, IoWarning, IoCheckmarkCircle } from 'react-icons/io5'
+import { BiSolidErrorAlt } from 'react-icons/bi'
 import { MIN_PLAYERS } from '../../lib/constants'
 import { GenderRadio } from './GenderRadio'
 import { PlayerPreferencesModal } from './PlayerPreferencesModal'
+import { PREFERENCE_CATEGORIES } from '../../lib/preferences'
 import type { PlayerSnapshot, PlayerPreferences } from '../../types'
 import styles from './PlayerList.module.css'
 
@@ -53,6 +55,30 @@ export const PlayerList: React.FC<PlayerListProps> = ({
     updatePlayer(playerId, { preferences })
   }
 
+  const getPreferenceStatus = (player: PlayerSnapshot): 'none' | 'some' | 'all' => {
+    if (!player.preferences) return 'none'
+    
+    const totalCategories = PREFERENCE_CATEGORIES.length
+    const selectedCount = PREFERENCE_CATEGORIES.filter(
+      category => player.preferences?.[category.key] !== undefined
+    ).length
+    
+    if (selectedCount === 0) return 'none'
+    if (selectedCount === totalCategories) return 'all'
+    return 'some'
+  }
+
+  const getStatusIcon = (status: 'none' | 'some' | 'all') => {
+    switch (status) {
+      case 'none':
+        return <BiSolidErrorAlt className={styles.statusIconRed} />
+      case 'some':
+        return <IoWarning className={styles.statusIconYellow} />
+      case 'all':
+        return <IoCheckmarkCircle className={styles.statusIconGreen} />
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -83,15 +109,20 @@ export const PlayerList: React.FC<PlayerListProps> = ({
             
             <div className={styles.actions}>
               {!hidePreferences && (
-                <button
-                  className={styles.configButton}
-                  onClick={() => openPreferences(player.id)}
-                  disabled={disabled}
-                  type="button"
-                  aria-label={`Configure preferences for ${player.name || `Player ${index + 1}`}`}
-                >
-                  <IoSettingsOutline />
-                </button>
+                <div className={styles.configButtonWrapper}>
+                  <button
+                    className={styles.configButton}
+                    onClick={() => openPreferences(player.id)}
+                    disabled={disabled}
+                    type="button"
+                    aria-label={`Configure preferences for ${player.name || `Player ${index + 1}`}`}
+                  >
+                    <IoSettingsOutline />
+                  </button>
+                  <span className={styles.statusIcon}>
+                    {getStatusIcon(getPreferenceStatus(player))}
+                  </span>
+                </div>
               )}
               
               {players.length > MIN_PLAYERS && (
