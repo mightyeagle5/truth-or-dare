@@ -5,10 +5,11 @@ import { GamePage } from './routes/GamePage'
 import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
 import { ThemeEditorPage } from './routes/ThemeEditorPage'
+import { ThemeEditor } from './components/dev'
 import { useGameStore, useHistoryStore } from './store'
 import './styles/index.css'
 
-function App() {
+function AppContent() {
   const { loadItems } = useGameStore()
   const { loadGameHistory } = useHistoryStore()
 
@@ -18,8 +19,11 @@ function App() {
     loadGameHistory()
   }, [loadItems, loadGameHistory])
 
+  // Show theme editor on all pages in dev mode
+  const showThemeEditor = import.meta.env.DEV
+
   return (
-    <Router>
+    <>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -34,6 +38,15 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
+      {showThemeEditor && <ThemeEditor />}
+    </>
+  )
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   )
 }

@@ -408,7 +408,7 @@ export interface VariableUsage {
 }
 
 /**
- * Finds all elements using a specific CSS variable
+ * Finds all elements using a specific CSS variable by checking stylesheets
  */
 export function findVariableUsage(variableName: string): VariableUsage {
   const usage: VariableUsage = {
@@ -418,63 +418,67 @@ export function findVariableUsage(variableName: string): VariableUsage {
 
   // Ensure variable name starts with --
   const varName = variableName.startsWith('--') ? variableName : `--${variableName}`;
-  const varPattern = new RegExp(`var\\(${varName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\)`, 'i');
+  
+  // First, find which CSS properties reference this variable in stylesheets
+  const referencingProperties = new Set<string>();
+  
+  try {
+    Array.from(document.styleSheets).forEach((styleSheet) => {
+      try {
+        Array.from(styleSheet.cssRules).forEach((rule) => {
+          if (rule instanceof CSSStyleRule) {
+            Array.from(rule.style).forEach((property) => {
+              const value = rule.style.getPropertyValue(property);
+              if (value && value.includes(`var(${varName}`)) {
+                referencingProperties.add(property);
+              }
+            });
+          }
+        });
+      } catch (e) {
+        // Skip external stylesheets that might cause CORS issues
+      }
+    });
+  } catch (e) {
+    console.warn('Error scanning stylesheets:', e);
+  }
 
-  // Check all elements in the document
+  // If no properties reference this variable, return empty usage
+  if (referencingProperties.size === 0) {
+    return usage;
+  }
+
+  // Now check all elements to see which ones have those properties applied
   const allElements = document.querySelectorAll('*');
+  const checkedElements = new Map<Element, string[]>();
+
   allElements.forEach((element) => {
     const computedStyle = window.getComputedStyle(element);
-    
-    // Check all style properties for this element
-    const usedInProperties: string[] = [];
-    
-    // Common properties that might use CSS variables
-    const propertiesToCheck = [
-      'color',
-      'background-color',
-      'background',
-      'border-color',
-      'border',
-      'border-top-color',
-      'border-right-color',
-      'border-bottom-color',
-      'border-left-color',
-      'fill',
-      'stroke',
-      'padding',
-      'margin',
-      'gap',
-      'font-size',
-      'font-weight',
-      'line-height',
-      'border-radius',
-      'box-shadow',
-      'transition',
-      'z-index',
-      'width',
-      'height',
-      'top',
-      'right',
-      'bottom',
-      'left',
-    ];
+    const usedProperties: string[] = [];
 
-    propertiesToCheck.forEach((prop) => {
+    // Check if any of the referencing properties are applied to this element
+    referencingProperties.forEach((prop) => {
       const value = computedStyle.getPropertyValue(prop);
-      if (value && varPattern.test(value)) {
-        usedInProperties.push(prop);
+      // Check if the property has a meaningful value (not empty, not 'none', etc.)
+      if (value && value !== 'none' && value !== 'normal' && value !== '0px' && value !== 'auto') {
+        usedProperties.push(prop);
       }
     });
 
-    if (usedInProperties.length > 0) {
-      usage.count++;
-      usage.elements.push({
-        tag: element.tagName.toLowerCase(),
-        classes: Array.from(element.classList),
-        id: element.id || null,
-        property: usedInProperties.join(', '),
-      });
+    if (usedProperties.length > 0) {
+      checkedElements.set(element, usedProperties);
     }
+  });
+
+  // Build the usage list
+  checkedElements.forEach((properties, element) => {
+    usage.count++;
+    usage.elements.push({
+      tag: element.tagName.toLowerCase(),
+      classes: Array.from(element.classList),
+      id: element.id || null,
+      property: properties.join(', '),
+    });
   });
 
   return usage;

@@ -1,4 +1,3 @@
-import { ThemeEditor } from '../components/dev';
 import { PageLayout } from '../components/layout';
 
 export function ThemeEditorPage() {
@@ -22,8 +21,8 @@ export function ThemeEditorPage() {
           color: 'var(--color-text-tertiary)',
           marginBottom: 'var(--space-8)'
         }}>
-          Click the "Theme Editor" button in the top-right corner to customize the app's colors and design tokens.
-          You can export your theme as JSON and import it later to test different variants.
+          Click the "🎨 Theme Editor" button in the top-right corner to open the theme editor panel.
+          You can customize colors and design tokens in real-time. Changes persist as you navigate between pages.
         </p>
         
         <div style={{
@@ -140,8 +139,6 @@ export function ThemeEditorPage() {
           </div>
         </div>
       </div>
-      
-      <ThemeEditor />
     </PageLayout>
   );
 }
