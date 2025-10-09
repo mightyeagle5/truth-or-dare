@@ -4,6 +4,7 @@ import { HomePage } from './routes/HomePage'
 import { GamePage } from './routes/GamePage'
 import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
+import { ThemeEditorPage } from './routes/ThemeEditorPage'
 import { useGameStore, useHistoryStore } from './store'
 import './styles/index.css'
 
@@ -25,7 +26,10 @@ function App() {
           <Route path="/game/:gameId" element={<GamePage />} />
           <Route path="/create-custom-game" element={<CreateCustomGamePage />} />
           {import.meta.env.DEV && (
-            <Route path="/admin/edit-challenges" element={<AdminPage />} />
+            <>
+              <Route path="/admin/edit-challenges" element={<AdminPage />} />
+              <Route path="/dev/theme-editor" element={<ThemeEditorPage />} />
+            </>
           )}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

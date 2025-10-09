@@ -57,7 +57,10 @@ export const HomePage: React.FC = () => {
     <PageLayout hideHeader title="" subtitle="">
       <div className={styles.container}>
         {import.meta.env.DEV && (
-          <Link to="/admin/edit-challenges" className={styles.fixedAdminLink}>Admin</Link>
+          <>
+            <Link to="/admin/edit-challenges" className={styles.fixedAdminLink}>Admin</Link>
+            <Link to="/dev/theme-editor" className={styles.fixedThemeLink}>🎨 Theme</Link>
+          </>
         )}
         <div className={styles.content}>
           <div className={styles.sections}>
