@@ -323,7 +323,7 @@
 .toggle {
   position: fixed;
   top: var(--space-4);
-  right: var(--space-4);
+  left: var(--space-4);
   background: var(--color-bg-secondary);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border-primary);
@@ -343,6 +343,7 @@
 .toggle:hover {
   background: var(--color-bg-tertiary);
   border-color: var(--color-border-focus);
+  transform: scale(1.05);
 }
 
 .notification {
