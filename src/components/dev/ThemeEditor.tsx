@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   extractThemeTokens,
   updateThemeToken,
@@ -91,19 +91,34 @@ export function ThemeEditor() {
     const extracted = extractThemeTokens();
     setTokens(extracted);
     // Clear usage cache for this variable so it recalculates
-    const newCache = new Map(usageCache);
-    newCache.delete(variableName);
-    setUsageCache(newCache);
+    setUsageCache((prevCache) => {
+      const newCache = new Map(prevCache);
+      newCache.delete(variableName);
+      return newCache;
+    });
   };
 
-  const getVariableUsage = (variableName: string): VariableUsage => {
+  const getVariableUsage = (variableName: string): VariableUsage | null => {
+    // Return cached value if available
     if (usageCache.has(variableName)) {
       return usageCache.get(variableName)!;
     }
-    const usage = findVariableUsage(variableName);
-    setUsageCache(new Map(usageCache).set(variableName, usage));
-    return usage;
+    // Return null if not cached (will calculate on hover)
+    return null;
   };
+
+  const calculateUsage = useCallback((variableName: string) => {
+    setUsageCache((prevCache) => {
+      // Don't recalculate if already cached
+      if (prevCache.has(variableName)) {
+        return prevCache;
+      }
+      const usage = findVariableUsage(variableName);
+      const newCache = new Map(prevCache);
+      newCache.set(variableName, usage);
+      return newCache;
+    });
+  }, []);
 
   const handleExport = () => {
     if (tokens) {
@@ -156,22 +171,26 @@ export function ThemeEditor() {
     const usage = getVariableUsage(variableName);
     const isHovered = hoveredVariable === variableName;
 
+    const handleMouseEnter = () => {
+      setHoveredVariable(variableName);
+      // Calculate usage when hovering (lazy loading)
+      calculateUsage(variableName);
+    };
+
     return (
       <div key={variableName} className={styles.tokenItem}>
         <div className={styles.tokenLabelContainer}>
           <span className={styles.tokenLabel} title={variableName}>
             {tokenKey}
           </span>
-          {usage.count > 0 && (
-            <span
-              className={styles.usageBadge}
-              onMouseEnter={() => setHoveredVariable(variableName)}
-              onMouseLeave={() => setHoveredVariable(null)}
-            >
-              {usage.count}
-            </span>
-          )}
-          {isHovered && usage.elements.length > 0 && (
+          <span
+            className={styles.usageBadge}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={() => setHoveredVariable(null)}
+          >
+            {usage ? usage.count : '?'}
+          </span>
+          {isHovered && usage && usage.elements.length > 0 && (
             <div className={styles.usageTooltip}>
               <div className={styles.tooltipHeader}>Used in {usage.count} element(s):</div>
               <div className={styles.tooltipList}>
