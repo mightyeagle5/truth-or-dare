@@ -17,7 +17,7 @@
 .challengeTypeContainer {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-bold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   line-height: 1.2;
   display: inline-block;
   padding: 0 16px 16px 16px;
@@ -26,11 +26,11 @@
 }
 
 .truthType {
-  border-bottom-color: #3B82F6;
+  border-bottom-color: var(--color-primary-500);
 }
 
 .dareType {
-  border-bottom-color: #EF4444;
+  border-bottom-color: var(--color-error-500);
 }
 
 .timerSection {
@@ -44,7 +44,7 @@
 .timer {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   text-align: center;
   margin: 0;
 }
@@ -59,9 +59,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #6B7280;
+  background: var(--color-neutral-500);
   border: none;
-  color: white;
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@
 }
 
 .timerButton:hover {
-  background: #4B5563;
+  background: var(--color-border-secondary);
 }
 
 .textSection {
@@ -84,7 +84,7 @@
 .challengeText {
   font-size: var(--font-size-4xl);
   line-height: 1.6;
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   margin: 0;
   font-weight: var(--font-weight-bold);
   text-align: center;
@@ -120,32 +120,32 @@
 }
 
 .wildCardButton {
-  background: linear-gradient(135deg, #8B5CF6, #A855F7);
-  color: white;
+  background: linear-gradient(135deg, var(--color-source-game), #A855F7);
+  color: var(--color-text-primary);
 }
 
 .wildCardButton:hover {
-  background: linear-gradient(135deg, #7C3AED, #9333EA);
+  background: linear-gradient(135deg, var(--color-purple-700), #9333EA);
   transform: translateY(-2px);
 }
 
 .skipButton {
-  background: #6B7280;
-  color: white;
+  background: var(--color-neutral-500);
+  color: var(--color-text-primary);
 }
 
 .skipButton:hover {
-  background: #4B5563;
+  background: var(--color-border-secondary);
   transform: translateY(-2px);
 }
 
 .completeButton {
-  background: #10B981;
-  color: white;
+  background: var(--color-success-500);
+  color: var(--color-text-primary);
 }
 
 .completeButton:hover {
-  background: #059669;
+  background: var(--color-success-600);
   transform: translateY(-2px);
 }
 

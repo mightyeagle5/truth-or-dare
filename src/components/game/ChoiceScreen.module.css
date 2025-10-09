@@ -29,7 +29,7 @@
 .playerName {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-bold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   text-align: center;
   margin: 48px 0; /* spacing between pills and squares */
   line-height: 1.2;
@@ -45,7 +45,7 @@
 .playerName {
   font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-bold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   text-align: center;
   margin: 0;
   line-height: 1.2;
@@ -66,7 +66,7 @@
   justify-content: center;
   padding: 16px;
   background: rgba(255, 255, 255, 0.05);
-  border: var(--radius-sm) solid #374151;
+  border: var(--radius-sm) solid var(--color-border-primary);
   border-radius: 24px;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -78,7 +78,7 @@
 
 .choiceCard:hover:not(.disabled) {
   background: rgba(255, 255, 255, 0.08);
-  border-color: #6B7280;
+  border-color: var(--color-neutral-500);
   transform: translateY(-var(--radius-base));
   box-shadow: 0 var(--space-2) var(--space-4) rgba(0, 0, 0, 0.3);
 }
@@ -90,12 +90,12 @@
 }
 
 .truthCard:hover:not(.disabled) {
-  border-color: #3B82F6;
+  border-color: var(--color-primary-500);
   background: rgba(59, 130, 246, 0.1);
 }
 
 .dareCard:hover:not(.disabled) {
-  border-color: #EF4444;
+  border-color: var(--color-error-500);
   background: rgba(239, 68, 68, 0.1);
 }
 
@@ -115,13 +115,13 @@
 .choiceTitle {
   font-size: 28px;
   font-weight: var(--font-weight-bold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
 .mandatoryMessage {
   font-size: var(--font-size-sm);
-  color: #F59E0B;
+  color: var(--color-level-hot);
   margin: var(--space-2) 0 0 0;
   font-weight: var(--font-weight-medium);
   text-align: center;
@@ -129,7 +129,7 @@
 
 .suggestion {
   background: rgba(59, 130, 246, 0.1);
-  border: 1px solid #3B82F6;
+  border: 1px solid var(--color-primary-500);
   border-radius: var(--radius-xl);
   padding: var(--font-size-xl);
   text-align: center;
@@ -166,26 +166,26 @@
 }
 
 .stayButton {
-  background: #6B7280;
-  color: white;
+  background: var(--color-neutral-500);
+  color: var(--color-text-primary);
 }
 
 .stayButton:hover {
-  background: #4B5563;
+  background: var(--color-border-secondary);
 }
 
 .goButton {
-  background: #3B82F6;
-  color: white;
+  background: var(--color-primary-500);
+  color: var(--color-text-primary);
 }
 
 .goButton:hover {
-  background: #2563EB;
+  background: var(--color-primary-600);
 }
 
 .priorGamesNotice {
   background: rgba(245, 158, 11, 0.1);
-  border: 1px solid #F59E0B;
+  border: 1px solid var(--color-level-hot);
   border-radius: var(--radius-lg);
   padding: var(--radius-xl) var(--radius-2xl);
   display: flex;
@@ -203,8 +203,8 @@
 
 .resetButton {
   padding: var(--radius-md) var(--radius-xl);
-  background: #F59E0B;
-  color: white;
+  background: var(--color-level-hot);
+  color: var(--color-text-primary);
   border: none;
   border-radius: var(--radius-md);
   font-size: var(--radius-xl);
@@ -215,7 +215,7 @@
 }
 
 .resetButton:hover {
-  background: #D97706;
+  background: var(--color-warning-600);
 }
 
 .loadingOverlay {
