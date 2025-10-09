@@ -135,13 +135,14 @@
   display: flex;
   align-items: center;
   gap: var(--radius-sm);
-  color: #10B981;
+  color: #9CA3AF;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 }
 
 .checkIcon {
   font-size: var(--font-size-xl);
+  color: #9CA3AF;
 }
 
 .footer {
