@@ -20,7 +20,7 @@
   border: 2px solid transparent;
   border-radius: 50%;
   background: transparent;
-  color: #6B7280;
+  color: var(--color-neutral-500);
   font-size: 20px;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -38,33 +38,33 @@
 }
 
 .thumbsUp {
-  border-color: #10B981;
-  color: #10B981;
+  border-color: var(--color-success-500);
+  color: var(--color-success-500);
 }
 
 .thumbsUp:hover:not(:disabled) {
-  background: #10B981;
-  color: white;
+  background: var(--color-success-500);
+  color: var(--color-text-primary);
 }
 
 .thumbsUp.selected {
-  background: #10B981;
-  color: white;
+  background: var(--color-success-500);
+  color: var(--color-text-primary);
 }
 
 .thumbsDown {
-  border-color: #EF4444;
-  color: #EF4444;
+  border-color: var(--color-error-500);
+  color: var(--color-error-500);
 }
 
 .thumbsDown:hover:not(:disabled) {
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
 }
 
 .thumbsDown.selected {
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
 }
 
 
@@ -79,7 +79,7 @@
 
 .ratedMessage {
   font-size: var(--font-size-sm);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   margin: 0;
   font-weight: var(--font-weight-medium);
 }

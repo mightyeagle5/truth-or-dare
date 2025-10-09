@@ -23,7 +23,7 @@
   gap: var(--space-2);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-normal);
-  color: #FFFFFF;
+  color: var(--color-text-primary);
 }
 
 .timeText {
@@ -43,7 +43,7 @@
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-md);
-  color: #FFFFFF;
+  color: var(--color-text-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-normal);
   cursor: pointer;

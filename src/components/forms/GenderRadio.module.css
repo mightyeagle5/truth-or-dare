@@ -8,7 +8,7 @@
   align-items: center;
   gap: var(--radius-lg);
   padding: var(--radius-lg) var(--radius-xl);
-  border: var(--radius-sm) solid #374151;
+  border: var(--radius-sm) solid var(--color-border-primary);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -16,12 +16,12 @@
 }
 
 .option:hover:not(:disabled) {
-  border-color: #6B7280;
+  border-color: var(--color-neutral-500);
   background: rgba(255, 255, 255, 0.05);
 }
 
 .option.selected {
-  border-color: #3B82F6;
+  border-color: var(--color-primary-500);
   background: rgba(59, 130, 246, 0.1);
 }
 
@@ -45,11 +45,11 @@
 .label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
 }
 
 .option.selected .label {
-  color: #3B82F6;
+  color: var(--color-primary-500);
 }
 
 /* Mobile responsive - hide labels, show only icons */

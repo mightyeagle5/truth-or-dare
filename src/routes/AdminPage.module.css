@@ -290,7 +290,7 @@
 
 .addNewBtn {
   background: #28a745;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -336,7 +336,7 @@
 
 .deleteBtn {
   background: #dc3545;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -356,7 +356,7 @@
 
 .restoreBtn {
   background: #17a2b8;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -371,7 +371,7 @@
 
 .updateBtn {
   background: #007bff;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -392,7 +392,7 @@
 
 .addBtn {
   background: #28a745;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -412,7 +412,7 @@
 
 .saveBtn {
   background: #28a745;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -427,7 +427,7 @@
 
 .addAsNewBtn {
   background: #6f42c1;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -468,7 +468,7 @@
 
 .saveChangesBtn {
   background: #28a745;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -484,7 +484,7 @@
 
 .viewChangesBtn {
   background: #6c757d;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -500,7 +500,7 @@
 
 .undoAllBtn {
   background: #dc3545;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -580,7 +580,7 @@
 
 .removeChangeBtn {
   background: #dc3545;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   width: 24px;
   height: 24px;
@@ -641,7 +641,7 @@
 
 .cancelBtn {
   background: #6c757d;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -656,7 +656,7 @@
 
 .confirmBtn {
   background: #28a745;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -713,7 +713,7 @@
 
 .closeChangedItemsBtn {
   background: #6c757d;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -795,7 +795,7 @@
 
 .deletedBadge {
   background: #dc3545;
-  color: white;
+  color: var(--color-text-primary);
   padding: 2px 6px;
   border-radius: 8px;
   font-size: 10px;

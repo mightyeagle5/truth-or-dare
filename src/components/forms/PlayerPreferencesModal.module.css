@@ -13,7 +13,7 @@
 }
 
 .modal {
-  background: #1F2937;
+  background: var(--color-bg-tertiary);
   border-radius: var(--radius-xl);
   max-width: 500px;
   width: 100%;
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
 }
 
 .header {
@@ -29,13 +29,13 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--radius-2xl);
-  border-bottom: 1px solid #374151;
+  border-bottom: 1px solid var(--color-border-primary);
 }
 
 .title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -44,7 +44,7 @@
   height: var(--space-8);
   border: none;
   background: transparent;
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-size: var(--font-size-2xl);
   cursor: pointer;
   display: flex;
@@ -57,7 +57,7 @@
 
 .closeButton:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
 }
 
 .content {
@@ -68,7 +68,7 @@
 
 .subtitle {
   font-size: var(--font-size-base);
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
   margin: 0 0 var(--radius-xl) 0;
   font-weight: var(--font-weight-medium);
 }
@@ -88,7 +88,7 @@
 
 .categoryLabel {
   font-size: var(--font-size-base);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   font-weight: var(--font-weight-normal);
 }
 
@@ -96,14 +96,14 @@
   display: flex;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
 }
 
 .pillButton {
   padding: var(--radius-sm) var(--radius-xl);
   border: none;
   background: transparent;
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -113,36 +113,36 @@
 }
 
 .pillButton:first-child {
-  border-right: 1px solid #374151;
+  border-right: 1px solid var(--color-border-primary);
 }
 
 .pillButton:hover:not(.pillSelected) {
   background: rgba(255, 255, 255, 0.05);
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
 }
 
 .pillNo.pillSelected {
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
 }
 
 .pillYes.pillSelected {
-  background: #10B981;
-  color: white;
+  background: var(--color-success-500);
+  color: var(--color-text-primary);
 }
 
 .alreadySelected {
   display: flex;
   align-items: center;
   gap: var(--radius-sm);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
 }
 
 .checkIcon {
   font-size: var(--font-size-xl);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
 }
 
 .footer {
@@ -150,7 +150,7 @@
   justify-content: flex-end;
   gap: var(--radius-lg);
   padding: var(--radius-2xl);
-  border-top: 1px solid #374151;
+  border-top: 1px solid var(--color-border-primary);
 }
 
 .cancelButton,
@@ -166,31 +166,31 @@
 }
 
 .cancelButton {
-  background: #374151;
-  color: #F9FAFB;
+  background: var(--color-border-primary);
+  color: var(--color-text-secondary);
 }
 
 .cancelButton:hover {
-  background: #4B5563;
+  background: var(--color-border-secondary);
 }
 
 .resetButton {
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
 }
 
 .resetButton:hover {
-  background: #DC2626;
+  background: var(--color-error-600);
   transform: translateY(-1px);
 }
 
 .saveButton {
-  background: #3B82F6;
-  color: white;
+  background: var(--color-primary-500);
+  color: var(--color-text-primary);
 }
 
 .saveButton:hover {
-  background: #2563EB;
+  background: var(--color-primary-600);
   transform: translateY(-1px);
 }
 
@@ -204,10 +204,10 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: #374151;
+  background: var(--color-border-primary);
   border-radius: 4px;
 }
 
 .content::-webkit-scrollbar-thumb:hover {
-  background: #4B5563;
+  background: var(--color-border-secondary);
 }

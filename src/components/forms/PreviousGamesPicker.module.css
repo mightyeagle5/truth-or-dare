@@ -13,7 +13,7 @@
 
 .card {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-lg);
   padding: 0; /* padding managed by header/content for click area control */
 }
@@ -52,7 +52,7 @@
 .title {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -66,8 +66,8 @@
 
 .deleteSelectedButton {
   padding: var(--radius-md) var(--radius-xl);
-  background: #EF4444;
-  color: white;
+  background: var(--color-error-500);
+  color: var(--color-text-primary);
   border: none;
   border-radius: var(--radius-md);
   font-size: var(--radius-xl);
@@ -78,7 +78,7 @@
 }
 
 .deleteSelectedButton:hover:not(:disabled) {
-  background: #DC2626;
+  background: var(--color-error-600);
   transform: translateY(-1px);
 }
 
@@ -90,7 +90,7 @@
 
 .empty {
   font-size: var(--font-size-sm);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-style: italic;
   text-align: center;
   padding: var(--font-size-xl);
@@ -128,17 +128,17 @@
 }
 
 .contentOpen::-webkit-scrollbar-track {
-  background: rgba(17, 24, 39, 0.3);
+  background: var(--color-bg-card);
   border-radius: 3px;
 }
 
 .contentOpen::-webkit-scrollbar-thumb {
-  background: #4B5563;
+  background: var(--color-border-secondary);
   border-radius: 3px;
 }
 
 .contentOpen::-webkit-scrollbar-thumb:hover {
-  background: #6B7280;
+  background: var(--color-neutral-500);
 }
 
 .gameItem {
@@ -147,7 +147,7 @@
   gap: var(--radius-xl);
   padding: var(--radius-lg) var(--radius-xl);
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -155,13 +155,13 @@
 
 .gameItem:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: #6B7280;
+  border-color: var(--color-neutral-500);
 }
 
 .checkbox {
   width: var(--radius-2xl);
   height: var(--radius-2xl);
-  accent-color: #3B82F6;
+  accent-color: var(--color-primary-500);
   flex-shrink: 0;
 }
 
@@ -175,13 +175,13 @@
 .gameId {
   font-size: var(--radius-xl);
   font-weight: var(--font-weight-medium);
-  color: #3B82F6;
+  color: var(--color-primary-500);
   font-family: monospace;
 }
 
 .gameDate {
   font-size: var(--radius-xl);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
 }
 
 .devCheckbox {
@@ -189,7 +189,7 @@
   align-items: center;
   gap: var(--radius-sm);
   font-size: var(--font-size-sm);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   cursor: pointer;
   padding: var(--radius-sm) var(--radius-md);
   background: rgba(255, 193, 7, 0.1);
@@ -206,7 +206,7 @@
 .devCheckbox input[type="checkbox"] {
   width: 14px;
   height: 14px;
-  accent-color: #F59E0B;
+  accent-color: var(--color-level-hot);
 }
 
 .devCheckbox span {

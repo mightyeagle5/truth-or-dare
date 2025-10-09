@@ -383,22 +383,22 @@
 }
 
 .challengesList::-webkit-scrollbar-track {
-  background: rgba(17, 24, 39, 0.3);
+  background: var(--color-bg-card);
   border-radius: 3px;
 }
 
 .challengesList::-webkit-scrollbar-thumb {
-  background: #4B5563;
+  background: var(--color-border-secondary);
   border-radius: 3px;
 }
 
 .challengesList::-webkit-scrollbar-thumb:hover {
-  background: #6B7280;
+  background: var(--color-neutral-500);
 }
 
 .emptyMessage {
   text-align: center;
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-style: italic;
   padding-top: var(--space-5);
 }
@@ -409,15 +409,15 @@
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-4);
-  background: rgba(17, 24, 39, 0.3);
-  border: 1px solid #374151;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-lg);
   transition: all var(--transition-fast);
 }
 
 .challengeItem:hover {
-  background: rgba(17, 24, 39, 0.5);
-  border-color: #4B5563;
+  background: var(--color-bg-input);
+  border-color: var(--color-border-secondary);
 }
 
 .challengeInfo {
@@ -446,14 +446,14 @@
 
 .challengeType.truth {
   background: rgba(59, 130, 246, 0.2);
-  border: 1px solid #3B82F6;
-  color: #60A5FA;
+  border: 1px solid var(--color-primary-500);
+  color: var(--color-primary-400);
 }
 
 .challengeType.dare {
   background: rgba(239, 68, 68, 0.2);
-  border: 1px solid #EF4444;
-  color: #F87171;
+  border: 1px solid var(--color-error-500);
+  color: var(--color-error-400);
 }
 
 .challengeLevel {
@@ -469,32 +469,32 @@
 
 .challengeLevel.soft {
   background: rgba(110, 231, 183, 0.2);
-  border: 1px solid #6EE7B7;
-  color: #6EE7B7;
+  border: 1px solid var(--color-level-soft);
+  color: var(--color-level-soft);
 }
 
 .challengeLevel.mild {
   background: rgba(96, 165, 250, 0.2);
-  border: 1px solid #60A5FA;
-  color: #60A5FA;
+  border: 1px solid var(--color-primary-400);
+  color: var(--color-primary-400);
 }
 
 .challengeLevel.hot {
   background: rgba(245, 158, 11, 0.2);
-  border: 1px solid #F59E0B;
-  color: #F59E0B;
+  border: 1px solid var(--color-level-hot);
+  color: var(--color-level-hot);
 }
 
 .challengeLevel.spicy {
   background: rgba(248, 113, 113, 0.2);
-  border: 1px solid #F87171;
-  color: #F87171;
+  border: 1px solid var(--color-error-400);
+  color: var(--color-error-400);
 }
 
 .challengeLevel.kinky {
   background: rgba(167, 139, 250, 0.2);
-  border: 1px solid #A78BFA;
-  color: #A78BFA;
+  border: 1px solid var(--color-purple-400);
+  color: var(--color-purple-400);
 }
 
 .challengeSource {
@@ -510,18 +510,18 @@
 
 .challengeSource.custom {
   background: rgba(34, 197, 94, 0.2);
-  border: 1px solid #22C55E;
-  color: #4ADE80;
+  border: 1px solid var(--color-source-custom);
+  color: var(--color-success-400);
 }
 
 .challengeSource.game {
   background: rgba(139, 92, 246, 0.2);
-  border: 1px solid #8B5CF6;
-  color: #A78BFA;
+  border: 1px solid var(--color-source-game);
+  color: var(--color-purple-400);
 }
 
 .challengeText {
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
   font-size: var(--font-size-sm);
   line-height: 1.5;
   margin: 0;
@@ -534,8 +534,8 @@
   height: 28px;
   border: none;
   border-radius: var(--radius-md);
-  background: #6B7280;
-  color: white;
+  background: var(--color-neutral-500);
+  color: var(--color-text-primary);
   font-size: var(--font-size-lg);
   font-weight: bold;
   cursor: pointer;
@@ -547,7 +547,7 @@
 }
 
 .removeButton:hover {
-  background: #EF4444;
+  background: var(--color-error-500);
   transform: translateY(-1px);
 }
 
@@ -572,10 +572,10 @@
 
 .previewToggle {
   padding: var(--space-1) var(--space-3);
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
-  background: #1f2937;
-  color: #9CA3AF;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -584,28 +584,28 @@
 }
 
 .previewToggle:hover {
-  background: #374151;
-  border-color: #4b5563;
-  color: #f9fafb;
+  background: var(--color-border-primary);
+  border-color: var(--color-border-secondary);
+  color: var(--color-text-secondary);
 }
 
 .previewToggle.active {
-  background: #3B82F6;
-  border-color: #3B82F6;
-  color: white;
+  background: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+  color: var(--color-text-primary);
 }
 
 .previewToggle.active:hover {
-  background: #2563EB;
-  border-color: #2563EB;
+  background: var(--color-primary-600);
+  border-color: var(--color-primary-600);
 }
 
 .filterButton {
   padding: var(--space-1) var(--space-3);
-  background: rgba(17, 24, 39, 0.5);
-  border: 1px solid #4B5563;
+  background: var(--color-bg-input);
+  border: 1px solid var(--color-border-secondary);
   border-radius: var(--radius-md);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -613,15 +613,15 @@
 }
 
 .filterButton:hover {
-  background: rgba(17, 24, 39, 0.7);
-  border-color: #6B7280;
-  color: #D1D5DB;
+  background: var(--color-bg-hover);
+  border-color: var(--color-neutral-500);
+  color: var(--color-text-tertiary);
 }
 
 .filterButton.active {
-  background: linear-gradient(135deg, #3B82F6, #2563EB);
-  border-color: #3B82F6;
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  border-color: var(--color-primary-500);
+  color: var(--color-text-primary);
 }
 
 /* Game Mode Selection */
@@ -642,21 +642,21 @@
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-4);
-  background: rgba(17, 24, 39, 0.3);
-  border: 1px solid #374151;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .gameModeOption:hover:not(:has(input:disabled)) {
-  background: rgba(17, 24, 39, 0.5);
-  border-color: #4B5563;
+  background: var(--color-bg-input);
+  border-color: var(--color-border-secondary);
 }
 
 .gameModeOption:has(input:checked) {
   background: rgba(59, 130, 246, 0.1);
-  border-color: #3B82F6;
+  border-color: var(--color-primary-500);
 }
 
 .gameModeOption:has(input:disabled) {
@@ -668,7 +668,7 @@
   margin: 0;
   width: 18px;
   height: 18px;
-  accent-color: #3B82F6;
+  accent-color: var(--color-primary-500);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -677,24 +677,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  color: #D1D5DB;
+  color: var(--color-text-tertiary);
 }
 
 .gameModeLabel strong {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: #F9FAFB;
+  color: var(--color-text-secondary);
 }
 
 .gameModeLabel small {
   font-size: var(--font-size-xs);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   line-height: 1.4;
 }
 
 .gameModeDisabledText {
   font-size: var(--font-size-xs);
-  color: #9CA3AF;
+  color: var(--color-text-muted);
   font-style: italic;
   margin: 0;
   text-align: center;
@@ -702,8 +702,8 @@
 
 .backButton {
   padding: var(--space-4) var(--space-8);
-  background: linear-gradient(135deg, #EF4444, #DC2626);
-  color: white;
+  background: linear-gradient(135deg, var(--color-error-500), var(--color-error-600));
+  color: var(--color-text-primary);
   border: none;
   border-radius: var(--radius-xl);
   font-size: var(--font-size-lg);
@@ -714,7 +714,7 @@
 }
 
 .backButton:hover {
-  background: linear-gradient(135deg, #DC2626, #B91C1C);
+  background: linear-gradient(135deg, var(--color-error-600), var(--color-error-700));
   transform: translateY(-2px);
 }
 
@@ -868,10 +868,10 @@
 .uploadButton,
 .downloadButton {
   padding: var(--space-2) var(--space-4);
-  border: 1px solid #374151;
+  border: 1px solid var(--color-border-primary);
   border-radius: var(--radius-md);
-  background: #1f2937;
-  color: #f9fafb;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   cursor: pointer;
@@ -880,20 +880,20 @@
 
 .uploadButton:hover,
 .downloadButton:hover:not(:disabled) {
-  background: #374151;
-  border-color: #4b5563;
+  background: var(--color-border-primary);
+  border-color: var(--color-border-secondary);
 }
 
 .uploadButton:active,
 .downloadButton:active:not(:disabled) {
-  background: #4b5563;
+  background: var(--color-border-secondary);
 }
 
 .downloadButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: #111827;
-  border-color: #1f2937;
+  background: var(--color-bg-primary);
+  border-color: var(--color-bg-tertiary);
 }
 
 
@@ -992,14 +992,14 @@
   width: 20px;
   left: 2px;
   bottom: 2px;
-  background-color: white;
+  background-color: var(--color-text-primary);
   transition: all 0.3s ease;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .configToggle input:checked + .toggleSlider {
-  background-color: #10b981;
+  background-color: var(--color-success-500);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -1009,7 +1009,7 @@
 }
 
 .configToggle input:checked {
-  border-color: #10b981;
+  border-color: var(--color-success-500);
 }
 
 .configControls {
