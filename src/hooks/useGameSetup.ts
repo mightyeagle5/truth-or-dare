@@ -1,12 +1,30 @@
 import { useState, useEffect } from 'react'
 import { createPlayerId } from '../lib/ids'
-import type { PlayerSnapshot, Level, GameHistoryEntry, GameConfiguration } from '../types'
+import { loadPlayerNames, savePlayerNames, loadAllPlayerPreferences } from '../lib/playerStorage'
+import type { PlayerSnapshot, Level, GameConfiguration } from '../types'
 
 export const useGameSetup = () => {
-  const [players, setPlayers] = useState<PlayerSnapshot[]>([
-    { id: createPlayerId(), name: '', gender: 'male' },
-    { id: createPlayerId(), name: '', gender: 'female' }
-  ])
+  // Initialize players from localStorage or use defaults
+  const initializePlayers = (): PlayerSnapshot[] => {
+    const storedNames = loadPlayerNames()
+    const storedPreferences = loadAllPlayerPreferences()
+    
+    if (storedNames && storedNames.length >= 2) {
+      return storedNames.map(stored => ({
+        id: stored.id,
+        name: stored.name,
+        gender: stored.gender as 'male' | 'female',
+        preferences: storedPreferences?.[stored.id]
+      }))
+    }
+    
+    return [
+      { id: createPlayerId(), name: '', gender: 'male' },
+      { id: createPlayerId(), name: '', gender: 'female' }
+    ]
+  }
+
+  const [players, setPlayers] = useState<PlayerSnapshot[]>(initializePlayers())
   // Default game level to 'soft' by default. The level selector UI is hidden on
   // the home screen, but the state and logic remain for future use.
   const [selectedLevel, setSelectedLevel] = useState<Level | null>('soft')
@@ -18,6 +36,11 @@ export const useGameSetup = () => {
     skipEnabled: true,
     consecutiveLimit: null
   })
+
+  // Save player names to localStorage whenever they change
+  useEffect(() => {
+    savePlayerNames(players)
+  }, [players])
 
   // Computed values
   // Allow starting with optional names. Names will default to "Player 1", "Player 2" at start.

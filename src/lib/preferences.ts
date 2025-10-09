@@ -41,7 +41,8 @@ export const getExcludedTagsFromPreferences = (preferences?: PlayerPreferences):
   const excludedTags: string[] = []
   
   PREFERENCE_CATEGORIES.forEach(category => {
-    // If preference is false (disabled), add its tags to excluded list
+    // If preference is explicitly false (user selected "No"), add its tags to excluded list
+    // undefined or true means include (Yes)
     if (preferences[category.key] === false && category.tagMapping) {
       excludedTags.push(...category.tagMapping)
     }

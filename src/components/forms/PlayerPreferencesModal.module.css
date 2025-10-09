@@ -92,39 +92,56 @@
   font-weight: var(--font-weight-normal);
 }
 
-.toggle {
-  position: relative;
-  width: 44px;
-  height: 24px;
-  border-radius: 12px;
+.pillGroup {
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #374151;
+}
+
+.pillButton {
+  padding: var(--radius-sm) var(--radius-xl);
   border: none;
+  background: transparent;
+  color: #9CA3AF;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
-  transition: background-color var(--transition-fast);
-  padding: 0;
+  transition: all var(--transition-fast);
+  flex: 1;
+  min-width: 50px;
 }
 
-.toggleOn {
+.pillButton:first-child {
+  border-right: 1px solid #374151;
+}
+
+.pillButton:hover:not(.pillSelected) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #D1D5DB;
+}
+
+.pillNo.pillSelected {
+  background: #EF4444;
+  color: white;
+}
+
+.pillYes.pillSelected {
   background: #10B981;
+  color: white;
 }
 
-.toggleOff {
-  background: #6B7280;
+.alreadySelected {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-sm);
+  color: #10B981;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
-.toggleSlider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: white;
-  transition: transform var(--transition-fast);
-  display: block;
-}
-
-.toggleOn .toggleSlider {
-  transform: translateX(20px);
+.checkIcon {
+  font-size: var(--font-size-xl);
 }
 
 .footer {
@@ -136,6 +153,7 @@
 }
 
 .cancelButton,
+.resetButton,
 .saveButton {
   padding: var(--radius-lg) var(--radius-2xl);
   border-radius: var(--radius-lg);
@@ -153,6 +171,16 @@
 
 .cancelButton:hover {
   background: #4B5563;
+}
+
+.resetButton {
+  background: #EF4444;
+  color: white;
+}
+
+.resetButton:hover {
+  background: #DC2626;
+  transform: translateY(-1px);
 }
 
 .saveButton {

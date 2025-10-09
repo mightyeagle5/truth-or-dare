@@ -1,6 +1,8 @@
 import React from 'react'
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import type { PlayerSnapshot, PlayerPreferences } from '../../types'
 import { PREFERENCE_CATEGORIES } from '../../lib/preferences'
+import { savePlayerPreferences, resetPlayerPreferences } from '../../lib/playerStorage'
 import styles from './PlayerPreferencesModal.module.css'
 
 interface PlayerPreferencesModalProps {
@@ -19,35 +21,58 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
   const [preferences, setPreferences] = React.useState<PlayerPreferences>(
     player.preferences || {}
   )
+  const [hasBeenSaved, setHasBeenSaved] = React.useState(false)
 
   React.useEffect(() => {
-    // Initialize with player's current preferences or defaults (all true)
+    // Initialize with player's current preferences
+    // undefined means not set yet (default to true), false means No, true means Yes
     const initialPreferences: PlayerPreferences = {}
     PREFERENCE_CATEGORIES.forEach(category => {
-      initialPreferences[category.key] = player.preferences?.[category.key] ?? true
+      initialPreferences[category.key] = player.preferences?.[category.key]
     })
     setPreferences(initialPreferences)
+    setHasBeenSaved(!!player.preferences && Object.keys(player.preferences).length > 0)
   }, [player.preferences, isOpen])
 
-  const handleToggle = (categoryKey: string) => {
+  const handleSelection = (categoryKey: string, value: boolean) => {
     setPreferences(prev => ({
       ...prev,
-      [categoryKey]: !prev[categoryKey]
+      [categoryKey]: value
     }))
   }
 
   const handleSave = () => {
-    onSave(preferences)
+    // Set defaults for unselected categories (treat as Yes/true)
+    const finalPreferences: PlayerPreferences = {}
+    PREFERENCE_CATEGORIES.forEach(category => {
+      // If undefined, default to true (Yes)
+      finalPreferences[category.key] = preferences[category.key] ?? true
+    })
+    
+    savePlayerPreferences(player.id, finalPreferences)
+    onSave(finalPreferences)
+    setHasBeenSaved(true)
     onClose()
+  }
+
+  const handleReset = () => {
+    const resetPreferences: PlayerPreferences = {}
+    PREFERENCE_CATEGORIES.forEach(category => {
+      resetPreferences[category.key] = undefined
+    })
+    setPreferences(resetPreferences)
+    setHasBeenSaved(false)
+    resetPlayerPreferences(player.id)
   }
 
   const handleCancel = () => {
     // Reset to original preferences
     const resetPreferences: PlayerPreferences = {}
     PREFERENCE_CATEGORIES.forEach(category => {
-      resetPreferences[category.key] = player.preferences?.[category.key] ?? true
+      resetPreferences[category.key] = player.preferences?.[category.key]
     })
     setPreferences(resetPreferences)
+    setHasBeenSaved(!!player.preferences && Object.keys(player.preferences).length > 0)
     onClose()
   }
 
@@ -80,24 +105,46 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           </p>
 
           <div className={styles.categoriesList}>
-            {PREFERENCE_CATEGORIES.map(category => (
-              <div key={category.key} className={styles.categoryRow}>
-                <label className={styles.categoryLabel}>
-                  {category.label}
-                </label>
-                <button
-                  className={`${styles.toggle} ${
-                    preferences[category.key] ? styles.toggleOn : styles.toggleOff
-                  }`}
-                  onClick={() => handleToggle(category.key)}
-                  type="button"
-                  role="switch"
-                  aria-checked={preferences[category.key]}
-                >
-                  <span className={styles.toggleSlider} />
-                </button>
-              </div>
-            ))}
+            {PREFERENCE_CATEGORIES.map(category => {
+              const value = preferences[category.key]
+              const isSelected = value !== undefined
+              
+              return (
+                <div key={category.key} className={styles.categoryRow}>
+                  <label className={styles.categoryLabel}>
+                    {category.label}
+                  </label>
+                  
+                  {hasBeenSaved && isSelected ? (
+                    <div className={styles.alreadySelected}>
+                      <IoMdCheckmarkCircleOutline className={styles.checkIcon} />
+                      <span>Already selected</span>
+                    </div>
+                  ) : (
+                    <div className={styles.pillGroup}>
+                      <button
+                        className={`${styles.pillButton} ${styles.pillNo} ${
+                          value === false ? styles.pillSelected : ''
+                        }`}
+                        onClick={() => handleSelection(category.key, false)}
+                        type="button"
+                      >
+                        No
+                      </button>
+                      <button
+                        className={`${styles.pillButton} ${styles.pillYes} ${
+                          value === true ? styles.pillSelected : ''
+                        }`}
+                        onClick={() => handleSelection(category.key, true)}
+                        type="button"
+                      >
+                        Yes
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
 
@@ -109,6 +156,15 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
           >
             Cancel
           </button>
+          {hasBeenSaved && (
+            <button
+              className={styles.resetButton}
+              onClick={handleReset}
+              type="button"
+            >
+              Reset
+            </button>
+          )}
           <button
             className={styles.saveButton}
             onClick={handleSave}
