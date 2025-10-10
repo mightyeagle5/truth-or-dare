@@ -69,6 +69,14 @@
   background: rgba(255,255,255,0.18);
 }
 
+.themeSwitcherContainer {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+}
+
 /* Add spacing above the first section (players) */
 .sections > div:first-child {
   margin-top: 192px;

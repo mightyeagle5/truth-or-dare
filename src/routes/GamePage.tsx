@@ -5,6 +5,7 @@ import { Header } from '../components/layout'
 import { ChoiceScreen, ItemScreen } from '../components/game'
 import { useGameStore, useUIStore } from '../store'
 import { getCurrentPlayer } from '../store/selectors'
+import { useTheme } from '../hooks/useTheme'
 import styles from './GamePage.module.css'
 
 export const GamePage: React.FC = () => {
@@ -19,6 +20,9 @@ export const GamePage: React.FC = () => {
     completeItem 
   } = useGameStore()
   const { currentScreen, isLoading, error } = useUIStore()
+  
+  // Initialize theme
+  useTheme()
 
   useEffect(() => {
     if (gameId && (!currentGame || currentGame.id !== gameId)) {
