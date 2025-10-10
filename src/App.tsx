@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage } from './routes/HomePage'
 import { GamePage } from './routes/GamePage'
@@ -18,8 +18,33 @@ function AppContent() {
     loadGameHistory()
   }, [loadItems, loadGameHistory])
 
-  // Show theme editor on all pages in dev mode
-  const showThemeEditor = import.meta.env.DEV
+  // Show theme editor only when explicitly enabled
+  // To enable: localStorage.setItem('enableThemeEditor', 'true') in browser console
+  // Or add ?themeEditor=true to URL
+  const [showThemeEditor, setShowThemeEditor] = useState(() => {
+    if (!import.meta.env.DEV) return false;
+    
+    // Check URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('themeEditor') === 'true') {
+      localStorage.setItem('enableThemeEditor', 'true');
+      return true;
+    }
+    
+    // Check localStorage
+    return localStorage.getItem('enableThemeEditor') === 'true';
+  })
+
+  useEffect(() => {
+    // Listen for storage changes (if changed in another tab)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'enableThemeEditor') {
+        setShowThemeEditor(e.newValue === 'true');
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   return (
     <>
