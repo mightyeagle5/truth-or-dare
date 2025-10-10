@@ -91,15 +91,13 @@ export function ThemeEditor() {
   const handleExport = () => {
     if (!tokens) return;
     
-    // If no properties are checked, export everything
+    // If no properties are checked, show warning
     if (checkedProperties.size === 0) {
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-      downloadTheme(tokens, `theme-${timestamp}.json`);
-      showNotification('Theme exported successfully!');
+      showNotification('⚠️ Please check at least one property to export');
       return;
     }
 
-    // Otherwise, export only checked properties
+    // Export only checked properties
     const filteredTokens: ThemeTokens = {
       colors: {
         primary: {},
