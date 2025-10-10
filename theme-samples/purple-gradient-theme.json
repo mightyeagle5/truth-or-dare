@@ -29,12 +29,12 @@
       "100": "#f4f4f5",
       "200": "#e4e4e7",
       "300": "#d4d4d8",
-      "400": "#a1a1aa",
-      "500": "#71717a",
-      "600": "#52525b",
-      "700": "#3f3f46",
-      "800": "#27272a",
-      "900": "#18181b"
+      "400": "#d8b4fe",
+      "500": "#c084fc",
+      "600": "#a78bfa",
+      "700": "#8b5cf6",
+      "800": "#7c3aed",
+      "900": "#6d28d9"
     },
     "success": {
       "50": "#f0fdf4",
@@ -85,11 +85,11 @@
       "900": "#581c87"
     },
     "level": {
-      "soft": "#86efac",
-      "mild": "#c084fc",
+      "soft": "#4ade80",
+      "mild": "#a78bfa",
       "hot": "#fbbf24",
       "spicy": "#f87171",
-      "kinky": "#d8b4fe"
+      "kinky": "#e9d5ff"
     },
     "gender": {
       "male": "#a855f7",
@@ -105,25 +105,25 @@
     },
     "background": {
       "primary": "linear-gradient(45deg, #8E2DE2, #4A00E0)",
-      "secondary": "rgba(74, 0, 224, 0.6)",
-      "tertiary": "rgba(90, 20, 230, 0.4)",
-      "card": "rgba(142, 45, 226, 0.15)",
-      "input": "rgba(60, 10, 160, 0.3)",
-      "hover": "rgba(74, 0, 224, 0.5)",
-      "active": "rgba(100, 30, 240, 0.6)"
+      "secondary": "rgba(30, 10, 60, 0.85)",
+      "tertiary": "rgba(40, 15, 80, 0.8)",
+      "card": "rgba(20, 10, 50, 0.75)",
+      "input": "rgba(15, 5, 40, 0.85)",
+      "hover": "rgba(100, 50, 200, 0.4)",
+      "active": "rgba(120, 60, 220, 0.5)"
     },
     "text": {
       "primary": "#ffffff",
       "secondary": "#f3e8ff",
       "tertiary": "#e9d5ff",
       "muted": "#d8b4fe",
-      "disabled": "#c084fc"
+      "disabled": "#a78bfa"
     },
     "border": {
-      "primary": "rgba(216, 180, 254, 0.3)",
-      "secondary": "rgba(192, 132, 252, 0.4)",
-      "focus": "#a855f7",
-      "error": "#ef4444"
+      "primary": "rgba(216, 180, 254, 0.6)",
+      "secondary": "rgba(192, 132, 252, 0.7)",
+      "focus": "#c084fc",
+      "error": "#f87171"
     }
   },
   "spacing": {
@@ -176,11 +176,11 @@
     "full": "9999px"
   },
   "shadows": {
-    "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.3)",
-    "base": "0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3)",
-    "md": "0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3)",
-    "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4)",
-    "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4)"
+    "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.5)",
+    "base": "0 1px 3px 0 rgba(0, 0, 0, 0.6), 0 1px 2px -1px rgba(0, 0, 0, 0.5)",
+    "md": "0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.5)",
+    "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -4px rgba(0, 0, 0, 0.6)",
+    "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 8px 10px -6px rgba(0, 0, 0, 0.7)"
   },
   "transitions": {
     "fast": "150ms ease-in-out",
