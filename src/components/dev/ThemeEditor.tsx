@@ -159,11 +159,21 @@ export function ThemeEditor() {
         try {
           const json = e.target?.result as string;
           const imported = importTheme(json);
-          setTokens(imported);
           
-          // Check only the properties that were imported
+          // Re-extract tokens from DOM to get actual current state (not the imported structure with empty objects)
+          const currentTokens = extractThemeTokens();
+          setTokens(currentTokens);
+          
+          // Check only the properties that were imported (non-empty values)
           const importedVarNames = new Set<string>();
-          extractVariableNames(imported).forEach(varName => importedVarNames.add(varName));
+          extractVariableNames(imported).forEach(varName => {
+            // Only add if the variable actually has a value in the imported JSON
+            const [categoryKey, subcategoryKey, tokenKey] = parseVariableName(varName);
+            const value = getTokenValue(imported, categoryKey, subcategoryKey, tokenKey);
+            if (value) {
+              importedVarNames.add(varName);
+            }
+          });
           setCheckedProperties(importedVarNames);
           
           showNotification(`Imported ${importedVarNames.size} properties!`);
