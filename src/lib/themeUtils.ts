@@ -242,12 +242,175 @@ export function downloadTheme(tokens: ThemeTokens, filename = 'theme.json'): voi
 }
 
 /**
- * Imports and applies a theme from JSON
+ * Imports and applies a theme from JSON (only non-empty properties)
  */
 export function importTheme(json: string): ThemeTokens {
   const tokens = JSON.parse(json) as ThemeTokens;
-  applyTheme(tokens);
+  applyThemeSelectively(tokens);
   return tokens;
+}
+
+/**
+ * Applies only non-empty theme tokens to CSS custom properties
+ */
+export function applyThemeSelectively(tokens: ThemeTokens): void {
+  // Helper to check if an object has any non-empty values
+  const hasValues = (obj: any): boolean => {
+    if (!obj || typeof obj !== 'object') return false;
+    return Object.keys(obj).length > 0 && Object.values(obj).some(v => v !== undefined && v !== '');
+  };
+
+  // Colors - only apply subcategories that have values
+  if (tokens.colors) {
+    if (hasValues(tokens.colors.primary)) {
+      Object.entries(tokens.colors.primary).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-primary-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.secondary)) {
+      Object.entries(tokens.colors.secondary).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-secondary-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.neutral)) {
+      Object.entries(tokens.colors.neutral).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-neutral-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.success)) {
+      Object.entries(tokens.colors.success).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-success-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.warning)) {
+      Object.entries(tokens.colors.warning).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-warning-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.error)) {
+      Object.entries(tokens.colors.error).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-error-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.purple)) {
+      Object.entries(tokens.colors.purple).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-purple-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.level)) {
+      Object.entries(tokens.colors.level).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-level-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.gender)) {
+      Object.entries(tokens.colors.gender).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-gender-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.challenge)) {
+      Object.entries(tokens.colors.challenge).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-challenge-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.source)) {
+      Object.entries(tokens.colors.source).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-source-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.background)) {
+      Object.entries(tokens.colors.background).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-bg-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.text)) {
+      Object.entries(tokens.colors.text).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-text-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.colors.border)) {
+      Object.entries(tokens.colors.border).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--color-border-${key}`, value);
+      });
+    }
+  }
+
+  // Spacing
+  if (hasValues(tokens.spacing)) {
+    Object.entries(tokens.spacing).forEach(([key, value]) => {
+      if (value) updateThemeToken(`--space-${key}`, value);
+    });
+  }
+
+  // Typography
+  if (tokens.typography) {
+    if (hasValues(tokens.typography.fontSize)) {
+      Object.entries(tokens.typography.fontSize).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--font-size-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.typography.fontWeight)) {
+      Object.entries(tokens.typography.fontWeight).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--font-weight-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.typography.lineHeight)) {
+      Object.entries(tokens.typography.lineHeight).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--line-height-${key}`, value);
+      });
+    }
+  }
+
+  // Border Radius
+  if (hasValues(tokens.borderRadius)) {
+    Object.entries(tokens.borderRadius).forEach(([key, value]) => {
+      if (value) updateThemeToken(`--radius-${key}`, value);
+    });
+  }
+
+  // Shadows
+  if (hasValues(tokens.shadows)) {
+    Object.entries(tokens.shadows).forEach(([key, value]) => {
+      if (value) updateThemeToken(`--shadow-${key}`, value);
+    });
+  }
+
+  // Transitions
+  if (hasValues(tokens.transitions)) {
+    Object.entries(tokens.transitions).forEach(([key, value]) => {
+      if (value) updateThemeToken(`--transition-${key}`, value);
+    });
+  }
+
+  // Z-Index
+  if (hasValues(tokens.zIndex)) {
+    Object.entries(tokens.zIndex).forEach(([key, value]) => {
+      if (value) updateThemeToken(`--z-${key}`, value);
+    });
+  }
+
+  // Components
+  if (tokens.components) {
+    if (hasValues(tokens.components.button)) {
+      Object.entries(tokens.components.button).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--button-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.components.input)) {
+      Object.entries(tokens.components.input).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--input-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.components.card)) {
+      Object.entries(tokens.components.card).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--card-${key}`, value);
+      });
+    }
+    if (hasValues(tokens.components.layout)) {
+      Object.entries(tokens.components.layout).forEach(([key, value]) => {
+        if (value) updateThemeToken(`--${key}`, value);
+      });
+    }
+  }
 }
 
 /**
