@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { PlayerList, PreviousGamesPicker } from '../components/forms'
-import { ThemeSwitcher } from '../components/ui'
 import { useGameStore, useHistoryStore, useDevStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
-import { useTheme } from '../hooks/useTheme'
 import styles from './HomePage.module.css'
 
 export const HomePage: React.FC = () => {
@@ -13,9 +11,6 @@ export const HomePage: React.FC = () => {
   const { startGame, clearGame } = useGameStore()
   const { gameHistory, removeGameFromHistory } = useHistoryStore()
   const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
-  
-  // Initialize theme
-  useTheme()
   
   const [isStarting, setIsStarting] = useState(false)
   
@@ -62,14 +57,8 @@ export const HomePage: React.FC = () => {
     <PageLayout hideHeader title="" subtitle="">
       <div className={styles.container}>
         {import.meta.env.DEV && (
-          <>
-            <Link to="/admin/edit-challenges" className={styles.fixedAdminLink}>Admin</Link>
-            <Link to="/dev/theme-editor" className={styles.fixedThemeLink}>🎨 Theme</Link>
-          </>
+          <Link to="/admin/edit-challenges" className={styles.fixedAdminLink}>Admin</Link>
         )}
-        <div className={styles.themeSwitcherContainer}>
-          <ThemeSwitcher />
-        </div>
         <div className={styles.content}>
           <div className={styles.sections}>
             <div className={styles.homeTitle}>Truth or Dare</div>

@@ -251,22 +251,9 @@ export function importTheme(json: string): ThemeTokens {
 }
 
 /**
- * Theme names
- */
-export type ThemeName = 'default' | 'purple-gradient';
-
-/**
  * Applies theme tokens to CSS custom properties
  */
 export function applyTheme(tokens: ThemeTokens): void {
-  // Special handling for gradient background
-  if (tokens.colors.background.primary.startsWith('linear-gradient')) {
-    document.body.style.background = tokens.colors.background.primary;
-    document.body.style.backgroundAttachment = 'fixed';
-  } else {
-    document.body.style.background = tokens.colors.background.primary;
-  }
-  
   // Colors
   Object.entries(tokens.colors.primary).forEach(([key, value]) => {
     updateThemeToken(`--color-primary-${key}`, value);
@@ -509,42 +496,5 @@ export function formatElementUsage(element: VariableUsage['elements'][0]): strin
     identifier += `.${element.classes.join('.')}`;
   }
   return `${identifier} (${element.property})`;
-}
-
-/**
- * Saves current theme to localStorage
- */
-export function saveTheme(themeName: ThemeName): void {
-  localStorage.setItem('truth-or-dare-theme', themeName);
-}
-
-/**
- * Loads theme from localStorage
- */
-export function loadSavedTheme(): ThemeName | null {
-  return localStorage.getItem('truth-or-dare-theme') as ThemeName | null;
-}
-
-/**
- * Loads a theme by name
- */
-export async function loadThemeByName(themeName: ThemeName): Promise<ThemeTokens | null> {
-  if (themeName === 'default') {
-    // Extract default from stylesheets
-    return extractThemeTokens();
-  }
-  
-  if (themeName === 'purple-gradient') {
-    try {
-      const response = await fetch('/theme-samples/purple-gradient-theme.json');
-      const themeData = await response.json();
-      return themeData as ThemeTokens;
-    } catch (error) {
-      console.error('Failed to load purple-gradient theme:', error);
-      return null;
-    }
-  }
-  
-  return null;
 }
 

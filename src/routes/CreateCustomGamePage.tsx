@@ -5,15 +5,11 @@ import { CustomGameSection } from '../components/forms/CustomGameSection'
 import { useGameStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
 import { useCustomGame } from '../hooks/useCustomGame'
-import { useTheme } from '../hooks/useTheme'
 
 export const CreateCustomGamePage: React.FC = () => {
   const navigate = useNavigate()
   const { startCustomGame, clearGame } = useGameStore()
   const [isStarting, setIsStarting] = useState(false)
-  
-  // Initialize theme
-  useTheme()
   
   // Regular game setup (for players and game configuration)
   const {
