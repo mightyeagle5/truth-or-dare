@@ -222,24 +222,52 @@ export class SupabaseChallengeService {
     }
   }
 
-  // Get challenges summary for custom game creation
+  // Get challenges summary for custom game creation (excludes deleted)
   static async getChallengesSummary(): Promise<ChallengeSummary[]> {
     const { data, error } = await supabase
-      .from('challenges_summary')
-      .select('*')
-      .order('level', { ascending: true })
-      .order('kind', { ascending: true })
+      .from('challenges')
+      .select('level, kind')
+      .eq('is_deleted', false)
 
     if (error) {
       console.error('Error fetching challenges summary:', error)
       throw error
     }
 
-    return (data || []).map(item => ({
-      level: item.level,
-      kind: item.kind,
-      total: item.total
-    }))
+    // Group by level and kind, counting items
+    const summary: Record<string, Record<string, number>> = {}
+    
+    data?.forEach(item => {
+      if (!summary[item.level]) {
+        summary[item.level] = {}
+      }
+      if (!summary[item.level][item.kind]) {
+        summary[item.level][item.kind] = 0
+      }
+      summary[item.level][item.kind]++
+    })
+
+    // Convert to array format
+    const result: ChallengeSummary[] = []
+    Object.keys(summary).forEach(level => {
+      Object.keys(summary[level]).forEach(kind => {
+        result.push({
+          level,
+          kind,
+          total: summary[level][kind]
+        })
+      })
+    })
+
+    // Sort by level and kind
+    const levelOrder = ['soft', 'mild', 'hot', 'spicy', 'kinky']
+    result.sort((a, b) => {
+      const levelDiff = levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level)
+      if (levelDiff !== 0) return levelDiff
+      return a.kind.localeCompare(b.kind)
+    })
+
+    return result
   }
 
   // Get challenges by level and kind for custom game creation (excludes deleted)
