@@ -12,6 +12,7 @@ export interface FormData {
   gender_for: string
   gender_target: string
   tags: string
+  duration: string
 }
 
 /**
@@ -36,6 +37,13 @@ export const detectChanges = (originalItem: Item, currentFormData: FormData): Ch
   }
   if (JSON.stringify(originalItem.tags.sort()) !== JSON.stringify(currentTags.sort())) {
     changes.push('Tags')
+  }
+  
+  // Check duration changes
+  const currentDuration = currentFormData.duration.trim() === '' ? 0 : parseInt(currentFormData.duration, 10)
+  const originalDuration = originalItem.duration || 0
+  if (currentDuration !== originalDuration) {
+    changes.push('Duration')
   }
   
   return {

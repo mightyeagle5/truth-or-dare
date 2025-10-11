@@ -162,6 +162,22 @@ export const ItemEditor: React.FC<ItemEditorProps> = ({
             onChange={(e) => handleFormChange('tags', e.target.value)}
           />
         </div>
+
+        <div className={styles.formGroup}>
+          <label>Duration (seconds):</label>
+          <input 
+            type="number"
+            min="0"
+            value={formData.duration}
+            onChange={(e) => handleFormChange('duration', e.target.value)}
+            placeholder="Leave empty for non-time-based challenges"
+          />
+          {formData.duration && parseInt(formData.duration) > 0 && (
+            <small style={{ color: '#666', marginTop: '4px', display: 'block' }}>
+              ✓ This will be marked as a time-based challenge ({formData.duration}s)
+            </small>
+          )}
+        </div>
       </div>
     </div>
   )

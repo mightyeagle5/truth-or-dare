@@ -66,7 +66,9 @@ export const usePendingChanges = () => {
                 text: change.item.text,
                 gender_for: change.item.gender_for,
                 gender_target: change.item.gender_target,
-                tags: change.item.tags
+                tags: change.item.tags,
+                is_time_based: change.item.is_time_based || false,
+                duration: change.item.duration || 0
               })
               console.log(`✅ Created challenge: ${change.item.text.substring(0, 50)}...`)
               break
@@ -77,7 +79,9 @@ export const usePendingChanges = () => {
                 text: change.item.text,
                 gender_for: change.item.gender_for,
                 gender_target: change.item.gender_target,
-                tags: change.item.tags
+                tags: change.item.tags,
+                is_time_based: change.item.is_time_based || false,
+                duration: change.item.duration || 0
               })
               console.log(`✅ Updated challenge: ${change.item.text.substring(0, 50)}...`)
               break

@@ -13,7 +13,8 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
     text: '',
     gender_for: '',
     gender_target: '',
-    tags: ''
+    tags: '',
+    duration: ''
   })
 
   // Initialize form data when editing
@@ -26,7 +27,8 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
         text: selectedItem.text,
         gender_for: selectedItem.gender_for.join(', '),
         gender_target: selectedItem.gender_target.join(', '),
-        tags: selectedItem.tags.join(', ')
+        tags: selectedItem.tags.join(', '),
+        duration: selectedItem.duration ? selectedItem.duration.toString() : ''
       }
       setFormData(newFormData)
       // Reset change detection when selecting a new item
@@ -55,13 +57,17 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
       text: '',
       gender_for: '',
       gender_target: '',
-      tags: ''
+      tags: '',
+      duration: ''
     })
     setEditingItem(null)
     setCurrentChanges({ hasChanges: false, changes: [] })
   }
 
   const createItemFromFormData = (): Item => {
+    const duration = formData.duration.trim() === '' ? 0 : parseInt(formData.duration, 10)
+    const isTimeBased = duration > 0
+    
     return {
       id: editingItem?.id || '',
       level: formData.level,
@@ -69,7 +75,9 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
       text: formData.text,
       gender_for: formData.gender_for.split(',').map(g => g.trim() as Gender).filter(g => g.length > 0),
       gender_target: formData.gender_target.split(',').map(g => g.trim() as Gender).filter(g => g.length > 0),
-      tags: formData.tags.split(',').map(t => t.trim()).filter(t => t.length > 0)
+      tags: formData.tags.split(',').map(t => t.trim()).filter(t => t.length > 0),
+      is_time_based: isTimeBased,
+      duration: duration
     }
   }
 
