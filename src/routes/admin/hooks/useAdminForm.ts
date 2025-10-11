@@ -65,8 +65,8 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
   }
 
   const createItemFromFormData = (): Item => {
-    const duration = formData.duration.trim() === '' ? 0 : parseInt(formData.duration, 10)
-    const isTimeBased = duration > 0
+    const durationValue = formData.duration.trim() === '' ? 0 : parseInt(formData.duration, 10)
+    const isTimeBased = durationValue > 0
     
     return {
       id: editingItem?.id || '',
@@ -77,7 +77,7 @@ export const useAdminForm = (selectedItem: Item | null, isAddingNew: boolean) =>
       gender_target: formData.gender_target.split(',').map(g => g.trim() as Gender).filter(g => g.length > 0),
       tags: formData.tags.split(',').map(t => t.trim()).filter(t => t.length > 0),
       is_time_based: isTimeBased,
-      duration: duration
+      duration: isTimeBased ? durationValue : undefined
     }
   }
 
