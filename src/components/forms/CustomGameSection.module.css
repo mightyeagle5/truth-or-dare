@@ -874,3 +874,11 @@
     margin-top: 32px;
   }
 }
+
+/* Apply same fixes for smaller mobile screens */
+@media (max-width: 640px) {
+  .customGameTemplate > div:first-child,
+  .customGameContent > div:first-child {
+    margin-top: 32px;
+  }
+}

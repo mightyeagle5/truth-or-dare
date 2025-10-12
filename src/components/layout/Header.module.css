@@ -16,6 +16,13 @@
   }
 }
 
+/* Apply same header height for smaller mobile screens */
+@media (max-width: 640px) {
+  .header {
+    height: 80px;
+  }
+}
+
 .content {
   display: flex;
   align-items: center;

@@ -839,6 +839,14 @@
   /* Removed mobile fade effect */
 }
 
+/* Apply same fixes for smaller mobile screens */
+@media (max-width: 640px) {
+  /* Add 32px margin-top to first child sections on smaller mobile */
+  .sections > div:first-child {
+    margin-top: 32px;
+  }
+}
+
 /* Section headers with buttons */
 .sectionHeader {
   display: flex;
