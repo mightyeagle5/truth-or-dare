@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Header } from '../components/layout'
 import { ChoiceScreen, ItemScreen } from '../components/game'
+import { ConfirmDialog } from '../components/ui'
 import { useGameStore, useUIStore } from '../store'
 import styles from './GamePage.module.css'
 
@@ -15,6 +16,7 @@ export const GamePage: React.FC = () => {
     exitGame
   } = useGameStore()
   const { currentScreen, isLoading, error } = useUIStore()
+  const [showExitDialog, setShowExitDialog] = useState(false)
 
   useEffect(() => {
     if (gameId && (!currentGame || currentGame.id !== gameId)) {
@@ -30,10 +32,17 @@ export const GamePage: React.FC = () => {
   }, [isLoading, error, navigate])
 
   const handleExit = () => {
-    if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
-      exitGame()
-      navigate('/')
-    }
+    setShowExitDialog(true)
+  }
+
+  const handleConfirmExit = () => {
+    setShowExitDialog(false)
+    exitGame()
+    navigate('/')
+  }
+
+  const handleCancelExit = () => {
+    setShowExitDialog(false)
   }
 
   if (!currentGame) {
@@ -71,6 +80,17 @@ export const GamePage: React.FC = () => {
           </AnimatePresence>
         </div>
       </main>
+
+      <ConfirmDialog
+        isOpen={showExitDialog}
+        title="Exit Game"
+        message="Are you sure you want to exit the game? Your progress will be saved to history, but you'll need to start a new game to continue playing."
+        confirmText="Exit"
+        cancelText="Stay"
+        variant="danger"
+        onConfirm={handleConfirmExit}
+        onCancel={handleCancelExit}
+      />
     </div>
   )
 }
