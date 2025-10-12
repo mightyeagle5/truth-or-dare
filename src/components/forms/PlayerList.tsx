@@ -82,7 +82,6 @@ export const PlayerList: React.FC<PlayerListProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Players</h3>
         {/* Hiding players count while game is limited to two players. Keeping markup for future use. */}
         {/* Intentionally hiding the "+ Add Player" button for now to limit the game to two players.
             The add player logic and UI are kept for future re-enablement. */}

@@ -300,6 +300,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
         return
       }
       
+      // Mark the wild card item as used in the challenge pair manager
+      await challengePairManager.markItemAsUsed(wildItem.id, true)
+      
       useUIStore.getState().setCurrentScreen('item')
       
       set({
