@@ -25,7 +25,10 @@ export const useAdminFilters = () => {
       // If already cached, use cached data
       if (itemCacheRef.current[cacheKey]) {
         if (isMounted) {
-          setFilteredItems(itemCacheRef.current[cacheKey])
+          const filtered = hideDeleted 
+            ? itemCacheRef.current[cacheKey].filter(item => !item.is_deleted)
+            : itemCacheRef.current[cacheKey]
+          setFilteredItems(filtered)
           setIsLoading(false)
         }
         return
@@ -36,7 +39,10 @@ export const useAdminFilters = () => {
         // Still need to ensure loading state is set to false if we have cached data
         if (itemCacheRef.current[cacheKey]) {
           if (isMounted) {
-            setFilteredItems(itemCacheRef.current[cacheKey])
+            const filtered = hideDeleted 
+              ? itemCacheRef.current[cacheKey].filter(item => !item.is_deleted)
+              : itemCacheRef.current[cacheKey]
+            setFilteredItems(filtered)
             setIsLoading(false)
           }
         }
@@ -60,7 +66,10 @@ export const useAdminFilters = () => {
         itemCacheRef.current[cacheKey] = sortedItems
         
         if (isMounted) {
-          setFilteredItems(sortedItems)
+          const filtered = hideDeleted 
+            ? sortedItems.filter(item => !item.is_deleted)
+            : sortedItems
+          setFilteredItems(filtered)
           setIsLoading(false)
         }
       } catch (error) {
@@ -81,7 +90,7 @@ export const useAdminFilters = () => {
       const currentCacheKey = `${levelFilter}-${kindFilter}`
       loadingCacheRef.current[currentCacheKey] = false
     }
-  }, [levelFilter, kindFilter])
+  }, [levelFilter, kindFilter, hideDeleted])
 
   // Configure Fuse.js for fuzzy search
   const fuseOptions = useMemo(() => ({
