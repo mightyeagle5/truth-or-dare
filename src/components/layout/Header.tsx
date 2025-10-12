@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './Header.module.css'
 
 interface HeaderProps {
@@ -17,8 +17,6 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle,
   onExit,
 }) => {
-  const navigate = useNavigate()
-  
   const handleTitleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     // If we're in a game (onExit is provided), call the exit handler
     // The parent component will handle showing the confirmation dialog
