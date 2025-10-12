@@ -711,6 +711,11 @@
   .sections {
     gap: var(--space-5);
   }
+  
+  /* Add 32px margin-top to first child sections on mobile */
+  .sections > div:first-child {
+    margin-top: 32px;
+  }
 
   .actionsInline {
     flex-direction: column;

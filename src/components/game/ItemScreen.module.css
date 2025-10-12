@@ -166,15 +166,17 @@
   }
   
   .actions {
-    flex-direction: column;
+    flex-direction: row;
     gap: 12px;
     width: 100%;
+    margin-top: 24px;
   }
   
   .wildCardButton,
   .skipButton,
   .completeButton {
-    width: 100%;
+    min-width: 100px;
+    flex: 1;
   }
 }
 

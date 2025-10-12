@@ -866,3 +866,11 @@
     grid-row: auto;
   }
 }
+
+/* Mobile responsive - add 32px margin-top to first child sections */
+@media (max-width: 768px) {
+  .customGameTemplate > div:first-child,
+  .customGameContent > div:first-child {
+    margin-top: 32px;
+  }
+}

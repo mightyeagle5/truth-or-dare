@@ -250,6 +250,16 @@
     padding: var(--radius-2xl);
   }
   
+  .levelBar {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .choicesWrap {
+    margin-top: 48px;
+    margin-bottom: 48px;
+  }
+  
   .playerName {
     font-size: var(--font-size-4xl);
   }

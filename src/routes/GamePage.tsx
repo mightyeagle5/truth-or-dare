@@ -64,7 +64,6 @@ export const GamePage: React.FC = () => {
     <div className={styles.container}>
       <Header
         title="Truth or Dare"
-        subtitle="The sexy version"
         showGameInfo
         onExit={handleExit}
       />
