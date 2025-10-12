@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
+import Fuse from 'fuse.js'
 import { Item, Level, ItemKind } from '../../../types'
 import { SupabaseChallengeService } from '../../../lib/supabaseService'
 
@@ -8,6 +9,7 @@ export const useAdminFilters = () => {
   const [levelFilter, setLevelFilter] = useState<Level>('soft')
   const [kindFilter, setKindFilter] = useState<ItemKind>('truth')
   const [hideDeleted, setHideDeleted] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   
   // Cache for fetched items by level/kind combination (using refs to avoid re-renders)
   const itemCacheRef = useRef<Record<string, Item[]>>({})
@@ -81,18 +83,36 @@ export const useAdminFilters = () => {
     }
   }, [levelFilter, kindFilter])
 
-  // Apply hideDeleted filter to cached items
+  // Configure Fuse.js for fuzzy search
+  const fuseOptions = useMemo(() => ({
+    keys: ['text', 'tags', 'id'],
+    threshold: 0.3, // 0.0 = perfect match, 1.0 = match anything
+    ignoreLocation: true, // Don't care about location in string
+    minMatchCharLength: 2,
+    includeScore: true
+  }), [])
+
+  // Apply hideDeleted and search filters to cached items
   useEffect(() => {
     const cacheKey = `${levelFilter}-${kindFilter}`
     const cachedItems = itemCacheRef.current[cacheKey]
     
     if (cachedItems) {
-      const filtered = hideDeleted 
+      // First apply hideDeleted filter
+      let filtered = hideDeleted 
         ? cachedItems.filter(item => !item.is_deleted)
         : cachedItems
+      
+      // Then apply search filter if query exists
+      if (searchQuery.trim()) {
+        const fuse = new Fuse(filtered, fuseOptions)
+        const searchResults = fuse.search(searchQuery.trim())
+        filtered = searchResults.map(result => result.item)
+      }
+      
       setFilteredItems(filtered)
     }
-  }, [hideDeleted, levelFilter, kindFilter])
+  }, [hideDeleted, levelFilter, kindFilter, searchQuery, fuseOptions])
 
   // Function to refresh the current filter
   const refreshCurrentFilter = async () => {
@@ -126,9 +146,11 @@ export const useAdminFilters = () => {
     levelFilter,
     kindFilter,
     hideDeleted,
+    searchQuery,
     setLevelFilter,
     setKindFilter,
     setHideDeleted,
+    setSearchQuery,
     refreshCurrentFilter,
     itemCacheRef,
     loadingCacheRef

@@ -112,6 +112,43 @@
   color: #333;
 }
 
+.searchInput {
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.filterGroup {
+  position: relative;
+}
+
+.clearSearchBtn {
+  position: absolute;
+  right: 8px;
+  top: 28px;
+  background: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.clearSearchBtn:hover {
+  color: #e74c3c;
+}
+
 .itemListHeader {
   display: flex;
   justify-content: space-between;

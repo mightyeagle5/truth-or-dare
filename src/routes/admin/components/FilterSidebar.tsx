@@ -8,9 +8,11 @@ interface FilterSidebarProps {
   levelFilter: Level
   kindFilter: ItemKind
   hideDeleted: boolean
+  searchQuery: string
   setLevelFilter: (level: Level) => void
   setKindFilter: (kind: ItemKind) => void
   setHideDeleted: (hide: boolean) => void
+  setSearchQuery: (query: string) => void
   filteredItems: Item[]
   selectedItem: Item | null
   handleItemSelect: (item: Item) => void
@@ -22,9 +24,11 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   levelFilter,
   kindFilter,
   hideDeleted,
+  searchQuery,
   setLevelFilter,
   setKindFilter,
   setHideDeleted,
+  setSearchQuery,
   filteredItems,
   selectedItem,
   handleItemSelect,
@@ -36,6 +40,26 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       <div className={styles.filters}>
         <h3>Filters</h3>
         
+        <div className={styles.filterGroup}>
+          <label>Search:</label>
+          <input 
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search challenges..."
+            className={styles.searchInput}
+          />
+          {searchQuery && (
+            <button 
+              className={styles.clearSearchBtn}
+              onClick={() => setSearchQuery('')}
+              title="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
         <div className={styles.filterGroup}>
           <label>Level:</label>
           <select 

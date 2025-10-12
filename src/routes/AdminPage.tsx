@@ -18,9 +18,11 @@ const AdminPage: React.FC = () => {
     levelFilter,
     kindFilter,
     hideDeleted,
+    searchQuery,
     setLevelFilter,
     setKindFilter,
     setHideDeleted,
+    setSearchQuery,
     refreshCurrentFilter,
     itemCacheRef,
     loadingCacheRef
@@ -187,9 +189,11 @@ const AdminPage: React.FC = () => {
           levelFilter={levelFilter}
           kindFilter={kindFilter}
           hideDeleted={hideDeleted}
+          searchQuery={searchQuery}
           setLevelFilter={setLevelFilter}
           setKindFilter={setKindFilter}
           setHideDeleted={setHideDeleted}
+          setSearchQuery={setSearchQuery}
           filteredItems={filteredItems}
           selectedItem={selectedItem}
           handleItemSelect={handleItemSelect}
