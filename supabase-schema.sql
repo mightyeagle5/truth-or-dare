@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS challenges (
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
   deleted_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  is_time_based BOOLEAN NOT NULL DEFAULT FALSE,
+  duration INTEGER DEFAULT 0
 );
 
 -- Create indexes for better performance
@@ -19,6 +21,7 @@ CREATE INDEX IF NOT EXISTS idx_challenges_kind ON challenges(kind);
 CREATE INDEX IF NOT EXISTS idx_challenges_created_at ON challenges(created_at);
 CREATE INDEX IF NOT EXISTS idx_challenges_is_deleted ON challenges(is_deleted);
 CREATE INDEX IF NOT EXISTS idx_challenges_deleted_at ON challenges(deleted_at);
+CREATE INDEX IF NOT EXISTS idx_challenges_is_time_based ON challenges(is_time_based);
 
 -- Create updated_at trigger
 CREATE OR REPLACE FUNCTION update_updated_at_column()
