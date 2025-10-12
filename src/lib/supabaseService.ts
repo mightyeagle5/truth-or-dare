@@ -11,7 +11,7 @@ export interface ChallengeSummary {
 export class SupabaseChallengeService {
   // Convert database row to Item type
   private static convertDbRowToItem(row: any): Item {
-    const item = {
+    return {
       id: row.id,
       level: row.level,
       kind: row.kind,
@@ -25,18 +25,6 @@ export class SupabaseChallengeService {
       is_time_based: row.is_time_based || false,
       duration: row.duration || 0
     }
-    
-    // Debug logging for timer fields
-    if (row.is_time_based || row.duration) {
-      console.log('🔍 Timer challenge loaded:', {
-        id: item.id,
-        text: item.text.substring(0, 50) + '...',
-        is_time_based: item.is_time_based,
-        duration: item.duration
-      })
-    }
-    
-    return item
   }
 
   // Convert Item to database insert/update format
