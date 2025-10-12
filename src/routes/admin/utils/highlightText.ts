@@ -21,23 +21,30 @@ export const highlightText = (text: string, query: string): React.ReactNode => {
   
   const parts = text.split(regex)
   
-  return parts.map((part, index) => {
-    const isMatch = searchWords.some(word => 
-      part.toLowerCase().includes(word) || word.includes(part.toLowerCase())
-    )
-    
-    return isMatch ? (
-      <mark key={index} style={{ 
-        backgroundColor: '#ffd700', 
-        padding: '2px 4px',
-        borderRadius: '2px',
-        fontWeight: '500'
-      }}>
-        {part}
-      </mark>
-    ) : (
-      <span key={index}>{part}</span>
-    )
-  })
+  return React.createElement(
+    React.Fragment,
+    null,
+    parts.map((part, index) => {
+      const isMatch = searchWords.some(word => 
+        part.toLowerCase().includes(word) || word.includes(part.toLowerCase())
+      )
+      
+      return isMatch
+        ? React.createElement(
+            'mark',
+            {
+              key: index,
+              style: {
+                backgroundColor: '#ffd700',
+                padding: '2px 4px',
+                borderRadius: '2px',
+                fontWeight: '500'
+              }
+            },
+            part
+          )
+        : React.createElement('span', { key: index }, part)
+    })
+  )
 }
 
