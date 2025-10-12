@@ -8,7 +8,7 @@ export const useAdminFilters = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [levelFilter, setLevelFilter] = useState<Level>('soft')
   const [kindFilter, setKindFilter] = useState<ItemKind>('truth')
-  const [hideDeleted, setHideDeleted] = useState(false)
+  const [hideDeleted, setHideDeleted] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   
   // Cache for fetched items by level/kind combination (using refs to avoid re-renders)
