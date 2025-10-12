@@ -14,10 +14,12 @@
   white-space: nowrap;
 }
 
-.pill:hover:not(.disabled) {
-  border-color: var(--level-color, var(--color-border-primary));
-  color: var(--level-color, var(--color-text-tertiary));
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .pill:hover:not(.disabled) {
+    border-color: var(--level-color, var(--color-border-primary));
+    color: var(--level-color, var(--color-text-tertiary));
+    transform: translateY(-1px);
+  }
 }
 
 .pill.active {
@@ -26,10 +28,12 @@
   color: var(--color-text-primary);
 }
 
-.pill.active:hover {
-  background: var(--level-color, var(--color-primary-600));
-  border-color: var(--level-color, var(--color-primary-600));
-  color: var(--color-text-primary);
+@media (hover: hover) {
+  .pill.active:hover {
+    background: var(--level-color, var(--color-primary-600));
+    border-color: var(--level-color, var(--color-primary-600));
+    color: var(--color-text-primary);
+  }
 }
 
 .pill.disabled {

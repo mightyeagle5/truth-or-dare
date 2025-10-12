@@ -37,9 +37,11 @@
   color: var(--color-text-primary);
 }
 
-.iconButton.primary:hover:not(:disabled) {
-  background: var(--color-primary-600);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .iconButton.primary:hover:not(:disabled) {
+    background: var(--color-primary-600);
+    transform: translateY(-1px);
+  }
 }
 
 .iconButton.secondary {
@@ -47,9 +49,11 @@
   color: var(--color-text-primary);
 }
 
-.iconButton.secondary:hover:not(:disabled) {
-  background: var(--color-neutral-600);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .iconButton.secondary:hover:not(:disabled) {
+    background: var(--color-neutral-600);
+    transform: translateY(-1px);
+  }
 }
 
 .iconButton.danger {
@@ -57,9 +61,11 @@
   color: var(--color-text-primary);
 }
 
-.iconButton.danger:hover:not(:disabled) {
-  background: var(--color-error-600);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .iconButton.danger:hover:not(:disabled) {
+    background: var(--color-error-600);
+    transform: translateY(-1px);
+  }
 }
 
 .iconButton.ghost {
@@ -67,9 +73,11 @@
   color: var(--color-text-muted);
 }
 
-.iconButton.ghost:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-tertiary);
+@media (hover: hover) {
+  .iconButton.ghost:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-tertiary);
+  }
 }
 
 .iconButton:focus-visible {
