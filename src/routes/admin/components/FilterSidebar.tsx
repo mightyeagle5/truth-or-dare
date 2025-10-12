@@ -90,10 +90,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <label>
             <input 
               type="checkbox" 
-              checked={hideDeleted}
-              onChange={(e) => setHideDeleted(e.target.checked)}
+              checked={!hideDeleted}
+              onChange={(e) => setHideDeleted(!e.target.checked)}
             />
-            Do not show deleted
+            Show deleted
           </label>
         </div>
       </div>

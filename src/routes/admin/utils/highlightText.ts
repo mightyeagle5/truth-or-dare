@@ -31,16 +31,8 @@ export const highlightText = (text: string, query: string): React.ReactNode => {
       
       return isMatch
         ? React.createElement(
-            'mark',
-            {
-              key: index,
-              style: {
-                backgroundColor: '#ffd700',
-                padding: '2px 4px',
-                borderRadius: '2px',
-                fontWeight: '500'
-              }
-            },
+            'strong',
+            { key: index },
             part
           )
         : React.createElement('span', { key: index }, part)

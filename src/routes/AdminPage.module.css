@@ -300,11 +300,8 @@
   line-height: 1.4;
 }
 
-.itemText mark {
-  background-color: #ffd700;
-  padding: 2px 4px;
-  border-radius: 2px;
-  font-weight: 500;
+.itemText strong {
+  font-weight: 700;
   color: #333;
 }
 
