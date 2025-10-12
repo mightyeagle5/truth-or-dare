@@ -256,13 +256,13 @@
   }
   
   .choicesWrap {
-    margin-top: 48px;
+    margin-top: 32px;
     margin-bottom: 48px;
   }
   
   .playerName {
     font-size: var(--font-size-4xl);
-    margin-top: 12px;
+    margin-top: 32px;
   }
   
   .choices {
@@ -323,14 +323,14 @@
   }
   
   .choicesWrap {
-    margin-top: 48px;
+    margin-top: 32px;
     margin-bottom: 48px;
     width: 100%;
     padding: 0;
   }
   
   .playerName {
-    margin-top: 12px;
+    margin-top: 32px;
   }
   
   .choices {
