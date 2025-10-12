@@ -262,6 +262,7 @@
   
   .playerName {
     font-size: var(--font-size-4xl);
+    margin-top: 12px;
   }
   
   .choices {
@@ -326,6 +327,10 @@
     margin-bottom: 48px;
     width: 100%;
     padding: 0;
+  }
+  
+  .playerName {
+    margin-top: 12px;
   }
   
   .choices {
