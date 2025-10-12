@@ -140,7 +140,7 @@ export const createItemLookup = (items: Item[]) => {
   }
 
   items.forEach(item => {
-    if (item.level !== 'Progressive' && item.level !== 'Custom' && item.level in lookup && item.kind in lookup[item.level]) {
+    if (item.level in lookup && item.kind in lookup[item.level]) {
       lookup[item.level][item.kind].push(item)
     }
   })

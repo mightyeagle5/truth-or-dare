@@ -13,10 +13,7 @@ export const GamePage: React.FC = () => {
   const { 
     currentGame, 
     loadGame, 
-    exitGame, 
-    pickWildCard, 
-    skipItem, 
-    completeItem 
+    exitGame
   } = useGameStore()
   const { currentScreen, isLoading, error } = useUIStore()
 

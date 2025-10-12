@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import { createPlayerId } from '../lib/ids'
 import gameQuestions from '../data/game_questions.json'
 import type { Level, CustomChallenge, ItemKind } from '../types'
 

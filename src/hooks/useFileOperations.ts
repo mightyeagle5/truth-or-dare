@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { createPlayerId } from '../lib/ids'
 import type { CustomChallenge } from '../types'
 
 export const useFileOperations = () => {

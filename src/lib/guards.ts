@@ -87,9 +87,7 @@ export const getNextProgressiveLevel = (currentLevel: Exclude<Level, 'Progressiv
 export const getCustomProgressiveLevels = (customItems: Item[]): Exclude<Level, 'Progressive'>[] => {
   const levels = new Set<Exclude<Level, 'Progressive'>>()
   customItems.forEach(item => {
-    if (item.level !== 'Progressive') {
-      levels.add(item.level)
-    }
+    levels.add(item.level)
   })
   
   // Sort levels in the standard order
