@@ -6,6 +6,7 @@ import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
 import { ThemeEditor } from './components/dev'
 import { useGameStore, useHistoryStore } from './store'
+import { checkTimerChallenges } from './lib/checkTimerChallenges'
 import './styles/index.css'
 
 function AppContent() {
@@ -16,6 +17,9 @@ function AppContent() {
     // Load initial data
     loadItems()
     loadGameHistory()
+    
+    // Check for timer challenges (debug)
+    checkTimerChallenges()
   }, [loadItems, loadGameHistory])
 
   return (

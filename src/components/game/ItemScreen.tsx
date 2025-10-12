@@ -53,6 +53,15 @@ export const ItemScreen: React.FC = () => {
 
   if (!currentGame || !currentItem) return null
 
+  // Debug logging for timer display
+  console.log('🎮 ItemScreen - Current item:', {
+    id: currentItem.id,
+    text: currentItem.text.substring(0, 50) + '...',
+    is_time_based: currentItem.is_time_based,
+    duration: currentItem.duration,
+    shouldShowTimer: currentItem.is_time_based && currentItem.duration && currentItem.duration > 0
+  })
+
   const currentPlayer = getCurrentPlayer(currentGame)
   
   if (!currentPlayer) return null
