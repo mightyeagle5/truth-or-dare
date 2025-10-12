@@ -64,3 +64,21 @@
     justify-content: center;
   }
 }
+
+/* Override for small screens in PlayerList - show labels */
+@media (max-width: 420px) {
+  .container {
+    display: contents;
+  }
+  
+  .label {
+    display: block;
+  }
+  
+  .option {
+    padding: var(--radius-lg) var(--radius-xl);
+    min-width: auto;
+    width: 100%;
+    justify-content: center;
+  }
+}

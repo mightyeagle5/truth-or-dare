@@ -24,12 +24,26 @@ export const ItemScreen: React.FC = () => {
 
   const [timerRunning, setTimerRunning] = useState(false)
   const [timeLeft, setTimeLeft] = useState(currentItem?.duration || 0)
+  const audioRef = React.useRef<HTMLAudioElement | null>(null)
+
+  // Initialize audio element once
+  useEffect(() => {
+    audioRef.current = new Audio(dingSound)
+    // Preload the audio
+    audioRef.current.load()
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [])
 
   // Reset timer state when item changes
   useEffect(() => {
     setTimeLeft(currentItem?.duration || 0)
     setTimerRunning(false)
-  }, [currentItem?.id, currentItem?.duration])
+  }, [currentItem?.id])
 
   // Timer effect
   useEffect(() => {
@@ -39,8 +53,12 @@ export const ItemScreen: React.FC = () => {
         setTimeLeft(time => {
           if (time <= 1) {
             // Play sound when timer hits 0
-            const audio = new Audio(dingSound)
-            audio.play().catch(console.error)
+            if (audioRef.current) {
+              audioRef.current.currentTime = 0
+              audioRef.current.play().catch(err => {
+                console.error('Failed to play timer sound:', err)
+              })
+            }
             setTimerRunning(false)
             return 0
           }
@@ -91,6 +109,17 @@ export const ItemScreen: React.FC = () => {
   }
 
   const handleTimerToggle = () => {
+    // On first interaction with timer, attempt to play and pause audio to "unlock" it on mobile
+    if (!timerRunning && audioRef.current) {
+      audioRef.current.play().then(() => {
+        audioRef.current?.pause()
+        if (audioRef.current) {
+          audioRef.current.currentTime = 0
+        }
+      }).catch(() => {
+        // Ignore errors on unlock attempt
+      })
+    }
     setTimerRunning(!timerRunning)
   }
 
@@ -102,59 +131,52 @@ export const ItemScreen: React.FC = () => {
 
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -100 }}
-      transition={{ duration: 0.3 }}
-      className={styles.container}
-    >
+    <div className={styles.container}>
       <div className={styles.challengeType}>
         <div className={`${styles.challengeTypeContainer} ${currentItem.kind === 'truth' ? styles.truthType : styles.dareType}`}>
           {currentItem.kind === 'truth' ? 'Truth' : 'Dare'}
         </div>
       </div>
 
-      <div className={styles.timerSection}>
-        {currentItem.is_time_based && currentItem.duration && currentItem.duration > 0 && (
-          <>
-            <div className={styles.timer}>
-              {formatTime(timeLeft)}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentItem.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          {currentItem.is_time_based && currentItem.duration && currentItem.duration > 0 && (
+            <div className={styles.timerSection}>
+              <div className={styles.timer}>
+                {formatTime(timeLeft)}
+              </div>
+              <div className={styles.timerControls}>
+                <button 
+                  className={styles.timerButton}
+                  onClick={handleTimerRestart}
+                  type="button"
+                >
+                  <Icon icon="solar:restart-bold" />
+                </button>
+                <button 
+                  className={styles.timerButton}
+                  onClick={handleTimerToggle}
+                  type="button"
+                >
+                  <Icon icon={timerRunning ? "solar:pause-bold" : "solar:play-bold"} />
+                </button>
+              </div>
             </div>
-            <div className={styles.timerControls}>
-              <button 
-                className={styles.timerButton}
-                onClick={handleTimerRestart}
-                type="button"
-              >
-                <Icon icon="solar:restart-bold" />
-              </button>
-              <button 
-                className={styles.timerButton}
-                onClick={handleTimerToggle}
-                type="button"
-              >
-                <Icon icon={timerRunning ? "solar:pause-bold" : "solar:play-bold"} />
-              </button>
-            </div>
-          </>
-        )}
-      </div>
+          )}
 
-      <div className={styles.textSection}>
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={currentItem.id}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className={styles.challengeText}
-          >
-            {personalizedText}
-          </motion.p>
-        </AnimatePresence>
-      </div>
+          <div className={styles.textSection}>
+            <p className={styles.challengeText}>
+              {personalizedText}
+            </p>
+          </div>
+        </motion.div>
+      </AnimatePresence>
 
       <div className={styles.ratingSection}>
         <ChallengeRating 
@@ -193,6 +215,6 @@ export const ItemScreen: React.FC = () => {
           Complete
         </button>
       </div>
-    </motion.div>
+    </div>
   )
 }

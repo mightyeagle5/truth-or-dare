@@ -19,25 +19,6 @@
   background: var(--color-bg-secondary);
 }
 
-.exitSticky {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  padding: var(--space-4) var(--space-4);
-  background: var(--color-neutral-500);
-  color: var(--color-text-primary);
-  border: none;
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-}
-
-.exitSticky:hover {
-  background: var(--color-border-secondary);
-}
-
 .loading {
   display: flex;
   align-items: center;

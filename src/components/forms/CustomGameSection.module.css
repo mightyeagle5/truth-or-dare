@@ -843,3 +843,26 @@
     min-width: 100px;
   }
 }
+
+/* Mobile responsive for add sections grid */
+@media (max-width: 640px) {
+  .addSectionsGrid {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+  
+  .addCustomSection {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .addGameSection {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  .uploadSection {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}

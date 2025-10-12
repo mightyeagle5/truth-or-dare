@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Header.module.css'
 
 interface HeaderProps {
@@ -15,16 +15,29 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   title,
   subtitle,
+  onExit,
 }) => {
+  const navigate = useNavigate()
+  
+  const handleTitleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If we're in a game (onExit is provided), show confirmation
+    if (onExit) {
+      e.preventDefault()
+      if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
+        navigate('/')
+      }
+    }
+  }
+  
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <div className={styles.titleSection}>
+        <Link to="/" className={styles.titleSection} onClick={handleTitleClick}>
           <h1 className={styles.title}>{title}</h1>
           {subtitle && (
             <p className={styles.subtitle}>{subtitle}</p>
           )}
-        </div>
+        </Link>
         
         <div className={styles.actions}>
           {import.meta.env.DEV && (
@@ -32,7 +45,11 @@ export const Header: React.FC<HeaderProps> = ({
               Admin
             </Link>
           )}
-          {/* Exit button removed from header per new design */}
+          {onExit && (
+            <button className={styles.exitButton} onClick={onExit} type="button">
+              Exit game
+            </button>
+          )}
         </div>
       </div>
     </header>

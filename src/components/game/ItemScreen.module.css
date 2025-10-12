@@ -38,7 +38,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 80px; /* reserve space for timer */
 }
 
 .timer {
@@ -69,8 +68,10 @@
   transition: all var(--transition-base);
 }
 
-.timerButton:hover {
-  background: var(--color-border-secondary);
+@media (hover: hover) and (pointer: fine) {
+  .timerButton:hover {
+    background: var(--color-border-secondary);
+  }
 }
 
 .textSection {
@@ -124,19 +125,9 @@
   color: var(--color-text-primary);
 }
 
-.wildCardButton:hover {
-  background: linear-gradient(135deg, var(--color-purple-700), var(--color-purple-600));
-  transform: translateY(-2px);
-}
-
 .skipButton {
   background: var(--color-neutral-500);
   color: var(--color-text-primary);
-}
-
-.skipButton:hover {
-  background: var(--color-border-secondary);
-  transform: translateY(-2px);
 }
 
 .completeButton {
@@ -144,9 +135,21 @@
   color: var(--color-text-primary);
 }
 
-.completeButton:hover {
-  background: var(--color-success-600);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .wildCardButton:hover {
+    background: linear-gradient(135deg, var(--color-purple-700), var(--color-purple-600));
+    transform: translateY(-2px);
+  }
+
+  .skipButton:hover {
+    background: var(--color-border-secondary);
+    transform: translateY(-2px);
+  }
+
+  .completeButton:hover {
+    background: var(--color-success-600);
+    transform: translateY(-2px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -172,5 +175,32 @@
   .skipButton,
   .completeButton {
     width: 100%;
+  }
+}
+
+/* Mobile responsive for ItemScreen at < 480px */
+@media (max-width: 480px) {
+  .challengeType {
+    margin-top: 24px;
+  }
+  
+  .challengeTypeContainer {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .timerSection {
+    margin-top: 24px;
+  }
+  
+  .textSection {
+    min-height: 75px;
+  }
+  
+  .ratingSection {
+    margin-top: 24px;
+  }
+  
+  .actions {
+    margin-top: 48px;
   }
 }

@@ -30,7 +30,7 @@ export const GamePage: React.FC = () => {
   }, [isLoading, error, navigate])
 
   const handleExit = () => {
-    if (window.confirm('Are you sure you want to exit the game? Your progress will be saved.')) {
+    if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
       exitGame()
       navigate('/')
     }
@@ -71,7 +71,6 @@ export const GamePage: React.FC = () => {
           </AnimatePresence>
         </div>
       </main>
-      <button className={styles.exitSticky} onClick={handleExit} type="button">Exit game</button>
     </div>
   )
 }

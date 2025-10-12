@@ -23,6 +23,13 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+}
+
+.titleSection:hover {
+  opacity: 0.8;
 }
 
 .title {
@@ -66,38 +73,35 @@
   margin: 0;
 }
 
-.exitButton {
-  padding: var(--space-4) var(--space-4);
-  background: var(--color-error-500);
-  color: var(--color-text-primary);
-  border: none;
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  box-shadow: 0 var(--space-2) var(--space-4) rgba(239, 68, 68, 0.3);
-}
-
-.exitButton:hover {
-  background: var(--color-error-600);
-  transform: translateY(-var(--space-1));
-  box-shadow: 0 var(--space-3) var(--space-6) rgba(239, 68, 68, 0.4);
-}
-
+/* Shared button styles */
+.exitButton,
 .adminLink {
+  /* Reset all browser defaults */
+  all: unset;
+  
+  /* Apply our styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--space-3) var(--space-4);
   background: var(--color-neutral-500);
   color: var(--color-text-primary);
   text-decoration: none;
+  border: none;
   border-radius: var(--radius-lg);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  font-family: inherit;
+  letter-spacing: inherit;
+  box-sizing: border-box;
   cursor: pointer;
   transition: all var(--transition-base);
   box-shadow: 0 var(--space-2) var(--space-4) rgba(107, 114, 128, 0.3);
+  white-space: nowrap;
 }
 
+.exitButton:hover,
 .adminLink:hover {
   background: var(--color-border-secondary);
   transform: translateY(-var(--space-1));
@@ -138,10 +142,5 @@
   
   .playerName {
     font-size: var(--font-size-lg);
-  }
-  
-  .exitButton {
-    padding: 10px var(--font-size-xl);
-    font-size: var(--font-size-sm);
   }
 }
