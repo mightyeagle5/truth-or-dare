@@ -2,6 +2,7 @@ import React from 'react'
 import { Item, Level, ItemKind } from '../../../types'
 import { PendingChange } from '../hooks/usePendingChanges'
 import { formatDate } from '../utils/adminUtils'
+import { highlightText } from '../utils/highlightText'
 import styles from '../../AdminPage.module.css'
 
 interface FilterSidebarProps {
@@ -127,7 +128,13 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   </div>
                 </div>
                 <div className={styles.itemText}>
-                  {item.text.length > 100 ? `${item.text.substring(0, 100)}...` : item.text}
+                  {searchQuery 
+                    ? highlightText(
+                        item.text.length > 100 ? `${item.text.substring(0, 100)}...` : item.text,
+                        searchQuery
+                      )
+                    : (item.text.length > 100 ? `${item.text.substring(0, 100)}...` : item.text)
+                  }
                 </div>
                 <div className={styles.itemTimestamp}>
                   {item.is_deleted && item.deleted_at ? `Deleted: ${formatDate(item.deleted_at)}` : `Updated: ${formatDate(item.updated_at)}`}

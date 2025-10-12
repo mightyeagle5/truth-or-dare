@@ -1,0 +1,43 @@
+import React from 'react'
+
+/**
+ * Highlights matching text in a string based on a search query
+ * Returns JSX with highlighted spans
+ */
+export const highlightText = (text: string, query: string): React.ReactNode => {
+  if (!query.trim()) {
+    return text
+  }
+
+  // Split query into words for better matching
+  const searchWords = query.trim().toLowerCase().split(/\s+/)
+  
+  // Create a regex pattern that matches any of the search words
+  const pattern = searchWords.map(word => 
+    word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // Escape special regex chars
+  ).join('|')
+  
+  const regex = new RegExp(`(${pattern})`, 'gi')
+  
+  const parts = text.split(regex)
+  
+  return parts.map((part, index) => {
+    const isMatch = searchWords.some(word => 
+      part.toLowerCase().includes(word) || word.includes(part.toLowerCase())
+    )
+    
+    return isMatch ? (
+      <mark key={index} style={{ 
+        backgroundColor: '#ffd700', 
+        padding: '2px 4px',
+        borderRadius: '2px',
+        fontWeight: '500'
+      }}>
+        {part}
+      </mark>
+    ) : (
+      <span key={index}>{part}</span>
+    )
+  })
+}
+

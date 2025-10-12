@@ -300,6 +300,14 @@
   line-height: 1.4;
 }
 
+.itemText mark {
+  background-color: #ffd700;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: 500;
+  color: #333;
+}
+
 .itemTimestamp {
   font-size: 12px;
   color: #999;
