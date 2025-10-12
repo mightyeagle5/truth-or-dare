@@ -40,7 +40,7 @@ export const useAdminFilters = () => {
         // Still need to ensure loading state is set to false if we have cached data
         if (itemCacheRef.current[cacheKey]) {
           if (isMounted) {
-            const cached = itemCacheRef.current[cacheKey]
+            const cached: Item[] = itemCacheRef.current[cacheKey]
             const filtered = hideDeleted 
               ? cached.filter((item: Item) => !item.is_deleted)
               : cached
