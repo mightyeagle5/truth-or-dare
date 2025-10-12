@@ -79,20 +79,16 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
   
   // State for challenges summary
   const [challengesSummary, setChallengesSummary] = useState<ChallengeSummary[]>([])
-  const [loadingSummary, setLoadingSummary] = useState(false)
   const [loadingChallenges, setLoadingChallenges] = useState(false)
 
   // Load challenges summary on component mount
   useEffect(() => {
     const loadChallengesSummary = async () => {
-      setLoadingSummary(true)
       try {
         const summary = await SupabaseChallengeService.getChallengesSummary()
         setChallengesSummary(summary)
       } catch (error) {
         console.error('Failed to load challenges summary:', error)
-      } finally {
-        setLoadingSummary(false)
       }
     }
     

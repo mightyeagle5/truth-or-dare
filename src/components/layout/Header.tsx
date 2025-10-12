@@ -15,11 +15,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   title,
   subtitle,
-  showGameInfo = false,
-  currentPlayer,
-  currentLevel,
-  gameId,
-  onExit
 }) => {
   return (
     <header className={styles.header}>

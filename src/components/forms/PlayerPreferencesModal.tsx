@@ -28,7 +28,10 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
     // undefined means not set yet (default to true), false means No, true means Yes
     const initialPreferences: PlayerPreferences = {}
     PREFERENCE_CATEGORIES.forEach(category => {
-      initialPreferences[category.key] = player.preferences?.[category.key]
+      const prefValue = player.preferences?.[category.key]
+      if (prefValue !== undefined) {
+        initialPreferences[category.key] = prefValue
+      }
     })
     setPreferences(initialPreferences)
     // Track what was saved before opening the modal
@@ -59,9 +62,7 @@ export const PlayerPreferencesModal: React.FC<PlayerPreferencesModalProps> = ({
 
   const handleReset = () => {
     const resetPreferences: PlayerPreferences = {}
-    PREFERENCE_CATEGORIES.forEach(category => {
-      resetPreferences[category.key] = undefined
-    })
+    // Don't set undefined values, just leave them out
     setPreferences(resetPreferences)
     setSavedPreferences({})
     resetPlayerPreferences(player.id)

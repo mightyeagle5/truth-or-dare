@@ -21,9 +21,6 @@ export const PreviousGamesPicker: React.FC<PreviousGamesPickerProps> = ({
   onSelectionChange,
   onRemoveGame,
   disabled = false,
-  isDevMode = false,
-  disableGameSaving = false,
-  onDisableGameSavingChange
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const handleGameToggle = (gameId: string) => {
