@@ -1,6 +1,6 @@
-import type { GameMeta, Item, ItemKind, Level } from '../types'
-import { getAvailableItems, getItemCounts, isItemUsed } from '../lib/items'
-import { canChooseType, getNextCustomProgressiveLevel, getCustomProgressiveLevels } from '../lib/guards'
+import type { GameMeta, Item, Level } from '../types'
+import { getItemCounts, isItemUsed } from '../lib/items'
+import { canChooseType, getNextCustomProgressiveLevel } from '../lib/guards'
 import { getPriorGameItems } from './storage'
 
 export const getCurrentPlayer = (game: GameMeta | null) => {

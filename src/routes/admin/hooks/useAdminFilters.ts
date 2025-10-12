@@ -111,7 +111,7 @@ export const useAdminFilters = () => {
     if (cachedItems) {
       // First apply hideDeleted filter
       let filtered = hideDeleted 
-        ? cachedItems.filter(item => !item.is_deleted)
+        ? cachedItems.filter((item: Item) => !item.is_deleted)
         : cachedItems
       
       // Then apply search filter if query exists

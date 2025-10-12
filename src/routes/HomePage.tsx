@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { PlayerList, PreviousGamesPicker } from '../components/forms'
-import { useGameStore, useHistoryStore, useDevStore } from '../store'
+import { useGameStore, useHistoryStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
 import styles from './HomePage.module.css'
 
