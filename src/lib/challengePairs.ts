@@ -1,5 +1,6 @@
 import type { Item, Level } from '../types'
 import { getAvailableItems } from './items'
+import { SupabaseChallengeService } from './supabaseService'
 
 export interface ChallengePair {
   truth: Item | null
@@ -30,17 +31,19 @@ export class ChallengePairManager {
   private excludedTags: string[] = []
   private loadingStartTime: number = 0
   private loadingTimeout: NodeJS.Timeout | null = null
+  // Cache holds one pair per level - fetched on game start
   private levelCache: Partial<Record<Exclude<Level, 'Progressive' | 'Custom'>, ChallengePair>> = {}
+  private isCacheInitialized = false
 
-  // Initialize with all items and current game state
+  // Initialize with current game state (no longer needs allItems - we fetch from DB)
   initialize(
-    allItems: Item[], 
+    allItems: Item[],  // Keep for backwards compatibility with custom games
     currentLevel: Exclude<Level, 'Progressive' | 'Custom'>, 
     usedItems: Record<string, Record<string, string[]>>, 
     priorGameItems: string[] = [],
     excludedTags: string[] = []
   ) {
-    this.allItems = allItems
+    this.allItems = allItems // Only used for custom games now
     this.currentLevel = currentLevel
     this.usedItems = usedItems
     this.priorGameItems = priorGameItems
@@ -53,6 +56,27 @@ export class ChallengePairManager {
       exhausted: false
     }
     this.levelCache = {}
+    this.isCacheInitialized = false
+  }
+
+  // Fetch pairs for all levels at once (called on game start)
+  async initializeAllLevels(): Promise<void> {
+    const levels: Array<Exclude<Level, 'Progressive' | 'Custom'>> = ['soft', 'mild', 'hot', 'spicy', 'kinky']
+    
+    // Fetch all levels in parallel
+    const pairPromises = levels.map(level => this.fetchPair(level))
+    const pairs = await Promise.all(pairPromises)
+    
+    // Cache all pairs
+    levels.forEach((level, index) => {
+      this.levelCache[level] = pairs[index]
+    })
+    
+    this.isCacheInitialized = true
+    
+    // Set current pair from cache
+    this.state.current = this.levelCache[this.currentLevel] || { truth: null, dare: null }
+    this.state.exhausted = this.state.current.truth === null && this.state.current.dare === null
   }
 
   // Get current pair (for display)
@@ -92,41 +116,72 @@ export class ChallengePairManager {
 
   // Fetch a new pair for the current level
   async fetchPair(level: Exclude<Level, 'Progressive' | 'Custom'> = this.currentLevel): Promise<ChallengePair> {
-    const availableTruth = getAvailableItems(
-      this.allItems,
-      level,
-      'truth',
-      this.usedItems,
-      this.priorGameItems,
-      this.excludedTags
-    )
+    // Check if we're using local items (custom game) or database
+    const isCustomGame = this.allItems.length > 0
+    
+    if (isCustomGame) {
+      // Old logic for custom games - filter locally
+      const availableTruth = getAvailableItems(
+        this.allItems,
+        level,
+        'truth',
+        this.usedItems,
+        this.priorGameItems,
+        this.excludedTags
+      )
 
-    const availableDare = getAvailableItems(
-      this.allItems,
+      const availableDare = getAvailableItems(
+        this.allItems,
+        level,
+        'dare',
+        this.usedItems,
+        this.priorGameItems,
+        this.excludedTags
+      )
+
+      // If both are empty, level is exhausted
+      if (availableTruth.length === 0 && availableDare.length === 0) {
+        this.state.exhausted = true
+        const emptyPair: ChallengePair = { truth: null, dare: null }
+        this.levelCache[level] = emptyPair
+        return emptyPair
+      }
+
+      // Pick random items when available (allow partial availability)
+      const randomTruth = availableTruth.length > 0
+        ? availableTruth[Math.floor(Math.random() * availableTruth.length)]
+        : null
+      const randomDare = availableDare.length > 0
+        ? availableDare[Math.floor(Math.random() * availableDare.length)]
+        : null
+
+      const pair: ChallengePair = { truth: randomTruth, dare: randomDare }
+      this.levelCache[level] = pair
+      return pair
+    }
+    
+    // New logic - fetch from database
+    // Convert usedItems to array of IDs
+    const usedItemIds: string[] = []
+    Object.values(this.usedItems).forEach(levelObj => {
+      Object.values(levelObj).forEach(ids => {
+        usedItemIds.push(...ids)
+      })
+    })
+    
+    // Fetch pair from Supabase
+    const pair = await SupabaseChallengeService.fetchChallengePair(
       level,
-      'dare',
-      this.usedItems,
+      usedItemIds,
       this.priorGameItems,
       this.excludedTags
     )
 
     // If both are empty, level is exhausted
-    if (availableTruth.length === 0 && availableDare.length === 0) {
+    if (pair.truth === null && pair.dare === null) {
       this.state.exhausted = true
-      const emptyPair: ChallengePair = { truth: null, dare: null }
-      this.levelCache[level] = emptyPair
-      return emptyPair
     }
-
-    // Pick random items when available (allow partial availability)
-    const randomTruth = availableTruth.length > 0
-      ? availableTruth[Math.floor(Math.random() * availableTruth.length)]
-      : null
-    const randomDare = availableDare.length > 0
-      ? availableDare[Math.floor(Math.random() * availableDare.length)]
-      : null
-
-    const pair: ChallengePair = { truth: randomTruth, dare: randomDare }
+    
     this.levelCache[level] = pair
     return pair
   }
@@ -181,16 +236,22 @@ export class ChallengePairManager {
     this.startLoading()
     
     try {
-      const pair = await this.fetchPair()
-      this.state.current = pair
-      this.state.exhausted = pair.truth === null && pair.dare === null
-      // Start background fetch for next pair when not exhausted
-      if (!this.state.exhausted) {
-        this.loadNextPair()
+      // Use cached pair if available, otherwise fetch
+      if (this.isCacheInitialized && this.levelCache[this.currentLevel]) {
+        const pair = this.levelCache[this.currentLevel]!
+        this.state.current = pair
+        this.state.exhausted = pair.truth === null && pair.dare === null
+      } else {
+        const pair = await this.fetchPair()
+        this.state.current = pair
+        this.state.exhausted = pair.truth === null && pair.dare === null
+        this.levelCache[this.currentLevel] = pair
       }
+      
       this.stopLoading()
-      return pair
+      return this.state.current
     } catch (error) {
+      console.error('Failed to load initial pair:', error)
       this.state.error = 'Failed to load challenges'
       this.state.loading = false
       throw error
@@ -210,30 +271,42 @@ export class ChallengePairManager {
         this.state.exhausted = true
       }
     } catch (error) {
+      console.error('Failed to load next pair:', error)
       this.state.error = 'Failed to load next challenges'
+    }
+  }
+
+  // Refetch pair for current level in background (called when challenge is shown)
+  async refetchCurrentLevelPair(): Promise<void> {
+    try {
+      const newPair = await this.fetchPair(this.currentLevel)
+      this.levelCache[this.currentLevel] = newPair
+    } catch (error) {
+      console.error('Background refetch failed:', error)
     }
   }
 
   // Move to next pair (when user completes current)
   async moveToNext(): Promise<ChallengePair> {
-    // Move next pair to current
-    this.state.current = this.state.next
-    this.state.next = { truth: null, dare: null }
-
-    // If current pair is invalid, try to fetch a new one
-    if (!this.state.current.truth || !this.state.current.dare) {
+    // Use the cached pair (should already be refetched in background)
+    const cachedPair = this.levelCache[this.currentLevel]
+    
+    if (cachedPair) {
+      this.state.current = cachedPair
+      this.state.exhausted = cachedPair.truth === null && cachedPair.dare === null
+    } else {
+      // Fallback: fetch if not cached (shouldn't happen if background fetch worked)
       try {
-        const newPair = await this.fetchPair()
+        const newPair = await this.fetchPair(this.currentLevel)
+        this.levelCache[this.currentLevel] = newPair
         this.state.current = newPair
-        this.state.exhausted = newPair.truth === null || newPair.dare === null
+        this.state.exhausted = newPair.truth === null && newPair.dare === null
       } catch (error) {
+        console.error('Failed to fetch pair:', error)
         this.state.error = 'Failed to load next challenges'
+        this.state.current = { truth: null, dare: null }
+        this.state.exhausted = true
       }
-    }
-
-    // Start background fetch for new next pair
-    if (!this.state.exhausted) {
-      this.loadNextPair()
     }
 
     return this.state.current
@@ -352,23 +425,19 @@ export class ChallengePairManager {
     
     try {
       // Use cached pair if available; otherwise fetch a new pair
-      const cached = this.levelCache[newLevel]
-      const pair = cached ?? await this.fetchPair(newLevel)
-      this.state.current = pair
-      this.state.next = { truth: null, dare: null }
-      this.state.exhausted = pair.truth === null && pair.dare === null
-
-      if (cached) {
-        // cached pair used
-      }
-      
-      // Start background fetch for next pair
-      if (!this.state.exhausted) {
-        this.loadNextPair()
+      if (this.levelCache[newLevel]) {
+        const pair = this.levelCache[newLevel]!
+        this.state.current = pair
+        this.state.exhausted = pair.truth === null && pair.dare === null
+      } else {
+        const pair = await this.fetchPair(newLevel)
+        this.levelCache[newLevel] = pair
+        this.state.current = pair
+        this.state.exhausted = pair.truth === null && pair.dare === null
       }
       
       this.stopLoading()
-      return pair
+      return this.state.current
     } catch (error) {
       this.state.error = 'Failed to load challenges for new level'
       this.state.loading = false

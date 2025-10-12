@@ -1,7 +1,9 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts } from '../../store/selectors'
+import { getCurrentPlayer, getDisabledChoices, getAvailableItemCounts, getCurrentPlayerWithCounters } from '../../store/selectors'
 import { useGameStore } from '../../store'
+import { challengePairManager } from '../../lib/challengePairs'
+import { canChooseType } from '../../lib/guards'
 import { Pill } from '../ui/Pill'
 import styles from './ChoiceScreen.module.css'
 
@@ -18,8 +20,39 @@ export const ChoiceScreen: React.FC = () => {
   if (!currentGame) return null
 
   const currentPlayer = getCurrentPlayer(currentGame)
-  const disabledChoices = getDisabledChoices(currentGame, items, currentGame.respectPriorGames)
-  const availableCounts = getAvailableItemCounts(currentGame, items, currentGame.respectPriorGames)
+  
+  // For regular games, use challengePairManager state; for custom games, use items array
+  const isCustomGame = currentGame.isCustomGame
+  let disabledChoices: { truth: boolean; dare: boolean }
+  let availableCounts: { truth: number; dare: number }
+  
+  if (isCustomGame) {
+    // Custom games use the old logic with items array
+    disabledChoices = getDisabledChoices(currentGame, items, currentGame.respectPriorGames)
+    availableCounts = getAvailableItemCounts(currentGame, items, currentGame.respectPriorGames)
+  } else {
+    // Regular games use challengePairManager
+    const currentPair = challengePairManager.getCurrentPair()
+    const playerWithCounters = getCurrentPlayerWithCounters(currentGame)
+    
+    // Check if we have a valid pair
+    const hasTruth = currentPair.truth !== null
+    const hasDare = currentPair.dare !== null
+    
+    // Check consecutive limits
+    const truthBlocked = playerWithCounters ? !canChooseType(playerWithCounters, 'truth', currentGame.gameConfiguration) : false
+    const dareBlocked = playerWithCounters ? !canChooseType(playerWithCounters, 'dare', currentGame.gameConfiguration) : false
+    
+    disabledChoices = {
+      truth: !hasTruth || (truthBlocked && hasDare),
+      dare: !hasDare || (dareBlocked && hasTruth)
+    }
+    
+    availableCounts = {
+      truth: hasTruth ? 1 : 0,
+      dare: hasDare ? 1 : 0
+    }
+  }
 
   // Determine the reason for disabling each choice
   const truthDisabledReason = disabledChoices.truth ? (availableCounts.truth === 0 ? 'no-items' : 'consecutive') : null

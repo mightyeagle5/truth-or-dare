@@ -5,18 +5,16 @@ import { GamePage } from './routes/GamePage'
 import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
 import { ThemeEditor } from './components/dev'
-import { useGameStore, useHistoryStore } from './store'
+import { useHistoryStore } from './store'
 import './styles/index.css'
 
 function AppContent() {
-  const { loadItems } = useGameStore()
   const { loadGameHistory } = useHistoryStore()
 
   useEffect(() => {
-    // Load initial data
-    loadItems()
+    // Load initial data (challenges are now fetched on-demand during gameplay)
     loadGameHistory()
-  }, [loadItems, loadGameHistory])
+  }, [loadGameHistory])
 
   return (
     <>

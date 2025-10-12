@@ -59,19 +59,17 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       gameConfiguration
     }
 
-    // Load items from Supabase and initialize challenge pairs
+    // Initialize challenge pairs and cache all levels
     try {
-      const items = await SupabaseChallengeService.getAllChallenges()
-      
-      // Initialize challenge pair manager
       const priorGameItems = getPriorGameItems(priorGameIds)
-      // Get excluded tags for the first player (turn index 0)
       const firstPlayerExcludedTags = getExcludedTagsFromPreferences(normalizedPlayers[0]?.preferences)
-      challengePairManager.initialize(items, currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, {}, priorGameItems, firstPlayerExcludedTags)
       
-      // Load initial pair
+      // Initialize with empty items array - pairs will be fetched from DB
+      challengePairManager.initialize([], currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, {}, priorGameItems, firstPlayerExcludedTags)
+      
+      // Fetch and cache pairs for all levels at game start
       set({ challengePairLoading: true, challengePairError: null })
-      await challengePairManager.loadInitialPair()
+      await challengePairManager.initializeAllLevels()
       
       // Save game and add to history (only if not in dev mode with saving disabled)
       const devStore = useDevStore.getState()
@@ -88,7 +86,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
       set({
         currentGame: game,
-        items,
+        items: [], // No longer storing all items
         currentItem: null,
         isWildCard: false,
         challengePairLoading: false,
@@ -97,7 +95,7 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
       return gameId
     } catch (error) {
-      console.error('Failed to load challenges:', error)
+      console.error('Failed to start game:', error)
       useUIStore.getState().setError('Failed to load challenges')
       set({ challengePairLoading: false, challengePairError: 'Failed to load challenges' })
       return null
@@ -135,23 +133,25 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
           saveGame(loadedGame)
         }
 
-        // Load items from Supabase (unless it's a custom game)
-        const items = loadedGame.isCustomGame 
-          ? (loadedGame.customItems || [])
-          : await SupabaseChallengeService.getAllChallenges()
-
-        // Initialize challenge pair manager for regular games
-        if (!loadedGame.isCustomGame) {
+        // Handle items based on game type
+        let items: Item[] = []
+        
+        if (loadedGame.isCustomGame) {
+          // Custom games store items locally
+          items = loadedGame.customItems || []
+        } else {
+          // Regular games fetch pairs on-demand from DB
           const priorGameItems = loadedGame.respectPriorGames 
             ? getPriorGameItems(loadedGame.priorGameIds) 
             : []
-          // Get excluded tags for the current player
           const currentPlayerExcludedTags = getExcludedTagsFromPreferences(loadedGame.players[loadedGame.turnIndex]?.preferences)
-          challengePairManager.initialize(items, loadedGame.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, loadedGame.usedItems, priorGameItems, currentPlayerExcludedTags)
           
-          // Load initial pair
+          // Initialize with empty items array - pairs will be fetched from DB
+          challengePairManager.initialize([], loadedGame.currentLevel as Exclude<Level, 'Progressive' | 'Custom'>, loadedGame.usedItems, priorGameItems, currentPlayerExcludedTags)
+          
+          // Fetch and cache pairs for all levels
           set({ challengePairLoading: true, challengePairError: null })
-          await challengePairManager.loadInitialPair()
+          await challengePairManager.initializeAllLevels()
         }
 
         uiStore.setCurrentScreen('choice')
@@ -243,15 +243,16 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
       return
     }
 
-    // Mark the selected item as used and fetch new next pair
-    await challengePairManager.markItemAsUsed(selectedItem.id, false)
-    
+    // Set the screen and item
     useUIStore.getState().setCurrentScreen('item')
     
     set({
       currentItem: selectedItem,
       isWildCard: false
     })
+    
+    // Start background refetch for the current level (so it's ready when they complete)
+    challengePairManager.refetchCurrentLevelPair()
   },
 
   pickWildCard: async () => {
@@ -298,9 +299,6 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
         useUIStore.getState().setError('No more challenges available for this level')
         return
       }
-
-      // Mark the wild card item as used in the next pair and fetch new next pair
-      await challengePairManager.markWildCardItemAsUsed(wildItem.id)
       
       useUIStore.getState().setCurrentScreen('item')
       
@@ -308,6 +306,9 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
         currentItem: wildItem,
         isWildCard: true
       })
+      
+      // Start background refetch for the current level (so it's ready when they complete)
+      challengePairManager.refetchCurrentLevelPair()
     } catch (error) {
       useUIStore.getState().setError('Failed to load wild card')
     }
@@ -402,9 +403,8 @@ const useGameStore = create<GameState & GameActions>((set, get) => ({
 
     
 
-    // Update challenge pair manager with new used items
+    // Update challenge pair manager with new used items and move to next pair
     if (!currentGame.isCustomGame) {
-      console.log('✅ Completing item and moving to next pair')
       // Turn has advanced, so use next player's excluded tags
       const nextPlayerExcludedTags = getExcludedTagsFromPreferences(updatedGame.players[updatedGame.turnIndex]?.preferences)
       challengePairManager.updateUsedItems(updatedGame.usedItems, priorGameItems, nextPlayerExcludedTags)

@@ -53,7 +53,7 @@ export class SupabaseChallengeService {
       .order('created_at', { ascending: true })
 
     if (error) {
-      console.error('Error fetching challenges:', error)
+      console.error('Error fetching all challenges:', error)
       throw error
     }
 
@@ -303,6 +303,76 @@ export class SupabaseChallengeService {
     }
 
     return (data || []).map(row => this.convertDbRowToItem(row))
+  }
+
+  // Fetch a random challenge pair (1 truth + 1 dare) for gameplay
+  static async fetchChallengePair(
+    level: string,
+    usedItemIds: string[],
+    priorGameItemIds: string[],
+    excludedTags: string[],
+    genderFor?: string[]
+  ): Promise<{ truth: Item | null; dare: Item | null }> {
+    // Combine all excluded IDs
+    const allExcludedIds = [...usedItemIds, ...priorGameItemIds]
+
+    // Call the stored function to get 1 random truth and 1 random dare
+    const [truthResult, dareResult] = await Promise.all([
+      supabase.rpc('get_random_challenge', {
+        p_level: level,
+        p_kind: 'truth',
+        p_excluded_ids: allExcludedIds
+      }),
+      supabase.rpc('get_random_challenge', {
+        p_level: level,
+        p_kind: 'dare',
+        p_excluded_ids: allExcludedIds
+      })
+    ])
+
+    if (truthResult.error) {
+      console.error('Supabase error (truth):', truthResult.error)
+      throw truthResult.error
+    }
+
+    if (dareResult.error) {
+      console.error('Supabase error (dare):', dareResult.error)
+      throw dareResult.error
+    }
+
+    // Convert to Item objects (RPC returns array, we take first item)
+    const truthData = Array.isArray(truthResult.data) && truthResult.data.length > 0 
+      ? this.convertDbRowToItem(truthResult.data[0])
+      : null
+    const dareData = Array.isArray(dareResult.data) && dareResult.data.length > 0
+      ? this.convertDbRowToItem(dareResult.data[0])
+      : null
+
+    // Client-side filtering for tags and gender (since we can't do complex array operations in SQL easily)
+    let randomTruth = truthData
+    let randomDare = dareData
+
+    // Filter by excluded tags
+    if (randomTruth && excludedTags.length > 0 && randomTruth.tags?.some(tag => excludedTags.includes(tag))) {
+      randomTruth = null
+    }
+    if (randomDare && excludedTags.length > 0 && randomDare.tags?.some(tag => excludedTags.includes(tag))) {
+      randomDare = null
+    }
+
+    // Filter by gender
+    if (randomTruth && genderFor && genderFor.length > 0) {
+      if (randomTruth.gender_for && randomTruth.gender_for.length > 0 && !randomTruth.gender_for.some(g => genderFor.includes(g))) {
+        randomTruth = null
+      }
+    }
+    if (randomDare && genderFor && genderFor.length > 0) {
+      if (randomDare.gender_for && randomDare.gender_for.length > 0 && !randomDare.gender_for.some(g => genderFor.includes(g))) {
+        randomDare = null
+      }
+    }
+
+    return { truth: randomTruth, dare: randomDare }
   }
 
   // Rating/Reaction methods
