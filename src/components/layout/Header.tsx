@@ -20,12 +20,11 @@ export const Header: React.FC<HeaderProps> = ({
   const navigate = useNavigate()
   
   const handleTitleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // If we're in a game (onExit is provided), show confirmation
+    // If we're in a game (onExit is provided), call the exit handler
+    // The parent component will handle showing the confirmation dialog
     if (onExit) {
       e.preventDefault()
-      if (window.confirm('Are you sure you want to exit the game? Your progress will be lost.')) {
-        navigate('/')
-      }
+      onExit()
     }
   }
   
