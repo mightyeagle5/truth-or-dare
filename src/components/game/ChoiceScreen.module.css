@@ -250,8 +250,19 @@
     padding: var(--radius-2xl);
   }
   
+  .levelBar {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .choicesWrap {
+    margin-top: 32px;
+    margin-bottom: 48px;
+  }
+  
   .playerName {
     font-size: var(--font-size-4xl);
+    margin-top: 32px;
   }
   
   .choices {
@@ -290,8 +301,8 @@
   }
   
   .levelBar {
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 12px;
+    margin-bottom: 12px;
     gap: 12px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -312,9 +323,14 @@
   }
   
   .choicesWrap {
-    margin-top: 64px;
+    margin-top: 32px;
+    margin-bottom: 48px;
     width: 100%;
     padding: 0;
+  }
+  
+  .playerName {
+    margin-top: 32px;
   }
   
   .choices {

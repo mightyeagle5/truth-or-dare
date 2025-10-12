@@ -62,6 +62,13 @@
     padding: var(--radius-lg); /* Reduce padding since no text */
     min-width: var(--space-10); /* Ensure consistent width */
     justify-content: center;
+    align-items: center; /* Ensure vertical centering */
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -79,6 +86,13 @@
     padding: var(--radius-lg) var(--radius-xl);
     min-width: auto;
     width: 100%;
+    justify-content: center;
+    align-items: center; /* Ensure vertical centering */
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
 }

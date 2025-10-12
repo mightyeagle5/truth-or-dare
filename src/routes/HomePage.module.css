@@ -711,6 +711,11 @@
   .sections {
     gap: var(--space-5);
   }
+  
+  /* Add 32px margin-top to first child sections on mobile */
+  .sections > div:first-child {
+    margin-top: 32px;
+  }
 
   .actionsInline {
     flex-direction: column;
@@ -832,6 +837,14 @@
   }
 
   /* Removed mobile fade effect */
+}
+
+/* Apply same fixes for smaller mobile screens */
+@media (max-width: 640px) {
+  /* Add 32px margin-top to first child sections on smaller mobile */
+  .sections > div:first-child {
+    margin-top: 32px;
+  }
 }
 
 /* Section headers with buttons */
