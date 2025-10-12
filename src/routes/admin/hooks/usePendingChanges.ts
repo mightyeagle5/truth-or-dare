@@ -47,7 +47,7 @@ export const usePendingChanges = () => {
     setShowSaveDialog(false)
   }
 
-  const confirmSaveChanges = async (itemCacheRef: React.MutableRefObject<Record<string, Item[]>>, loadingCacheRef: React.MutableRefObject<Record<string, boolean>>, levelFilter: string, kindFilter: string, setFilteredItems: (items: Item[]) => void) => {
+  const confirmSaveChanges = async (itemCacheRef: React.MutableRefObject<Record<string, Item[]>>, loadingCacheRef: React.MutableRefObject<Record<string, boolean>>) => {
     try {
       setIsSaving(true)
       console.log('Saving changes to Supabase:', pendingChanges)

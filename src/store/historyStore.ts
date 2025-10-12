@@ -18,7 +18,7 @@ interface HistoryActions {
 
 type HistoryStore = HistoryState & HistoryActions
 
-export const useHistoryStore = create<HistoryStore>((set, get) => ({
+export const useHistoryStore = create<HistoryStore>((set) => ({
   // Initial state
   gameHistory: [],
 

@@ -42,7 +42,6 @@ export interface ThemeTokens {
  * Extracts all CSS custom properties from :root
  */
 export function extractThemeTokens(): ThemeTokens {
-  const _rootStyles = getComputedStyle(document.documentElement);
   const tokens: ThemeTokens = {
     colors: {
       primary: {},

@@ -148,13 +148,11 @@ const AdminPage: React.FC = () => {
 
 
   const handleConfirmSaveChanges = useCallback(async () => {
-    await confirmSaveChanges(itemCacheRef, loadingCacheRef, levelFilter, kindFilter, () => {
-      // This would be handled by the useAdminFilters hook
-    })
+    await confirmSaveChanges(itemCacheRef, loadingCacheRef)
     
     // Refresh the current filter to show updated data
     await refreshCurrentFilter()
-  }, [confirmSaveChanges, itemCacheRef, loadingCacheRef, levelFilter, kindFilter, refreshCurrentFilter])
+  }, [confirmSaveChanges, itemCacheRef, loadingCacheRef, refreshCurrentFilter])
 
   if (isLoading) {
     return (

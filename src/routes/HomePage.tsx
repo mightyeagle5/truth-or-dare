@@ -10,7 +10,7 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate()
   const { startGame, clearGame } = useGameStore()
   const { gameHistory, removeGameFromHistory } = useHistoryStore()
-  const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
+  // const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
   
   const [isStarting, setIsStarting] = useState(false)
   
@@ -19,7 +19,6 @@ export const HomePage: React.FC = () => {
     players,
     setPlayers,
     selectedLevel,
-    setSelectedLevel,
     selectedPriorGames,
     setSelectedPriorGames,
     canStartGame,

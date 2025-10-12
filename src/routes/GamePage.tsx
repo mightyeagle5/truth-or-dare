@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion'
 import { Header } from '../components/layout'
 import { ChoiceScreen, ItemScreen } from '../components/game'
 import { useGameStore, useUIStore } from '../store'
-import { getCurrentPlayer } from '../store/selectors'
 import styles from './GamePage.module.css'
 
 export const GamePage: React.FC = () => {
@@ -36,8 +35,6 @@ export const GamePage: React.FC = () => {
       navigate('/')
     }
   }
-
-  const currentPlayer = getCurrentPlayer(currentGame)
 
   if (!currentGame) {
     // If there's no current game after attempting to load, redirect to home.
