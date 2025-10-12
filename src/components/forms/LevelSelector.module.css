@@ -14,8 +14,21 @@
 
 .levels {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--radius-xl);
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.levels::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.pillsContainer {
+  display: flex;
+  gap: var(--radius-xl);
+  width: max-content;
 }
 
 .levelPill {
