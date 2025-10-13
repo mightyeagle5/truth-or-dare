@@ -5,7 +5,6 @@ interface UseResponsivePillsProps {
   containerPadding?: number
   pillGap?: number
   minPillWidth?: number
-  peekPercentage?: number
 }
 
 interface ResponsivePillsResult {
@@ -19,8 +18,7 @@ export const useResponsivePills = ({
   pillCount,
   containerPadding = 32, // 16px on each side
   pillGap = 16,
-  minPillWidth = 80,
-  peekPercentage = 0.1
+  minPillWidth = 80
 }: UseResponsivePillsProps): ResponsivePillsResult => {
   const [screenWidth, setScreenWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024)
 
@@ -42,18 +40,35 @@ export const useResponsivePills = ({
       }
     }
     
-    // Need to show peek - calculate how many pills fit + peek
-    const peekWidth = minPillWidth * peekPercentage
-    const visiblePills = Math.floor((contentWidth - peekWidth) / minPillWidth)
-    const adjustedPillWidth = (contentWidth - peekWidth) / visiblePills
+    // Find how many pills can fit at minimum width
+    let visiblePills = Math.floor(contentWidth / (minPillWidth + pillGap))
+    if (visiblePills >= pillCount) {
+      visiblePills = pillCount
+    }
+    
+    // If we can fit all pills at minimum width, use that
+    if (visiblePills === pillCount) {
+      return {
+        pillWidth: minPillWidth,
+        containerWidth: availableWidth,
+        shouldShowPeek: false,
+        totalPillsVisible: pillCount
+      }
+    }
+    
+    // Calculate width so that the last visible pill is half-visible
+    // Formula: (visiblePills - 0.5) * pillWidth + (visiblePills - 1) * pillGap = contentWidth
+    const targetVisiblePills = visiblePills - 0.5
+    const totalGapsForVisible = (visiblePills - 1) * pillGap
+    const adjustedPillWidth = (contentWidth - totalGapsForVisible) / targetVisiblePills
     
     return {
-      pillWidth: Math.max(adjustedPillWidth, minPillWidth),
+      pillWidth: adjustedPillWidth,
       containerWidth: availableWidth,
       shouldShowPeek: true,
-      totalPillsVisible: visiblePills + 1 // +1 for the peeked pill
+      totalPillsVisible: visiblePills
     }
-  }, [screenWidth, pillCount, containerPadding, pillGap, minPillWidth, peekPercentage])
+  }, [screenWidth, pillCount, containerPadding, pillGap, minPillWidth])
 
   useEffect(() => {
     const handleResize = () => {

@@ -44,8 +44,7 @@ export const LevelSelector: React.FC<LevelSelectorProps> = ({
     pillCount: LEVELS.length,
     containerPadding: 32, // 16px padding on each side
     pillGap: 16,
-    minPillWidth: 80,
-    peekPercentage: 0.1
+    minPillWidth: 80
   })
 
   return (
