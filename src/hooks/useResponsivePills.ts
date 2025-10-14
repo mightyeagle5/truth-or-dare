@@ -41,7 +41,8 @@ export const useResponsivePills = ({
     }
     
     // Find how many pills can fit at minimum width
-    let visiblePills = Math.floor(contentWidth / (minPillWidth + pillGap))
+    // Formula: visiblePills * minPillWidth + (visiblePills - 1) * pillGap <= contentWidth
+    let visiblePills = Math.floor((contentWidth + pillGap) / (minPillWidth + pillGap))
     if (visiblePills >= pillCount) {
       visiblePills = pillCount
     }
@@ -57,10 +58,22 @@ export const useResponsivePills = ({
     }
     
     // Calculate width so that the last visible pill is half-visible
-    // Formula: (visiblePills - 0.5) * pillWidth + (visiblePills - 1) * pillGap = contentWidth
+    // We want to show (visiblePills - 0.5) pills worth of content
     const targetVisiblePills = visiblePills - 0.5
     const totalGapsForVisible = (visiblePills - 1) * pillGap
     const adjustedPillWidth = (contentWidth - totalGapsForVisible) / targetVisiblePills
+    
+    // Debug logging
+    console.log('Responsive Pills Debug:', {
+      screenWidth,
+      availableWidth,
+      contentWidth,
+      visiblePills,
+      targetVisiblePills,
+      totalGapsForVisible,
+      adjustedPillWidth,
+      minPillWidth
+    })
     
     return {
       pillWidth: adjustedPillWidth,
