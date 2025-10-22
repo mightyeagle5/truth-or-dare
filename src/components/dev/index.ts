@@ -1,2 +1,0 @@
-export { ThemeEditor } from './ThemeEditor';
-

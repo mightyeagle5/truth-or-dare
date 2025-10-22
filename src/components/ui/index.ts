@@ -1,7 +1,0 @@
-export { Badge } from './Badge'
-export { ChallengeRating } from './ChallengeRating'
-export { ConfirmDialog } from './ConfirmDialog'
-export { IconButton } from './IconButton'
-export { Pill } from './Pill'
-export { Timer } from './Timer'
-export { Tooltip } from './Tooltip'

@@ -1,6 +1,0 @@
-export { GameSetupForm } from './GameSetupForm'
-export { CustomGameSection } from './CustomGameSection'
-export { PlayerList } from './PlayerList'
-export { LevelSelector } from './LevelSelector'
-export { PreviousGamesPicker } from './PreviousGamesPicker'
-export { GenderRadio } from './GenderRadio'
