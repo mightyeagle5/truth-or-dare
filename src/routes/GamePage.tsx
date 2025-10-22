@@ -83,7 +83,7 @@ export const GamePage: React.FC = () => {
       <ConfirmDialog
         isOpen={showExitDialog}
         title="Exit Game"
-        message="Are you sure you want to exit the game? Your progress will be saved to history, but you'll need to start a new game to continue playing."
+        message="Are you sure you want to exit the game?"
         confirmText="Exit"
         cancelText="Stay"
         variant="danger"

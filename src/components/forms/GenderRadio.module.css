@@ -40,6 +40,10 @@
   font-size: var(--font-size-lg);
   font-weight: bold;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.2em;
 }
 
 .label {
@@ -69,6 +73,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 1.2em;
   }
 }
 
@@ -94,5 +99,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 1.2em;
   }
 }
