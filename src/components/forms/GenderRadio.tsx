@@ -1,5 +1,6 @@
 import React from 'react'
-import { GENDER_COLORS, GENDER_ICONS } from '../../lib/constants'
+import { IoFemaleSharp, IoMaleSharp } from "react-icons/io5"
+import { GENDER_COLORS } from '../../lib/constants'
 import type { Gender } from '../../types'
 import styles from './GenderRadio.module.css'
 
@@ -12,7 +13,7 @@ interface GenderRadioProps {
 export const GenderRadio: React.FC<GenderRadioProps> = ({ 
   value, 
   onChange, 
-  disabled = false 
+  disabled = false
 }) => {
   return (
     <div className={styles.container}>
@@ -30,7 +31,7 @@ export const GenderRadio: React.FC<GenderRadioProps> = ({
           className={styles.icon}
           style={{ color: GENDER_COLORS.male }}
         >
-          {GENDER_ICONS.male}
+          <IoMaleSharp />
         </span>
         <span className={styles.label}>Male</span>
       </label>
@@ -49,7 +50,7 @@ export const GenderRadio: React.FC<GenderRadioProps> = ({
           className={styles.icon}
           style={{ color: GENDER_COLORS.female }}
         >
-          {GENDER_ICONS.female}
+          <IoFemaleSharp />
         </span>
         <span className={styles.label}>Female</span>
       </label>

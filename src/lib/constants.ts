@@ -22,6 +22,7 @@ export const GENDER_ICONS = {
   female: '♀'
 } as const
 
+
 export const MAX_PLAYERS = 8
 export const MIN_PLAYERS = 2
 export const CONSECUTIVE_LIMIT = 2

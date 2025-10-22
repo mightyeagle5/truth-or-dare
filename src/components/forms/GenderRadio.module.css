@@ -74,6 +74,10 @@
     align-items: center;
     justify-content: center;
     height: 1.2em;
+    /* Mobile-specific fixes for React Icons */
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 1.5em; /* Slightly larger for better mobile rendering */
   }
 }
 
@@ -100,5 +104,9 @@
     align-items: center;
     justify-content: center;
     height: 1.2em;
+    /* Mobile-specific fixes for React Icons */
+    line-height: 1;
+    vertical-align: middle;
+    font-size: 1.5em; /* Slightly larger for better mobile rendering */
   }
 }
