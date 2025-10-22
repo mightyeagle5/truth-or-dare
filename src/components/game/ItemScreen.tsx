@@ -19,7 +19,8 @@ export const ItemScreen: React.FC = () => {
     skipItem, 
     completeItem,
     completeWildCard,
-    items
+    items,
+    challengePairLoading
   } = useGameStore()
 
   const [timerRunning, setTimerRunning] = useState(false)
@@ -88,18 +89,24 @@ export const ItemScreen: React.FC = () => {
     : true // For regular games, assume wild card is always available
 
   const handleWildCard = () => {
-    pickWildCard()
+    if (!challengePairLoading) {
+      pickWildCard()
+    }
   }
 
   const handleSkip = () => {
-    skipItem()
+    if (!challengePairLoading) {
+      skipItem()
+    }
   }
 
   const handleComplete = () => {
-    if (isWildCard) {
-      completeWildCard()
-    } else {
-      completeItem()
+    if (!challengePairLoading) {
+      if (isWildCard) {
+        completeWildCard()
+      } else {
+        completeItem()
+      }
     }
   }
 
@@ -188,9 +195,9 @@ export const ItemScreen: React.FC = () => {
       <div className={styles.actions}>
         {currentGame.gameConfiguration.wildCardEnabled && (
           <button
-            className={`${styles.wildCardButton} ${!wildCardAvailable ? styles.disabled : ''}`}
+            className={`${styles.wildCardButton} ${!wildCardAvailable || challengePairLoading ? styles.disabled : ''}`}
             onClick={handleWildCard}
-            disabled={!wildCardAvailable}
+            disabled={!wildCardAvailable || challengePairLoading}
             type="button"
           >
             Wild card
@@ -199,8 +206,9 @@ export const ItemScreen: React.FC = () => {
         
         {currentGame.gameConfiguration.skipEnabled && (
           <button
-            className={styles.skipButton}
+            className={`${styles.skipButton} ${challengePairLoading ? styles.disabled : ''}`}
             onClick={handleSkip}
+            disabled={challengePairLoading}
             type="button"
           >
             Skip
@@ -208,8 +216,9 @@ export const ItemScreen: React.FC = () => {
         )}
         
         <button
-          className={styles.completeButton}
+          className={`${styles.completeButton} ${challengePairLoading ? styles.disabled : ''}`}
           onClick={handleComplete}
+          disabled={challengePairLoading}
           type="button"
         >
           Complete

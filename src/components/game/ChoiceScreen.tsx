@@ -59,13 +59,13 @@ export const ChoiceScreen: React.FC = () => {
   const dareDisabledReason = disabledChoices.dare ? (availableCounts.dare === 0 ? 'no-items' : 'consecutive') : null
 
   const handleTruthClick = () => {
-    if (!disabledChoices.truth) {
+    if (!disabledChoices.truth && !challengePairLoading) {
       pickItem('truth')
     }
   }
 
   const handleDareClick = () => {
-    if (!disabledChoices.dare) {
+    if (!disabledChoices.dare && !challengePairLoading) {
       pickItem('dare')
     }
   }
@@ -131,7 +131,8 @@ export const ChoiceScreen: React.FC = () => {
                 '--level-color-bg': `${levelColor(lvl)}20`,
                 '--level-color-border': levelColor(lvl)
               } as React.CSSProperties}
-              onClick={() => { changeLevel(lvl) }}
+              onClick={() => { if (!challengePairLoading) changeLevel(lvl) }}
+              disabled={challengePairLoading}
             >
               {displayName(lvl)}
             </Pill>
@@ -156,9 +157,9 @@ export const ChoiceScreen: React.FC = () => {
             className={styles.choices}
           >
             <button
-              className={`${styles.choiceCard} ${styles.truthCard} ${disabledChoices.truth ? styles.disabled : ''}`}
+              className={`${styles.choiceCard} ${styles.truthCard} ${disabledChoices.truth || challengePairLoading ? styles.disabled : ''}`}
               onClick={handleTruthClick}
-              disabled={disabledChoices.truth}
+              disabled={disabledChoices.truth || challengePairLoading}
               type="button"
             >
               <div className={styles.choiceContent}>
@@ -173,9 +174,9 @@ export const ChoiceScreen: React.FC = () => {
             </button>
 
             <button
-              className={`${styles.choiceCard} ${styles.dareCard} ${disabledChoices.dare ? styles.disabled : ''}`}
+              className={`${styles.choiceCard} ${styles.dareCard} ${disabledChoices.dare || challengePairLoading ? styles.disabled : ''}`}
               onClick={handleDareClick}
-              disabled={disabledChoices.dare}
+              disabled={disabledChoices.dare || challengePairLoading}
               type="button"
             >
               <div className={styles.choiceContent}>
