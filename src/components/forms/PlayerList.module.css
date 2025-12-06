@@ -124,6 +124,14 @@
   line-height: 1;
 }
 
+.configButton svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.2em;
+  line-height: 1;
+}
+
 .configButton:hover:not(:disabled) {
   border-color: var(--color-neutral-500);
   background: rgba(255, 255, 255, 0.05);
@@ -199,6 +207,11 @@
   .configButton {
     padding: var(--radius-lg); /* Match GenderRadio button padding */
   }
+  
+  .configButton svg {
+    font-size: 1.5em; /* Match GenderRadio icon size for mobile */
+    vertical-align: middle;
+  }
 }
 
 /* Mobile responsive: move icon buttons to second row when screen < 420px */
@@ -231,6 +244,11 @@
     width: 100%;
     justify-content: center;
     padding: var(--radius-lg) var(--radius-xl); /* Match GenderRadio button padding */
+  }
+  
+  .configButton svg {
+    font-size: 1.5em; /* Match GenderRadio icon size for mobile */
+    vertical-align: middle;
   }
   
   .configButtonWrapper {
