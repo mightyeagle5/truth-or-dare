@@ -81,6 +81,13 @@
   min-width: 120px;
 }
 
+@media (max-width: 768px) {
+  .nameInput {
+    height: 44px;
+    box-sizing: border-box;
+  }
+}
+
 .nameInput:focus {
   outline: none;
   border-color: var(--color-primary-500);
@@ -205,11 +212,20 @@
 /* Mobile responsive: ensure consistent button heights */
 @media (max-width: 768px) {
   .configButton {
-    padding: var(--radius-lg); /* Match GenderRadio button padding */
+    padding: 0; /* Remove padding to allow exact 44x44 size */
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .configButton svg {
-    font-size: 1.5em; /* Match GenderRadio icon size for mobile */
+    width: 20px;
+    height: 20px;
+    font-size: 20px; /* 20x20 icon size */
     vertical-align: middle;
   }
 }
@@ -241,17 +257,22 @@
   }
   
   .configButton {
-    width: 100%;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     justify-content: center;
-    padding: var(--radius-lg) var(--radius-xl); /* Match GenderRadio button padding */
+    padding: 0; /* Remove padding to allow exact 44x44 size */
   }
   
   .configButton svg {
-    font-size: 1.5em; /* Match GenderRadio icon size for mobile */
+    width: 20px;
+    height: 20px;
+    font-size: 20px; /* 20x20 icon size */
     vertical-align: middle;
   }
   
   .configButtonWrapper {
-    width: 48px;
+    width: 44px;
   }
 }

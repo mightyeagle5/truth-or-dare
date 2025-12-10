@@ -63,8 +63,11 @@
   }
   
   .option {
-    padding: var(--radius-lg); /* Reduce padding since no text */
-    min-width: var(--space-10); /* Ensure consistent width */
+    padding: 0; /* Remove padding to allow exact 44x44 size */
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
     justify-content: center;
     align-items: center; /* Ensure vertical centering */
   }
@@ -73,11 +76,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1.2em;
-    /* Mobile-specific fixes for React Icons */
+    width: 20px;
+    height: 20px;
+    font-size: 20px; /* 20x20 icon size */
     line-height: 1;
     vertical-align: middle;
-    font-size: 1.5em; /* Slightly larger for better mobile rendering */
   }
 }
 
@@ -92,21 +95,25 @@
   }
   
   .option {
-    padding: var(--radius-lg) var(--radius-xl);
-    min-width: auto;
-    width: 100%;
+    padding: var(--radius-lg) var(--radius-xl); /* Restore padding for full width buttons */
+    width: 100%; /* Take full width */
+    height: 44px; /* Height limit only */
+    min-width: 0; /* Allow shrinking */
+    min-height: 44px;
+    max-height: 44px;
     justify-content: center;
     align-items: center; /* Ensure vertical centering */
+    box-sizing: border-box;
   }
   
   .icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 1.2em;
-    /* Mobile-specific fixes for React Icons */
+    width: 20px;
+    height: 20px;
+    font-size: 20px; /* 20x20 icon size */
     line-height: 1;
     vertical-align: middle;
-    font-size: 1.5em; /* Slightly larger for better mobile rendering */
   }
 }
