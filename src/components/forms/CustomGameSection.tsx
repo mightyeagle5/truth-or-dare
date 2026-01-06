@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { PlayerList } from './PlayerList'
 import { SupabaseChallengeService, ChallengeSummary } from '../../lib/supabaseService'
+import { useUIStore } from '../../store'
 import type { PlayerSnapshot, Level, CustomChallenge, ItemKind, GameConfiguration } from '../../types'
 import styles from './CustomGameSection.module.css'
 
@@ -76,6 +77,7 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
 }) => {
   const challengesListRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const { setToast } = useUIStore()
   
   // State for challenges summary
   const [challengesSummary, setChallengesSummary] = useState<ChallengeSummary[]>([])
@@ -161,6 +163,7 @@ export const CustomGameSection: React.FC<CustomGameSectionProps> = ({
       scrollToTop()
     } catch (error) {
       console.error('Failed to load challenges:', error)
+      setToast('Something went wrong, try to load the challenges again')
     } finally {
       setLoadingChallenges(false)
     }

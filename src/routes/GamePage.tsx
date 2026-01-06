@@ -15,7 +15,7 @@ export const GamePage: React.FC = () => {
     loadGame, 
     exitGame
   } = useGameStore()
-  const { currentScreen, isLoading, error } = useUIStore()
+  const { currentScreen, isLoading, error, setToast } = useUIStore()
   const [showExitDialog, setShowExitDialog] = useState(false)
 
   useEffect(() => {
@@ -27,9 +27,13 @@ export const GamePage: React.FC = () => {
   useEffect(() => {
     // If loading has finished and the game was not found, redirect to home
     if (!isLoading && error === 'Game not found') {
+      setToast('Game not found')
       navigate('/')
+    } else if (!isLoading && error === 'Failed to load game') {
+      // Show toast for network errors when loading game
+      setToast('Something went wrong, try to start the game again')
     }
-  }, [isLoading, error, navigate])
+  }, [isLoading, error, navigate, setToast])
 
   const handleExit = () => {
     setShowExitDialog(true)

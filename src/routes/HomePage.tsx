@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { PlayerList, PreviousGamesPicker } from '../components/forms'
-import { useGameStore, useHistoryStore } from '../store'
+import { useGameStore, useHistoryStore, useUIStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
 import styles from './HomePage.module.css'
 
@@ -10,6 +10,7 @@ export const HomePage: React.FC = () => {
   const navigate = useNavigate()
   const { startGame, clearGame } = useGameStore()
   const { gameHistory, removeGameFromHistory } = useHistoryStore()
+  const { setToast } = useUIStore()
   // const { isDevMode, disableGameSaving, setDisableGameSaving } = useDevStore()
   
   const [isStarting, setIsStarting] = useState(false)
@@ -40,9 +41,13 @@ export const HomePage: React.FC = () => {
       const gameId = await startGame(players, selectedLevel, selectedPriorGames, gameConfiguration)
       if (gameId) {
         navigate(`/game/${gameId}`)
+      } else {
+        // Game failed to start (e.g., network error, failed to fetch challenges)
+        setToast('Something went wrong, try to start the game again')
       }
     } catch (error) {
       console.error('Failed to start game:', error)
+      setToast('Something went wrong, try to start the game again')
     } finally {
       setIsStarting(false)
     }

@@ -5,11 +5,13 @@ import { GamePage } from './routes/GamePage'
 import { CreateCustomGamePage } from './routes/CreateCustomGamePage'
 import AdminPage from './routes/AdminPage'
 import { ThemeEditor } from './components/dev'
-import { useHistoryStore } from './store'
+import { Toast } from './components/ui'
+import { useHistoryStore, useUIStore } from './store'
 import './styles/index.css'
 
 function AppContent() {
   const { loadGameHistory } = useHistoryStore()
+  const { toast, setToast } = useUIStore()
 
   useEffect(() => {
     // Load initial data (challenges are now fetched on-demand during gameplay)
@@ -29,6 +31,7 @@ function AppContent() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
+      <Toast message={toast} onClose={() => setToast(null)} />
       {/* Theme Editor: Change false to true to enable */}
       {false && <ThemeEditor />}
     </>

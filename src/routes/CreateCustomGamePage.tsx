@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageLayout } from '../components/layout'
 import { CustomGameSection } from '../components/forms/CustomGameSection'
-import { useGameStore } from '../store'
+import { useGameStore, useUIStore } from '../store'
 import { useGameSetup } from '../hooks/useGameSetup'
 import { useCustomGame } from '../hooks/useCustomGame'
 
 export const CreateCustomGamePage: React.FC = () => {
   const navigate = useNavigate()
   const { startCustomGame, clearGame } = useGameStore()
+  const { setToast } = useUIStore()
   const [isStarting, setIsStarting] = useState(false)
   
   // Regular game setup (for players and game configuration)
@@ -36,9 +37,14 @@ export const CreateCustomGamePage: React.FC = () => {
         customGameProps.gameMode, 
         gameConfiguration
       )
-      navigate(`/game/${gameId}`)
+      if (gameId) {
+        navigate(`/game/${gameId}`)
+      } else {
+        setToast('Something went wrong, try to start the game again')
+      }
     } catch (error) {
       console.error('Failed to start custom game:', error)
+      setToast('Something went wrong, try to start the game again')
     } finally {
       setIsStarting(false)
     }
